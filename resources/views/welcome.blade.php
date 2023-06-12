@@ -10,9 +10,9 @@
 </head>
 
 <body class="antialiased">
-    <div class=" bg-gray-100 text-red-500">
+    <p class="bg-gray-100 text-red-500">
         テスト
-    </div>
+    </p>
 </body>
 
 </html>
