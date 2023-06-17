@@ -27,4 +27,10 @@ class UserController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function index()
+    {
+        $users = User::where('is_logged_in', true)->get(); // is_logged_inがtrueのユーザーだけを取得
+        return response()->json($users); // ユーザ一覧をJSON形式で返す
+    }
 }

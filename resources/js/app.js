@@ -5,9 +5,14 @@
  */
 
 //require('./bootstrap');
-import HelloComponent from './components/HelloComponent';
+import { createApp } from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
+import App from './App.vue'
 
-window.Vue = require('vue').default;
+import Hello from './components/HelloComponent';
+import SelectAccount from './components/SelectAccountComponent';
+
+ window.Vue = require('vue').default;
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,7 +25,18 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('hello-component', HelloComponent);
+
+const routes = [
+  {
+    path: '/',
+    component: Hello,
+  },
+  {
+    path: '/select-account',
+    component: SelectAccount,
+  },
+];
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,6 +44,9 @@ Vue.component('hello-component', HelloComponent);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
+const router = createRouter({
+  history: createWebHistory(),
+  routes, // `routes: routes` の短縮記法
+})
+
+createApp(App).use(router).mount('#app')

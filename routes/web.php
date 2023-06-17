@@ -20,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('hello');
 });
+
+Route::get('/select-account', function () {
+    return view('selectAccount');
+});
