@@ -11,6 +11,7 @@ import App from './App.vue'
 
 import Hello from './components/HelloComponent';
 import SelectAccount from './components/SelectAccountComponent';
+import Introduction from './components/IntroComponent';
 
  window.Vue = require('vue').default;
 
@@ -34,6 +35,10 @@ const routes = [
   {
     path: '/select-account',
     component: SelectAccount,
+  },
+  {
+    path: '/introduction/:username',
+    component: Introduction, name: 'introduction'
   },
 ];
 
