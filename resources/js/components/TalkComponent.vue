@@ -1,18 +1,39 @@
 <template>
   <div>
-    <h1 class="desktop:text-[60px] sp:text-[30px] text-blue-600 mt-[120px] text-center text-shadow">個人情報保護ゲーム</h1>  
-    <div class="flex justify-center my-[30px]">
-      <img src='/img/privacy.png' width="250" alt="key-visual">
+    <div v-for="card in defenderCards" :key="card.id">
+      <img :src="card.image" @click="selectCard(card)" />
     </div>
-    <router-link to="/select-account" class="bg-blue-500 text-white hover:bg-blue-600 text-[30px]
-                    text-center flex justify-center mx-[-150px] py-[3px] shadow-md">
-    GAME START
-    </router-link>
   </div>
 </template>
 
 <script>
-  export default {
-    name: "TalkComponent",
-  }
+import axios from 'axios'
+
+export default {
+  data() {
+    return {
+      defenderCards: [],
+      selectedCards: [],
+    };
+  },
+  async mounted() {
+    const id = this.$route.params.id;
+    const response = await axios.get(`/api/game/${id}`);
+    this.defenderCards = [
+      response.data.defender_card1_id,
+      response.data.defender_card2_id,
+      response.data.defender_card3_id,
+      response.data.defender_card4_id,
+      response.data.defender_card5_id,
+    ];
+  },
+  methods: {
+    selectCard(card) {
+      if (this.selectedCards.length < 3) {
+        this.selectedCards.push(card);
+      }
+    },
+  },
+};
 </script>
+
