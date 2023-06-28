@@ -1,39 +1,38 @@
 <template>
   <div>
-    <div v-for="card in defenderCards" :key="card.id">
-      <img :src="card.image" @click="selectCard(card)" />
-    </div>
+    <h1>Defender Cards</h1>
+    <ul>
+      <li v-for="card in defenderCards" :key="card.id">
+        {{ card.defender_card_name }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
   data() {
     return {
       defenderCards: [],
-      selectedCards: [],
     };
   },
-  async mounted() {
-    const id = this.$route.params.id;
-    const response = await axios.get(`/api/game/${id}`);
+  async created() {
+  try {
+    const gameId = this.$route.params.id;
+    const response = await axios.get(`http://localhost:8000/api/game/${gameId}`); // TODO: パス変更
     this.defenderCards = [
-      response.data.defender_card1_id,
-      response.data.defender_card2_id,
-      response.data.defender_card3_id,
-      response.data.defender_card4_id,
-      response.data.defender_card5_id,
+      response.data.defender_card1,
+      response.data.defender_card2,
+      response.data.defender_card3,
+      response.data.defender_card4,
+      response.data.defender_card5,
     ];
-  },
-  methods: {
-    selectCard(card) {
-      if (this.selectedCards.length < 3) {
-        this.selectedCards.push(card);
-      }
-    },
-  },
+    console.log(gameId);
+  } catch (error) {
+    console.error('Error fetching game information:', error);
+  }
+}
 };
 </script>
-

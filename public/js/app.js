@@ -19841,39 +19841,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      defenderCards: [],
-      selectedCards: []
+      defenderCards: []
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     var _this = this;
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var id, response;
+      var gameId, response;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
-            id = _this.$route.params.id;
-            _context.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/game/".concat(id));
-          case 3:
+            _context.prev = 0;
+            gameId = _this.$route.params.id;
+            _context.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default().get("http://localhost:8000/api/game/".concat(gameId));
+          case 4:
             response = _context.sent;
-            _this.defenderCards = [response.data.defender_card1_id, response.data.defender_card2_id, response.data.defender_card3_id, response.data.defender_card4_id, response.data.defender_card5_id];
-          case 5:
+            // TODO: パス変更
+            _this.defenderCards = [response.data.defender_card1, response.data.defender_card2, response.data.defender_card3, response.data.defender_card4, response.data.defender_card5];
+            console.log(gameId);
+            _context.next = 12;
+            break;
+          case 9:
+            _context.prev = 9;
+            _context.t0 = _context["catch"](0);
+            console.error('Error fetching game information:', _context.t0);
+          case 12:
           case "end":
             return _context.stop();
         }
-      }, _callee);
+      }, _callee, null, [[0, 9]]);
     }))();
-  },
-  methods: {
-    selectCard: function selectCard(card) {
-      if (this.selectedCards.length < 3) {
-        this.selectedCards.push(card);
-      }
-    },
-    submit: function submit() {
-      // Send selectedCards to server
-    }
   }
 });
 
@@ -20044,22 +20042,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = ["src", "onClick"];
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Defender Cards", -1 /* HOISTED */);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.defenderCards, function (card) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.defenderCards, function (card) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: card.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-      src: card.image,
-      onClick: function onClick($event) {
-        return $options.selectCard(card);
-      }
-    }, null, 8 /* PROPS */, _hoisted_1)]);
-  }), 128 /* KEYED_FRAGMENT */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[0] || (_cache[0] = function () {
-      return $options.submit && $options.submit.apply($options, arguments);
-    })
-  }, "Submit")]);
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(card.defender_card_name), 1 /* TEXT */);
+  }), 128 /* KEYED_FRAGMENT */))])]);
 }
 
 /***/ }),
