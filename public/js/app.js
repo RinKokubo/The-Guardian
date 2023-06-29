@@ -19841,7 +19841,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      defenderCards: []
+      defenderCards: [],
+      userInput: '',
+      conversation: []
     };
   },
   created: function created() {
@@ -19857,9 +19859,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             return axios__WEBPACK_IMPORTED_MODULE_0___default().get("http://localhost:8000/api/game/".concat(gameId));
           case 4:
             response = _context.sent;
-            // TODO: パス変更
             _this.defenderCards = [response.data.defender_card1, response.data.defender_card2, response.data.defender_card3, response.data.defender_card4, response.data.defender_card5];
-            console.log(gameId);
+            _this.startConversation();
             _context.next = 12;
             break;
           case 9:
@@ -19872,6 +19873,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee, null, [[0, 9]]);
     }))();
+  },
+  methods: {
+    startConversation: function startConversation() {
+      var _this2 = this;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('http://localhost:8000/api/conversation/start') // Laravel endpoint for starting the conversation
+      .then(function (response) {
+        _this2.conversation = response.data;
+      })["catch"](function (error) {
+        console.error('Error starting conversation:', error);
+      });
+    },
+    sendMessage: function sendMessage() {
+      var _this3 = this;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('http://localhost:8000/api/conversation/message', {
+        message: this.userInput
+      }) // Laravel endpoint for sending a message
+      .then(function (response) {
+        _this3.conversation.push(response.data);
+        _this3.userInput = '';
+      })["catch"](function (error) {
+        console.error('Error sending message:', error);
+      });
+    }
   }
 });
 
@@ -20043,13 +20067,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Defender Cards", -1 /* HOISTED */);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "ChatGPTとの対話", -1 /* HOISTED */);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.defenderCards, function (card) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: card.id
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(card.defender_card_name), 1 /* TEXT */);
-  }), 128 /* KEYED_FRAGMENT */))])]);
+  }), 128 /* KEYED_FRAGMENT */))]), _hoisted_2, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.conversation, function (message) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: message.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("strong", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(message.role) + ":", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(message.content), 1 /* TEXT */)]);
+  }), 128 /* KEYED_FRAGMENT */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $data.userInput = $event;
+    }),
+    placeholder: "Type your message..."
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.userInput]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[1] || (_cache[1] = function () {
+      return $options.sendMessage && $options.sendMessage.apply($options, arguments);
+    })
+  }, "Send")]);
 }
 
 /***/ }),
