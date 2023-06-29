@@ -6,6 +6,7 @@
         {{ card.defender_card_name }}
       </li>
     </ul>
+    <div>ChatGPTとの対話</div>
   </div>
 </template>
 

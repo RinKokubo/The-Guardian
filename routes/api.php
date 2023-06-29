@@ -22,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/game/{id}', [GameInformationController::class, 'show']);
+
+//Route::get('/conversation/start', 'App\Http\Controllers\ConversationController@start');
+//Route::post('/conversation/message', 'App\Http\Controllers\ConversationController@sendMessage');
