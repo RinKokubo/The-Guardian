@@ -19894,6 +19894,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }) // Changed URL
       .then(function (response) {
         _this3.conversation.push({
+          role: 'user',
+          content: _this3.userInput
+        });
+        _this3.conversation.push({
           role: 'assistant',
           content: response.data.message
         });
