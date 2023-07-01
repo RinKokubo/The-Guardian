@@ -14,6 +14,7 @@ import SelectAccount from './components/SelectAccountComponent';
 import Introduction from './components/IntroComponent';
 import Talk from './components/TalkComponent';
 import Result from './components/ResultComponent';
+import UserScore from './components/UserScoreComponent';
 
  window.Vue = require('vue').default;
 
@@ -43,12 +44,17 @@ const routes = [
     component: Introduction, name: 'introduction'
   },
   {
-    path: '/diffender-select-dialogue/:username/:id',
-    component: Talk, name: 'diffender-select-dialogue'
+    path: '/defender-select-dialogue/:username/:id',
+    component: Talk, name: 'defender-select-dialogue'
   },
   {
     path: '/result/:username/:id',
     component: Result, name: 'result'
+  }
+  ,
+  {
+    path: '/user-score/:username/:id',
+    component: UserScore, name: 'user-score'
   }
 ];
 

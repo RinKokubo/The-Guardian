@@ -25,5 +25,5 @@ Route::get('/', function () {
 Route::get('/select-account', function () {
     return view('selectAccount');
 });
-Route::post('/diffender-select-dialogue/{username}/{id}/start', [ConversationController::class, 'start']);
-Route::post('/diffender-select-dialogue/{username}/{id}/send-message', [ConversationController::class, 'sendMessage']);
+Route::post('/defender-select-dialogue/{username}/{id}/start', [ConversationController::class, 'start']);
+Route::post('/defender-select-dialogue/{username}/{id}/send-message', [ConversationController::class, 'sendMessage']);

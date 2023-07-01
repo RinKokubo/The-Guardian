@@ -76,7 +76,7 @@ export default {
       });
     },
     startConversation() {
-      axios.post(`http://localhost:8000/diffender-select-dialogue/${this.username}/${this.gameId}/start`) // Changed URL
+      axios.post(`http://localhost:8000/defender-select-dialogue/${this.username}/${this.gameId}/start`) // Changed URL
         .then(response => {
           this.conversation = response.data;
         })
@@ -85,7 +85,7 @@ export default {
         });
     },
     sendMessage() {
-      axios.post(`http://localhost:8000/diffender-select-dialogue/${this.username}/${this.gameId}/send-message`, { message: this.userInput }) // Changed URL
+      axios.post(`http://localhost:8000/defender-select-dialogue/${this.username}/${this.gameId}/send-message`, { message: this.userInput }) // Changed URL
         .then(response => {
           this.conversation.push({ role: 'user', content: this.userInput });
           this.conversation.push({ role: 'assistant', content: response.data.message });
