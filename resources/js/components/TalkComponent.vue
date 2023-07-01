@@ -2,10 +2,11 @@
   <div class="max-w-2xl mx-auto px-4 py-10">
     <h1 class="text-3xl font-bold mb-4">Defender Cards</h1>
     <ul class="space-y-2 mb-8">
-      <li v-for="card in defenderCards" :key="card.id" class="p-4 bg-blue-100 rounded">
-        {{ card.defender_card_name }}
+      <li v-for="(card, index) in defenderCards" :key="card.id" class="p-4 rounded" :class="{ 'bg-blue-100': selectedCards.includes(index + 1) }">
+        <button @click="selectCard(index + 1)">{{ card.defender_card_name }}</button>
       </li>
     </ul>
+    <button :disabled="selectedCards.length !== 3" @click="confirmSelection">決定</button>
     <div class="border border-gray-300 p-4 rounded overflow-auto h-64 mb-4">
       <div v-for="message in conversation" :key="message.id" class="mb-4">
         <div v-if="message.role === 'assistant'" class="text-blue-500 font-bold">
@@ -23,6 +24,7 @@
   </div>
 </template>
 
+
 <script>
 import axios from 'axios';
 
@@ -34,6 +36,8 @@ export default {
       conversation: [],
       username: '',
       gameId: '',
+      selectedCards: [],
+      attacker_select_id: null,
     };
   },
   async created() {
@@ -48,12 +52,29 @@ export default {
         response.data.defender_card4,
         response.data.defender_card5,
       ];
-      this.startConversation();  // Removed arguments
+      this.startConversation();
+      this.attacker_select_id = Math.floor(Math.random() * 3) + 1;
     } catch (error) {
       console.error('Error fetching game information:', error);
     }
   },
   methods: {
+    selectCard(cardNumber) {
+      if (this.selectedCards.includes(cardNumber)) {
+        this.selectedCards = this.selectedCards.filter(card => card !== cardNumber);
+      } else if (this.selectedCards.length < 3) {
+        this.selectedCards.push(cardNumber);
+      }
+    },
+    confirmSelection() {
+      this.$router.push({
+        path: `/result/${this.username}/${this.gameId}/`,
+        query: {
+          selectedCards: this.selectedCards,
+          attacker_select_id: this.attacker_select_id,
+        },
+      });
+    },
     startConversation() {
       axios.post(`http://localhost:8000/diffender-select-dialogue/${this.username}/${this.gameId}/start`) // Changed URL
         .then(response => {
@@ -77,3 +98,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.bg-blue-100 {
+  /* Add your CSS to visually differentiate the selected cards */
+  border: 2px solid #000;
+}
+</style>

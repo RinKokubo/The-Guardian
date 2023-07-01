@@ -13,6 +13,7 @@ import Hello from './components/HelloComponent';
 import SelectAccount from './components/SelectAccountComponent';
 import Introduction from './components/IntroComponent';
 import Talk from './components/TalkComponent';
+import Result from './components/ResultComponent';
 
  window.Vue = require('vue').default;
 
@@ -44,6 +45,10 @@ const routes = [
   {
     path: '/diffender-select-dialogue/:username/:id',
     component: Talk, name: 'diffender-select-dialogue'
+  },
+  {
+    path: '/result/:username/:id',
+    component: Result, name: 'result'
   }
 ];
 
