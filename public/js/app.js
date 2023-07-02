@@ -19795,7 +19795,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }).then(function (response) {
       _this.score = response.data.score;
-      if (_this.score > 50) {
+      if (_this.score < 50) {
         _this.result = 'あなたの勝利！';
       } else if (_this.score === 50) {
         _this.result = '引き分け';
