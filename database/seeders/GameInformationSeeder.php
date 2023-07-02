@@ -9,6 +9,10 @@ class GameInformationSeeder extends Seeder
 {
     public function run()
     {
+
+        $this->call(AttackerCardSeeder::class);
+        $this->call(DefenderCardSeeder::class);
+
         GameInformation::create([
             'attacker_card1_id' => 1,
             'attacker_card2_id' => 2,
