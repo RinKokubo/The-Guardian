@@ -10,6 +10,7 @@ class GameInformationSeeder extends Seeder
     public function run()
     {
         GameInformation::create([
+            'id' => 1,
             'attacker_card1_id' => 1,
             'attacker_card2_id' => 2,
             'attacker_card3_id' => 3,
@@ -21,6 +22,7 @@ class GameInformationSeeder extends Seeder
         ]);
 
         GameInformation::create([
+            'id' => 2,
             'attacker_card1_id' => 4,
             'attacker_card2_id' => 12,
             'attacker_card3_id' => 17,
@@ -32,6 +34,7 @@ class GameInformationSeeder extends Seeder
         ]);
 
         GameInformation::create([
+            'id' => 3,
             'attacker_card1_id' => 5,
             'attacker_card2_id' => 6,
             'attacker_card3_id' => 17,
@@ -43,6 +46,7 @@ class GameInformationSeeder extends Seeder
         ]);
 
         GameInformation::create([
+            'id' => 4,
             'attacker_card1_id' => 7,
             'attacker_card2_id' => 13,
             'attacker_card3_id' => 18,
@@ -54,6 +58,7 @@ class GameInformationSeeder extends Seeder
         ]);
 
         GameInformation::create([
+            'id' => 5,
             'attacker_card1_id' => 8,
             'attacker_card2_id' => 14,
             'attacker_card3_id' => 19,
@@ -65,6 +70,7 @@ class GameInformationSeeder extends Seeder
         ]);
 
         GameInformation::create([
+            'id' => 6,
             'attacker_card1_id' => 9,
             'attacker_card2_id' => 15,
             'attacker_card3_id' => 3,
