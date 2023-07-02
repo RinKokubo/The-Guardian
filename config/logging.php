@@ -50,7 +50,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single', 'stderr'],  // 'stderr' を追加
             'ignore_exceptions' => false,
         ],
 
