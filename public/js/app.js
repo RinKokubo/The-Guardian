@@ -19908,7 +19908,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             _this.username = _this.$route.params.username; // Retrieve username from route
             _this.gameId = _this.$route.params.id;
             _context.next = 5;
-            return axios__WEBPACK_IMPORTED_MODULE_0___default().get("http://localhost:8000/api/game/".concat(_this.gameId));
+            return axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://kojinjyoho-202307-b9dcacad21df.herokuapp.com/api/game/".concat(_this.gameId));
           case 5:
             response = _context.sent;
             _this.defenderCards = [response.data.defender_card1, response.data.defender_card2, response.data.defender_card3, response.data.defender_card4, response.data.defender_card5];

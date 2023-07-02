@@ -48,7 +48,7 @@ export default {
     try {
       this.username = this.$route.params.username; // Retrieve username from route
       this.gameId = this.$route.params.id;
-      const response = await axios.get(`http://localhost:8000/api/game/${this.gameId}`);
+      const response = await axios.get(`https://kojinjyoho-202307-b9dcacad21df.herokuapp.com/api/game/${this.gameId}`);
       this.defenderCards = [
         response.data.defender_card1,
         response.data.defender_card2,
