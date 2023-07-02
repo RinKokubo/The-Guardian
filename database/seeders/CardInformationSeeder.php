@@ -12,8 +12,12 @@ class CardInformationSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
+
+        $this->call(GameInformationSeeder::class);
+
         // game1
         CardInformation::create([
             'game_id' => 1,

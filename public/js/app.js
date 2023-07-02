@@ -19948,7 +19948,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     startConversation: function startConversation() {
       var _this2 = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://localhost:8000/defender-select-dialogue/".concat(this.username, "/").concat(this.gameId, "/start")) // Changed URL
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("https://kojinjyoho-202307-b9dcacad21df.herokuapp.com/defender-select-dialogue/".concat(this.username, "/").concat(this.gameId, "/start")) // Changed URL
       .then(function (response) {
         _this2.conversation = response.data;
       })["catch"](function (error) {
@@ -19957,7 +19957,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     sendMessage: function sendMessage() {
       var _this3 = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://localhost:8000/defender-select-dialogue/".concat(this.username, "/").concat(this.gameId, "/send-message"), {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("https://kojinjyoho-202307-b9dcacad21df.herokuapp.com/defender-select-dialogue/".concat(this.username, "/").concat(this.gameId, "/send-message"), {
         message: this.userInput
       }) // Changed URL
       .then(function (response) {
