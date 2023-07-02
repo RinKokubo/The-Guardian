@@ -34,6 +34,7 @@ class ConversationController extends Controller
 
         \Illuminate\Support\Facades\Log::info('Username: ' . $username);
         \Illuminate\Support\Facades\Log::info('GameId: ' . $gameId);
+        \Illuminate\Support\Facades\Log::info('Message: ' . $message);
 
         // Add the user's message to the conversation.
         $conversation = $request->session()->get('conversation', []);
@@ -47,6 +48,7 @@ class ConversationController extends Controller
 
         // Generate the assistant's response using OpenAI API.
         $assistantMessage = $this->generateResponse($conversation);
+        \Illuminate\Support\Facades\Log::info('Assistant message: ' . $assistantMessage);
 
         // Add the assistant's response to the conversation.
         $conversation[] = ["role" => "assistant", "content" => $assistantMessage];
