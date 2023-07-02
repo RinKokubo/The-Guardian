@@ -37,7 +37,7 @@ export default {
     })
     .then((response) => {
       this.score = response.data.score;
-      if(this.score > 50){
+      if(this.score < 50){
         this.result = 'あなたの勝利！';
       } else if(this.score === 50){
         this.result = '引き分け';
