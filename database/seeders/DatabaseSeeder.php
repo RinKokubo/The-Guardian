@@ -18,6 +18,5 @@ class DatabaseSeeder extends Seeder
         $this->call(DefenderCardSeeder::class);
         $this->call(GameInformationSeeder::class);
         $this->call(CardInformationSeeder::class);
-        $this->call(GameInformationSeeder::class);
     }
 }
