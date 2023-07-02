@@ -36,8 +36,9 @@ class AttackerCardSeeder extends Seeder
             '勧誘電話',
         ];
 
-        foreach ($cardNames as $name) {
+        foreach ($cardNames as $index => $name) {
             AttackerCard::create([
+                'id' => $index + 1,
                 'attacker_card_name' => $name,
             ]);
         }

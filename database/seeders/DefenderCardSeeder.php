@@ -28,8 +28,9 @@ class DefenderCardSeeder extends Seeder
             '趣味',
         ];
 
-        foreach ($cardNames as $name) {
+        foreach ($cardNames as $index => $name) {
             DefenderCard::create([
+                'id' => $index + 1,
                 'defender_card_name' => $name,
             ]);
         }
