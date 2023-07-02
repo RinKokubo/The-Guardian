@@ -1,33 +1,38 @@
 <template>
   <div>
-    <h1 className="desktop:text-[40px] sp:text-[22px] desktop:my-[50px]
+    <h1 className="desktop:text-[40px] sp:text-[22px] desktop:my-[50px] mx-[20px]
     sp:my-[20px] desktop:text-left sp:text-center">
-      配点内訳<span className="text-red-500 text-[20px] font-bold desktop:pl-[30px]">個人情報利用側の選択：</span>
+      配点内訳<span className="text-red-500 text-[20px] font-bold desktop:pl-[30px]">個人情報利用側の選択：{{ attackerCardName }}</span>
     </h1>
 
     <div className="flex desktop:flex-row sp:flex-col gap-x-5 justify-center items-center sp:gap-y-5 mb-[15px]">
       <div className="desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row">
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card1_score }}</p>
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">点</p>
+        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ defenderCard1Name }}</p>
+        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card1_score }}点</p>
+        <img :src="`/img/${defenderCard1Name}.png`" alt="defender_card">
       </div>
       <div className="desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row">
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card2_score }}</p>
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">点</p>
+        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ defenderCard2Name }}</p>
+        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card2_score }}点</p>
+        <img :src="`/img/${defenderCard2Name}.png`" alt="defender_card">
       </div>
       <div className="desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row">
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card3_score }}</p>
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">点</p>
+        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ defenderCard3Name }}</p>
+        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card3_score }}点</p>
+        <img :src="`/img/${defenderCard3Name}.png`" alt="defender_card">
       </div>
       <div className="desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row">
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card4_score }}</p>
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">点</p>
+        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ defenderCard4Name }}</p>
+        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card4_score }}点</p>
+        <img :src="`/img/${defenderCard4Name}.png`" alt="defender_card">
       </div>
       <div className="desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row">
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card5_score }}</p>
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">点</p>
+        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ defenderCard5Name }}</p>
+        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card5_score }}点</p>
+        <img :src="`/img/${defenderCard5Name}.png`" alt="defender_card">
       </div>
     </div>
-    <p className="text-[22px] my-[40px]">もしあなたが利用者カード「」に対して、各提供カードに100点満点で点数をつけるとしたら？</p>
+    <p className="text-[22px] my-[40px]">もしあなたが利用者カード「{{ attackerCardName }}」に対して、各提供カードに100点満点で点数をつけるとしたら？</p>
     <form>
       <div className="flex desktop:flex-row sp:flex-col gap-x-10 justify-center items-center sp:gap-y-5 mb-[15px]">
         <div className="flex items-center w-[200px] justify-center">
@@ -168,16 +173,22 @@
       </div>
     </form>
     <div className="flex justify-end">
-      <router-link to="/" className="border-[3px] border-blue-500 text-blue-500 font-bold py-[6px] px-[10px] mt-[30px] mr-[10px]
-                        hover:bg-blue-500 hover:text-white duration-300 shadow-sm">
-        もう一度同じ相手と対戦する
-      </router-link>
-      <router-link to="/">
-        <button className="text-white font-bold py-[6px] px-[10px] mt-[30px] mr-[10px] border-[3px]  border-blue-500 hover:border-blue-600
-                          hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm" v-on:click="resetSession">
-          ゲームを終了する
-        </button>
-      </router-link>
+      <!--<div v-if="$route.params.id < 6">-->
+        <router-link to="/">
+          <button className="text-white font-bold py-[6px] px-[10px] mt-[30px] mr-[10px] border-[3px]  border-blue-500 hover:border-blue-600
+                  hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm" v-on:click="submitScores">
+            ゲームを終了する
+          </button>  
+        </router-link>
+      <!--</div>
+      <div v-else>
+        <router-link  :to="{ name: 'defender-select-dialogue', params: { username: $route.params.username, id: gameIdforPath ++ } }">
+          <button className="border-[3px] border-blue-500 text-blue-500 font-bold py-[6px] px-[10px] mt-[30px] mr-[10px]
+                 hover:bg-blue-500 hover:text-white duration-300 shadow-sm" v-on:click="submitScores">
+            もう一度対戦する
+          </button>
+        </router-link>
+      </div>-->
     </div>  
   </div> 
 </template>
@@ -190,13 +201,47 @@ export default {
   data() {
     return {
       scores: null,
+      gameInformation: null,
+      defenderCardNames: {},
+      attackerCardName: '',
+      card1Score: null,
+      card2Score: null,
+      card3Score: null,
+      card4Score: null,
+      card5Score: null,
+      defenderCard1Name: null,
+      defenderCard2Name: null,
+      defenderCard3Name: null,
+      defenderCard4Name: null,
+      defenderCard5Name: null,
+      gameIdforPath: this.$route.params.id
     };
   },
   created() {
     const gameId = this.$route.params.id;
     const attackerSelectId = this.$route.query.attacker_select_id;
 
-    // Replace with the actual URL of your API endpoint
+    axios.get(`/api/getGame/${this.$route.params.id}?attacker_select_id=${this.$route.query.attacker_select_id}`)
+      .then(response => {
+        this.attackerCardName = response.data.attacker_card_name;
+    })
+      .catch(error => {
+        console.error(error);
+      });
+
+    axios.get(`/api/game/${gameId}`)
+      .then(response => {
+          this.gameInformation = response.data;
+          this.defenderCard1Name = this.gameInformation.defender_card1.defender_card_name;
+          this.defenderCard2Name = this.gameInformation.defender_card2.defender_card_name;
+          this.defenderCard3Name = this.gameInformation.defender_card3.defender_card_name;
+          this.defenderCard4Name = this.gameInformation.defender_card4.defender_card_name;
+          this.defenderCard5Name = this.gameInformation.defender_card5.defender_card_name;
+      })
+      .catch(error => {
+          console.error(error);
+      });
+
     axios.get(`/api/getScore/${gameId}?attacker_select_id=${attackerSelectId}`)
       .then(response => {
         this.scores = response.data;
@@ -204,6 +249,30 @@ export default {
       .catch(error => {
         console.error(error);
       });
+  },
+  methods: {
+    submitScores() {
+      const gameId = this.$route.params.id;
+      const attackerSelectId = this.$route.query.attacker_select_id;
+      const userName = this.$route.params.username; // 仮にusernameはparamsから取得するとしています
+
+      axios.post(`/api/user_scores`, {
+        game_id: gameId,
+        attacker_select_id: attackerSelectId,
+        user_name: userName,
+        user_card1_score: this.card1Score,
+        user_card2_score: this.card2Score,
+        user_card3_score: this.card3Score,
+        user_card4_score: this.card4Score,
+        user_card5_score: this.card5Score,
+      })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    },
   }
 }
 </script>

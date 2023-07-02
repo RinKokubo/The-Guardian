@@ -19779,7 +19779,8 @@ __webpack_require__.r(__webpack_exports__);
   name: "ResultComponent",
   data: function data() {
     return {
-      score: 0
+      score: 0,
+      result: ''
     };
   },
   mounted: function mounted() {
@@ -19794,6 +19795,13 @@ __webpack_require__.r(__webpack_exports__);
       }
     }).then(function (response) {
       _this.score = response.data.score;
+      if (_this.score > 50) {
+        _this.result = 'あなたの勝利！';
+      } else if (_this.score === 50) {
+        _this.result = '引き分け';
+      } else {
+        _this.result = 'あなたの負け...';
+      }
     });
   }
 });
@@ -19989,20 +19997,69 @@ __webpack_require__.r(__webpack_exports__);
   name: "UserScore",
   data: function data() {
     return {
-      scores: null
+      scores: null,
+      gameInformation: null,
+      defenderCardNames: {},
+      attackerCardName: '',
+      card1Score: null,
+      card2Score: null,
+      card3Score: null,
+      card4Score: null,
+      card5Score: null,
+      defenderCard1Name: null,
+      defenderCard2Name: null,
+      defenderCard3Name: null,
+      defenderCard4Name: null,
+      defenderCard5Name: null,
+      gameIdforPath: this.$route.params.id
     };
   },
   created: function created() {
     var _this = this;
     var gameId = this.$route.params.id;
     var attackerSelectId = this.$route.query.attacker_select_id;
-
-    // Replace with the actual URL of your API endpoint
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/getGame/".concat(this.$route.params.id, "?attacker_select_id=").concat(this.$route.query.attacker_select_id)).then(function (response) {
+      _this.attackerCardName = response.data.attacker_card_name;
+    })["catch"](function (error) {
+      console.error(error);
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/game/".concat(gameId)).then(function (response) {
+      _this.gameInformation = response.data;
+      _this.defenderCard1Name = _this.gameInformation.defender_card1.defender_card_name;
+      _this.defenderCard2Name = _this.gameInformation.defender_card2.defender_card_name;
+      _this.defenderCard3Name = _this.gameInformation.defender_card3.defender_card_name;
+      _this.defenderCard4Name = _this.gameInformation.defender_card4.defender_card_name;
+      _this.defenderCard5Name = _this.gameInformation.defender_card5.defender_card_name;
+    })["catch"](function (error) {
+      console.error(error);
+    });
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/getScore/".concat(gameId, "?attacker_select_id=").concat(attackerSelectId)).then(function (response) {
       _this.scores = response.data;
     })["catch"](function (error) {
       console.error(error);
     });
+  },
+  methods: {
+    submitScores: function submitScores() {
+      var gameId = this.$route.params.id;
+      var attackerSelectId = this.$route.query.attacker_select_id;
+      var userName = this.$route.params.username; // 仮にusernameはparamsから取得するとしています
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/user_scores", {
+        game_id: gameId,
+        attacker_select_id: attackerSelectId,
+        user_name: userName,
+        user_card1_score: this.card1Score,
+        user_card2_score: this.card2Score,
+        user_card3_score: this.card3Score,
+        user_card4_score: this.card4Score,
+        user_card5_score: this.card5Score
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.error(error);
+      });
+    }
   }
 });
 
@@ -20127,10 +20184,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" next ");
+var _hoisted_1 = {
+  className: "flex flex-col items-center"
+};
+var _hoisted_2 = {
+  className: "flex justify-between items-center",
+  id: "result"
+};
+var _hoisted_3 = {
+  className: "desktop:text-[60px] sp:text-[26px] text-blue-600 mt-[100px] mb-[20px] desktop:text-left sp:text-center"
+};
+var _hoisted_4 = {
+  className: "flex desktop:flex-row sp:flex-col desktop:justify-between sp:justify-center gap-x-10 gap-y-5 desktop:mb-[50px] sp:mb-[60px]"
+};
+var _hoisted_5 = {
+  className: "desktop:text-left sp:text-center text-[24px] desktop:w-[350px] sp:w-[100%]"
+};
+var _hoisted_6 = {
+  className: "desktop:text-left sp:text-center text-[24px] desktop:w-[350px] sp:w-[100%]"
+};
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 配点を見る ");
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "result: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.score), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_3, " 結果: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.result), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, "あなたの得点:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(100 - $data.score), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, "相手の得点:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.score), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'user-score',
       params: {
@@ -20140,10 +20216,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       query: {
         attacker_select_id: _ctx.$route.query.attacker_select_id
       }
-    }
+    },
+    className: "bg-blue-500 text-white font-bold py-[10px] px-[70px] shadow-md hover:bg-blue-600 duration-300"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_1];
+      return [_hoisted_7];
     }),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["to"])]);
@@ -20213,13 +20290,11 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "max-w-2xl mx-auto px-4 py-10"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-3xl font-bold mb-4"
-}, "Defender Cards", -1 /* HOISTED */);
-var _hoisted_3 = {
-  "class": "space-y-2 mb-8"
+var _hoisted_2 = {
+  "class": "flex flex-row gap-x-5 justify-center items-center"
 };
-var _hoisted_4 = ["onClick"];
+var _hoisted_3 = ["onClick"];
+var _hoisted_4 = ["src"];
 var _hoisted_5 = ["disabled"];
 var _hoisted_6 = {
   "class": "border border-gray-300 p-4 rounded overflow-auto h-64 mb-4"
@@ -20233,30 +20308,35 @@ var _hoisted_9 = {
   key: 1,
   "class": "text-green-500 font-bold"
 };
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "You:", -1 /* HOISTED */);
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "あなた:", -1 /* HOISTED */);
 var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "px-4 py-2 bg-blue-500 text-white rounded"
-}, "Send", -1 /* HOISTED */);
+}, "送信", -1 /* HOISTED */);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.defenderCards, function (card, index) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.defenderCards, function (card, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: card.id,
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["p-4 rounded", {
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
         'bg-blue-100': $data.selectedCards.includes(index + 1)
-      }])
+      })
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
         return $options.selectCard(index + 1);
-      }
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(card.defender_card_name), 9 /* TEXT, PROPS */, _hoisted_4)], 2 /* CLASS */);
+      },
+      "class": "w-[200px] h-[280px] bg-blue-200 hover:border-[5px] items-center justify-center hover:border-blue-400 duration-500 text-[24px] font-bold shadow-xl flex flex-col"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(card.defender_card_name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      src: "/img/".concat(card.defender_card_name, ".png"),
+      alt: "defender_card"
+    }, null, 8 /* PROPS */, _hoisted_4)], 8 /* PROPS */, _hoisted_3)], 2 /* CLASS */);
   }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     disabled: $data.selectedCards.length !== 3,
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.confirmSelection && $options.confirmSelection.apply($options, arguments);
-    })
-  }, "決定", 8 /* PROPS */, _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.conversation, function (message) {
+    }),
+    "class": "text-white font-bold py-[6px] px-[10px] my-[30px] mr-[10px] border-[3px] border-blue-500 hover:border-blue-600 hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded"
+  }, "カードを決定", 8 /* PROPS */, _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.conversation, function (message) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: message.id,
       "class": "mb-4"
@@ -20290,168 +20370,181 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  className: "desktop:text-[40px] sp:text-[22px] desktop:my-[50px]\n    sp:my-[20px] desktop:text-left sp:text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 配点内訳"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  className: "text-red-500 text-[20px] font-bold desktop:pl-[30px]"
-}, "個人情報利用側の選択：")], -1 /* HOISTED */);
-var _hoisted_2 = {
-  className: "flex desktop:flex-row sp:flex-col gap-x-5 justify-center items-center sp:gap-y-5 mb-[15px]"
+var _hoisted_1 = {
+  className: "desktop:text-[40px] sp:text-[22px] desktop:my-[50px] mx-[20px]\n    sp:my-[20px] desktop:text-left sp:text-center"
 };
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 配点内訳");
 var _hoisted_3 = {
-  className: "desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row"
+  className: "text-red-500 text-[20px] font-bold desktop:pl-[30px]"
 };
 var _hoisted_4 = {
-  className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
+  className: "flex desktop:flex-row sp:flex-col gap-x-5 justify-center items-center sp:gap-y-5 mb-[15px]"
 };
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
-}, "点", -1 /* HOISTED */);
-var _hoisted_6 = {
+var _hoisted_5 = {
   className: "desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row"
+};
+var _hoisted_6 = {
+  className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
 };
 var _hoisted_7 = {
   className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
 };
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
-}, "点", -1 /* HOISTED */);
+var _hoisted_8 = ["src"];
 var _hoisted_9 = {
   className: "desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row"
 };
 var _hoisted_10 = {
   className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
 };
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_11 = {
   className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
-}, "点", -1 /* HOISTED */);
-var _hoisted_12 = {
-  className: "desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row"
 };
+var _hoisted_12 = ["src"];
 var _hoisted_13 = {
-  className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
-};
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
-}, "点", -1 /* HOISTED */);
-var _hoisted_15 = {
   className: "desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row"
 };
-var _hoisted_16 = {
+var _hoisted_14 = {
   className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
 };
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_15 = {
   className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
-}, "点", -1 /* HOISTED */);
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  className: "text-[22px] my-[40px]"
-}, "もしあなたが利用者カード「」に対して、各提供カードに100点満点で点数をつけるとしたら？", -1 /* HOISTED */);
+};
+var _hoisted_16 = ["src"];
+var _hoisted_17 = {
+  className: "desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row"
+};
+var _hoisted_18 = {
+  className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
+};
 var _hoisted_19 = {
+  className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
+};
+var _hoisted_20 = ["src"];
+var _hoisted_21 = {
+  className: "desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row"
+};
+var _hoisted_22 = {
+  className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
+};
+var _hoisted_23 = {
+  className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
+};
+var _hoisted_24 = ["src"];
+var _hoisted_25 = {
+  className: "text-[22px] my-[40px]"
+};
+var _hoisted_26 = {
   className: "flex desktop:flex-row sp:flex-col gap-x-10 justify-center items-center sp:gap-y-5 mb-[15px]"
 };
-var _hoisted_20 = {
+var _hoisted_27 = {
   className: "flex items-center w-[200px] justify-center"
 };
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "card1Score"
 }, null, -1 /* HOISTED */);
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
-var _hoisted_43 = [_hoisted_22];
-var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
-var _hoisted_45 = {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
+var _hoisted_50 = [_hoisted_29];
+var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
+var _hoisted_52 = {
   className: "flex items-center w-[200px] justify-center"
 };
-var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "card2Score"
 }, null, -1 /* HOISTED */);
-var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
-var _hoisted_68 = [_hoisted_47];
-var _hoisted_69 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
-var _hoisted_70 = {
+var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
+var _hoisted_75 = [_hoisted_54];
+var _hoisted_76 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
+var _hoisted_77 = {
   className: "flex items-center w-[200px] justify-center"
 };
-var _hoisted_71 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_78 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "card3Score"
 }, null, -1 /* HOISTED */);
-var _hoisted_72 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
-var _hoisted_93 = [_hoisted_72];
-var _hoisted_94 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
-var _hoisted_95 = {
+var _hoisted_79 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
+var _hoisted_100 = [_hoisted_79];
+var _hoisted_101 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
+var _hoisted_102 = {
   className: "flex items-center w-[200px] justify-center"
 };
-var _hoisted_96 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_103 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "card4Score"
 }, null, -1 /* HOISTED */);
-var _hoisted_97 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
-var _hoisted_118 = [_hoisted_97];
-var _hoisted_119 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
-var _hoisted_120 = {
+var _hoisted_104 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
+var _hoisted_125 = [_hoisted_104];
+var _hoisted_126 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
+var _hoisted_127 = {
   className: "flex items-center w-[200px] justify-center"
 };
-var _hoisted_121 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_128 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "card5Score"
 }, null, -1 /* HOISTED */);
-var _hoisted_122 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
-var _hoisted_143 = [_hoisted_122];
-var _hoisted_144 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
-var _hoisted_145 = {
+var _hoisted_129 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
+var _hoisted_150 = [_hoisted_129];
+var _hoisted_151 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
+var _hoisted_152 = {
   className: "flex justify-end"
 };
-var _hoisted_146 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" もう一度同じ相手と対戦する ");
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _$data$scores, _$data$scores2, _$data$scores3, _$data$scores4, _$data$scores5;
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores = $data.scores) === null || _$data$scores === void 0 ? void 0 : _$data$scores.defender_card1_score), 1 /* TEXT */), _hoisted_5]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores2 = $data.scores) === null || _$data$scores2 === void 0 ? void 0 : _$data$scores2.defender_card2_score), 1 /* TEXT */), _hoisted_8]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores3 = $data.scores) === null || _$data$scores3 === void 0 ? void 0 : _$data$scores3.defender_card3_score), 1 /* TEXT */), _hoisted_11]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores4 = $data.scores) === null || _$data$scores4 === void 0 ? void 0 : _$data$scores4.defender_card4_score), 1 /* TEXT */), _hoisted_14]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores5 = $data.scores) === null || _$data$scores5 === void 0 ? void 0 : _$data$scores5.defender_card5_score), 1 /* TEXT */), _hoisted_17])]), _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_3, "個人情報利用側の選択：" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.attackerCardName), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.defenderCard1Name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores = $data.scores) === null || _$data$scores === void 0 ? void 0 : _$data$scores.defender_card1_score) + "点", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/img/".concat($data.defenderCard1Name, ".png"),
+    alt: "defender_card"
+  }, null, 8 /* PROPS */, _hoisted_8)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.defenderCard2Name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores2 = $data.scores) === null || _$data$scores2 === void 0 ? void 0 : _$data$scores2.defender_card2_score) + "点", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/img/".concat($data.defenderCard2Name, ".png"),
+    alt: "defender_card"
+  }, null, 8 /* PROPS */, _hoisted_12)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.defenderCard3Name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores3 = $data.scores) === null || _$data$scores3 === void 0 ? void 0 : _$data$scores3.defender_card3_score) + "点", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/img/".concat($data.defenderCard3Name, ".png"),
+    alt: "defender_card"
+  }, null, 8 /* PROPS */, _hoisted_16)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.defenderCard4Name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores4 = $data.scores) === null || _$data$scores4 === void 0 ? void 0 : _$data$scores4.defender_card4_score) + "点", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/img/".concat($data.defenderCard4Name, ".png"),
+    alt: "defender_card"
+  }, null, 8 /* PROPS */, _hoisted_20)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.defenderCard5Name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores5 = $data.scores) === null || _$data$scores5 === void 0 ? void 0 : _$data$scores5.defender_card5_score) + "点", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/img/".concat($data.defenderCard5Name, ".png"),
+    alt: "defender_card"
+  }, null, 8 /* PROPS */, _hoisted_24)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_25, "もしあなたが利用者カード「" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.attackerCardName) + "」に対して、各提供カードに100点満点で点数をつけるとしたら？", 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     className: "border border-blue-500 w-[100px] mr-[5px] pl-[10px]",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return _ctx.card1Score = $event;
+      return $data.card1Score = $event;
     }),
     id: "card1Score"
-  }, _hoisted_43, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.card1Score]]), _hoisted_44]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [_hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, _hoisted_50, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card1Score]]), _hoisted_51]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_52, [_hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     className: "border border-blue-500 w-[100px] mr-[5px] pl-[10px]",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return _ctx.card2Score = $event;
+      return $data.card2Score = $event;
     }),
     id: "card2Score"
-  }, _hoisted_68, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.card2Score]]), _hoisted_69]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_70, [_hoisted_71, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, _hoisted_75, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card2Score]]), _hoisted_76]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_77, [_hoisted_78, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     className: "border border-blue-500 w-[100px] mr-[5px] pl-[10px]",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return _ctx.card3Score = $event;
+      return $data.card3Score = $event;
     }),
     id: "card3Score"
-  }, _hoisted_93, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.card3Score]]), _hoisted_94]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_95, [_hoisted_96, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, _hoisted_100, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card3Score]]), _hoisted_101]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_102, [_hoisted_103, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     className: "border border-blue-500 w-[100px] mr-[5px] pl-[10px]",
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-      return _ctx.card4Score = $event;
+      return $data.card4Score = $event;
     }),
     id: "card4Score"
-  }, _hoisted_118, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.card4Score]]), _hoisted_119]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_120, [_hoisted_121, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, _hoisted_125, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card4Score]]), _hoisted_126]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_127, [_hoisted_128, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     className: "border border-blue-500 w-[100px] mr-[5px] pl-[10px]",
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
-      return _ctx.card5Score = $event;
+      return $data.card5Score = $event;
     }),
     id: "card5Score"
-  }, _hoisted_143, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.card5Score]]), _hoisted_144])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_145, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/",
-    className: "border-[3px] border-blue-500 text-blue-500 font-bold py-[6px] px-[10px] mt-[30px] mr-[10px]\n                        hover:bg-blue-500 hover:text-white duration-300 shadow-sm"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_146];
-    }),
-    _: 1 /* STABLE */
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }, _hoisted_150, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card5Score]]), _hoisted_151])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_152, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<div v-if=\"$route.params.id < 6\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        className: "text-white font-bold py-[6px] px-[10px] mt-[30px] mr-[10px] border-[3px]  border-blue-500 hover:border-blue-600\n                          hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm",
+        className: "text-white font-bold py-[6px] px-[10px] mt-[30px] mr-[10px] border-[3px]  border-blue-500 hover:border-blue-600\n                  hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm",
         onClick: _cache[5] || (_cache[5] = function () {
-          return _ctx.resetSession && _ctx.resetSession.apply(_ctx, arguments);
+          return $options.submitScores && $options.submitScores.apply($options, arguments);
         })
       }, " ゲームを終了する ")];
     }),
     _: 1 /* STABLE */
-  })])]);
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("</div>\n      <div v-else>\n        <router-link  :to=\"{ name: 'defender-select-dialogue', params: { username: $route.params.username, id: gameIdforPath ++ } }\">\n          <button className=\"border-[3px] border-blue-500 text-blue-500 font-bold py-[6px] px-[10px] mt-[30px] mr-[10px]\n                 hover:bg-blue-500 hover:text-white duration-300 shadow-sm\" v-on:click=\"submitScores\">\n            もう一度対戦する\n          </button>\n        </router-link>\n      </div>")])]);
 }
 
 /***/ }),

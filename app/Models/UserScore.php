@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserScore extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'game_id',
         'attacker_select_id',
@@ -17,14 +19,4 @@ class UserScore extends Model
         'user_card4_score',
         'user_card5_score',
     ];
-
-    public function game_id()
-    {
-        return $this->belongsTo(GameInformation::class, 'game_id');
-    }
-
-    public function attacker_select_id()
-    {
-        return $this->belongsTo(AttackerCard::class, 'attacker_select_id');
-    }
 }
