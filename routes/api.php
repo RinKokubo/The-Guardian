@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\GameInformationController;
 use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\UserScoreController;
+use App\Http\Controllers\NoticeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,8 @@ Route::get('/score/{gameId}', [ScoreController::class, 'calculate']);
 Route::get('getScore/{gameId}', [ScoreController::class, 'getScore']);
 
 Route::post('user_scores', [UserScoreController::class, 'store']);
+
+Route::get('/notice/{id}', [NoticeController::class, 'show']);
 
 // Route::get('/conversation/start', 'App\Http\Controllers\ConversationController@start');
 // Route::post('/conversation/message', 'App\Http\Controllers\ConversationController@sendMessage');

@@ -19780,7 +19780,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       score: 0,
-      result: ''
+      result: '',
+      notice: ''
     };
   },
   mounted: function mounted() {
@@ -19788,6 +19789,7 @@ __webpack_require__.r(__webpack_exports__);
     var gameId = this.$route.params.id;
     var selectedCards = this.$route.query.selectedCards;
     var attackerSelectId = this.$route.query.attacker_select_id;
+    var noticeId = Math.floor(Math.random() * 9) + 1;
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/score/".concat(gameId), {
       params: {
         selectedCards: selectedCards,
@@ -19802,6 +19804,11 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         _this.result = 'あなたの負け...';
       }
+    });
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/notice/".concat(noticeId)).then(function (response) {
+      _this.notice = response.data.notice_content;
+    })["catch"](function (error) {
+      console.error(error);
     });
   }
 });
@@ -20195,7 +20202,7 @@ var _hoisted_3 = {
   className: "desktop:text-[60px] sp:text-[26px] text-blue-600 mt-[100px] mb-[20px] desktop:text-left sp:text-center"
 };
 var _hoisted_4 = {
-  className: "flex desktop:flex-row sp:flex-col desktop:justify-between sp:justify-center gap-x-10 gap-y-5 desktop:mb-[50px] sp:mb-[60px]"
+  className: "flex desktop:flex-row sp:flex-col desktop:justify-between sp:justify-center gap-x-10 gap-y-5 mb-[20px]"
 };
 var _hoisted_5 = {
   className: "desktop:text-left sp:text-center text-[24px] desktop:w-[350px] sp:w-[100%]"
@@ -20203,10 +20210,19 @@ var _hoisted_5 = {
 var _hoisted_6 = {
   className: "desktop:text-left sp:text-center text-[24px] desktop:w-[350px] sp:w-[100%]"
 };
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 配点を見る ");
+var _hoisted_7 = {
+  className: "flex flex-col items-center mx-[80px] my-[40px] border-red-600 border-[3px] rounded py-[20px] px-[15px]"
+};
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  className: "text-red-600 mb-[20px] font-bold text-[24px]"
+}, "注意！", -1 /* HOISTED */);
+var _hoisted_9 = {
+  className: "text-[18px]"
+};
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 配点を見る ");
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_3, " 結果: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.result), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, "あなたの得点:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(100 - $data.score), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, "相手の得点:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.score), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_3, " 結果: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.result), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, "あなたの得点:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(100 - $data.score), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, "相手の得点:" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.score), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.notice), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'user-score',
       params: {
@@ -20220,7 +20236,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     className: "bg-blue-500 text-white font-bold py-[10px] px-[70px] shadow-md hover:bg-blue-600 duration-300"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_7];
+      return [_hoisted_10];
     }),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["to"])]);
