@@ -9,8 +9,11 @@
         </button>
       </li>
     </ul>
-    <button :disabled="selectedCards.length !== 3" @click="confirmSelection" class="text-white font-bold py-[6px] px-[10px] my-[30px] mr-[10px] border-[3px]  border-blue-500 hover:border-blue-600
-    hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded">カードを決定</button>
+    <div className="flex flex-1 w-[100%]">
+      <p className="text-blue-600 font-bold flex items-center justify-center text-[16px] mr-[70px]">対話の残り時間 : {{ timeLeft }}</p>
+      <button :disabled="selectedCards.length !== 3" @click="confirmSelection" class="text-white font-bold py-[6px] px-[10px] my-[30px] mr-[10px] border-[3px]  border-blue-500 hover:border-blue-600
+      hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded">カードを決定</button>
+    </div>
     <div class="border border-gray-300 p-4 rounded overflow-auto h-64 mb-4">
       <div v-for="message in conversation" :key="message.id" class="mb-4">
         <div v-if="message.role === 'assistant'" class="text-blue-500 font-bold">
@@ -42,6 +45,8 @@ export default {
       gameId: '',
       selectedCards: [],
       attacker_select_id: null,
+      countdownTime: 5 * 60, // countdownTime in seconds (5 minutes)
+      timeLeft: '05:00', // Displayed countdown timer
     };
   },
   async created() {
@@ -56,6 +61,7 @@ export default {
         response.data.defender_card4,
         response.data.defender_card5,
       ];
+      this.startCountdown();
       this.startConversation();
       this.attacker_select_id = Math.floor(Math.random() * 3) + 1;
     } catch (error) {
@@ -99,6 +105,22 @@ export default {
           console.error('Error sending message:', error);
         });
     },
+    startCountdown() {
+      const timerInterval = setInterval(() => {
+        if (this.countdownTime === 0) {
+          clearInterval(timerInterval);
+          // You may want to do something here when countdown reaches 0
+        } else {
+          this.countdownTime--;
+          this.formatTimeLeft();
+        }
+      }, 1000);
+    },
+    formatTimeLeft() {
+      const minutes = Math.floor(this.countdownTime / 60);
+      const seconds = this.countdownTime % 60;
+      this.timeLeft = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
   },
 };
 </script>
