@@ -20474,7 +20474,7 @@ var _hoisted_23 = {
 };
 var _hoisted_24 = ["src"];
 var _hoisted_25 = {
-  className: "text-[22px] my-[40px]"
+  className: "text-[22px] my-[40px] mx-[50px]"
 };
 var _hoisted_26 = {
   className: "flex desktop:flex-row sp:flex-col gap-x-10 justify-center items-center sp:gap-y-5 mb-[15px]"
@@ -20580,7 +20580,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        className: "text-white font-bold py-[6px] px-[10px] mt-[30px] mr-[10px] border-[3px]  border-blue-500 hover:border-blue-600\n                  hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm",
+        className: "text-white font-bold py-[6px] px-[10px] mt-[30px] mr-[80px] border-[3px]  border-blue-500 hover:border-blue-600\n                  hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm",
         onClick: _cache[5] || (_cache[5] = function () {
           return $options.submitScores && $options.submitScores.apply($options, arguments);
         })

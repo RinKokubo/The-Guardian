@@ -32,7 +32,7 @@
         <img :src="`/img/${defenderCard5Name}.png`" alt="defender_card">
       </div>
     </div>
-    <p className="text-[22px] my-[40px]">もしあなたが利用者カード「{{ attackerCardName }}」に対して、各提供カードに100点満点で点数をつけるとしたら？</p>
+    <p className="text-[22px] my-[40px] mx-[50px]">もしあなたが利用者カード「{{ attackerCardName }}」に対して、各提供カードに100点満点で点数をつけるとしたら？</p>
     <form>
       <div className="flex desktop:flex-row sp:flex-col gap-x-10 justify-center items-center sp:gap-y-5 mb-[15px]">
         <div className="flex items-center w-[200px] justify-center">
@@ -175,7 +175,7 @@
     <div className="flex justify-end">
       <!--<div v-if="$route.params.id < 6">-->
         <router-link to="/">
-          <button className="text-white font-bold py-[6px] px-[10px] mt-[30px] mr-[10px] border-[3px]  border-blue-500 hover:border-blue-600
+          <button className="text-white font-bold py-[6px] px-[10px] mt-[30px] mr-[80px] border-[3px]  border-blue-500 hover:border-blue-600
                   hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm" v-on:click="submitScores">
             ゲームを終了する
           </button>  
