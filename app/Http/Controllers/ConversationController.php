@@ -7,7 +7,7 @@ use App\Models\Message;
 
 class ConversationController extends Controller
 {
-    protected $desired_card = '顔写真';
+    protected $desired_card = 'サイト閲覧履歴';
 
     public function start(Request $request)
     {
@@ -16,7 +16,7 @@ class ConversationController extends Controller
 
         // Initialize the conversation and send the first message.
         $request->session()->put('conversation', [
-            ["role" => "system", "content" => "You are a game player. The user has five cards, each containing a piece of personal information. You have a specific card you're interested in, and your task is to guide the user to choose that card, without explicitly stating which one it is. Engage in a discussion with the user about the level of comfort they feel in having the information on each card known to others. The card you want is " . $this->desired_card . "."],
+            ["role" => "system", "content" => "You are a game player. The user has five cards, '家族構成', '電話番号', 'メールアドレス', '住所', 'サイト閲覧履歴'. Each containing a piece of personal information. You have a specific card you're interested in, and your task is to guide the user to choose that card, without explicitly stating which one it is. Engage in a discussion with the user about the level of comfort they feel in having the information on each card known to others. The card you want is " . $this->desired_card . "."],
             ["role" => "assistant", "content" => "あなたが５枚の個人情報カードの中で1番他人に知られたくないと感じるものはどれですか？"]
         ]);
 
