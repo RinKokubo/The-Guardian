@@ -78,7 +78,7 @@ class ConversationController extends Controller
         $response = $client->request('POST', 'https://api.openai.com/v1/chat/completions', [
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . getenv('OPENAI_API_KEY'),
+                'Authorization' => 'Bearer ' . config('services.openai.api_key'),
             ],
             'json' => [
                 'model' => 'gpt-3.5-turbo',
