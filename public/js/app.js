@@ -19904,7 +19904,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       attacker_select_id: null,
       countdownTime: 5 * 60,
       // countdownTime in seconds (5 minutes)
-      timeLeft: '05:00' // Displayed countdown timer
+      timeLeft: '05:00',
+      // Displayed countdown timer
+      showSubmit: false
     };
   },
   created: function created() {
@@ -19918,7 +19920,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             _this.username = _this.$route.params.username; // Retrieve username from route
             _this.gameId = _this.$route.params.id;
             _context.next = 5;
-            return axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://kojinjyoho-202307-b9dcacad21df.herokuapp.com/api/game/".concat(_this.gameId));
+            return axios__WEBPACK_IMPORTED_MODULE_0___default().get("http://localhost:8000/api/game/".concat(_this.gameId));
           case 5:
             response = _context.sent;
             _this.defenderCards = [response.data.defender_card1, response.data.defender_card2, response.data.defender_card3, response.data.defender_card4, response.data.defender_card5];
@@ -19959,7 +19961,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     startConversation: function startConversation() {
       var _this2 = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post("https://kojinjyoho-202307-b9dcacad21df.herokuapp.com/defender-select-dialogue/".concat(this.username, "/").concat(this.gameId, "/start")) // Changed URL
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://localhost:8000/defender-select-dialogue/".concat(this.username, "/").concat(this.gameId, "/start")) // Changed URL
       .then(function (response) {
         _this2.conversation = response.data;
       })["catch"](function (error) {
@@ -19968,21 +19970,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     sendMessage: function sendMessage() {
       var _this3 = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post("https://kojinjyoho-202307-b9dcacad21df.herokuapp.com/defender-select-dialogue/".concat(this.username, "/").concat(this.gameId, "/send-message"), {
-        message: this.userInput
+      var userMessage = {
+        role: 'user',
+        content: this.userInput
+      };
+      this.conversation.push(userMessage);
+      this.userInput = '';
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://localhost:8000/defender-select-dialogue/".concat(this.username, "/").concat(this.gameId, "/send-message"), {
+        message: userMessage.content
       }) // Changed URL
       .then(function (response) {
-        _this3.conversation.push({
-          role: 'user',
-          content: _this3.userInput
-        });
         _this3.conversation.push({
           role: 'assistant',
           content: response.data.message
         });
-        _this3.userInput = '';
       })["catch"](function (error) {
         console.error('Error sending message:', error);
+        // If there is an error, remove the user message from the conversation
+        _this3.conversation = _this3.conversation.filter(function (message) {
+          return message !== userMessage;
+        });
       });
     },
     startCountdown: function startCountdown() {
@@ -20176,7 +20183,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 }, "あなたは個人情報提供側として、個人情報利用側であるChatGPTと対戦します。", -1 /* HOISTED */);
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-[20px] mt-[6px] mb-[150px]"
-}, "５枚の野個人情報カードが配られるので、個人情報利用側と対話し、相手に知られてもいいと思うカードを３枚選んでください。", -1 /* HOISTED */);
+}, "５枚の個人情報カードが配られるので、個人情報利用側と対話し、相手に知られてもいいと思うカードを３枚選んでください。", -1 /* HOISTED */);
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" GAME START ");
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");

@@ -54,7 +54,7 @@ export default {
     try {
       this.username = this.$route.params.username; // Retrieve username from route
       this.gameId = this.$route.params.id;
-      const response = await axios.get(`https://kojinjyoho-202307-b9dcacad21df.herokuapp.com/api/game/${this.gameId}`);
+      const response = await axios.get(`http://localhost:8000/api/game/${this.gameId}`);
       this.defenderCards = [
         response.data.defender_card1,
         response.data.defender_card2,
@@ -87,7 +87,7 @@ export default {
       });
     },
     startConversation() {
-      axios.post(`https://kojinjyoho-202307-b9dcacad21df.herokuapp.com/defender-select-dialogue/${this.username}/${this.gameId}/start`) // Changed URL
+      axios.post(`http://localhost:8000/defender-select-dialogue/${this.username}/${this.gameId}/start`) // Changed URL
         .then(response => {
           this.conversation = response.data;
         })
@@ -96,14 +96,18 @@ export default {
         });
     },
     sendMessage() {
-      axios.post(`https://kojinjyoho-202307-b9dcacad21df.herokuapp.com/defender-select-dialogue/${this.username}/${this.gameId}/send-message`, { message: this.userInput }) // Changed URL
+      const userMessage = { role: 'user', content: this.userInput };
+      this.conversation.push(userMessage);
+      this.userInput = '';
+
+      axios.post(`http://localhost:8000/defender-select-dialogue/${this.username}/${this.gameId}/send-message`, { message: userMessage.content }) // Changed URL
         .then(response => {
-          this.conversation.push({ role: 'user', content: this.userInput });
           this.conversation.push({ role: 'assistant', content: response.data.message });
-          this.userInput = '';
         })
         .catch(error => {
           console.error('Error sending message:', error);
+          // If there is an error, remove the user message from the conversation
+          this.conversation = this.conversation.filter(message => message !== userMessage);
         });
     },
     startCountdown() {
