@@ -20336,7 +20336,7 @@ var _hoisted_5 = {
   className: "flex flex-1 w-[100%]"
 };
 var _hoisted_6 = {
-  className: "text-blue-600 font-bold flex items-center justify-center text-[16px] mr-[70px]"
+  className: "text-blue-600 font-bold flex items-center justify-center text-[16px] mr-[50px]"
 };
 var _hoisted_7 = ["disabled"];
 var _hoisted_8 = {
@@ -20379,7 +20379,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.confirmSelection && $options.confirmSelection.apply($options, arguments);
     }),
     "class": "text-white font-bold py-[6px] px-[10px] my-[30px] mr-[10px] border-[3px] border-blue-500 hover:border-blue-600 hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded"
-  }, "カードを決定", 8 /* PROPS */, _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.conversation, function (message) {
+  }, "公開するカードを決定", 8 /* PROPS */, _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.conversation, function (message) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: message.id,
       "class": "mb-4"
