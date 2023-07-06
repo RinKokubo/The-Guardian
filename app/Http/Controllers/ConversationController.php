@@ -4,19 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Message;
+use App\Models\GameInformation;
 
 class ConversationController extends Controller
 {
-    protected $desired_card = 'サイト閲覧履歴';
-
     public function start(Request $request)
     {
         $username = $request->route('username');
         $gameId = $request->route('id');
 
-        // Initialize the conversation and send the first message.
+        $gameInformation = GameInformation::find($gameId);
+        if (!$gameInformation) {
+            return response()->json(['error' => 'Game not found'], 404);
+        }
+
+        $defenderCards = [
+            $gameInformation->defender_card1->defender_card_name,
+            $gameInformation->defender_card2->defender_card_name,
+            $gameInformation->defender_card3->defender_card_name,
+            $gameInformation->defender_card4->defender_card_name,
+            $gameInformation->defender_card5->defender_card_name,
+        ];
+
+        $defenderCardsStr = implode("', '", $defenderCards);
+
         $request->session()->put('conversation', [
-            ["role" => "system", "content" => "You are a game player. The user has five cards, '家族構成', '電話番号', 'メールアドレス', '住所', 'サイト閲覧履歴'. Each containing a piece of personal information. You have a specific card you're interested in, and your task is to guide the user to choose that card, without explicitly stating which one it is. Engage in a discussion with the user about the level of comfort they feel in having the information on each card known to others. The card you want is " . $this->desired_card . "."],
+            ["role" => "system", "content" => "You are a game player. The user has five cards, '" . $defenderCardsStr . "', each containing a piece of personal information. Your task is to guide the user to choose three cards they feel comparatively comfortable having known to others out of the five. Engage in a discussion with the user about the level of resistance they feel in having the information on each card known to others, and about the user's privacy consciousness. Please refrain from bringing up topics that are not related to the game or the cards."],
             ["role" => "assistant", "content" => "あなたが５枚の個人情報カードの中で1番他人に知られたくないと感じるものはどれですか？"]
         ]);
 

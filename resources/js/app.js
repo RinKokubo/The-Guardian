@@ -8,6 +8,7 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue'
+import axios from 'axios';
 
 import Hello from './components/HelloComponent';
 import SelectAccount from './components/SelectAccountComponent';

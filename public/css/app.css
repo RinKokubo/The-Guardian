@@ -11361,6 +11361,9 @@ video {
 .flex-grow {
   flex-grow: 1;
 }
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
 .flex-row {
   flex-direction: row;
 }
@@ -11530,6 +11533,9 @@ video {
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.opacity-50 {
+  opacity: 0.5;
 }
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);

@@ -11,8 +11,14 @@
     </ul>
     <div className="flex flex-1 w-[100%]">
       <p className="text-blue-600 font-bold flex items-center justify-center text-[16px] mr-[50px]">対話の残り時間 : {{ timeLeft }}</p>
-      <button :disabled="selectedCards.length !== 3" @click="confirmSelection" class="text-white font-bold py-[6px] px-[10px] my-[30px] mr-[10px] border-[3px]  border-blue-500 hover:border-blue-600
-      hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded">公開するカードを決定</button>
+      <button 
+        :disabled="selectedCards.length !== 3" 
+        @click="confirmSelection" 
+        class="text-white font-bold py-[6px] px-[10px] my-[30px] mr-[10px] border-[3px]  border-blue-500 hover:border-blue-600
+        hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded"
+        :class="{ 'opacity-50 cursor-not-allowed': selectedCards.length !== 3 }">
+        公開するカードを決定
+      </button>
     </div>
     <div class="border border-gray-300 p-4 rounded overflow-auto h-64 mb-4">
       <div v-for="message in conversation" :key="message.id" class="mb-4">
@@ -54,7 +60,7 @@ export default {
     try {
       this.username = this.$route.params.username; // Retrieve username from route
       this.gameId = this.$route.params.id;
-      const response = await axios.get(`https://kojinjyoho-202307-b9dcacad21df.herokuapp.com/api/game/${this.gameId}`);
+      const response = await axios.get(`http://localhost:8000/api/game/${this.gameId}`);
       this.defenderCards = [
         response.data.defender_card1,
         response.data.defender_card2,
@@ -87,7 +93,7 @@ export default {
       });
     },
     startConversation() {
-      axios.post(`https://kojinjyoho-202307-b9dcacad21df.herokuapp.com/defender-select-dialogue/${this.username}/${this.gameId}/start`) // Changed URL
+      axios.post(`http://localhost:8000/defender-select-dialogue/${this.username}/${this.gameId}/start`) // Changed URL
         .then(response => {
           this.conversation = response.data;
         })
@@ -100,7 +106,7 @@ export default {
       this.conversation.push(userMessage);
       this.userInput = '';
 
-      axios.post(`https://kojinjyoho-202307-b9dcacad21df.herokuapp.com/defender-select-dialogue/${this.username}/${this.gameId}/send-message`, { message: userMessage.content }) // Changed URL
+      axios.post(`http://localhost:8000/defender-select-dialogue/${this.username}/${this.gameId}/send-message`, { message: userMessage.content }) // Changed URL
         .then(response => {
           this.conversation.push({ role: 'assistant', content: response.data.message });
         })

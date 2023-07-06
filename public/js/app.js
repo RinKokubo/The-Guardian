@@ -20078,8 +20078,7 @@ __webpack_require__.r(__webpack_exports__);
     submitScores: function submitScores() {
       var gameId = this.$route.params.id;
       var attackerSelectId = this.$route.query.attacker_select_id;
-      var userName = this.$route.params.username; // 仮にusernameはparamsから取得するとしています
-
+      var userName = this.$route.params.username;
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/user_scores", {
         game_id: gameId,
         attacker_select_id: attackerSelectId,
@@ -20385,8 +20384,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.confirmSelection && $options.confirmSelection.apply($options, arguments);
     }),
-    "class": "text-white font-bold py-[6px] px-[10px] my-[30px] mr-[10px] border-[3px] border-blue-500 hover:border-blue-600 hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded"
-  }, "公開するカードを決定", 8 /* PROPS */, _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.conversation, function (message) {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-white font-bold py-[6px] px-[10px] my-[30px] mr-[10px] border-[3px] border-blue-500 hover:border-blue-600 hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded", {
+      'opacity-50 cursor-not-allowed': $data.selectedCards.length !== 3
+    }])
+  }, " 公開するカードを決定 ", 10 /* CLASS, PROPS */, _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.conversation, function (message) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: message.id,
       "class": "mb-4"
@@ -20532,7 +20533,12 @@ var _hoisted_129 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStatic
 var _hoisted_150 = [_hoisted_129];
 var _hoisted_151 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
 var _hoisted_152 = {
-  className: "flex justify-end"
+  key: 0,
+  "class": "flex justify-end"
+};
+var _hoisted_153 = {
+  key: 1,
+  "class": "flex justify-end"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _$data$scores, _$data$scores2, _$data$scores3, _$data$scores4, _$data$scores5;
@@ -20582,19 +20588,37 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $data.card5Score = $event;
     }),
     id: "card5Score"
-  }, _hoisted_150, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card5Score]]), _hoisted_151])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_152, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<div v-if=\"$route.params.id < 6\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }, _hoisted_150, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card5Score]]), _hoisted_151])])]), parseInt(_ctx.$route.params.id) < 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_152, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'defender-select-dialogue',
+      params: {
+        username: _ctx.$route.params.username,
+        id: parseInt(_ctx.$route.params.id) + 1
+      }
+    }
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        className: "text-white font-bold py-[6px] px-[10px] mt-[30px] mr-[80px] border-[3px]  border-blue-500 hover:border-blue-600\n                    hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm",
+        onClick: _cache[5] || (_cache[5] = function () {
+          return $options.submitScores && $options.submitScores.apply($options, arguments);
+        })
+      }, " もう一度対戦する ")];
+    }),
+    _: 1 /* STABLE */
+  }, 8 /* PROPS */, ["to"])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_153, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        className: "text-white font-bold py-[6px] px-[10px] mt-[30px] mr-[80px] border-[3px]  border-blue-500 hover:border-blue-600\n                  hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm",
-        onClick: _cache[5] || (_cache[5] = function () {
+        className: "border-[3px] border-blue-500 text-blue-500 font-bold py-[6px] px-[10px] mt-[30px] mr-[80px]\n                   hover:bg-blue-500 hover:text-white duration-300 shadow-sm",
+        onClick: _cache[6] || (_cache[6] = function () {
           return $options.submitScores && $options.submitScores.apply($options, arguments);
         })
       }, " ゲームを終了する ")];
     }),
     _: 1 /* STABLE */
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("</div>\n      <div v-else>\n        <router-link  :to=\"{ name: 'defender-select-dialogue', params: { username: $route.params.username, id: gameIdforPath ++ } }\">\n          <button className=\"border-[3px] border-blue-500 text-blue-500 font-bold py-[6px] px-[10px] mt-[30px] mr-[10px]\n                 hover:bg-blue-500 hover:text-white duration-300 shadow-sm\" v-on:click=\"submitScores\">\n            もう一度対戦する\n          </button>\n        </router-link>\n      </div>")])]);
+  })]))]);
 }
 
 /***/ }),
@@ -20608,14 +20632,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.mjs");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.mjs");
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
-/* harmony import */ var _components_HelloComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/HelloComponent */ "./resources/js/components/HelloComponent.vue");
-/* harmony import */ var _components_SelectAccountComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/SelectAccountComponent */ "./resources/js/components/SelectAccountComponent.vue");
-/* harmony import */ var _components_IntroComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/IntroComponent */ "./resources/js/components/IntroComponent.vue");
-/* harmony import */ var _components_TalkComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/TalkComponent */ "./resources/js/components/TalkComponent.vue");
-/* harmony import */ var _components_ResultComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/ResultComponent */ "./resources/js/components/ResultComponent.vue");
-/* harmony import */ var _components_UserScoreComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/UserScoreComponent */ "./resources/js/components/UserScoreComponent.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_HelloComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/HelloComponent */ "./resources/js/components/HelloComponent.vue");
+/* harmony import */ var _components_SelectAccountComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/SelectAccountComponent */ "./resources/js/components/SelectAccountComponent.vue");
+/* harmony import */ var _components_IntroComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/IntroComponent */ "./resources/js/components/IntroComponent.vue");
+/* harmony import */ var _components_TalkComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/TalkComponent */ "./resources/js/components/TalkComponent.vue");
+/* harmony import */ var _components_ResultComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/ResultComponent */ "./resources/js/components/ResultComponent.vue");
+/* harmony import */ var _components_UserScoreComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/UserScoreComponent */ "./resources/js/components/UserScoreComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -20623,6 +20649,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 //require('./bootstrap');
+
 
 
 
@@ -20647,25 +20674,25 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bu
 
 var routes = [{
   path: '/',
-  component: _components_HelloComponent__WEBPACK_IMPORTED_MODULE_2__["default"]
+  component: _components_HelloComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
   path: '/select-account',
-  component: _components_SelectAccountComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
+  component: _components_SelectAccountComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
   path: '/introduction/:username',
-  component: _components_IntroComponent__WEBPACK_IMPORTED_MODULE_4__["default"],
+  component: _components_IntroComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
   name: 'introduction'
 }, {
   path: '/defender-select-dialogue/:username/:id',
-  component: _components_TalkComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
+  component: _components_TalkComponent__WEBPACK_IMPORTED_MODULE_6__["default"],
   name: 'defender-select-dialogue'
 }, {
   path: '/result/:username/:id',
-  component: _components_ResultComponent__WEBPACK_IMPORTED_MODULE_6__["default"],
+  component: _components_ResultComponent__WEBPACK_IMPORTED_MODULE_7__["default"],
   name: 'result'
 }, {
   path: '/user-score/:username/:id',
-  component: _components_UserScoreComponent__WEBPACK_IMPORTED_MODULE_7__["default"],
+  component: _components_UserScoreComponent__WEBPACK_IMPORTED_MODULE_8__["default"],
   name: 'user-score'
 }];
 
@@ -20675,11 +20702,18 @@ var routes = [{
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_8__.createRouter)({
-  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_8__.createWebHistory)(),
+var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_9__.createRouter)({
+  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_9__.createWebHistory)(),
   routes: routes // `routes: routes` の短縮記法
 });
 
+(axios__WEBPACK_IMPORTED_MODULE_2___default().defaults.headers.common["X-Requested-With"]) = 'XMLHttpRequest';
+var token = document.head.querySelector('meta[name="csrf-token"]');
+if (token) {
+  (axios__WEBPACK_IMPORTED_MODULE_2___default().defaults.headers.common["X-CSRF-TOKEN"]) = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]).use(router).mount('#app');
 
 /***/ }),

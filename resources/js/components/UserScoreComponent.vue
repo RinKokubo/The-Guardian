@@ -172,24 +172,22 @@
         </div>
       </div>
     </form>
-    <div className="flex justify-end">
-      <!--<div v-if="$route.params.id < 6">-->
-        <router-link to="/">
-          <button className="text-white font-bold py-[6px] px-[10px] mt-[30px] mr-[80px] border-[3px]  border-blue-500 hover:border-blue-600
-                  hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm" v-on:click="submitScores">
-            ゲームを終了する
-          </button>  
-        </router-link>
-      <!--</div>
-      <div v-else>
-        <router-link  :to="{ name: 'defender-select-dialogue', params: { username: $route.params.username, id: gameIdforPath ++ } }">
-          <button className="border-[3px] border-blue-500 text-blue-500 font-bold py-[6px] px-[10px] mt-[30px] mr-[10px]
-                 hover:bg-blue-500 hover:text-white duration-300 shadow-sm" v-on:click="submitScores">
-            もう一度対戦する
-          </button>
-        </router-link>
-      </div>-->
-    </div>  
+    <div v-if="parseInt($route.params.id) < 6" class="flex justify-end">
+      <router-link :to="{ name: 'defender-select-dialogue', params: { username: $route.params.username, id: parseInt($route.params.id) + 1 } }">
+        <button className="text-white font-bold py-[6px] px-[10px] mt-[30px] mr-[80px] border-[3px]  border-blue-500 hover:border-blue-600
+                    hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm" v-on:click="submitScores">
+          もう一度対戦する
+        </button>  
+      </router-link>
+    </div>
+    <div v-else  class="flex justify-end">
+      <router-link to="/">
+        <button className="border-[3px] border-blue-500 text-blue-500 font-bold py-[6px] px-[10px] mt-[30px] mr-[80px]
+                   hover:bg-blue-500 hover:text-white duration-300 shadow-sm" v-on:click="submitScores">
+          ゲームを終了する
+        </button>
+      </router-link>
+    </div>
   </div> 
 </template>
 
@@ -254,7 +252,7 @@ export default {
     submitScores() {
       const gameId = this.$route.params.id;
       const attackerSelectId = this.$route.query.attacker_select_id;
-      const userName = this.$route.params.username; // 仮にusernameはparamsから取得するとしています
+      const userName = this.$route.params.username; 
 
       axios.post(`/api/user_scores`, {
         game_id: gameId,
