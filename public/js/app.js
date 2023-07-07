@@ -19784,10 +19784,39 @@ __webpack_require__.r(__webpack_exports__);
       notice: ''
     };
   },
+  methods: {
+    sendGameResult: function sendGameResult(defenderSelects, calculatedScore) {
+      var attackerScore = 100 - calculatedScore;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/game-result', {
+        attacker_name: 'chatGPT',
+        defender_name: this.$route.params.username,
+        game_id: this.$route.params.id,
+        attacker_select_id: this.$route.query.attacker_select_id,
+        defender_select_1: defenderSelects[1] || false,
+        defender_select_2: defenderSelects[2] || false,
+        defender_select_3: defenderSelects[3] || false,
+        defender_select_4: defenderSelects[4] || false,
+        defender_select_5: defenderSelects[5] || false,
+        attacker_score: attackerScore,
+        defender_score: calculatedScore
+      });
+    }
+  },
   mounted: function mounted() {
     var _this = this;
     var gameId = this.$route.params.id;
     var selectedCards = this.$route.query.selectedCards;
+    var selectedCardsArray = this.$route.query.selectedCards;
+    var selectedCardsBoolean = {
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false
+    };
+    selectedCardsArray.forEach(function (card) {
+      selectedCardsBoolean[card] = true;
+    });
     var attackerSelectId = this.$route.query.attacker_select_id;
     var noticeId = Math.floor(Math.random() * 9) + 1;
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/score/".concat(gameId), {
@@ -19804,6 +19833,9 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         _this.result = 'あなたの負け...';
       }
+
+      // スコアを取得したらゲーム結果をサーバーに送信します
+      _this.sendGameResult(selectedCardsBoolean, _this.score);
     });
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/notice/".concat(noticeId)).then(function (response) {
       _this.notice = response.data.notice_content;

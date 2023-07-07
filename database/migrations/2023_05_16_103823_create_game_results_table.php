@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('game_results', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('attacker_id');
-            $table->unsignedBigInteger('defender_id');
+            $table->string('attacker_name');
+            $table->string('defender_name');
             $table->unsignedBigInteger('game_id');
             $table->unsignedBigInteger('attacker_select_id');
             $table->boolean('defender_select_1');
@@ -26,8 +26,6 @@ return new class extends Migration
             $table->integer('defender_score');
             $table->timestamps();
 
-            $table->foreign('attacker_id')->references('id')->on('users');
-            $table->foreign('defender_id')->references('id')->on('users');
             $table->foreign('game_id')->references('id')->on('game_information');
             $table->foreign('attacker_select_id')->references('id')->on('attacker_cards');
         });

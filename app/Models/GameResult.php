@@ -9,14 +9,9 @@ class GameResult extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'attacker__id',
-        'defender_id',
+        'attacker_name',
+        'defender_name',
         'game_id',
         'attacker_select_id',
         'defender_select_1',
@@ -27,16 +22,6 @@ class GameResult extends Model
         'attacker_score',
         'defender_score'
     ];
-
-    public function attacker_id()
-    {
-        return $this->belongsTo(User::class, 'attacker_id');
-    }
-
-    public function defender_id()
-    {
-        return $this->belongsTo(User::class, 'attacker_id');
-    }
 
     public function game_id()
     {

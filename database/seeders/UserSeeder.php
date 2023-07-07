@@ -189,5 +189,11 @@ class UserSeeder extends Seeder
             'password' => 111130,
             'is_logged_in' => 1,
         ]);
+
+        User::create([
+            'name' => 'chatGPT',
+            'password' => 0000000,
+            'is_logged_in' => 0,
+        ]);
     }
 }

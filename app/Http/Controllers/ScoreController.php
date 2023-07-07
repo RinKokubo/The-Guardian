@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CardInformation;
+use App\Models\GameResult;
 use Illuminate\Http\Request;
 
 class ScoreController extends Controller
@@ -44,5 +45,18 @@ class ScoreController extends Controller
         }
 
         return response()->json($cardScores);
+    }
+
+    public function store(Request $request)
+    {
+        $gameResult = new GameResult;
+
+        $gameResult->fill($request->all());
+        $gameResult->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Game result stored successfully.'
+        ]);
     }
 }

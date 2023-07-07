@@ -27,6 +27,7 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('/game/{id}', [GameInformationController::class, 'show']);
 Route::get('/getGame/{id}',  [GameInformationController::class, 'attackerShow']);
 Route::get('/score/{gameId}', [ScoreController::class, 'calculate']);
+Route::post('/game-result', [ScoreController::class, 'store']);
 Route::get('getScore/{gameId}', [ScoreController::class, 'getScore']);
 
 Route::post('user_scores', [UserScoreController::class, 'store']);

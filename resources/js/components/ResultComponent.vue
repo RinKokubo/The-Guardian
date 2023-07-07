@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   name: "ResultComponent",
@@ -32,9 +32,35 @@ export default {
       notice: ''
     };
   },
+  methods: {
+    sendGameResult(defenderSelects, calculatedScore) {
+      const attackerScore = 100 - calculatedScore;
+      
+      axios.post('/api/game-result', {
+        attacker_name: 'chatGPT',
+        defender_name: this.$route.params.username,
+        game_id: this.$route.params.id,
+        attacker_select_id: this.$route.query.attacker_select_id,
+        defender_select_1: defenderSelects[1] || false,
+        defender_select_2: defenderSelects[2] || false,
+        defender_select_3: defenderSelects[3] || false,
+        defender_select_4: defenderSelects[4] || false,
+        defender_select_5: defenderSelects[5] || false,
+        attacker_score: attackerScore,
+        defender_score: calculatedScore,
+      });
+    }
+  },
   mounted() {
     const gameId = this.$route.params.id;
-    const selectedCards = this.$route.query.selectedCards;
+    let selectedCards = this.$route.query.selectedCards;
+
+    const selectedCardsArray = this.$route.query.selectedCards;
+    let selectedCardsBoolean = {1: false, 2: false, 3: false, 4: false, 5: false};
+    selectedCardsArray.forEach(card => {
+      selectedCardsBoolean[card] = true;
+    });
+
     const attackerSelectId = this.$route.query.attacker_select_id;
     const noticeId = Math.floor(Math.random() * 9) + 1;
 
@@ -50,6 +76,8 @@ export default {
       } else {
         this.result = 'あなたの負け...';
       }
+
+      this.sendGameResult(selectedCardsBoolean, this.score);
     })
 
     axios.get(`/api/notice/${noticeId}`)
