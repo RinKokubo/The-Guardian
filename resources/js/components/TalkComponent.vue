@@ -10,14 +10,14 @@
       </li>
     </ul>
     <div className="flex flex-1 w-[100%]">
-      <p className="text-blue-600 font-bold flex items-center justify-center text-[16px] mr-[50px]">対話の残り時間 : {{ timeLeft }}</p>
+      <p className="text-blue-600 font-bold flex items-center justify-center text-[16px] mr-[50px]">Remaining time for dialogue : {{ timeLeft }}</p>
       <button 
         :disabled="selectedCards.length !== 3" 
         @click="confirmSelection" 
         class="text-white font-bold py-[6px] px-[10px] my-[30px] mr-[10px] border-[3px]  border-blue-500 hover:border-blue-600
         hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded"
         :class="{ 'opacity-50 cursor-not-allowed': selectedCards.length !== 3 }">
-        公開するカードを決定
+        Select cards
       </button>
     </div>
     <div class="border border-gray-300 p-4 rounded overflow-auto h-64 mb-4">
@@ -26,7 +26,7 @@
           <span>ChatGPT:</span> {{ message.content }}
         </div>
         <div v-else-if="message.role === 'user'" class="text-green-500 font-bold">
-          <span>あなた:</span> {{ message.content }}
+          <span>you:</span> {{ message.content }}
         </div>
       </div>
     </div>
@@ -51,8 +51,8 @@ export default {
       gameId: '',
       selectedCards: [],
       attacker_select_id: null,
-      countdownTime: 5 * 60, // countdownTime in seconds (5 minutes)
-      timeLeft: '05:00', // Displayed countdown timer
+      countdownTime: 7 * 60, // countdownTime in seconds (5 minutes)
+      timeLeft: '07:00', // Displayed countdown timer
       showSubmit: false
     };
   },

@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "league/csv": "^9.9",
         "openai-php/client": "^0.6.2",
         "openai/openai": "dev-main"
     },

@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\ScoreController;
+use App\Http\Controllers\UserScoreController;
+use App\Http\Controllers\GameInformationController;
+use App\Http\Controllers\NoticeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +31,9 @@ Route::get('/select-account', function () {
 });
 Route::post('/defender-select-dialogue/{username}/{id}/start', [ConversationController::class, 'start']);
 Route::post('/defender-select-dialogue/{username}/{id}/send-message', [ConversationController::class, 'sendMessage']);
+
+Route::get('messages/export/', [ConversationController::class, 'export']);
+Route::get('game_results/export/', [ScoreController::class, 'export']);
+Route::get('user_scores/export/', [UserScoreController::class, 'export']);
+Route::get('game_info/export/', [GameInformationController::class, 'export']);
+Route::get('card_info/export/', [NoticeController::class, 'export']);

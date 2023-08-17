@@ -19833,8 +19833,6 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         _this.result = 'あなたの負け...';
       }
-
-      // スコアを取得したらゲーム結果をサーバーに送信します
       _this.sendGameResult(selectedCardsBoolean, _this.score);
     });
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/notice/".concat(noticeId)).then(function (response) {
@@ -19934,9 +19932,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       gameId: '',
       selectedCards: [],
       attacker_select_id: null,
-      countdownTime: 5 * 60,
+      countdownTime: 7 * 60,
       // countdownTime in seconds (5 minutes)
-      timeLeft: '05:00',
+      timeLeft: '07:00',
       // Displayed countdown timer
       showSubmit: false
     };
@@ -20389,7 +20387,7 @@ var _hoisted_11 = {
   key: 1,
   "class": "text-green-500 font-bold"
 };
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "あなた:", -1 /* HOISTED */);
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "you:", -1 /* HOISTED */);
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "px-4 py-2 bg-blue-500 text-white rounded"
@@ -20411,7 +20409,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       src: "/img/".concat(card.defender_card_name, ".png"),
       alt: "defender_card"
     }, null, 8 /* PROPS */, _hoisted_4)], 8 /* PROPS */, _hoisted_3)], 2 /* CLASS */);
-  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, "対話の残り時間 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.timeLeft), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, "Remaining time for dialogue : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.timeLeft), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     disabled: $data.selectedCards.length !== 3,
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.confirmSelection && $options.confirmSelection.apply($options, arguments);
@@ -20419,7 +20417,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-white font-bold py-[6px] px-[10px] my-[30px] mr-[10px] border-[3px] border-blue-500 hover:border-blue-600 hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded", {
       'opacity-50 cursor-not-allowed': $data.selectedCards.length !== 3
     }])
-  }, " 公開するカードを決定 ", 10 /* CLASS, PROPS */, _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.conversation, function (message) {
+  }, " Select cards ", 10 /* CLASS, PROPS */, _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.conversation, function (message) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: message.id,
       "class": "mb-4"

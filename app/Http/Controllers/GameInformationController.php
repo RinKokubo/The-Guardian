@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\GameInformation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use League\Csv\Writer;
+use Illuminate\Support\Facades\Response;
 
 class GameInformationController extends Controller
 {
@@ -49,5 +51,29 @@ class GameInformationController extends Controller
         }
 
         return response()->json($selected_card);
+    }
+    public function store(Request $request)
+    {
+        $gameInfo = GameInformation::create($request->all());
+        return response()->json($gameInfo, 201);
+    }
+
+    public function export()
+    {
+        $csv = Writer::createFromString('');
+        $csv->insertOne(['id', 'attacker_card1_id', 'attacker_card2_id', 'attacker_card3_id', 'defender_card1_id', 'defender_card2_id', 'defender_card3_id', 'defender_card4_id', 'defender_card5_id']);
+
+        $gameInfos = GameInformation::all();
+
+        foreach ($gameInfos as $gameInfo) {
+            $csv->insertOne($gameInfo->toArray());
+        }
+
+        $csvStr = $csv->toString();
+
+        return Response::make($csvStr, 200, [
+            'Content-Type'        => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="game_info.csv"',
+        ]);
     }
 }

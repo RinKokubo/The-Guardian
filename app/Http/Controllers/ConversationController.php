@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Models\GameInformation;
 
+use League\Csv\Writer;
+use Illuminate\Support\Facades\Response;
+
 class ConversationController extends Controller
 {
     public function start(Request $request)
@@ -117,5 +120,32 @@ class ConversationController extends Controller
 
         // Return formatted prompt
         return $prompt;
+    }
+
+    public function store(Request $request)
+    {
+        $message = Message::create($request->all());
+        return response()->json($message, 201);
+    }
+
+    public function export()
+    {
+        $csv = Writer::createFromString('');
+        $csv->insertOne(['id', 'user_name', 'game_id', 'created_at', 'sender', 'message_content']);
+
+        $messages = Message::all();
+
+        foreach ($messages as $message) {
+            $csv->insertOne($message->toArray());
+        }
+
+        $csvStr = $csv->toString();
+
+        return Response::make($csvStr, 200, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename=messages.csv',
+            'Pragma' => 'no-cache',
+            'Expires' => '0',
+        ]);
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\CardInformation;
 use App\Models\GameResult;
 use Illuminate\Http\Request;
+use League\Csv\Writer;
+use Illuminate\Support\Facades\Response;
 
 class ScoreController extends Controller
 {
@@ -57,6 +59,27 @@ class ScoreController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Game result stored successfully.'
+        ]);
+    }
+
+    public function export()
+    {
+        $csv = Writer::createFromString('');
+        $csv->insertOne(['id', 'attacker_name', 'defender_name', 'game_id', 'attacker_select_id', 'defender_select_1', 'defender_select_2', 'defender_select_3', 'defender_select_4', 'defender_select_5', 'attacker_score', 'defender_score']);
+
+        $gameResults = GameResult::all();
+
+        foreach ($gameResults as $result) {
+            $csv->insertOne($result->toArray());
+        }
+
+        $csvStr = $csv->toString();
+
+        return Response::make($csvStr, 200, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename=game_results.csv',
+            'Pragma' => 'no-cache',
+            'Expires' => '0',
         ]);
     }
 }
