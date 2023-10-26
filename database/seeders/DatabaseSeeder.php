@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GameInformationSeeder::class);
         $this->call(CardInformationSeeder::class);
         $this->call(NoticeSeeder::class);
+        $this->call(MatchInfoSeeder::class);
     }
 }

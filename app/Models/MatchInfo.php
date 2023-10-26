@@ -9,6 +9,8 @@ class MatchInfo extends Model
 {
     use HasFactory;
 
+    protected $table = 'match_info';
+
     protected $fillable = [
         'user_id',
         'game_id',
