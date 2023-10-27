@@ -19890,16 +19890,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee);
     }))();
-  },
-  methods: {
-    handleUserClick: function handleUserClick(user) {
-      var password = window.prompt("".concat(user.name, " \u306E\u30D1\u30B9\u30EF\u30FC\u30C9\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"));
-      if (password) {
-        // パスワードが入力されたら、それを使ってログイン処理を行う
-        // この例では具体的なログイン処理は省略しています
-      }
-    }
-  }
+  } // methods: {
+  //  handleUserClick(user) {
+  //    const password = window.prompt(`${user.name} のパスワードを入力してください`)
+  //    if (password) {
+  //      // パスワードが入力されたら、それを使ってログイン処理を行う
+  //      // この例では具体的なログイン処理は省略しています
+  //      
+  //    }
+  //  }
+  //}
 }));
 
 /***/ }),
@@ -20221,7 +20221,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       name: 'defender-select-dialogue',
       params: {
         id: 1,
-        username: _ctx.$route.params.username
+        user_id: _ctx.$route.params.user_id
       }
     },
     "class": "bg-blue-500 text-white hover:bg-blue-600 text-[30px] text-center flex justify-center mx-[-150px] py-[3px] shadow-md w-[100vw]"
@@ -20332,7 +20332,7 @@ function render(_ctx, _cache) {
       to: {
         name: 'introduction',
         params: {
-          username: user.name
+          user_id: user.id
         }
       }
     }, {
@@ -20709,7 +20709,7 @@ var routes = [{
   path: '/select-account',
   component: _components_SelectAccountComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
-  path: '/introduction/:username',
+  path: '/introduction/:user_id',
   component: _components_IntroComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
   name: 'introduction'
 }, {

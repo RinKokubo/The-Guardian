@@ -12,7 +12,7 @@
           className="text-[24px] w-[200px] desktop:mt-[40px] sp:mt-[10px] mx-[30px]
           hover:underline hover:underline-offset-4 duration-500"
         >
-          <router-link :to="{ name: 'introduction', params: { username: user.name } }">
+          <router-link :to="{ name: 'introduction', params: { user_id: user.id } }">
             {{ user.name }}
           </router-link>
         </div>
@@ -35,15 +35,15 @@ export default defineComponent({
     const response = await axios.get('/api/users')
     this.users = response.data
   },
-  methods: {
-    handleUserClick(user) {
-      const password = window.prompt(`${user.name} のパスワードを入力してください`)
-      if (password) {
-        // パスワードが入力されたら、それを使ってログイン処理を行う
-        // この例では具体的なログイン処理は省略しています
-        
-      }
-    }
-  }
+  // methods: {
+  //  handleUserClick(user) {
+  //    const password = window.prompt(`${user.name} のパスワードを入力してください`)
+  //    if (password) {
+  //      // パスワードが入力されたら、それを使ってログイン処理を行う
+  //      // この例では具体的なログイン処理は省略しています
+  //      
+  //    }
+  //  }
+  //}
 })
 </script>

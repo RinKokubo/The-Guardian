@@ -41,7 +41,7 @@ const routes = [
     component: SelectAccount,
   },
   {
-    path: '/introduction/:username',
+    path: '/introduction/:user_id',
     component: Introduction, name: 'introduction'
   },
   {
