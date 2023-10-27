@@ -12,7 +12,7 @@
           className="text-[24px] w-[200px] desktop:mt-[40px] sp:mt-[10px] mx-[30px]
           hover:underline hover:underline-offset-4 duration-500"
         >
-          <router-link :to="{ name: 'introduction', params: { user_id: user.id } }">
+          <router-link :to="{ name: 'introduction', params: { user_id: user.id, game_id: 1 } }">
             {{ user.name }}
           </router-link>
         </div>
