@@ -14,7 +14,7 @@
       </router-link>
     </div>
     <div v-else-if="userRole === 'defender'">
-      <router-link :to="{ name: 'introduction', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
+      <router-link :to="{ name: 'defender-standby', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
         defenderへ進む
       </router-link>
     </div>
