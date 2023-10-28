@@ -11376,6 +11376,10 @@ video {
   -moz-column-gap: 2.5rem;
        column-gap: 2.5rem;
 }
+.gap-x-20 {
+  -moz-column-gap: 5rem;
+       column-gap: 5rem;
+}
 .gap-x-5 {
   -moz-column-gap: 1.25rem;
        column-gap: 1.25rem;
@@ -11422,6 +11426,10 @@ video {
 .bg-gray-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+.bg-red-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
 }
 .p-2 {
   padding: 0.5rem;
@@ -11562,6 +11570,10 @@ video {
   --tw-border-opacity: 1;
   border-color: rgb(37 99 235 / var(--tw-border-opacity));
 }
+.hover\:border-red-400:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(248 113 113 / var(--tw-border-opacity));
+}
 .hover\:bg-blue-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
@@ -11596,8 +11608,16 @@ video {
     margin-top: 10px;
   }
 
+  .sp\:h-\[120px\] {
+    height: 120px;
+  }
+
   .sp\:h-\[80px\] {
     height: 80px;
+  }
+
+  .sp\:h-\[90px\] {
+    height: 90px;
   }
 
   .sp\:w-\[100\%\] {
@@ -11628,6 +11648,10 @@ video {
     row-gap: 1.25rem;
   }
 
+  .sp\:pl-\[10px\] {
+    padding-left: 10px;
+  }
+
   .sp\:pr-\[10px\] {
     padding-right: 10px;
   }
@@ -11638,6 +11662,10 @@ video {
 
   .sp\:text-\[16px\] {
     font-size: 16px;
+  }
+
+  .sp\:text-\[20px\] {
+    font-size: 20px;
   }
 
   .sp\:text-\[22px\] {
@@ -11663,6 +11691,11 @@ video {
     margin-bottom: 50px;
   }
 
+  .desktop\:my-\[90px\] {
+    margin-top: 90px;
+    margin-bottom: 90px;
+  }
+
   .desktop\:mt-\[40px\] {
     margin-top: 40px;
   }
@@ -11675,8 +11708,20 @@ video {
     height: 300px;
   }
 
+  .desktop\:h-\[350px\] {
+    height: 350px;
+  }
+
+  .desktop\:h-auto {
+    height: auto;
+  }
+
   .desktop\:w-\[200px\] {
     width: 200px;
+  }
+
+  .desktop\:w-\[250px\] {
+    width: 250px;
   }
 
   .desktop\:w-\[350px\] {
@@ -11703,6 +11748,10 @@ video {
     justify-content: space-between;
   }
 
+  .desktop\:pl-0 {
+    padding-left: 0px;
+  }
+
   .desktop\:pl-\[30px\] {
     padding-left: 30px;
   }
@@ -11717,6 +11766,10 @@ video {
 
   .desktop\:text-\[20px\] {
     font-size: 20px;
+  }
+
+  .desktop\:text-\[24px\] {
+    font-size: 24px;
   }
 
   .desktop\:text-\[30px\] {

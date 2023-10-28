@@ -16,6 +16,7 @@ import Introduction from './components/IntroComponent';
 import Talk from './components/TalkComponent';
 import Result from './components/ResultComponent';
 import UserScore from './components/UserScoreComponent';
+import AttackerSelect from './components/AttackerSelectComponent';
 
  window.Vue = require('vue').default;
 
@@ -45,7 +46,11 @@ const routes = [
     component: Introduction, name: 'introduction'
   },
   {
-    path: '/defender-select-dialogue/:username/:id',
+    path: '/attacker-select/:user_id/:game_id',
+    component: AttackerSelect, name: 'attacker-select'
+  },
+  {
+    path: '/defender-select-dialogue/:user_id/:game_id',
     component: Talk, name: 'defender-select-dialogue'
   },
   {

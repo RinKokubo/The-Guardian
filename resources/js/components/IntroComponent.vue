@@ -4,12 +4,12 @@
     <p>{{ userRole }} {{ opponentId }}</p>
     
     <div v-if="opponentId === 31">
-      <router-link :to="{ name: 'introduction', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
+      <router-link :to="{ name: 'defender-select-dialogue', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
         ChatGPTとの対戦へ進む
       </router-link>
     </div>
     <div v-else-if="userRole === 'attacker'">
-      <router-link :to="{ name: 'introduction', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
+      <router-link :to="{ name: 'attacker-select', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
         attackerへ進む
       </router-link>
     </div>
