@@ -1,17 +1,23 @@
 <template>
   <div class="flex justify-center items-center w-[100vw] h-[100vh] text-center flex-col">
     <h2 class="text-[30px] text-blue-600 font-bold my-[60px]">個人情報保護ゲーム</h2>
-    <p>{{ userRole }}</p>
+    <p>{{ userRole }} {{ opponentId }}</p>
     
-    <!-- defenderの画面 -->
-    <div v-if="userRole === 'defender'">
-      <p class="text-[20px] my-[6px]">あなたは個人情報提供側として、個人情報利用側であるChatGPTと対戦します。</p>
-      <p class="text-[20px] mt-[6px] mb-[150px]">５枚の個人情報カードが配られるので、個人情報利用側と対話し、相手に知られてもいいと思うカードを３枚選んでください。</p>
-      
+    <div v-if="opponentId === 31">
+      <router-link :to="{ name: 'introduction', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
+        ChatGPTとの対戦へ進む
+      </router-link>
     </div>
-    <p v-else-if="userRole === 'attacker'">userRole is attacker</p>
-    <p v-else-if="userRole === null">userRole is null</p>
-    <p v-else>userRole is something else</p>
+    <div v-else-if="userRole === 'attacker'">
+      <router-link :to="{ name: 'introduction', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
+        attackerへ進む
+      </router-link>
+    </div>
+    <div v-else-if="userRole === 'defender'">
+      <router-link :to="{ name: 'introduction', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
+        defenderへ進む
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -22,7 +28,10 @@ export default {
   name: "IntroComponent",
   data() {
     return {
-      userRole: 'loading',
+      userRole: null,
+      opponentId: null,
+      user_id: null,
+      game_id: null,
     }
   },
   async mounted() {
@@ -34,6 +43,9 @@ export default {
         }
       });
       this.userRole = response.data.user_role;
+      this.opponentId = response.data.opponent_id;
+      this.user_id = this.$route.params.user_id;
+      this.game_id = this.$route.params.game_id;
     } catch (error) {
       console.error('Error fetching match info:', error);
       this.userRole = null;
