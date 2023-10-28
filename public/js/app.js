@@ -19735,8 +19735,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "HelloComponent",
+  data: function data() {
+    return {
+      gameInformation: null,
+      attackerCard1Name: null,
+      attackerCard2Name: null,
+      attackerCard3Name: null
+    };
+  },
+  created: function created() {
+    var _this = this;
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/game/".concat(this.$route.params.game_id)).then(function (response) {
+      _this.gameInformation = response.data;
+      _this.attackerCard1Name = _this.gameInformation.attacker_card1.attacker_card_name;
+      _this.attackerCard2Name = _this.gameInformation.attacker_card2.attacker_card_name;
+      _this.attackerCard3Name = _this.gameInformation.attacker_card3.attacker_card_name;
+    })["catch"](function (error) {
+      console.error(error);
+    });
+  },
   mounted: function mounted() {
     console.log('Component mounted.');
   }
@@ -20258,23 +20279,44 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_2 = {
   className: "flex desktop:flex-row sp:flex-col gap-x-20 justify-center items-center gap-y-5"
 };
+var _hoisted_3 = {
+  className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
+};
+var _hoisted_4 = ["src"];
+var _hoisted_5 = {
+  className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
+};
+var _hoisted_6 = ["src"];
+var _hoisted_7 = {
+  className: "desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0"
+};
+var _hoisted_8 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     className: "desktop:w-[250px] sp:w-[80%] desktop:h-[350px] sp:h-[120px] bg-red-300 hover:border-[5px] justify-center items-center\n      hover:border-red-400 duration-500 desktop:text-[24px] sp:text-[20px] font-bold shadow-xl flex desktop:flex-col sp:flex-row",
     onClick: _cache[0] || (_cache[0] = function () {
       return _ctx.card1 && _ctx.card1.apply(_ctx, arguments);
     })
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("{{ $store.state.attacker1 }}\n      <img :src=\"imgAt1\" className=\"sp:h-[90px] desktop:h-auto sp:pl-[10px] desktop:pl-0\">")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.attackerCard1Name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/img/".concat($data.attackerCard1Name, ".png"),
+    alt: "defender_card"
+  }, null, 8 /* PROPS */, _hoisted_4)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     className: "desktop:w-[250px] sp:w-[80%] desktop:h-[350px] sp:h-[120px] bg-red-300 hover:border-[5px] justify-center items-center\n     hover:border-red-400 duration-500 desktop:text-[24px] sp:text-[20px] font-bold shadow-xl flex desktop:flex-col sp:flex-row",
     onClick: _cache[1] || (_cache[1] = function () {
       return _ctx.card2 && _ctx.card2.apply(_ctx, arguments);
     })
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<p>{{ $store.state.attacker2 }}</p>\n      <img :src=\"imgAt2\" className=\"sp:h-[90px] desktop:h-auto sp:pl-[10px] desktop:pl-0\">")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.attackerCard2Name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/img/".concat($data.attackerCard2Name, ".png"),
+    alt: "defender_card"
+  }, null, 8 /* PROPS */, _hoisted_6)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     className: "desktop:w-[250px] sp:w-[80%] desktop:h-[350px] sp:h-[120px] bg-red-300 hover:border-[5px] justify-center items-center\n     hover:border-red-400 duration-500 desktop:text-[24px] sp:text-[20px] font-bold shadow-xl flex desktop:flex-col sp:flex-row",
     onClick: _cache[2] || (_cache[2] = function () {
       return _ctx.card3 && _ctx.card3.apply(_ctx, arguments);
     })
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<p>{{ $store.state.attacker3 }}</p>\n      <img :src=\"imgAt3\" className=\"sp:h-[90px] desktop:h-auto sp:pl-[10px] desktop:pl-0\">")])])], 64 /* STABLE_FRAGMENT */);
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.attackerCard3Name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/img/".concat($data.attackerCard3Name, ".png"),
+    alt: "defender_card"
+  }, null, 8 /* PROPS */, _hoisted_8)])])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),

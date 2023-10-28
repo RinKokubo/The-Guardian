@@ -17,7 +17,10 @@ class GameInformationController extends Controller
             'defender_card2',
             'defender_card3',
             'defender_card4',
-            'defender_card5'
+            'defender_card5',
+            'attacker_card1',
+            'attacker_card2',
+            'attacker_card3',
         ])->find($id);
 
         if (!$game) {

@@ -3,25 +3,46 @@
   <div className="flex desktop:flex-row sp:flex-col gap-x-20 justify-center items-center gap-y-5">
     <button className="desktop:w-[250px] sp:w-[80%] desktop:h-[350px] sp:h-[120px] bg-red-300 hover:border-[5px] justify-center items-center
       hover:border-red-400 duration-500 desktop:text-[24px] sp:text-[20px] font-bold shadow-xl flex desktop:flex-col sp:flex-row" v-on:click='card1'>
-      <!--{{ $store.state.attacker1 }}
-      <img :src="imgAt1" className="sp:h-[90px] desktop:h-auto sp:pl-[10px] desktop:pl-0">-->
+      <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ attackerCard1Name }}</p>
+      <img :src="`/img/${attackerCard1Name}.png`" alt="defender_card">
     </button>
     <button className="desktop:w-[250px] sp:w-[80%] desktop:h-[350px] sp:h-[120px] bg-red-300 hover:border-[5px] justify-center items-center
      hover:border-red-400 duration-500 desktop:text-[24px] sp:text-[20px] font-bold shadow-xl flex desktop:flex-col sp:flex-row" v-on:click='card2'>
-      <!--<p>{{ $store.state.attacker2 }}</p>
-      <img :src="imgAt2" className="sp:h-[90px] desktop:h-auto sp:pl-[10px] desktop:pl-0">-->
+      <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ attackerCard2Name }}</p>
+      <img :src="`/img/${attackerCard2Name}.png`" alt="defender_card">
     </button>
     <button className="desktop:w-[250px] sp:w-[80%] desktop:h-[350px] sp:h-[120px] bg-red-300 hover:border-[5px] justify-center items-center
      hover:border-red-400 duration-500 desktop:text-[24px] sp:text-[20px] font-bold shadow-xl flex desktop:flex-col sp:flex-row" v-on:click='card3'>
-      <!--<p>{{ $store.state.attacker3 }}</p>
-      <img :src="imgAt3" className="sp:h-[90px] desktop:h-auto sp:pl-[10px] desktop:pl-0">-->
+      <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ attackerCard3Name }}</p>
+      <img :src="`/img/${attackerCard3Name}.png`" alt="defender_card">
     </button>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
   export default {
-    name: "HelloComponent",
+    data() {
+      return {
+        gameInformation: null,
+        attackerCard1Name: null,
+        attackerCard2Name: null,
+        attackerCard3Name: null,
+      }
+    },
+    created() {
+      axios.get(`/api/game/${this.$route.params.game_id}`)
+        .then(response => {
+            this.gameInformation = response.data;
+            this.attackerCard1Name = this.gameInformation.attacker_card1.attacker_card_name;
+            this.attackerCard2Name = this.gameInformation.attacker_card2.attacker_card_name;
+            this.attackerCard3Name = this.gameInformation.attacker_card3.attacker_card_name;
+        })
+        .catch(error => {
+          console.error(error);
+      });
+    },
     mounted() {
       console.log('Component mounted.')
     }

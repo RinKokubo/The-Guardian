@@ -11616,10 +11616,6 @@ video {
     height: 80px;
   }
 
-  .sp\:h-\[90px\] {
-    height: 90px;
-  }
-
   .sp\:w-\[100\%\] {
     width: 100%;
   }
@@ -11646,10 +11642,6 @@ video {
 
   .sp\:gap-y-5 {
     row-gap: 1.25rem;
-  }
-
-  .sp\:pl-\[10px\] {
-    padding-left: 10px;
   }
 
   .sp\:pr-\[10px\] {
@@ -11712,10 +11704,6 @@ video {
     height: 350px;
   }
 
-  .desktop\:h-auto {
-    height: auto;
-  }
-
   .desktop\:w-\[200px\] {
     width: 200px;
   }
@@ -11746,10 +11734,6 @@ video {
 
   .desktop\:justify-between {
     justify-content: space-between;
-  }
-
-  .desktop\:pl-0 {
-    padding-left: 0px;
   }
 
   .desktop\:pl-\[30px\] {
