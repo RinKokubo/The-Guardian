@@ -8,6 +8,7 @@ use App\Http\Controllers\ScoreController;
 use App\Http\Controllers\UserScoreController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\MatchInfoController;
+use App\Http\Controllers\CardSelectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::post('user_scores', [UserScoreController::class, 'store']);
 Route::get('/notice/{id}', [NoticeController::class, 'show']);
 
 Route::get('/match-info', [MatchInfoController::class, 'getMatchInfo']);
+Route::post('/attacker-select-card', [CardSelectController::class, 'attackerSelectCard']);
 
 
 // Route::get('/conversation/start', 'App\Http\Controllers\ConversationController@start');
