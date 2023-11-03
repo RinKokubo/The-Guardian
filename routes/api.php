@@ -9,6 +9,7 @@ use App\Http\Controllers\UserScoreController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\MatchInfoController;
 use App\Http\Controllers\CardSelectController;
+use Illuminate\Support\Facades\Broadcast;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ use App\Http\Controllers\CardSelectController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Broadcast::routes(['middleware' => ['auth']]);
 
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/game/{id}', [GameInformationController::class, 'show']);

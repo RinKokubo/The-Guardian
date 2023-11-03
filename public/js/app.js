@@ -24300,9 +24300,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "kojinjyoho_key",
-  cluster: "mt1",
-  encrypted: true,
+  key: "b6868356ddef91cfa868",
+  cluster: "ap3",
+  encrypted: false,
   wsHost: window.location.hostname,
   wsPort: 6001,
   // Laravel Websockets のデフォルトポート
