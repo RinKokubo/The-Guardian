@@ -45,11 +45,21 @@ import axios from 'axios';
     },
     methods: {
       attackerSelectCard(selectedCard) {
+        const userId = this.$route.params.user_id;
+        const gameId = this.$route.params.game_id;
         const opponentId = this.$route.query.opponent_id;
         const cardName = this[selectedCard + 'Name'];
+
         axios.post('/api/attacker-select-card', { cardName, opponentId })
           .then(response => {
             console.log('カード情報を送信しました');
+            this.$router.push({
+              path: `/attacker-standby/${userId}/${gameId}`,
+              query: {
+                opponent_id: opponentId,
+                attacker_select: cardName,
+              }
+            });
           })
           .catch(error => {
             console.error('エラーが発生しました', error);
