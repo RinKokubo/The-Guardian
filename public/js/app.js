@@ -23275,34 +23275,60 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       users: []
     };
   },
+  methods: {
+    login: function login(user) {
+      var _this = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/login-without-password', {
+                user_id: user.id
+              });
+            case 3:
+              // ログイン後のパラメータ付きでintroductionページにリダイレクト
+              _this.$router.push({
+                name: 'introduction',
+                params: {
+                  user_id: user.id,
+                  game_id: 1
+                }
+              });
+              _context.next = 9;
+              break;
+            case 6:
+              _context.prev = 6;
+              _context.t0 = _context["catch"](0);
+              console.error('Login failed:', _context.t0);
+            case 9:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee, null, [[0, 6]]);
+      }))();
+    }
+  },
   created: function created() {
-    var _this = this;
-    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+    var _this2 = this;
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var response;
-      return _regeneratorRuntime().wrap(function _callee$(_context) {
-        while (1) switch (_context.prev = _context.next) {
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
           case 0:
-            _context.next = 2;
+            _context2.next = 2;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/users');
           case 2:
-            response = _context.sent;
-            _this.users = response.data;
+            response = _context2.sent;
+            _this2.users = response.data;
           case 4:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
-      }, _callee);
+      }, _callee2);
     }))();
-  } // methods: {
-  //  handleUserClick(user) {
-  //    const password = window.prompt(`${user.name} のパスワードを入力してください`)
-  //    if (password) {
-  //      // パスワードが入力されたら、それを使ってログイン処理を行う
-  //      // この例では具体的なログイン処理は省略しています
-  //      
-  //    }
-  //  }
-  //}
+  }
 }));
 
 /***/ }),
@@ -23879,27 +23905,16 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_2 = {
   className: "flex desktop:flex-row sp:flex-col desktop:justify-center sp:items-center desktop:flex-wrap"
 };
+var _hoisted_3 = ["onClick"];
 function render(_ctx, _cache) {
-  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.users, function (user) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
       key: user.id,
-      className: "text-[24px] w-[200px] desktop:mt-[40px] sp:mt-[10px] mx-[30px]\n          hover:underline hover:underline-offset-4 duration-500"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-      to: {
-        name: 'introduction',
-        params: {
-          user_id: user.id,
-          game_id: 1
-        }
+      "class": "text-[24px] w-[200px] desktop:mt-[40px] sp:mt-[10px] mx-[30px] hover:underline hover:underline-offset-4 duration-500",
+      onClick: function onClick($event) {
+        return _ctx.login(user.id);
       }
-    }, {
-      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name), 1 /* TEXT */)];
-      }),
-
-      _: 2 /* DYNAMIC */
-    }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"])]);
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name), 9 /* TEXT, PROPS */, _hoisted_3);
   }), 128 /* KEYED_FRAGMENT */))])]);
 }
 
