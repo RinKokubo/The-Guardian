@@ -1,7 +1,7 @@
 <template>
   <div>
     <div className="flex items-center flex-col">
-      <h1 className="desktop:text-[30px] sp:text-[24px] text-blue-600 desktop:mt-[80px] sp:my-[30px]">
+      <h1 className="text-[30px] text-blue-600 desktop:mt-[80px] sp:my-[30px]">
         アカウントを選択してください
       </h1>
     </div>
@@ -9,7 +9,7 @@
       <button
         v-for="user in users" 
         :key="user.id" 
-        class="text-[24px] w-[200px] desktop:mt-[40px] sp:mt-[10px] mx-[30px]
+        class="text-[28px] w-[200px] desktop:mt-[40px] sp:mt-[10px] mx-[30px]
         hover:underline hover:underline-offset-4 duration-500"
         @click="login(user.id)"
       >

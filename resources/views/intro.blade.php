@@ -14,5 +14,6 @@
 <style>
   body {
     max-height: 100vh;
+    max-width: 100vw;
   }
 </style>
