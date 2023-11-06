@@ -24449,7 +24449,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "b6868356ddef91cfa868",
   cluster: "ap3",
-  encrypted: false,
+  encrypted: true,
   wsHost: window.location.hostname,
   wsPort: 6001,
   // Laravel Websockets のデフォルトポート
