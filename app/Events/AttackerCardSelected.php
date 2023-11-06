@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class AttackerCardSelected
+class AttackerCardSelected implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -22,9 +22,11 @@ class AttackerCardSelected
 
     public $card;
     public $opponentId;
+    public $userId;
 
-    public function __construct($card, $opponentId)
+    public function __construct($userId, $opponentId, $card)
     {
+        $this->userId = $userId;
         $this->card = $card;
         $this->opponentId = $opponentId;
     }
@@ -37,5 +39,10 @@ class AttackerCardSelected
     public function broadcastOn()
     {
         return new PrivateChannel('user.' . $this->opponentId);
+    }
+
+    public function broadcastAs()
+    {
+        return 'card.selected';
     }
 }

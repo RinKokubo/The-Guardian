@@ -57,7 +57,7 @@ import axios from 'axios';
         const opponentId = this.$route.query.opponent_id;
         const cardName = this[selectedCard + 'Name'];
 
-        axios.post('/api/attacker-select-card', { cardName, opponentId })
+        axios.post('/api/attacker-select-card', { userId, cardName, opponentId })
           .then(response => {
             console.log('カード情報を送信しました');
             this.$router.push({

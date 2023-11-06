@@ -11,9 +11,9 @@
         :key="user.id" 
         class="text-[28px] w-[200px] desktop:mt-[40px] sp:mt-[10px] mx-[30px]
         hover:underline hover:underline-offset-4 duration-500"
-        @click="login(user.id)"
+        @click="login(user)"
       >
-        {{ user.name }}
+      {{ user.id }} - {{ user.name }}
       </button>
     </div>
   </div>
@@ -33,12 +33,12 @@ export default defineComponent({
   methods: {
     async login(user) {
       try {
-        // ここでログイン処理を呼び出します
-        await axios.post('/api/login-without-password', { user_id: user.id });
-        // ログイン後のパラメータ付きでintroductionページにリダイレクト
+        console.log('Trying to login with user ID:', user.id);
+        const response = await axios.post('/api/login-without-password', { user_id: user.id });
+        console.log(response.data); // ここでログイン状態を確認
         this.$router.push({ name: 'introduction', params: { user_id: user.id, game_id: 1 } });
       } catch (error) {
-        console.error('Login failed:', error);
+        console.error('Login failed:', error.response ? error.response.data : error);
       }
     }
   },

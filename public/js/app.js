@@ -23013,6 +23013,7 @@ __webpack_require__.r(__webpack_exports__);
       var opponentId = this.$route.query.opponent_id;
       var cardName = this[selectedCard + 'Name'];
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/attacker-select-card', {
+        userId: userId,
         cardName: cardName,
         opponentId: opponentId
       }).then(function (response) {
@@ -23100,7 +23101,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     var _this = this;
-    Echo["private"]('user.' + this.userId).listen('AttackerCardSelected', function (event) {
+    console.log("Connecting to channel: user.".concat(this.userId));
+    Echo["private"]("user.".concat(this.userId)).listen('.card.selected', function (event) {
       console.log('カードが選択されました:', event.card);
       _this.selectedCard = event.card;
     });
@@ -23322,16 +23324,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     login: function login(user) {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var response;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
-              _context.next = 3;
+              console.log('Trying to login with user ID:', user.id);
+              _context.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/login-without-password', {
                 user_id: user.id
               });
-            case 3:
-              // ログイン後のパラメータ付きでintroductionページにリダイレクト
+            case 4:
+              response = _context.sent;
+              console.log(response.data); // ここでログイン状態を確認
               _this.$router.push({
                 name: 'introduction',
                 params: {
@@ -23339,17 +23344,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   game_id: 1
                 }
               });
-              _context.next = 9;
+              _context.next = 12;
               break;
-            case 6:
-              _context.prev = 6;
-              _context.t0 = _context["catch"](0);
-              console.error('Login failed:', _context.t0);
             case 9:
+              _context.prev = 9;
+              _context.t0 = _context["catch"](0);
+              console.error('Login failed:', _context.t0.response ? _context.t0.response.data : _context.t0);
+            case 12:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 6]]);
+        }, _callee, null, [[0, 9]]);
       }))();
     }
   },
@@ -23982,9 +23987,9 @@ function render(_ctx, _cache) {
       key: user.id,
       "class": "text-[28px] w-[200px] desktop:mt-[40px] sp:mt-[10px] mx-[30px] hover:underline hover:underline-offset-4 duration-500",
       onClick: function onClick($event) {
-        return _ctx.login(user.id);
+        return _ctx.login(user);
       }
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name), 9 /* TEXT, PROPS */, _hoisted_3);
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.id) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name), 9 /* TEXT, PROPS */, _hoisted_3);
   }), 128 /* KEYED_FRAGMENT */))])]);
 }
 
@@ -24453,7 +24458,8 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   wsHost: window.location.hostname,
   wsPort: 6001,
   // Laravel Websockets のデフォルトポート
-  disableStats: true
+  disableStats: true,
+  csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 });
 
 /***/ }),

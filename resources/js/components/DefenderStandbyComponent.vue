@@ -18,8 +18,9 @@
       };
     },
     mounted() {
-      Echo.private('user.' + this.userId)
-        .listen('AttackerCardSelected', (event) => {
+      console.log(`Connecting to channel: user.${this.userId}`);
+      Echo.private(`user.${this.userId}`)
+        .listen('.card.selected', (event) => {
           console.log('カードが選択されました:', event.card);
           this.selectedCard = event.card;
         });
