@@ -1,17 +1,21 @@
 <template>
-  <div>
-    <h1 class="desktop:text-[60px] sp:text-[30px] text-blue-600 mt-[120px] text-center text-shadow">個人情報保護ゲーム</h1>  
-    <div class="flex justify-center my-[30px]">
-      <ul class="flex flex-row gap-x-5 justify-center items-center">
-        <li v-for="(card, index) in defenderCards" :key="card.id" :class="{ 'bg-blue-100': selectedCards.includes(index + 1) }">
-          <div class="w-[200px] h-[280px] bg-blue-200 items-center justify-center
-           duration-500 text-[24px] font-bold shadow-xl flex flex-col">
-            <p>{{ card.defender_card_name }}</p>
-            <img :src="`/img/${card.defender_card_name}.png`" alt="defender_card">
-          </div>
-        </li>
-      </ul>
+  <div class="flex w-[100vw] h-[10vh] shadow-2xl">
+    <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
+      <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
+    <div class="w-[85vw] bg-[#E76767] flex justify-center items-center">
+      <h1 className="w-[100%] text-[4vh] font-bold ml-[40px] text-white">提供側カード選択</h1>
+    </div>
+  </div>
+  <div class="bg-[#E5E5E5] w-[100vw] h-[90vh]">
+    <ul class="flex flex-col gap-x-5 justify-center items-center gap-y-[2vh] py-[3vh]">
+      <li v-for="(card) in defenderCards" :key="card.id">
+        <div class="w-[85vw] h-[15vh] bg-blue-300 justify-start items-center pl-[5vw] duration-500 shadow-2xl flex">
+          <img :src="`/img/${card.defender_card_name}.png`" alt="defender_card" class="w-[14vh] h-[14vh]">
+          <p className="text-[3vh] font-bold pl-[5vw]">{{ card.defender_card_name }}</p>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
