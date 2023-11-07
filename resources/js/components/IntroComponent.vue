@@ -11,11 +11,12 @@
     <p>このゲームは、1対1で行うロールプレイングカードゲーム。今回のあなたの対戦相手は
       <span v-if="opponentId === 31">チャットボット</span>
       <span v-else>{{ this.opponentName }}</span>。
-      あなたの役割は
-      <span v-if="userRole === 'defender'" class="text-white font-bold px-[2vw]" :class="bgClass"> 個人情報提供サイド</span>
-      <span v-else class="text-white font-bold px-[2vw]" :class="bgClass"> 個人情報悪用サイド</span>
-      だ。
     </p>
+    <p>あなたの役割は..</p>
+    <div class="flex justify-center items-center pt-[1vh] pb-[4vh]">
+      <p v-if="userRole === 'defender'" class="text-white font-bold p-[2vw] text-center w-[65vw]" :class="bgClass"> 個人情報提供サイド</p>
+      <p v-else class="text-white font-bold p-[2vw] text-center w-[65vw]" :class="bgClass"> 個人情報悪用サイド</p>
+    </div>
     <p>
       <span v-if="userRole === 'defender'">
         <span v-if="opponentId === 31">チャットボット</span>
@@ -28,17 +29,17 @@
       </span>
     </p>
     
-    <div v-if="opponentId === 31" class="flex justify-center items-center my-[2vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold">
+    <div v-if="opponentId === 31" class="flex justify-center items-center mt-[5vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold">
       <router-link :to="{ name: 'defender-select-dialogue', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
         ChatGPT対戦に進む
       </router-link>
     </div>
-    <div v-else-if="userRole === 'attacker'" class="flex justify-center items-center my-[2vh] bg-[#E76767] py-[1vh] px-[8vw] text-white font-bold">
+    <div v-else-if="userRole === 'attacker'" class="flex justify-center items-center mt-[5vh] bg-[#E76767] py-[1vh] px-[8vw] text-white font-bold">
       <router-link :to="{ name: 'attacker-select', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
         個人情報悪用サイドへ進む
       </router-link>
     </div>
-    <div v-else-if="userRole === 'defender'" class="flex justify-center items-center my-[2vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold">
+    <div v-else-if="userRole === 'defender'" class="flex justify-center items-center mt-[5vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold">
       <router-link :to="{ name: 'defender-standby', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
         個人情報提供サイドへ進む
       </router-link>
