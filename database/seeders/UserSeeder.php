@@ -134,60 +134,60 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'user121',
             'password' => 111121,
-            'is_logged_in' => 1,
+            'is_logged_in' => 0,
         ]);
 
         User::create([
             'name' => 'user122',
             'password' => 111122,
-            'is_logged_in' => 1,
+            'is_logged_in' => 0,
         ]);
 
         User::create([
             'name' => 'user123',
             'password' => 111123,
-            'is_logged_in' => 1,
+            'is_logged_in' => 0,
         ]);
 
         User::create([
             'name' => 'user124',
             'password' => 111124,
-            'is_logged_in' => 1,
+            'is_logged_in' => 0,
         ]);
 
         User::create([
             'name' => 'user125',
             'password' => 111125,
-            'is_logged_in' => 1,
+            'is_logged_in' => 0,
         ]);
 
         User::create([
             'name' => 'user126',
             'password' => 111126,
-            'is_logged_in' => 1,
+            'is_logged_in' => 0,
         ]);
 
         User::create([
             'name' => 'user127',
             'password' => 111127,
-            'is_logged_in' => 1,
+            'is_logged_in' => 0,
         ]);
 
         User::create([
             'name' => 'user128',
             'password' => 111128,
-            'is_logged_in' => 1,
+            'is_logged_in' => 0,
         ]);
         User::create([
             'name' => 'user129',
             'password' => 111129,
-            'is_logged_in' => 1,
+            'is_logged_in' => 0,
         ]);
 
         User::create([
             'name' => 'user130',
             'password' => 111130,
-            'is_logged_in' => 1,
+            'is_logged_in' => 0,
         ]);
 
         User::create([

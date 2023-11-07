@@ -19,6 +19,7 @@ class CreateMatchInfoTable extends Migration
             $table->unsignedBigInteger('game_id');
             $table->unsignedBigInteger('opponent_id');
             $table->string('user_role');
+            $table->string('comunication');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

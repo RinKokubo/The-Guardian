@@ -25,7 +25,7 @@
     mounted() {
       console.log(`Connecting to channel: user.${this.userId}`);
       Echo.private(`user.${this.userId}`)
-        .listen('.attackerCardSelected', (event) => {
+        .listen('card.selected', (event) => {
           console.log('カードが選択されました:', event.card);
           this.selectedCard = event.card;
         });

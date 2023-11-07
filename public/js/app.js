@@ -23052,6 +23052,7 @@ __webpack_require__.r(__webpack_exports__);
           opponentId: opponentId
         }).then(function (response) {
           console.log('カード情報を送信しました');
+          console.log(opponentId);
           _this2.$router.push({
             path: "/attacker-standby/".concat(userId, "/").concat(gameId),
             query: {
@@ -23109,18 +23110,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             response = _context.sent;
             _this.defenderCards = [response.data.defender_card1, response.data.defender_card2, response.data.defender_card3, response.data.defender_card4, response.data.defender_card5];
             _this.startCountdown();
-            _this.startConversation();
-            _context.next = 13;
+            _context.next = 12;
             break;
-          case 10:
-            _context.prev = 10;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](0);
             console.error('Error fetching game information:', _context.t0);
-          case 13:
+          case 12:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 10]]);
+      }, _callee, null, [[0, 9]]);
     }))();
   },
   methods: {
@@ -23167,7 +23167,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
     console.log("Connecting to channel: user.".concat(this.userId));
-    Echo["private"]("user.".concat(this.userId)).listen('.attackerCardSelected', function (event) {
+    Echo["private"]("user.".concat(this.userId)).listen('card.selected', function (event) {
       console.log('カードが選択されました:', event.card);
       _this.selectedCard = event.card;
     });

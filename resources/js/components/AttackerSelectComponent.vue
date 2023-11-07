@@ -111,6 +111,7 @@ import axios from 'axios';
           axios.post('/api/attacker-select-card', { userId, cardName, opponentId })
             .then(response => {
               console.log('カード情報を送信しました');
+              console.log(opponentId);
               this.$router.push({
                 path: `/attacker-standby/${userId}/${gameId}`,
                 query: {
