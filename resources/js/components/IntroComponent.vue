@@ -1,21 +1,46 @@
 <template>
-  <div class="flex justify-center items-center w-[100vw] h-[100vh] text-center flex-col">
-    <h2 class="text-[30px] text-blue-600 font-bold my-[60px]">個人情報保護ゲーム</h2>
-    <p>{{ userRole }} {{ opponentId }}</p>
+  <div class="flex w-[100vw] h-[10vh] shadow-2xl">
+    <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
+      <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
+    </div>
+    <div class="w-[85vw] flex justify-center items-center" :class="bgClass">
+      <h1 class="w-[100%] text-[4vh] font-bold ml-[40px] text-white">個人情報保護ゲーム</h1>
+    </div>
+  </div>
+  <div class="w-[100vw] h-[90vh] bg-[#E5E5E5] py-[4vh] px-[5vw] text-[3vh]">
+    <p>このゲームは、1対1で行うロールプレイングカードゲーム。今回のあなたの対戦相手は
+      <span v-if="opponentId === 31">チャットボット</span>
+      <span v-else>{{ this.opponentName }}</span>。
+      あなたの役割は
+      <span v-if="userRole === 'defender'" class="text-white font-bold" :class="bgClass">個人情報提供サイド</span>
+      <span v-else class="text-white font-bold" :class="bgClass">個人情報悪用サイド</span>
+      だ。
+    </p>
+    <p>
+      <span v-if="userRole === 'defender'">
+        <span v-if="opponentId === 31">チャットボット</span>
+        <span v-else>{{ this.opponentName }}</span>
+        は個人情報の悪用手口を１つ選んでいて、あなたの個人情報カードを狙っている！ それぞれの個人情報カードに対する考えをチャットしながら、対戦相手に知られてもいいと思うカードを、最終的に５枚中３枚公開しよう！残りの手持ちカードがあなたの得点だ。
+      </span>
+      <span v-else>
+        あなたは、悪用手口を1つ選び、その手口を成立させるために重要そうな{{ this.opponentName }}の個人情報カードを狙う！
+        {{ this.opponentName }}には手口を悟られないように、それぞれの個人情報カードに対する考えをチャットしよう。対戦相手は、あなたに知られてもいいと思うカードを、最終的に５枚中３枚公開する。公開されたカードがあなたの得点だ！
+      </span>
+    </p>
     
-    <div v-if="opponentId === 31">
+    <div v-if="opponentId === 31" class="flex justify-center items-center my-[2vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold">
       <router-link :to="{ name: 'defender-select-dialogue', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
-        ChatGPTとの対戦へ進む
+        ChatGPT対戦に進む
       </router-link>
     </div>
-    <div v-else-if="userRole === 'attacker'">
+    <div v-else-if="userRole === 'attacker'" class="flex justify-center items-center my-[2vh] bg-[#E76767] py-[1vh] px-[8vw] text-white font-bold">
       <router-link :to="{ name: 'attacker-select', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
-        attackerへ進む
+        個人情報悪用サイドへ進む
       </router-link>
     </div>
-    <div v-else-if="userRole === 'defender'">
+    <div v-else-if="userRole === 'defender'" class="flex justify-center items-center my-[2vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold">
       <router-link :to="{ name: 'defender-standby', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
-        defenderへ進む
+        個人情報提供サイドへ進む
       </router-link>
     </div>
   </div>
@@ -30,8 +55,10 @@ export default {
     return {
       userRole: null,
       opponentId: null,
+      opponentName: '',
       user_id: null,
       game_id: null,
+      bgClass: '' 
     }
   },
   async mounted() {
@@ -46,6 +73,15 @@ export default {
       this.opponentId = response.data.opponent_id;
       this.user_id = this.$route.params.user_id;
       this.game_id = this.$route.params.game_id;
+
+      const userResponse = await axios.get(`http://localhost:8000/api/users/${this.opponentId}`);
+      this.opponentName = userResponse.data.username;
+
+      if(this.userRole === 'attacker') {
+        this.bgClass = 'bg-[#E76767]';
+      } else if(this.userRole === 'defender') {
+        this.bgClass = 'bg-blue-500';
+      }
     } catch (error) {
       console.error('Error fetching match info:', error);
       this.userRole = null;
