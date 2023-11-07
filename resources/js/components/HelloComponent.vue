@@ -1,11 +1,11 @@
 <template>
-  <div class="w-[100vw] h-[100vh]">
-    <h1 class="desktop:text-[60px] sp:text-[30px] text-blue-600  desktop:mt-[120px] sp:mt-[30%] text-center text-shadow">個人情報保護ゲーム</h1>  
-    <div class="flex justify-center my-[30px]">
-      <img src='/img/privacy.png' width="250" alt="key-visual">
+  <div class="w-[100vw] h-[100vh] bg-[#E5E5E5] flex flex-col justify-center items-center">
+    <h1 class="text-[10vw] text-green-600 mt-[12vh] font-bold text-center drop-shadow-2xl">個人情報保護ゲーム</h1>  
+    <div class="flex justify-center my-[8vh]">
+      <img src='/img/privacy.png' class="w-[75vw]">
     </div>
-    <router-link to="/select-account" class="bg-blue-500 text-white hover:bg-blue-600 text-[30px]
-                    text-center flex justify-center mx-[-150px] py-[3px] shadow-md">
+    <router-link to="/select-account" class="bg-green-600 text-white hover:bg-green-600 text-[8vw] font-bold
+                    text-center flex justify-center py-[2vh] shadow-2xl mb-[15vh] w-[100vw]">
     GAME START
     </router-link>
   </div>

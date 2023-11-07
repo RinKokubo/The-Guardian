@@ -3,7 +3,7 @@
     <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
-    <div class="w-[85vw] bg-[#E76767] flex justify-center items-center">
+    <div class="w-[85vw] bg-green-600 flex justify-center items-center">
       <h1 className="w-[100%] text-[3vh] font-bold ml-[40px] text-white">配点内訳</h1>
     </div>
   </div>
@@ -185,15 +185,15 @@
     </div>
     <div v-if="parseInt($route.params.game_id) < 6" class="flex justify-end">
       <router-link :to="{ name: 'defender-select-dialogue', params: { user_id: $route.params.userId, game_id: parseInt($route.params.game_id) + 1 } }">
-        <button class="text-white font-bold py-[6px] px-[20vw] border-[3px]  border-blue-500 hover:border-blue-600
-                    hover:bg-blue-600 bg-blue-500 duration-300 shadow-xl text-[2vh]" @click="submitScores">
+        <button class="text-white font-bold py-[6px] px-[20vw] border-[3px]  border-green-600 hover:border-green-700
+                    hover:bg-green-700 bg-green-600 duration-300 shadow-xl text-[2vh]" @click="submitScores">
           もう一度対戦する
         </button>  
       </router-link>
     </div>
     <div v-else  class="flex justify-end">
       <router-link to="/">
-        <button class="border-[3px] border-blue-500 text-blue-500 font-bold py-[6px] px-[20vw]
+        <button class="border-[3px] border-green-600 text-green-600 font-bold py-[6px] px-[20vw]
                    hover:bg-blue-500 hover:text-white duration-300 shadow-xl text-[2vh]" @click="submitScores">
           ゲームを終了する
         </button>

@@ -10,8 +10,8 @@
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center">
     <ul class="flex flex-wrap gap-x-[1vh] justify-center items-center gap-y-[1vh] py-[1vh]">
       <li v-for="(card, index) in defenderCards" :key="card.id" :class="{ 'bg-blue-100': selectedCards.includes(index + 1) }">
-        <button @click="selectCard(index + 1)" class="w-[46vw] h-[10vh] bg-blue-300 justify-start items-center pl-[2vw] duration-500 shadow-2xl flex">
-          <img :src="`/img/${card.defender_card_name}.png`" alt="defender_card" class="w-[9vh] h-[9vh]">
+        <button @click="selectCard(index + 1)" class="w-[46vw] h-[10vh] bg-blue-300 justify-start items-center px-[2vw] duration-500 shadow-2xl flex">
+          <img :src="`/img/${card.defender_card_name}.png`" alt="defender_card" class="w-[8vh] h-[8vh]">
           <p className="text-[2vh] font-bold pl-[1vw]">{{ card.defender_card_name }}</p>
         </button>
       </li>

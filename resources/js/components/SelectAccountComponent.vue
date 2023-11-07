@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <div className="flex items-center flex-col">
-      <h1 className="text-[30px] text-blue-600 desktop:mt-[80px] sp:my-[30px]">
+  <div class="h-[100vh] bg-[#E5E5E5]">
+    <div className="flex items-center flex-col h-[8vh] bg-green-600 w-[100vw]">
+      <h1 className="text-[3vh] text-white py-[2vh] font-bold">
         アカウントを選択してください
       </h1>
     </div>
-    <div className="flex desktop:flex-row sp:flex-col desktop:justify-center sp:items-center desktop:flex-wrap">
+    <div className="flex justify-center items-center flex-wrap mt-[3vh]">
       <button
         v-for="user in users" 
         :key="user.id" 
-        class="text-[28px] w-[200px] desktop:mt-[40px] sp:mt-[10px] mx-[30px]
+        class="text-[2vh] w-[40vw] mb-[2vh]
         hover:underline hover:underline-offset-4 duration-500"
         @click="login(user)"
       >

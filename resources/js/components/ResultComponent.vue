@@ -3,7 +3,7 @@
     <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
-    <div class="w-[85vw] bg-[#E76767] flex justify-center items-center">
+    <div class="w-[85vw] bg-green-600 flex justify-center items-center">
       <h1 className="w-[100%] text-[3vh] font-bold ml-[40px] text-white">結果</h1>
     </div>
   </div>
@@ -15,12 +15,12 @@
       <p className="text-left text-[3vh]">あなたの得点:  {{ 100 - score }}点</p>
       <p className="text-left text-[3vh]">相手の得点:  {{ score }}点</p>
     </div>
-    <div className="flex flex-col items-center w-[95vw] border-red-600 border-[3px] rounded my-[3vh] py-[3vw] px-[3vw]">
+    <div className="flex flex-col items-center w-[95vw] h-[45vh] border-red-600 border-[3px] rounded mt-[3vh] mb-[2vh] py-[3vw] px-[3vw] overflow-auto">
       <p className="text-red-600 mb-[20px] font-bold text-[3vh]">注意！</p>
       <p className="text-[2vh]">{{ notice }}</p>
     </div>
     <router-link :to="{ name: 'user-score', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { attacker_select_id: $route.query.attacker_select_id } }"
-      className="bg-blue-500 text-white font-bold py-[10px] px-[70px] text-[3vh] shadow-md hover:bg-blue-600 duration-300">
+      className="bg-green-600 text-white font-bold py-[10px] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300">
       配点を見る
     </router-link>
   </div>
