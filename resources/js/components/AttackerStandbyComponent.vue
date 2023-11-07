@@ -4,7 +4,7 @@
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
     <div class="w-[85vw] bg-[#E76767] flex justify-center items-center">
-      <h1 className="w-[100%] text-[3vh] font-bold ml-[40px] text-white">提供側カード選択</h1>
+      <h1 className="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報カード選択</h1>
     </div>
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh]">

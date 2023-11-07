@@ -23783,7 +23783,7 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "class": "w-[85vw] bg-[#E76767] flex justify-center items-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   className: "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
-}, "提供側カード選択")], -1 /* HOISTED */);
+}, "個人情報カード選択")], -1 /* HOISTED */);
 var _hoisted_5 = {
   "class": "bg-[#E5E5E5] w-[100vw] h-[92vh]"
 };
@@ -23827,15 +23827,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "desktop:text-[60px] sp:text-[30px] text-blue-600 mt-[120px] text-center text-shadow"
-}, "個人情報保護ゲーム", -1 /* HOISTED */);
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_1 = {
+  "class": "flex w-[100vw] h-[8vh] shadow-2xl"
+};
+var _hoisted_2 = {
+  "class": "w-[15vw] bg-[#A49494] flex justify-center items-center"
+};
+var _hoisted_3 = {
+  "class": "text-white text-[4vh] font-bold"
+};
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "w-[85vw] bg-blue-500 flex justify-center items-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+  className: "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
+}, "悪用カード選択")], -1 /* HOISTED */);
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "bg-[#E5E5E5] w-[100vw] h-[92vh]"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex justify-center my-[30px]"
-}, null, -1 /* HOISTED */);
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<div v-if=\"selectedCard\">\n      <p>カード「{{ selectedCard }}」が選択されました</p>\n    </div>")], -1 /* HOISTED */);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<div v-if=\"selectedCard\">\n      <p>カード「{{ selectedCard }}」が選択されました</p>\n    </div>")]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), _hoisted_4]), _hoisted_5], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -23957,7 +23970,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, " 個人情報提供サイド", 2 /* CLASS */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
     key: 3,
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-white font-bold px-[2vw]", $data.bgClass])
-  }, " 個人情報悪用サイド ", 2 /* CLASS */)), _hoisted_11]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [$data.userRole === 'defender' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_12, [$data.opponentId === 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_13, "チャットボット")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName), 1 /* TEXT */)), _hoisted_15])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_16, " あなたは、悪用手口を1つ選び、その手口を成立させるために重要そうな" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName) + "の個人情報カードを狙う！ " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName) + "には手口を悟られないように、それぞれの個人情報カードに対する考えをチャットしよう。対戦相手は、あなたに知られてもいいと思うカードを、最終的に５枚中３枚公開する。公開されたカードがあなたの得点だ！ ", 1 /* TEXT */))]), $data.opponentId === 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }, " 個人情報悪用サイド", 2 /* CLASS */)), _hoisted_11]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [$data.userRole === 'defender' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_12, [$data.opponentId === 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_13, "チャットボット")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName), 1 /* TEXT */)), _hoisted_15])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_16, " あなたは、悪用手口を1つ選び、その手口を成立させるために重要そうな" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName) + "の個人情報カードを狙う！ " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName) + "には手口を悟られないように、それぞれの個人情報カードに対する考えをチャットしよう。対戦相手は、あなたに知られてもいいと思うカードを、最終的に５枚中３枚公開する。公開されたカードがあなたの得点だ！ ", 1 /* TEXT */))]), $data.opponentId === 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'defender-select-dialogue',
       params: {
@@ -24173,7 +24186,7 @@ var _hoisted_10 = {
   className: "flex w-[100%] justify-center items-center text-[2vh]"
 };
 var _hoisted_11 = {
-  className: "text-blue-600 font-bold flex items-center justify-center mr-[10vw]"
+  className: "text-blue-600 font-bold flex items-center justify-center mr-[8vw]"
 };
 var _hoisted_12 = ["disabled"];
 var _hoisted_13 = {
@@ -24216,7 +24229,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.confirmSelection && $options.confirmSelection.apply($options, arguments);
     }),
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-white font-bold py-[6px] px-[10px] my-[30px] mr-[10px] border-[3px] border-blue-500 hover:border-blue-600 hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-white font-bold py-[6px] px-[6vw] my-[30px] mr-[10px] border-[3px] border-blue-500 hover:border-blue-600 hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded", {
       'opacity-50 cursor-not-allowed': $data.selectedCards.length !== 3
     }])
   }, " カードを決定する ", 10 /* CLASS, PROPS */, _hoisted_12)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.conversation, function (message) {

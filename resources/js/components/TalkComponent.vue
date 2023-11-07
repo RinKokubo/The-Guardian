@@ -17,11 +17,11 @@
       </li>
     </ul>
     <div className="flex w-[100%] justify-center items-center text-[2vh]">
-      <p className="text-blue-600 font-bold flex items-center justify-center mr-[10vw]">残り時間 : {{ timeLeft }}</p>
+      <p className="text-blue-600 font-bold flex items-center justify-center mr-[8vw]">残り時間 : {{ timeLeft }}</p>
       <button 
         :disabled="selectedCards.length !== 3" 
         @click="confirmSelection" 
-        class="text-white font-bold py-[6px] px-[10px] my-[30px] mr-[10px] border-[3px]  border-blue-500 hover:border-blue-600
+        class="text-white font-bold py-[6px] px-[6vw] my-[30px] mr-[10px] border-[3px] border-blue-500 hover:border-blue-600
         hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded"
         :class="{ 'opacity-50 cursor-not-allowed': selectedCards.length !== 3 }">
         カードを決定する

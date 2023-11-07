@@ -11291,11 +11291,8 @@ video {
 .mr-\[10px\] {
   margin-right: 10px;
 }
-.mr-\[10vw\] {
-  margin-right: 10vw;
-}
-.mt-\[120px\] {
-  margin-top: 120px;
+.mr-\[8vw\] {
+  margin-right: 8vw;
 }
 .mt-\[12vh\] {
   margin-top: 12vh;
@@ -11509,10 +11506,6 @@ video {
   padding-left: 1rem;
   padding-right: 1rem;
 }
-.px-\[10px\] {
-  padding-left: 10px;
-  padding-right: 10px;
-}
 .px-\[20vw\] {
   padding-left: 20vw;
   padding-right: 20vw;
@@ -11528,6 +11521,10 @@ video {
 .px-\[5vw\] {
   padding-left: 5vw;
   padding-right: 5vw;
+}
+.px-\[6vw\] {
+  padding-left: 6vw;
+  padding-right: 6vw;
 }
 .px-\[8vw\] {
   padding-left: 8vw;
@@ -11734,16 +11731,4 @@ video {
 }
 .hover\:underline-offset-4:hover {
   text-underline-offset: 4px;
-}
-@media (min-width: 0px) {
-
-  .sp\:text-\[30px\] {
-    font-size: 30px;
-  }
-}
-@media (min-width: 897px) {
-
-  .desktop\:text-\[60px\] {
-    font-size: 60px;
-  }
 }
