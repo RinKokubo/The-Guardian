@@ -13,7 +13,7 @@
         hover:underline hover:underline-offset-4 duration-500"
         @click="login(user)"
       >
-      {{ user.id }} - {{ user.name }}
+      {{ user.name }}
       </button>
     </div>
   </div>

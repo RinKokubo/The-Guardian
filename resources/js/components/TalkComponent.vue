@@ -48,6 +48,7 @@ export default {
       userInput: '',
       conversation: [],
       username: '',
+      userId: '',
       gameId: '',
       selectedCards: [],
       attacker_select_id: null,
@@ -58,8 +59,12 @@ export default {
   },
   async created() {
     try {
-      this.username = this.$route.params.username; // Retrieve username from route
-      this.gameId = this.$route.params.id;
+      this.userId = this.$route.params.user_id;
+      this.gameId = this.$route.params.game_id;
+
+      const userResponse = await axios.get(`http://localhost:8000/api/users/${this.userId}`);
+      this.username = userResponse.data.username;
+
       const response = await axios.get(`http://localhost:8000/api/game/${this.gameId}`);
       this.defenderCards = [
         response.data.defender_card1,
@@ -85,7 +90,7 @@ export default {
     },
     confirmSelection() {
       this.$router.push({
-        path: `/result/${this.username}/${this.gameId}/`,
+        path: `/result/${this.userId}/${this.gameId}/`,
         query: {
           selectedCards: this.selectedCards,
           attacker_select_id: this.attacker_select_id,
@@ -135,10 +140,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.bg-blue-100 {
-  /* Add your CSS to visually differentiate the selected cards */
-  border: 2px solid #000;
-}
-</style>

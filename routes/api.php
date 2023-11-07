@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Broadcast::routes(['middleware' => ['auth']]);
 
 Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'showUserName']);
 Route::post('/login-without-password', [AuthController::class, 'loginWithoutPassword']);
 Route::get('/game/{id}', [GameInformationController::class, 'show']);
 Route::get('/getGame/{id}',  [GameInformationController::class, 'attackerShow']);

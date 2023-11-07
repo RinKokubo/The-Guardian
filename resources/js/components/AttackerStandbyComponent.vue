@@ -17,6 +17,12 @@
 
 <script>
   export default {
+    data() {
+      return {
+        defenderCards: [],
+        selectedCards: [],
+      }
+    },
     async created() {
     try {
       this.gameId = this.$route.params.game_id;

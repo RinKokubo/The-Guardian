@@ -13,7 +13,7 @@
       <p className="text-red-600 mb-[20px] font-bold text-[24px]">注意！</p>
       <p className="text-[18px]">{{ notice }}</p>
     </div>
-    <router-link :to="{ name: 'user-score', params: { id: $route.params.id, username: $route.params.username }, query: { attacker_select_id: $route.query.attacker_select_id } }"
+    <router-link :to="{ name: 'user-score', params: { userId: $route.params.user_id, gameId: $route.params.game_id }, query: { attacker_select_id: $route.query.attacker_select_id } }"
       className="bg-blue-500 text-white font-bold py-[10px] px-[70px] shadow-md hover:bg-blue-600 duration-300">
       配点を見る
     </router-link>
@@ -29,17 +29,21 @@ export default {
     return {
       score: 0,
       result: '',
-      notice: ''
+      notice: '',
+      username: ''
     };
   },
   methods: {
     sendGameResult(defenderSelects, calculatedScore) {
       const attackerScore = 100 - calculatedScore;
+
+      const userResponse = axios.get(`http://localhost:8000/api/users/${this.$route.params.user_id}`);
+      this.username = userResponse.data.username;
       
       axios.post('/api/game-result', {
         attacker_name: 'chatGPT',
-        defender_name: this.$route.params.username,
-        game_id: this.$route.params.id,
+        defender_name: this.username,
+        game_id: this.$route.params.game_id,
         attacker_select_id: this.$route.query.attacker_select_id,
         defender_select_1: defenderSelects[1] || false,
         defender_select_2: defenderSelects[2] || false,
@@ -52,7 +56,7 @@ export default {
     }
   },
   mounted() {
-    const gameId = this.$route.params.id;
+    const gameId = this.$route.params.game_id;
     let selectedCards = this.$route.query.selectedCards;
 
     const selectedCardsArray = this.$route.query.selectedCards;

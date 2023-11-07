@@ -1,28 +1,30 @@
 <template>
-  <div class="flex w-[100vw]  h-[10vh]">
-    <div class="w-[20vw] bg-[#A49494]">
-      <p class="text-white font-bold flex justify-center items-center desktop:text-[40px] sp:text-[20px]">1</p>
+  <div class="flex w-[100vw] h-[10vh] shadow-2xl">
+    <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
+      <p class="text-white text-[4vh] font-bold">1</p>
     </div>
-    <div class="w-[80vw] bg-[#E76767] items-center">
-      <h1 className="desktop:text-[40px] sp:text-[20px] font-bold desktop:my-[90px] sp:my-[20px] ml-[30px] text-white">悪用カード選択</h1>
+    <div class="w-[85vw] bg-[#E76767] flex justify-center items-center">
+      <h1 className="w-[100%] text-[4vh] font-bold ml-[40px] text-white">悪用カード選択</h1>
     </div>
   </div>
-  <div className="flex desktop:flex-row sp:flex-col gap-x-20 justify-center items-center gap-y-5">
-    <button className="desktop:w-[250px] sp:w-[80%] desktop:h-[350px] sp:h-[120px] bg-red-300 hover:border-[5px] justify-center items-center
-      hover:border-red-400 duration-500 desktop:text-[24px] sp:text-[20px] font-bold shadow-xl flex desktop:flex-col sp:flex-row" v-on:click="attackerSelectCard('card1')">
-      <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ attackerCard1Name }}</p>
-      <img :src="`/img/${attackerCard1Name}.png`" alt="defender_card">
-    </button>
-    <button className="desktop:w-[250px] sp:w-[80%] desktop:h-[350px] sp:h-[120px] bg-red-300 hover:border-[5px] justify-center items-center
-     hover:border-red-400 duration-500 desktop:text-[24px] sp:text-[20px] font-bold shadow-xl flex desktop:flex-col sp:flex-row" v-on:click="attackerSelectCard('card2')">
-      <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ attackerCard2Name }}</p>
-      <img :src="`/img/${attackerCard2Name}.png`" alt="defender_card">
-    </button>
-    <button className="desktop:w-[250px] sp:w-[80%] desktop:h-[350px] sp:h-[120px] bg-red-300 hover:border-[5px] justify-center items-center
-     hover:border-red-400 duration-500 desktop:text-[24px] sp:text-[20px] font-bold shadow-xl flex desktop:flex-col sp:flex-row" v-on:click="attackerSelectCard('card3')">
-      <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ attackerCard3Name }}</p>
-      <img :src="`/img/${attackerCard3Name}.png`" alt="defender_card">
-    </button>
+  <div class="bg-[#E5E5E5] w-[100vw] h-[90vh]">
+    <div className="flex flex-col justify-center items-center gap-y-[4vh] py-[6vh]">
+      <button className="w-[85vw] h-[20vh] bg-red-300 hover:border-[5px] justify-start items-center pl-[5vw]
+        hover:border-red-400 duration-500 shadow-2xl flex" v-on:click="attackerSelectCard('card1')">
+        <img :src="`/img/${attackerCard1Name}.png`" alt="attacker_card" class="w-[18vh] h-[18vh]">
+        <p className="text-[3vh] font-bold pl-[5vw]">{{ attackerCard1Name }}</p>
+      </button>
+      <button className="w-[85vw] h-[20vh] bg-red-300 hover:border-[5px] justify-start items-center pl-[5vw]
+        hover:border-red-400 duration-500 shadow-2xl flex" v-on:click="attackerSelectCard('card2')">
+        <img :src="`/img/${attackerCard2Name}.png`" alt="attacker_card" class="w-[18vh] h-[18vh]">
+        <p className="text-[3vh] font-bold pl-[5vw]">{{ attackerCard2Name }}</p>
+      </button>
+      <button className="w-[85vw] h-[20vh] bg-red-300 hover:border-[5px] justify-start items-center pl-[5vw]
+        hover:border-red-400 duration-500 shadow-2xl flex" v-on:click="attackerSelectCard('card3')">
+        <img :src="`/img/${attackerCard3Name}.png`" alt="attacker_card" class="w-[18vh] h-[18vh]">
+        <p className="text-[3vh] font-bold pl-[5vw]">{{ attackerCard3Name }}</p>
+      </button>
+    </div>
   </div>
 </template>
 

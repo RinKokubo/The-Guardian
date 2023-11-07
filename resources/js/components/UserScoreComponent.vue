@@ -1,43 +1,43 @@
 <template>
-  <div>
-    <h1 className="desktop:text-[40px] sp:text-[22px] desktop:my-[50px] mx-[20px]
+  <div class="mt-[20px]">
+    <h1 class="desktop:text-[40px] sp:text-[22px] desktop:my-[50px] mx-[20px]
     sp:my-[20px] desktop:text-left sp:text-center">
-      配点内訳<span className="text-red-500 text-[20px] font-bold desktop:pl-[30px]">個人情報利用側の選択：{{ attackerCardName }}</span>
+      配点内訳<span class="text-red-500 text-[20px] font-bold desktop:pl-[30px]">個人情報利用側の選択：{{ attackerCardName }}</span>
     </h1>
 
-    <div className="flex desktop:flex-row sp:flex-col gap-x-5 justify-center items-center sp:gap-y-5 mb-[15px]">
-      <div className="desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row">
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ defenderCard1Name }}</p>
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card1_score }}点</p>
+    <div class="flex desktop:flex-row sp:flex-col gap-x-5 justify-center items-center sp:gap-y-5 mb-[15px]">
+      <div class="desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row">
+        <p class="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ defenderCard1Name }}</p>
+        <p class="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card1_score }}点</p>
         <img :src="`/img/${defenderCard1Name}.png`" alt="defender_card">
       </div>
-      <div className="desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row">
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ defenderCard2Name }}</p>
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card2_score }}点</p>
+      <div class="desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row">
+        <p class="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ defenderCard2Name }}</p>
+        <p class="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card2_score }}点</p>
         <img :src="`/img/${defenderCard2Name}.png`" alt="defender_card">
       </div>
-      <div className="desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row">
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ defenderCard3Name }}</p>
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card3_score }}点</p>
+      <div class="desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row">
+        <p class="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ defenderCard3Name }}</p>
+        <p class="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card3_score }}点</p>
         <img :src="`/img/${defenderCard3Name}.png`" alt="defender_card">
       </div>
-      <div className="desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row">
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ defenderCard4Name }}</p>
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card4_score }}点</p>
+      <div class="desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row">
+        <p class="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ defenderCard4Name }}</p>
+        <p class="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card4_score }}点</p>
         <img :src="`/img/${defenderCard4Name}.png`" alt="defender_card">
       </div>
-      <div className="desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row">
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ defenderCard5Name }}</p>
-        <p className="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card5_score }}点</p>
+      <div class="desktop:w-[200px] sp:w-[80%] desktop:h-[300px] sp:h-[80px] bg-blue-200 justify-center items-center font-bold shadow-xl flex desktop:flex-col sp:flex-row">
+        <p class="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ defenderCard5Name }}</p>
+        <p class="desktop:text-[20px] sp:text-[16px] sp:pr-[10px] desktop:pr-0">{{ scores?.defender_card5_score }}点</p>
         <img :src="`/img/${defenderCard5Name}.png`" alt="defender_card">
       </div>
     </div>
-    <p className="text-[22px] my-[40px] mx-[50px]">もしあなたが利用者カード「{{ attackerCardName }}」に対して、各提供カードに100点満点で点数をつけるとしたら？</p>
+    <p class="text-[22px] my-[40px] mx-[50px]">もしあなたが利用者カード「{{ attackerCardName }}」に対して、各提供カードに100点満点で点数をつけるとしたら？</p>
     <form>
-      <div className="flex desktop:flex-row sp:flex-col gap-x-10 justify-center items-center sp:gap-y-5 mb-[15px]">
-        <div className="flex items-center w-[200px] justify-center">
+      <div class="flex desktop:flex-row sp:flex-col gap-x-10 justify-center items-center sp:gap-y-5 mb-[15px]">
+        <div class="flex items-center w-[200px] justify-center">
           <label for="card1Score"></label>
-          <select className="border border-blue-500 w-[100px] mr-[5px] pl-[10px]" v-model="card1Score" id="card1Score">
+          <select class="border border-blue-500 w-[100px] mr-[5px] pl-[10px]" v-model="card1Score" id="card1Score">
             <option value="0">0</option>
             <option value="5">5</option>
             <option value="10">10</option>
@@ -62,9 +62,9 @@
           </select> 
             点
         </div>
-        <div className="flex items-center w-[200px] justify-center">
+        <div class="flex items-center w-[200px] justify-center">
           <label for="card2Score"></label>
-          <select className="border border-blue-500 w-[100px] mr-[5px] pl-[10px]" v-model="card2Score" id="card2Score">
+          <select class="border border-blue-500 w-[100px] mr-[5px] pl-[10px]" v-model="card2Score" id="card2Score">
             <option value="0">0</option>
             <option value="5">5</option>
             <option value="10">10</option>
@@ -89,9 +89,9 @@
           </select> 
             点
         </div>
-        <div className="flex items-center w-[200px] justify-center">
+        <div class="flex items-center w-[200px] justify-center">
           <label for="card3Score"></label>
-          <select className="border border-blue-500 w-[100px] mr-[5px] pl-[10px]" v-model="card3Score" id="card3Score">
+          <select class="border border-blue-500 w-[100px] mr-[5px] pl-[10px]" v-model="card3Score" id="card3Score">
             <option value="0">0</option>
             <option value="5">5</option>
             <option value="10">10</option>
@@ -116,9 +116,9 @@
           </select> 
             点
         </div>
-        <div className="flex items-center w-[200px] justify-center">
+        <div class="flex items-center w-[200px] justify-center">
           <label for="card4Score"></label>
-          <select className="border border-blue-500 w-[100px] mr-[5px] pl-[10px]" v-model="card4Score" id="card4Score">
+          <select class="border border-blue-500 w-[100px] mr-[5px] pl-[10px]" v-model="card4Score" id="card4Score">
             <option value="0">0</option>
             <option value="5">5</option>
             <option value="10">10</option>
@@ -143,9 +143,9 @@
           </select> 
             点
         </div>
-        <div className="flex items-center w-[200px] justify-center">
+        <div class="flex items-center w-[200px] justify-center">
           <label for="card5Score"></label>
-          <select className="border border-blue-500 w-[100px] mr-[5px] pl-[10px]" v-model="card5Score" id="card5Score">
+          <select class="border border-blue-500 w-[100px] mr-[5px] pl-[10px]" v-model="card5Score" id="card5Score">
             <option value="0">0</option>
             <option value="5">5</option>
             <option value="10">10</option>
@@ -172,36 +172,36 @@
         </div>
       </div>
     </form>
-    <div v-if="parseInt($route.params.id) < 6" class="flex justify-end">
-      <router-link :to="{ name: 'defender-select-dialogue', params: { username: $route.params.username, id: parseInt($route.params.id) + 1 } }">
-        <button className="text-white font-bold py-[6px] px-[10px] mt-[30px] mr-[80px] border-[3px]  border-blue-500 hover:border-blue-600
-                    hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm" v-on:click="submitScores">
+    <div v-if="parseInt($route.params.game_id) < 6" class="flex justify-end">
+      <router-link :to="{ name: 'defender-select-dialogue', params: { userId: $route.params.userId, id: parseInt($route.params.game_id) + 1 } }">
+        <button class="text-white font-bold py-[6px] px-[10px] mt-[30px] mr-[80px] border-[3px]  border-blue-500 hover:border-blue-600
+                    hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm" @click="submitScores">
           もう一度対戦する
         </button>  
       </router-link>
     </div>
     <div v-else  class="flex justify-end">
       <router-link to="/">
-        <button className="border-[3px] border-blue-500 text-blue-500 font-bold py-[6px] px-[10px] mt-[30px] mr-[80px]
-                   hover:bg-blue-500 hover:text-white duration-300 shadow-sm" v-on:click="submitScores">
+        <button class="border-[3px] border-blue-500 text-blue-500 font-bold py-[6px] px-[10px] mt-[30px] mr-[80px]
+                   hover:bg-blue-500 hover:text-white duration-300 shadow-sm" @click="submitScores">
           ゲームを終了する
         </button>
       </router-link>
     </div>
-  </div> 
+  </div>
 </template>
 
 <script>
 import axios from 'axios';
 
 export default {
-  name: "UserScore",
   data() {
     return {
-      scores: null,
+      scores: {},
       gameInformation: null,
       defenderCardNames: {},
       attackerCardName: '',
+      username: '',
       card1Score: null,
       card2Score: null,
       card3Score: null,
@@ -212,17 +212,17 @@ export default {
       defenderCard3Name: null,
       defenderCard4Name: null,
       defenderCard5Name: null,
-      gameIdforPath: this.$route.params.id
+      gameIdforPath: this.$route.params.game_id
     };
   },
   created() {
-    const gameId = this.$route.params.id;
+    const gameId = this.$route.params.game_id;
     const attackerSelectId = this.$route.query.attacker_select_id;
 
-    axios.get(`/api/getGame/${this.$route.params.id}?attacker_select_id=${this.$route.query.attacker_select_id}`)
+    axios.get(`/api/getGame/${gameId}?attacker_select_id=${attackerSelectId}`)
       .then(response => {
         this.attackerCardName = response.data.attacker_card_name;
-    })
+      })
       .catch(error => {
         console.error(error);
       });
@@ -252,12 +252,13 @@ export default {
     submitScores() {
       const gameId = this.$route.params.id;
       const attackerSelectId = this.$route.query.attacker_select_id;
-      const userName = this.$route.params.username; 
+      const userResponse = axios.get(`http://localhost:8000/api/users/${this.$route.params.userId}`);
+      const username = userResponse.data.username;
 
       axios.post(`/api/user_scores`, {
         game_id: gameId,
         attacker_select_id: attackerSelectId,
-        user_name: userName,
+        user_name: username,
         user_card1_score: this.card1Score,
         user_card2_score: this.card2Score,
         user_card3_score: this.card3Score,
@@ -271,6 +272,6 @@ export default {
         console.error(error);
       });
     },
-  }
-}
+  },
+};
 </script>

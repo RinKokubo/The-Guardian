@@ -64,12 +64,12 @@ const routes = [
     component: Talk, name: 'defender-select-dialogue'
   },
   {
-    path: '/result/:username/:id',
+    path: '/result/:user_id/:game_id',
     component: Result, name: 'result'
   }
   ,
   {
-    path: '/user-score/:username/:id',
+    path: '/user-score/:user_id/:game_id',
     component: UserScore, name: 'user-score'
   }
 ];

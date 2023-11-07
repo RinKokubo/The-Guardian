@@ -33,4 +33,15 @@ class UserController extends Controller
         $users = User::where('is_logged_in', true)->get(); // is_logged_inがtrueのユーザーだけを取得
         return response()->json($users); // ユーザ一覧をJSON形式で返す
     }
+
+    public function showUserName($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found.'], 404);
+        }
+
+        return response()->json(['username' => $user->username]);
+    }
 }
