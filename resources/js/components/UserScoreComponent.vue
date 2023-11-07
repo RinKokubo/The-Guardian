@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center">
-    <p class="text-[2vh] mx-[5vw] pt-[2vh]">もしあなたが利用者カード<span class="font-bold text-red-500">「{{ attackerCardName }}」</span>に対して、各提供カードに100点満点で点数をつけるとしたら？</p>
+    <p class="text-[2vh] mx-[5vw] pt-[2vh]">もしあなたが悪用カード<span class="font-bold text-red-500">「{{ attackerCardName }}」</span>に対して、各提供カードに100点満点で点数をつけるとしたら？</p>
     <div class="flex">
       <div class="flex flex-col items-center gap-y-[2vh] pt-[3vh] pb-[3vh]">
         <div class="w-[60vw] h-[12vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex">
