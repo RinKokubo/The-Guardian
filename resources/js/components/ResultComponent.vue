@@ -1,14 +1,14 @@
 <template>
-  <div class="flex w-[100vw] h-[10vh] shadow-2xl">
+  <div class="flex w-[100vw] h-[8vh] shadow-2xl">
     <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
     <div class="w-[85vw] bg-[#E76767] flex justify-center items-center">
-      <h1 className="w-[100%] text-[4vh] font-bold ml-[40px] text-white">結果</h1>
+      <h1 className="w-[100%] text-[3vh] font-bold ml-[40px] text-white">結果</h1>
     </div>
   </div>
-  <div className="flex flex-col items-center bg-[#E5E5E5] w-[100vw] h-[90vh]">
-    <div className="flex flex-col items-center py-[4vh]" id="result">
+  <div className="flex flex-col items-center bg-[#E5E5E5] w-[100vw] h-[92vh]">
+    <div className="flex flex-col items-center pt-[4vh] pb-[1vh]" id="result">
       <img :src="`/img/${resultImage}.png`" alt="result" class="w-[40vw] h-[40vw]">
     </div>
     <div className="flex flex-col justify-center gap-y-5">

@@ -1,13 +1,13 @@
 <template>
-  <div class="flex w-[100vw] h-[10vh] shadow-2xl">
+  <div class="flex w-[100vw] h-[8vh] shadow-2xl">
     <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
     <div class="w-[85vw] flex justify-center items-center" :class="bgClass">
-      <h1 class="w-[100%] text-[4vh] font-bold ml-[40px] text-white">個人情報保護ゲーム</h1>
+      <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報保護ゲーム</h1>
     </div>
   </div>
-  <div class="w-[100vw] h-[90vh] bg-[#E5E5E5] py-[4vh] px-[5vw] text-[3vh]">
+  <div class="w-[100vw] h-[92vh] bg-[#E5E5E5] py-[4vh] px-[5vw] text-[2vh]">
     <p>このゲームは、1対1で行うロールプレイングカードゲーム。今回のあなたの対戦相手は
       <span v-if="opponentId === 31">チャットボット</span>
       <span v-else>{{ this.opponentName }}</span>。

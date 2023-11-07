@@ -1,13 +1,13 @@
 <template>
-  <div class="flex w-[100vw] h-[10vh] shadow-2xl">
+  <div class="flex w-[100vw] h-[8vh] shadow-2xl">
     <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
     <div class="w-[85vw] bg-blue-500 flex justify-center items-center">
-      <h1 className="w-[100%] text-[4vh] font-bold ml-[40px] text-white">個人情報カード選択</h1>
+      <h1 className="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報カード選択</h1>
     </div>
   </div>
-  <div class="bg-[#E5E5E5] w-[100vw] h-[90vh] flex flex-col items-center">
+  <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center">
     <ul class="flex flex-wrap gap-x-[1vh] justify-center items-center gap-y-[1vh] py-[1vh]">
       <li v-for="(card, index) in defenderCards" :key="card.id" :class="{ 'bg-blue-100': selectedCards.includes(index + 1) }">
         <button @click="selectCard(index + 1)" class="w-[46vw] h-[10vh] bg-blue-300 justify-start items-center pl-[2vw] duration-500 shadow-2xl flex">

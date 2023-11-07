@@ -23669,7 +23669,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "flex w-[100vw] h-[10vh] shadow-2xl"
+  "class": "flex w-[100vw] h-[8vh] shadow-2xl"
 };
 var _hoisted_2 = {
   "class": "w-[15vw] bg-[#A49494] flex justify-center items-center"
@@ -23680,10 +23680,10 @@ var _hoisted_3 = {
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "w-[85vw] bg-[#E76767] flex justify-center items-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  className: "w-[100%] text-[4vh] font-bold ml-[40px] text-white"
+  className: "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
 }, "悪用カード選択")], -1 /* HOISTED */);
 var _hoisted_5 = {
-  "class": "bg-[#E5E5E5] w-[100vw] h-[90vh]"
+  "class": "bg-[#E5E5E5] w-[100vw] h-[92vh]"
 };
 var _hoisted_6 = {
   className: "flex flex-col justify-center items-center gap-y-[4vh] py-[6vh]"
@@ -23702,32 +23702,32 @@ var _hoisted_12 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    className: "w-[85vw] h-[20vh] bg-red-300 hover:border-[5px] justify-start items-center pl-[5vw]\n        hover:border-red-400 duration-500 shadow-2xl flex",
+    className: "w-[90vw] h-[20vh] bg-red-300 hover:border-[5px] justify-start items-center px-[3vw]\n        hover:border-red-400 duration-500 shadow-2xl flex",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.attackerSelectCard('card1');
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: "/img/".concat($data.attackerCard1Name, ".png"),
     alt: "attacker_card",
-    "class": "w-[18vh] h-[18vh]"
+    "class": "w-[16vh] h-[16vh]"
   }, null, 8 /* PROPS */, _hoisted_7), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.attackerCard1Name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    className: "w-[85vw] h-[20vh] bg-red-300 hover:border-[5px] justify-start items-center pl-[5vw]\n        hover:border-red-400 duration-500 shadow-2xl flex",
+    className: "w-[90vw] h-[20vh] bg-red-300 hover:border-[5px] justify-start items-center px-[3vw]\n        hover:border-red-400 duration-500 shadow-2xl flex",
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.attackerSelectCard('card2');
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: "/img/".concat($data.attackerCard2Name, ".png"),
     alt: "attacker_card",
-    "class": "w-[18vh] h-[18vh]"
+    "class": "w-[16vh] h-[16vh]"
   }, null, 8 /* PROPS */, _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.attackerCard2Name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    className: "w-[85vw] h-[20vh] bg-red-300 hover:border-[5px] justify-start items-center pl-[5vw]\n        hover:border-red-400 duration-500 shadow-2xl flex",
+    className: "w-[90vw] h-[20vh] bg-red-300 hover:border-[5px] justify-start items-center px-[3vw]\n        hover:border-red-400 duration-500 shadow-2xl flex",
     onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.attackerSelectCard('card3');
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: "/img/".concat($data.attackerCard3Name, ".png"),
     alt: "attacker_card",
-    "class": "w-[18vh] h-[18vh]"
+    "class": "w-[16vh] h-[16vh]"
   }, null, 8 /* PROPS */, _hoisted_11), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.attackerCard3Name), 1 /* TEXT */)])])])], 64 /* STABLE_FRAGMENT */);
 }
 
@@ -23747,7 +23747,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "flex w-[100vw] h-[10vh] shadow-2xl"
+  "class": "flex w-[100vw] h-[8vh] shadow-2xl"
 };
 var _hoisted_2 = {
   "class": "w-[15vw] bg-[#A49494] flex justify-center items-center"
@@ -23758,20 +23758,20 @@ var _hoisted_3 = {
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "w-[85vw] bg-[#E76767] flex justify-center items-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  className: "w-[100%] text-[4vh] font-bold ml-[40px] text-white"
+  className: "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
 }, "提供側カード選択")], -1 /* HOISTED */);
 var _hoisted_5 = {
-  "class": "bg-[#E5E5E5] w-[100vw] h-[90vh]"
+  "class": "bg-[#E5E5E5] w-[100vw] h-[92vh]"
 };
 var _hoisted_6 = {
   "class": "flex flex-col gap-x-5 justify-center items-center gap-y-[2vh] py-[3vh]"
 };
 var _hoisted_7 = {
-  "class": "w-[85vw] h-[15vh] bg-blue-300 justify-start items-center pl-[5vw] duration-500 shadow-2xl flex"
+  "class": "w-[90vw] h-[15vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex"
 };
 var _hoisted_8 = ["src"];
 var _hoisted_9 = {
-  className: "text-[3vh] font-bold pl-[5vw]"
+  className: "text-[3vh] font-bold pl-[3vw]"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.defenderCards, function (card) {
@@ -23869,7 +23869,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "flex w-[100vw] h-[10vh] shadow-2xl"
+  "class": "flex w-[100vw] h-[8vh] shadow-2xl"
 };
 var _hoisted_2 = {
   "class": "w-[15vw] bg-[#A49494] flex justify-center items-center"
@@ -23878,11 +23878,11 @@ var _hoisted_3 = {
   "class": "text-white text-[4vh] font-bold"
 };
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "w-[100%] text-[4vh] font-bold ml-[40px] text-white"
+  "class": "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
 }, "個人情報保護ゲーム", -1 /* HOISTED */);
 var _hoisted_5 = [_hoisted_4];
 var _hoisted_6 = {
-  "class": "w-[100vw] h-[90vh] bg-[#E5E5E5] py-[4vh] px-[5vw] text-[3vh]"
+  "class": "w-[100vw] h-[92vh] bg-[#E5E5E5] py-[4vh] px-[5vw] text-[2vh]"
 };
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("このゲームは、1対1で行うロールプレイングカードゲーム。今回のあなたの対戦相手は ");
 var _hoisted_8 = {
@@ -23998,7 +23998,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "flex w-[100vw] h-[10vh] shadow-2xl"
+  "class": "flex w-[100vw] h-[8vh] shadow-2xl"
 };
 var _hoisted_2 = {
   "class": "w-[15vw] bg-[#A49494] flex justify-center items-center"
@@ -24009,13 +24009,13 @@ var _hoisted_3 = {
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "w-[85vw] bg-[#E76767] flex justify-center items-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  className: "w-[100%] text-[4vh] font-bold ml-[40px] text-white"
+  className: "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
 }, "結果")], -1 /* HOISTED */);
 var _hoisted_5 = {
-  className: "flex flex-col items-center bg-[#E5E5E5] w-[100vw] h-[90vh]"
+  className: "flex flex-col items-center bg-[#E5E5E5] w-[100vw] h-[92vh]"
 };
 var _hoisted_6 = {
-  className: "flex flex-col items-center py-[4vh]",
+  className: "flex flex-col items-center pt-[4vh] pb-[1vh]",
   id: "result"
 };
 var _hoisted_7 = ["src"];
@@ -24116,7 +24116,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "flex w-[100vw] h-[10vh] shadow-2xl"
+  "class": "flex w-[100vw] h-[8vh] shadow-2xl"
 };
 var _hoisted_2 = {
   "class": "w-[15vw] bg-[#A49494] flex justify-center items-center"
@@ -24127,10 +24127,10 @@ var _hoisted_3 = {
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "w-[85vw] bg-blue-500 flex justify-center items-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  className: "w-[100%] text-[4vh] font-bold ml-[40px] text-white"
+  className: "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
 }, "個人情報カード選択")], -1 /* HOISTED */);
 var _hoisted_5 = {
-  "class": "bg-[#E5E5E5] w-[100vw] h-[90vh] flex flex-col items-center"
+  "class": "bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center"
 };
 var _hoisted_6 = {
   "class": "flex flex-wrap gap-x-[1vh] justify-center items-center gap-y-[1vh] py-[1vh]"
@@ -24225,7 +24225,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "flex w-[100vw] h-[10vh] shadow-2xl"
+  "class": "flex w-[100vw] h-[8vh] shadow-2xl"
 };
 var _hoisted_2 = {
   "class": "w-[15vw] bg-[#A49494] flex justify-center items-center"
@@ -24236,68 +24236,68 @@ var _hoisted_3 = {
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "w-[85vw] bg-[#E76767] flex justify-center items-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  className: "w-[100%] text-[4vh] font-bold ml-[40px] text-white"
+  className: "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
 }, "配点内訳")], -1 /* HOISTED */);
 var _hoisted_5 = {
-  "class": "bg-[#E5E5E5] w-[100vw] h-[90vh] flex flex-col items-center"
+  "class": "bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center"
 };
 var _hoisted_6 = {
-  "class": "text-[2vh] font-bold"
+  "class": "text-[2vh] mx-[5vw] pt-[2vh]"
 };
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("もしあなたが利用者カード");
 var _hoisted_8 = {
-  "class": "text-red-500"
+  "class": "font-bold text-red-500"
 };
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("に対して、各提供カードに100点満点で点数をつけるとしたら？");
 var _hoisted_10 = {
   "class": "flex"
 };
 var _hoisted_11 = {
-  "class": "flex flex-col gap-x-5 justify-center items-center gap-y-[2vh] py-[3vh]"
+  "class": "flex flex-col items-center gap-y-[2vh] pt-[3vh] pb-[3vh]"
 };
 var _hoisted_12 = {
-  "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center pl-[5vw] duration-500 shadow-2xl flex"
+  "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex"
 };
 var _hoisted_13 = ["src"];
 var _hoisted_14 = {
-  className: "text-[2vh] font-bold pl-[5vw]"
+  className: "text-[2vh] font-bold pl-[2vw]"
 };
 var _hoisted_15 = {
-  "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center pl-[5vw] duration-500 shadow-2xl flex"
+  "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex"
 };
 var _hoisted_16 = ["src"];
 var _hoisted_17 = {
-  className: "text-[2vh] font-bold pl-[5vw]"
+  className: "text-[2vh] font-bold pl-[2vw]"
 };
 var _hoisted_18 = {
-  "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center pl-[5vw] duration-500 shadow-2xl flex"
+  "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex"
 };
 var _hoisted_19 = ["src"];
 var _hoisted_20 = {
-  className: "text-[2vh] font-bold pl-[5vw]"
+  className: "text-[2vh] font-bold pl-[2vw]"
 };
 var _hoisted_21 = {
-  "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center pl-[5vw] duration-500 shadow-2xl flex"
+  "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex"
 };
 var _hoisted_22 = ["src"];
 var _hoisted_23 = {
-  className: "text-[2vh] font-bold pl-[5vw]"
+  className: "text-[2vh] font-bold pl-[2vw]"
 };
 var _hoisted_24 = {
-  "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center pl-[5vw] duration-500 shadow-2xl flex"
+  "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex"
 };
 var _hoisted_25 = ["src"];
 var _hoisted_26 = {
-  className: "text-[2vh] font-bold pl-[5vw]"
+  className: "text-[2vh] font-bold pl-[2vw]"
 };
 var _hoisted_27 = {
-  "class": "flex flex-col justify-center items-center gap-y-[2vh] py-[3vh] text-[2vh]"
+  "class": "flex flex-col items-center text-[2vh] mx-[3vw] font-bold"
 };
-var _hoisted_28 = {
-  "class": "w-[10vw] h-[12vh] flex justify-center items-center"
-};
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "text-[2vh]"
+}, "配点", -1 /* HOISTED */);
 var _hoisted_29 = {
-  "class": "w-[10vw] h-[12vh] flex justify-center items-center"
+  "class": "flex flex-col items-center gap-y-[2vh]"
 };
 var _hoisted_30 = {
   "class": "w-[10vw] h-[12vh] flex justify-center items-center"
@@ -24309,58 +24309,70 @@ var _hoisted_32 = {
   "class": "w-[10vw] h-[12vh] flex justify-center items-center"
 };
 var _hoisted_33 = {
-  "class": "flex flex-col justify-center items-center gap-y-[2vh] py-[3vh] text-[2vh]"
+  "class": "w-[10vw] h-[12vh] flex justify-center items-center"
 };
 var _hoisted_34 = {
+  "class": "w-[10vw] h-[12vh] flex justify-center items-center"
+};
+var _hoisted_35 = {
+  "class": "flex flex-col items-center text-[2vh] my-0 py-0"
+};
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "font-bold"
+}, "あなた", -1 /* HOISTED */);
+var _hoisted_37 = {
+  "class": "flex flex-col items-center gap-y-[2vh]"
+};
+var _hoisted_38 = {
   "class": "flex items-center w-[15vw] h-[12vh] justify-center"
 };
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "card1Score"
 }, null, -1 /* HOISTED */);
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
-var _hoisted_57 = [_hoisted_36];
-var _hoisted_58 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
-var _hoisted_59 = {
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
+var _hoisted_61 = [_hoisted_40];
+var _hoisted_62 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
+var _hoisted_63 = {
   "class": "flex items-center w-[15vw] h-[12vh] justify-center"
 };
-var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_64 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "card2Score"
 }, null, -1 /* HOISTED */);
-var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
-var _hoisted_82 = [_hoisted_61];
-var _hoisted_83 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
-var _hoisted_84 = {
+var _hoisted_65 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
+var _hoisted_86 = [_hoisted_65];
+var _hoisted_87 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
+var _hoisted_88 = {
   "class": "flex items-center w-[15vw] h-[12vh] justify-center"
 };
-var _hoisted_85 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_89 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "card3Score"
 }, null, -1 /* HOISTED */);
-var _hoisted_86 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
-var _hoisted_107 = [_hoisted_86];
-var _hoisted_108 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
-var _hoisted_109 = {
+var _hoisted_90 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
+var _hoisted_111 = [_hoisted_90];
+var _hoisted_112 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
+var _hoisted_113 = {
   "class": "flex items-center w-[15vw] h-[12vh] justify-center"
 };
-var _hoisted_110 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_114 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "card4Score"
 }, null, -1 /* HOISTED */);
-var _hoisted_111 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
-var _hoisted_132 = [_hoisted_111];
-var _hoisted_133 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
-var _hoisted_134 = {
+var _hoisted_115 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
+var _hoisted_136 = [_hoisted_115];
+var _hoisted_137 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
+var _hoisted_138 = {
   "class": "flex items-center w-[15vw] h-[12vh] justify-center"
 };
-var _hoisted_135 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_139 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "card5Score"
 }, null, -1 /* HOISTED */);
-var _hoisted_136 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
-var _hoisted_157 = [_hoisted_136];
-var _hoisted_158 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
-var _hoisted_159 = {
+var _hoisted_140 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
+var _hoisted_161 = [_hoisted_140];
+var _hoisted_162 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
+var _hoisted_163 = {
   key: 0,
   "class": "flex justify-end"
 };
-var _hoisted_160 = {
+var _hoisted_164 = {
   key: 1,
   "class": "flex justify-end"
 };
@@ -24387,60 +24399,60 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     src: "/img/".concat($data.defenderCard5Name, ".png"),
     alt: "defender_card",
     "class": "w-[11vh] h-[11vh]"
-  }, null, 8 /* PROPS */, _hoisted_25), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.defenderCard5Name), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores = $data.scores) === null || _$data$scores === void 0 ? void 0 : _$data$scores.defender_card1_score), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores2 = $data.scores) === null || _$data$scores2 === void 0 ? void 0 : _$data$scores2.defender_card2_score), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores3 = $data.scores) === null || _$data$scores3 === void 0 ? void 0 : _$data$scores3.defender_card3_score), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores4 = $data.scores) === null || _$data$scores4 === void 0 ? void 0 : _$data$scores4.defender_card4_score), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores5 = $data.scores) === null || _$data$scores5 === void 0 ? void 0 : _$data$scores5.defender_card5_score), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, null, 8 /* PROPS */, _hoisted_25), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.defenderCard5Name), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores = $data.scores) === null || _$data$scores === void 0 ? void 0 : _$data$scores.defender_card1_score), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores2 = $data.scores) === null || _$data$scores2 === void 0 ? void 0 : _$data$scores2.defender_card2_score), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores3 = $data.scores) === null || _$data$scores3 === void 0 ? void 0 : _$data$scores3.defender_card3_score), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores4 = $data.scores) === null || _$data$scores4 === void 0 ? void 0 : _$data$scores4.defender_card4_score), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores5 = $data.scores) === null || _$data$scores5 === void 0 ? void 0 : _$data$scores5.defender_card5_score), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_35, [_hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "border border-blue-500",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.card1Score = $event;
     }),
     id: "card1Score"
-  }, _hoisted_57, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card1Score]]), _hoisted_58]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_59, [_hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, _hoisted_61, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card1Score]]), _hoisted_62]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_63, [_hoisted_64, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "border border-blue-500",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.card2Score = $event;
     }),
     id: "card2Score"
-  }, _hoisted_82, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card2Score]]), _hoisted_83]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_84, [_hoisted_85, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, _hoisted_86, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card2Score]]), _hoisted_87]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_88, [_hoisted_89, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "border border-blue-500",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $data.card3Score = $event;
     }),
     id: "card3Score"
-  }, _hoisted_107, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card3Score]]), _hoisted_108]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_109, [_hoisted_110, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, _hoisted_111, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card3Score]]), _hoisted_112]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_113, [_hoisted_114, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "border border-blue-500",
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $data.card4Score = $event;
     }),
     id: "card4Score"
-  }, _hoisted_132, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card4Score]]), _hoisted_133]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_134, [_hoisted_135, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  }, _hoisted_136, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card4Score]]), _hoisted_137]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_138, [_hoisted_139, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "border border-blue-500",
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $data.card5Score = $event;
     }),
     id: "card5Score"
-  }, _hoisted_157, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card5Score]]), _hoisted_158])])]), parseInt(_ctx.$route.params.game_id) < 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_159, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }, _hoisted_161, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card5Score]]), _hoisted_162])])])]), parseInt(_ctx.$route.params.game_id) < 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_163, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'defender-select-dialogue',
       params: {
-        userId: _ctx.$route.params.userId,
-        id: parseInt(_ctx.$route.params.game_id) + 1
+        user_id: _ctx.$route.params.userId,
+        game_id: parseInt(_ctx.$route.params.game_id) + 1
       }
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        "class": "text-white font-bold py-[6px] px-[10px] mt-[30px] mr-[80px] border-[3px] border-blue-500 hover:border-blue-600 hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm",
+        "class": "text-white font-bold py-[6px] px-[20vw] border-[3px] border-blue-500 hover:border-blue-600 hover:bg-blue-600 bg-blue-500 duration-300 shadow-xl text-[2vh]",
         onClick: _cache[5] || (_cache[5] = function () {
           return $options.submitScores && $options.submitScores.apply($options, arguments);
         })
       }, " もう一度対戦する ")];
     }),
     _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["to"])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_160, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }, 8 /* PROPS */, ["to"])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_164, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        "class": "border-[3px] border-blue-500 text-blue-500 font-bold py-[6px] px-[10px] mt-[30px] mr-[80px] hover:bg-blue-500 hover:text-white duration-300 shadow-sm",
+        "class": "border-[3px] border-blue-500 text-blue-500 font-bold py-[6px] px-[20vw] hover:bg-blue-500 hover:text-white duration-300 shadow-xl text-[2vh]",
         onClick: _cache[6] || (_cache[6] = function () {
           return $options.submitScores && $options.submitScores.apply($options, arguments);
         })
