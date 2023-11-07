@@ -33,7 +33,7 @@
           <span>ChatGPT:</span> {{ message.content }}
         </div>
         <div v-else-if="message.role === 'user'" class="text-green-500 font-bold">
-          <span>you:</span> {{ message.content }}
+          <span>あなた:</span> {{ message.content }}
         </div>
       </div>
     </div>
