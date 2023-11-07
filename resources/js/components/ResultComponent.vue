@@ -1,8 +1,16 @@
 <template>
-  <div className="flex flex-col items-center">
+  <div class="flex w-[100vw] h-[10vh] shadow-2xl">
+    <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
+      <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
+    </div>
+    <div class="w-[85vw] bg-[#E76767] flex justify-center items-center">
+      <h1 className="w-[100%] text-[4vh] font-bold ml-[40px] text-white">結果</h1>
+    </div>
+  </div>
+  <div className="flex flex-col items-center bg-[#E5E5E5] w-[100vw] h-[90vh]">
     <div className="flex justify-between items-center" id="result">
       <h1 className="desktop:text-[60px] sp:text-[26px] text-blue-600 mt-[100px] mb-[20px] desktop:text-left sp:text-center">
-        結果: {{ result }}
+        {{ result }}
       </h1>
     </div>
     <div className="flex desktop:flex-row sp:flex-col desktop:justify-between sp:justify-center gap-x-10 gap-y-5 mb-[20px]">

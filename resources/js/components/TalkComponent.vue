@@ -1,15 +1,22 @@
 <template>
-  <div class="max-w-2xl mx-auto px-4 py-10">
-    <ul class="flex flex-row gap-x-5 justify-center items-center">
+  <div class="flex w-[100vw] h-[10vh] shadow-2xl">
+    <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
+      <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
+    </div>
+    <div class="w-[85vw] bg-blue-500 flex justify-center items-center">
+      <h1 className="w-[100%] text-[4vh] font-bold ml-[40px] text-white">個人情報カード選択</h1>
+    </div>
+  </div>
+  <div class="bg-[#E5E5E5] w-[100vw] h-[90vh] flex flex-col items-center">
+    <ul class="flex flex-wrap gap-x-[1vh] justify-center items-center gap-y-[1vh] py-[1vh]">
       <li v-for="(card, index) in defenderCards" :key="card.id" :class="{ 'bg-blue-100': selectedCards.includes(index + 1) }">
-        <button @click="selectCard(index + 1)" class="w-[200px] h-[280px] bg-blue-200 hover:border-[5px] items-center justify-center
-        hover:border-blue-400 duration-500 text-[24px] font-bold shadow-xl flex flex-col">
-          <p>{{ card.defender_card_name }}</p>
-          <img :src="`/img/${card.defender_card_name}.png`" alt="defender_card">
+        <button @click="selectCard(index + 1)" class="w-[46vw] h-[10vh] bg-blue-300 justify-start items-center pl-[2vw] duration-500 shadow-2xl flex">
+          <img :src="`/img/${card.defender_card_name}.png`" alt="defender_card" class="w-[9vh] h-[9vh]">
+          <p className="text-[2vh] font-bold pl-[1vw]">{{ card.defender_card_name }}</p>
         </button>
       </li>
     </ul>
-    <div className="flex flex-1 w-[100%]">
+    <div className="flex w-[100%]">
       <p className="text-blue-600 font-bold flex items-center justify-center text-[16px] mr-[50px]">Remaining time for dialogue : {{ timeLeft }}</p>
       <button 
         :disabled="selectedCards.length !== 3" 
@@ -20,7 +27,7 @@
         Select cards
       </button>
     </div>
-    <div class="border border-gray-300 p-4 rounded overflow-auto h-64 mb-4">
+    <div class="border border-gray-300 bg-white p-4 rounded overflow-auto h-64 mb-4">
       <div v-for="message in conversation" :key="message.id" class="mb-4">
         <div v-if="message.role === 'assistant'" class="text-blue-500 font-bold">
           <span>ChatGPT:</span> {{ message.content }}
@@ -30,7 +37,7 @@
         </div>
       </div>
     </div>
-    <form @submit.prevent="sendMessage" class="flex">
+    <form @submit.prevent="sendMessage" class="flex w-[100%]">
       <input v-model="userInput" placeholder="Type your message..." class="flex-grow p-2 border border-gray-300 rounded mr-2"/>
       <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">送信</button>
     </form>
