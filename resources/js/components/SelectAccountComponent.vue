@@ -9,7 +9,7 @@
       <button
         v-for="user in users" 
         :key="user.id" 
-        class="text-[2vh] w-[40vw] mb-[2vh]
+        class="text-[2.5vh] w-[40vw] mb-[2vh]
         hover:underline hover:underline-offset-4 duration-500"
         @click="login(user)"
       >

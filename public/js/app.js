@@ -23876,14 +23876,14 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "class": "flex justify-center my-[8vh]"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/img/privacy.png",
-  "class": "w-[75vw]"
+  "class": "sp:w-[75vw] desktop:w-[30vh]"
 })], -1 /* HOISTED */);
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" GAME START ");
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/select-account",
-    "class": "bg-green-600 text-white hover:bg-green-600 text-[8vw] font-bold text-center flex justify-center py-[2vh] shadow-2xl mb-[15vh] w-[100vw]"
+    "class": "bg-green-600 text-white hover:bg-green-600 sp:text-[8vw] desktop:text-[5vh] font-bold text-center flex justify-center py-[2vh] shadow-2xl mb-[15vh] w-[100vw]"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_4];
@@ -24134,7 +24134,7 @@ function render(_ctx, _cache) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.users, function (user) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
       key: user.id,
-      "class": "text-[2vh] w-[40vw] mb-[2vh] hover:underline hover:underline-offset-4 duration-500",
+      "class": "text-[2.5vh] w-[40vw] mb-[2vh] hover:underline hover:underline-offset-4 duration-500",
       onClick: function onClick($event) {
         return _ctx.login(user);
       }
@@ -24286,7 +24286,7 @@ var _hoisted_5 = {
 var _hoisted_6 = {
   "class": "text-[2vh] mx-[5vw] pt-[2vh]"
 };
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("もしあなたが利用者カード");
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("もしあなたが悪用カード");
 var _hoisted_8 = {
   "class": "font-bold text-red-500"
 };
