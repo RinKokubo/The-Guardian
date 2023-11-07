@@ -27,8 +27,8 @@
         カードを決定する
       </button>
     </div>
-    <div class="border border-gray-300 bg-white p-4 rounded overflow-auto h-[45vh] w-[90vw] mb-4 text-[2vh]">
-      <div v-for="message in conversation" :key="message.id" class="mb-4">
+    <div class="border border-gray-300 bg-white p-3 rounded overflow-auto h-[45vh] w-[90vw] mb-4 text-[2vh]">
+      <div v-for="message in conversation" :key="message.id" class="mb-3">
         <div v-if="message.role === 'assistant'" class="text-blue-500 font-bold">
           <span>ChatGPT:</span> {{ message.content }}
         </div>

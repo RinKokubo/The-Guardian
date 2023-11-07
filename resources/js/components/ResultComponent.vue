@@ -8,7 +8,7 @@
     </div>
   </div>
   <div className="flex flex-col items-center bg-[#E5E5E5] w-[100vw] h-[92vh]">
-    <div className="flex flex-col items-center pt-[4vh] pb-[1vh]" id="result">
+    <div className="flex flex-col items-center pt-[3vh] pb-[1vh]" id="result">
       <img :src="`/img/${resultImage}.png`" alt="result" class="w-[40vw] h-[40vw]">
     </div>
     <div className="flex flex-col justify-center gap-y-5">
@@ -20,7 +20,7 @@
       <p className="text-[2vh]">{{ notice }}</p>
     </div>
     <router-link :to="{ name: 'user-score', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { attacker_select_id: $route.query.attacker_select_id } }"
-      className="bg-green-600 text-white font-bold py-[10px] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300">
+      className="bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300">
       配点を見る
     </router-link>
   </div>

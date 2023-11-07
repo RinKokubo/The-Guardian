@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center">
-    <p class="text-[2vh] mx-[5vw] pt-[2vh]">もしあなたが悪用カード<span class="font-bold text-red-500">「{{ attackerCardName }}」</span>に対して、各提供カードに100点満点で点数をつけるとしたら？</p>
+    <p class="text-[2vh] mx-[5vw] pt-[1.5vh]">もしあなたが悪用カード<span class="font-bold text-red-500">「{{ attackerCardName }}」</span>に対して、各提供カードに100点満点で点数をつけるとしたら？</p>
     <div class="flex">
       <div class="flex flex-col items-center gap-y-[2vh] pt-[3vh] pb-[3vh]">
         <div class="w-[60vw] h-[12vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex">
@@ -185,7 +185,7 @@
     </div>
     <div v-if="parseInt($route.params.game_id) < 6" class="flex justify-end">
       <router-link :to="{ name: 'defender-select-dialogue', params: { user_id: $route.params.userId, game_id: parseInt($route.params.game_id) + 1 } }">
-        <button class="text-white font-bold py-[6px] px-[20vw] border-[3px]  border-green-600 hover:border-green-700
+        <button class="text-white font-bold py-[1vh] px-[20vw] border-[3px]  border-green-600 hover:border-green-700
                     hover:bg-green-700 bg-green-600 duration-300 shadow-xl text-[2vh]" @click="submitScores">
           もう一度対戦する
         </button>  
@@ -193,7 +193,7 @@
     </div>
     <div v-else  class="flex justify-end">
       <router-link to="/">
-        <button class="border-[3px] border-green-600 text-green-600 font-bold py-[6px] px-[20vw]
+        <button class="border-[3px] border-green-600 text-green-600 font-bold py-[1vh] px-[20vw]
                    hover:bg-blue-500 hover:text-white duration-300 shadow-xl text-[2vh]" @click="submitScores">
           ゲームを終了する
         </button>

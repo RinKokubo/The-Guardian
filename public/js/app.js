@@ -24054,7 +24054,7 @@ var _hoisted_5 = {
   className: "flex flex-col items-center bg-[#E5E5E5] w-[100vw] h-[92vh]"
 };
 var _hoisted_6 = {
-  className: "flex flex-col items-center pt-[4vh] pb-[1vh]",
+  className: "flex flex-col items-center pt-[3vh] pb-[1vh]",
   id: "result"
 };
 var _hoisted_7 = ["src"];
@@ -24094,7 +24094,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         attacker_select_id: _ctx.$route.query.attacker_select_id
       }
     },
-    className: "bg-green-600 text-white font-bold py-[10px] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300"
+    className: "bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_14];
@@ -24190,7 +24190,7 @@ var _hoisted_11 = {
 };
 var _hoisted_12 = ["disabled"];
 var _hoisted_13 = {
-  "class": "border border-gray-300 bg-white p-4 rounded overflow-auto h-[45vh] w-[90vw] mb-4 text-[2vh]"
+  "class": "border border-gray-300 bg-white p-3 rounded overflow-auto h-[45vh] w-[90vw] mb-4 text-[2vh]"
 };
 var _hoisted_14 = {
   key: 0,
@@ -24235,7 +24235,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, " カードを決定する ", 10 /* CLASS, PROPS */, _hoisted_12)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.conversation, function (message) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: message.id,
-      "class": "mb-4"
+      "class": "mb-3"
     }, [message.role === 'assistant' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(message.content), 1 /* TEXT */)])) : message.role === 'user' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(message.content), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
   }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
@@ -24284,7 +24284,7 @@ var _hoisted_5 = {
   "class": "bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center"
 };
 var _hoisted_6 = {
-  "class": "text-[2vh] mx-[5vw] pt-[2vh]"
+  "class": "text-[2vh] mx-[5vw] pt-[1.5vh]"
 };
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("もしあなたが悪用カード");
 var _hoisted_8 = {
@@ -24482,7 +24482,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        "class": "text-white font-bold py-[6px] px-[20vw] border-[3px] border-green-600 hover:border-green-700 hover:bg-green-700 bg-green-600 duration-300 shadow-xl text-[2vh]",
+        "class": "text-white font-bold py-[1vh] px-[20vw] border-[3px] border-green-600 hover:border-green-700 hover:bg-green-700 bg-green-600 duration-300 shadow-xl text-[2vh]",
         onClick: _cache[5] || (_cache[5] = function () {
           return $options.submitScores && $options.submitScores.apply($options, arguments);
         })
@@ -24494,7 +24494,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        "class": "border-[3px] border-green-600 text-green-600 font-bold py-[6px] px-[20vw] hover:bg-blue-500 hover:text-white duration-300 shadow-xl text-[2vh]",
+        "class": "border-[3px] border-green-600 text-green-600 font-bold py-[1vh] px-[20vw] hover:bg-blue-500 hover:text-white duration-300 shadow-xl text-[2vh]",
         onClick: _cache[6] || (_cache[6] = function () {
           return $options.submitScores && $options.submitScores.apply($options, arguments);
         })
