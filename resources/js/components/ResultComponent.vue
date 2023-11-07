@@ -8,21 +8,19 @@
     </div>
   </div>
   <div className="flex flex-col items-center bg-[#E5E5E5] w-[100vw] h-[90vh]">
-    <div className="flex justify-between items-center" id="result">
-      <h1 className="desktop:text-[60px] sp:text-[26px] text-blue-600 mt-[100px] mb-[20px] desktop:text-left sp:text-center">
-        {{ result }}
-      </h1>
+    <div className="flex flex-col items-center py-[4vh]" id="result">
+      <img :src="`/img/${resultImage}.png`" alt="result" class="w-[40vw] h-[40vw]">
     </div>
-    <div className="flex desktop:flex-row sp:flex-col desktop:justify-between sp:justify-center gap-x-10 gap-y-5 mb-[20px]">
-      <p className="desktop:text-left sp:text-center text-[24px] desktop:w-[350px] sp:w-[100%]">あなたの得点:{{ 100 - score }}</p>
-      <p className="desktop:text-left sp:text-center text-[24px] desktop:w-[350px] sp:w-[100%]">相手の得点:{{ score }}</p>
+    <div className="flex flex-col justify-center gap-y-5">
+      <p className="text-left text-[3vh]">あなたの得点:  {{ 100 - score }}点</p>
+      <p className="text-left text-[3vh]">相手の得点:  {{ score }}点</p>
     </div>
-    <div className="flex flex-col items-center mx-[80px] my-[40px] border-red-600 border-[3px] rounded py-[20px] px-[15px]">
-      <p className="text-red-600 mb-[20px] font-bold text-[24px]">注意！</p>
-      <p className="text-[18px]">{{ notice }}</p>
+    <div className="flex flex-col items-center w-[95vw] border-red-600 border-[3px] rounded my-[3vh] py-[3vw] px-[3vw]">
+      <p className="text-red-600 mb-[20px] font-bold text-[3vh]">注意！</p>
+      <p className="text-[2vh]">{{ notice }}</p>
     </div>
-    <router-link :to="{ name: 'user-score', params: { userId: $route.params.user_id, gameId: $route.params.game_id }, query: { attacker_select_id: $route.query.attacker_select_id } }"
-      className="bg-blue-500 text-white font-bold py-[10px] px-[70px] shadow-md hover:bg-blue-600 duration-300">
+    <router-link :to="{ name: 'user-score', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { attacker_select_id: $route.query.attacker_select_id } }"
+      className="bg-blue-500 text-white font-bold py-[10px] px-[70px] text-[3vh] shadow-md hover:bg-blue-600 duration-300">
       配点を見る
     </router-link>
   </div>
@@ -38,7 +36,8 @@ export default {
       score: 0,
       result: '',
       notice: '',
-      username: ''
+      username: '',
+      resultImage: ''
     };
   },
   methods: {
@@ -82,11 +81,11 @@ export default {
     .then((response) => {
       this.score = response.data.score;
       if(this.score < 50){
-        this.result = 'あなたの勝利！';
+        this.resultImage = 'win';
       } else if(this.score === 50){
         this.result = '引き分け';
       } else {
-        this.result = 'あなたの負け...';
+        this.resultImage = 'lose';
       }
 
       this.sendGameResult(selectedCardsBoolean, this.score);
