@@ -10,6 +10,7 @@ use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\MatchInfoController;
 use App\Http\Controllers\CardSelectController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AttackerCardInfoController;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -32,6 +33,7 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'showUserName']);
 Route::post('/login-without-password', [AuthController::class, 'loginWithoutPassword']);
 Route::get('/game/{id}', [GameInformationController::class, 'show']);
+Route::get('/attacker-card-info/{card}', [AttackerCardInfoController::class, 'show']);
 Route::get('/getGame/{id}',  [GameInformationController::class, 'attackerShow']);
 Route::get('/score/{gameId}', [ScoreController::class, 'calculate']);
 Route::post('/game-result', [ScoreController::class, 'store']);

@@ -17,7 +17,7 @@
     </div>
     <div className="flex flex-col items-center w-[95vw] h-[45vh] border-red-600 border-[3px] rounded mt-[3vh] mb-[2vh] py-[3vw] px-[3vw] overflow-auto">
       <p className="text-red-600 mb-[20px] font-bold text-[3vh]">注意！</p>
-      <p className="text-[2vh]">{{ notice }}</p>
+      <p className="text-[2vh] text-center">{{ notice }}</p>
     </div>
     <router-link :to="{ name: 'user-score', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { attacker_select_id: $route.query.attacker_select_id } }"
       className="bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300">

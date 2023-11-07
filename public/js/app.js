@@ -22991,7 +22991,14 @@ __webpack_require__.r(__webpack_exports__);
       gameInformation: null,
       attackerCard1Name: null,
       attackerCard2Name: null,
-      attackerCard3Name: null
+      attackerCard3Name: null,
+      attacker_card1Info: '',
+      attacker_card2Info: '',
+      attacker_card3Info: '',
+      selectedCard: null,
+      showModal: false,
+      selectedInfo: '',
+      selectedName: ''
     };
   },
   created: function created() {
@@ -23001,33 +23008,61 @@ __webpack_require__.r(__webpack_exports__);
       _this.attackerCard1Name = _this.gameInformation.attacker_card1.attacker_card_name;
       _this.attackerCard2Name = _this.gameInformation.attacker_card2.attacker_card_name;
       _this.attackerCard3Name = _this.gameInformation.attacker_card3.attacker_card_name;
+      return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/attacker-card-info/".concat(_this.attackerCard1Name));
+    }).then(function (response) {
+      _this.attacker_card1Info = response.data.attacker_card_info;
+      return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/attacker-card-info/".concat(_this.attackerCard2Name));
+    }).then(function (response) {
+      _this.attacker_card2Info = response.data.attacker_card_info;
+      return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/attacker-card-info/".concat(_this.attackerCard3Name));
+    }).then(function (response) {
+      _this.attacker_card3Info = response.data.attacker_card_info;
     })["catch"](function (error) {
       console.error(error);
     });
   },
   methods: {
-    attackerSelectCard: function attackerSelectCard(selectedCard) {
+    openModal: function openModal(i) {
+      this.selectedInfo = this['attacker_card' + i + 'Info']; // カードの情報をセット
+      this.selectedName = this['attackerCard' + i + 'Name']; // カードの名前をセット
+      this.showModal = true;
+    },
+    closeModal: function closeModal() {
+      this.showModal = false;
+    },
+    toggleCardSelection: function toggleCardSelection(cardNumber) {
+      if (this.selectedCard === cardNumber) {
+        // すでに選択されているカードをもう一度クリックした場合、選択を解除
+        this.selectedCard = null;
+      } else {
+        // 新しいカードをクリックした場合、選択を更新
+        this.selectedCard = cardNumber;
+      }
+    },
+    confirmSelection: function confirmSelection() {
       var _this2 = this;
-      var userId = this.$route.params.user_id;
-      var gameId = this.$route.params.game_id;
-      var opponentId = this.$route.query.opponent_id;
-      var cardName = this[selectedCard + 'Name'];
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/attacker-select-card', {
-        userId: userId,
-        cardName: cardName,
-        opponentId: opponentId
-      }).then(function (response) {
-        console.log('カード情報を送信しました');
-        _this2.$router.push({
-          path: "/attacker-standby/".concat(userId, "/").concat(gameId),
-          query: {
-            opponent_id: opponentId,
-            attacker_select: cardName
-          }
+      if (this.selectedCard) {
+        var userId = this.$route.params.user_id;
+        var gameId = this.$route.params.game_id;
+        var opponentId = this.$route.query.opponent_id;
+        var cardName = this['attackerCard' + this.selectedCard + 'Name'];
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/attacker-select-card', {
+          userId: userId,
+          cardName: cardName,
+          opponentId: opponentId
+        }).then(function (response) {
+          console.log('カード情報を送信しました');
+          _this2.$router.push({
+            path: "/attacker-standby/".concat(userId, "/").concat(gameId),
+            query: {
+              opponent_id: opponentId,
+              attacker_select: cardName
+            }
+          });
+        })["catch"](function (error) {
+          console.error('エラーが発生しました', error);
         });
-      })["catch"](function (error) {
-        console.error('エラーが発生しました', error);
-      });
+      }
     }
   }
 });
@@ -23707,52 +23742,75 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   className: "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
 }, "悪用カード選択")], -1 /* HOISTED */);
 var _hoisted_5 = {
-  "class": "bg-[#E5E5E5] w-[100vw] h-[92vh]"
+  "class": "bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center"
 };
 var _hoisted_6 = {
-  className: "flex flex-col justify-center items-center gap-y-[4vh] py-[6vh]"
+  "class": "flex flex-col justify-center items-center gap-y-[4vh] py-[6vh]"
 };
-var _hoisted_7 = ["src"];
-var _hoisted_8 = {
-  className: "text-[3vh] font-bold pl-[5vw]"
+var _hoisted_7 = ["onClick"];
+var _hoisted_8 = ["src"];
+var _hoisted_9 = {
+  "class": "text-[3vh] font-bold pl-[5vw]"
 };
-var _hoisted_9 = ["src"];
-var _hoisted_10 = {
-  className: "text-[3vh] font-bold pl-[5vw]"
-};
-var _hoisted_11 = ["src"];
+var _hoisted_10 = ["onClick"];
+var _hoisted_11 = ["disabled"];
 var _hoisted_12 = {
-  className: "text-[3vh] font-bold pl-[5vw]"
+  "class": "mt-[2vh] text-center"
+};
+var _hoisted_13 = {
+  "class": "text-[3vh] leading-6 font-medium text-gray-900 mb-[1vh]"
+};
+var _hoisted_14 = {
+  "class": "mt-2 px-7 py-[2vh]"
+};
+var _hoisted_15 = {
+  "class": "text-[2.5vh] text-gray-500"
+};
+var _hoisted_16 = {
+  "class": "items-center px-4 py-3"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    className: "w-[90vw] h-[20vh] bg-red-300 hover:border-[5px] justify-start items-center px-[3vw]\n        hover:border-red-400 duration-500 shadow-2xl flex",
-    onClick: _cache[0] || (_cache[0] = function ($event) {
-      return $options.attackerSelectCard('card1');
+  var _this = this;
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(3, function (i) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      key: i,
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(['w-[90vw] h-[20vh] bg-red-300 justify-start items-center px-[3vw] flex shadow-2xl relative', $data.selectedCard === i ? 'border-[5px] border-red-400' : '', 'hover:border-[5px] hover:border-red-400 duration-500']),
+      onClick: function onClick($event) {
+        return $options.toggleCardSelection(i);
+      }
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      src: "/img/".concat(_this['attackerCard' + i + 'Name'], ".png"),
+      alt: "attacker_card",
+      "class": "w-[16vh] h-[16vh]"
+    }, null, 8 /* PROPS */, _hoisted_8), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_this['attackerCard' + i + 'Name']), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      type: "button",
+      "class": "text-white font-bold text-[3vh] w-[3.5vh] h-[3.5vh] border-[4px] border-white rounded-full flex justify-center items-center absolute top-[1vh] right-[1vh] bg-red-500",
+      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+        return $options.openModal(i);
+      }, ["stop"])
+    }, "i", 8 /* PROPS */, _hoisted_10)], 10 /* CLASS, PROPS */, _hoisted_7);
+  }), 64 /* STABLE_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    disabled: !$data.selectedCard,
+    "class": "px-[20vw] py-2 bg-red-500 text-white rounded text-[3vh]",
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.confirmSelection && $options.confirmSelection.apply($options, arguments);
     })
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "/img/".concat($data.attackerCard1Name, ".png"),
-    alt: "attacker_card",
-    "class": "w-[16vh] h-[16vh]"
-  }, null, 8 /* PROPS */, _hoisted_7), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.attackerCard1Name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    className: "w-[90vw] h-[20vh] bg-red-300 hover:border-[5px] justify-start items-center px-[3vw]\n        hover:border-red-400 duration-500 shadow-2xl flex",
-    onClick: _cache[1] || (_cache[1] = function ($event) {
-      return $options.attackerSelectCard('card2');
+  }, "決定", 8 /* PROPS */, _hoisted_11), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" モーダル "), $data.showModal ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+    key: 0,
+    "class": "fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center",
+    onClick: _cache[3] || (_cache[3] = function () {
+      return $options.closeModal && $options.closeModal.apply($options, arguments);
     })
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "/img/".concat($data.attackerCard2Name, ".png"),
-    alt: "attacker_card",
-    "class": "w-[16vh] h-[16vh]"
-  }, null, 8 /* PROPS */, _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.attackerCard2Name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    className: "w-[90vw] h-[20vh] bg-red-300 hover:border-[5px] justify-start items-center px-[3vw]\n        hover:border-red-400 duration-500 shadow-2xl flex",
-    onClick: _cache[2] || (_cache[2] = function ($event) {
-      return $options.attackerSelectCard('card3');
-    })
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "/img/".concat($data.attackerCard3Name, ".png"),
-    alt: "attacker_card",
-    "class": "w-[16vh] h-[16vh]"
-  }, null, 8 /* PROPS */, _hoisted_11), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.attackerCard3Name), 1 /* TEXT */)])])])], 64 /* STABLE_FRAGMENT */);
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "relative mx-auto p-5 border w-[85vw] shadow-lg rounded-md bg-white",
+    onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {}, ["stop"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.selectedName), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.selectedInfo), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    id: "ok-btn",
+    onClick: _cache[1] || (_cache[1] = function () {
+      return $options.closeModal && $options.closeModal.apply($options, arguments);
+    }),
+    "class": "px-4 py-2 bg-red-500 text-white text-[3vh] font-medium rounded-md w-full shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+  }, "閉じる")])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -24074,7 +24132,7 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   className: "text-red-600 mb-[20px] font-bold text-[3vh]"
 }, "注意！", -1 /* HOISTED */);
 var _hoisted_13 = {
-  className: "text-[2vh]"
+  className: "text-[2vh] text-center"
 };
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 配点を見る ");
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -24473,7 +24531,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "card5Score"
   }, _hoisted_161, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card5Score]]), _hoisted_162])])])]), parseInt(_ctx.$route.params.game_id) < 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_163, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
-      name: 'defender-select-dialogue',
+      name: 'introduction',
       params: {
         user_id: _ctx.$route.params.userId,
         game_id: parseInt(_ctx.$route.params.game_id) + 1

@@ -7,7 +7,7 @@
       <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報保護ゲーム</h1>
     </div>
   </div>
-  <div class="w-[100vw] h-[92vh] bg-[#E5E5E5] py-[4vh] px-[5vw] text-[2vh]">
+  <div class="w-[100vw] h-[92vh] bg-[#E5E5E5] py-[4vh] px-[5vw] text-[2.5vh]">
     <p>このゲームは、1対1で行うロールプレイングカードゲーム。今回のあなたの対戦相手は
       <span v-if="opponentId === 31">チャットボット</span>
       <span v-else>{{ this.opponentName }}</span>。

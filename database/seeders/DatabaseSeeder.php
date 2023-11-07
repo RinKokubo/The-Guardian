@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AttackerCardInfo;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CardInformationSeeder::class);
         $this->call(NoticeSeeder::class);
         $this->call(MatchInfoSeeder::class);
+        $this->call(AttackerCardsInfoTableSeeder::class);
     }
 }
