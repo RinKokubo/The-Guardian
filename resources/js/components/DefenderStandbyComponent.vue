@@ -9,10 +9,8 @@
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh]">
     <div class="flex justify-center my-[30px]">
+      相手がカードを選択中です
     </div>
-    <!--<div v-if="selectedCard">
-      <p>カード「{{ selectedCard }}」が選択されました</p>
-    </div>-->
   </div>
 </template>
 
@@ -27,7 +25,7 @@
     mounted() {
       console.log(`Connecting to channel: user.${this.userId}`);
       Echo.private(`user.${this.userId}`)
-        .listen('.card.selected', (event) => {
+        .listen('.attackerCardSelected', (event) => {
           console.log('カードが選択されました:', event.card);
           this.selectedCard = event.card;
         });

@@ -39,5 +39,4 @@ if (token) {
     wsHost: window.location.hostname,
     wsPort: 6001, // Laravel Websockets のデフォルトポート
     disableStats: true,
-    csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
  });

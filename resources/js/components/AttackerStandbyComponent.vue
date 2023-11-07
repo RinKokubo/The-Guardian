@@ -42,7 +42,6 @@
           response.data.defender_card5,
         ];
         this.startCountdown();
-        this.startConversation();
       } catch (error) {
         console.error('Error fetching game information:', error);
       }

@@ -23167,7 +23167,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
     console.log("Connecting to channel: user.".concat(this.userId));
-    Echo["private"]("user.".concat(this.userId)).listen('.card.selected', function (event) {
+    Echo["private"]("user.".concat(this.userId)).listen('.attackerCardSelected', function (event) {
       console.log('カードが選択されました:', event.card);
       _this.selectedCard = event.card;
     });
@@ -23903,7 +23903,7 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "class": "bg-[#E5E5E5] w-[100vw] h-[92vh]"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex justify-center my-[30px]"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<div v-if=\"selectedCard\">\n      <p>カード「{{ selectedCard }}」が選択されました</p>\n    </div>")], -1 /* HOISTED */);
+}, " 相手がカードを選択中です ")], -1 /* HOISTED */);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), _hoisted_4]), _hoisted_5], 64 /* STABLE_FRAGMENT */);
@@ -24724,8 +24724,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   wsHost: window.location.hostname,
   wsPort: 6001,
   // Laravel Websockets のデフォルトポート
-  disableStats: true,
-  csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+  disableStats: true
 });
 
 /***/ }),
