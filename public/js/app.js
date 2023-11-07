@@ -23053,7 +23053,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       defenderCards: [],
-      selectedCards: []
+      selectedCards: [],
+      countdownTime: 5 * 60,
+      // countdownTime in seconds (5 minutes)
+      timeLeft: '05:00' // Displayed countdown timer
     };
   },
   created: function created() {
@@ -23070,18 +23073,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           case 4:
             response = _context.sent;
             _this.defenderCards = [response.data.defender_card1, response.data.defender_card2, response.data.defender_card3, response.data.defender_card4, response.data.defender_card5];
-            _context.next = 11;
+            _this.startCountdown();
+            _this.startConversation();
+            _context.next = 13;
             break;
-          case 8:
-            _context.prev = 8;
+          case 10:
+            _context.prev = 10;
             _context.t0 = _context["catch"](0);
             console.error('Error fetching game information:', _context.t0);
-          case 11:
+          case 13:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 8]]);
+      }, _callee, null, [[0, 10]]);
     }))();
+  },
+  methods: {
+    startCountdown: function startCountdown() {
+      var _this2 = this;
+      var timerInterval = setInterval(function () {
+        if (_this2.countdownTime === 0) {
+          clearInterval(timerInterval);
+          // You may want to do something here when countdown reaches 0
+        } else {
+          _this2.countdownTime--;
+          _this2.formatTimeLeft();
+        }
+      }, 1000);
+    },
+    formatTimeLeft: function formatTimeLeft() {
+      var minutes = Math.floor(this.countdownTime / 60);
+      var seconds = this.countdownTime % 60;
+      this.timeLeft = "".concat(minutes.toString().padStart(2, '0'), ":").concat(seconds.toString().padStart(2, '0'));
+    }
   }
 });
 
@@ -23432,9 +23456,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       gameId: '',
       selectedCards: [],
       attacker_select_id: null,
-      countdownTime: 7 * 60,
+      countdownTime: 5 * 60,
       // countdownTime in seconds (5 minutes)
-      timeLeft: '07:00',
+      timeLeft: '05:00',
       // Displayed countdown timer
       showSubmit: false
     };
@@ -23764,24 +23788,27 @@ var _hoisted_5 = {
   "class": "bg-[#E5E5E5] w-[100vw] h-[92vh]"
 };
 var _hoisted_6 = {
-  "class": "flex flex-col gap-x-5 justify-center items-center gap-y-[2vh] py-[3vh]"
+  className: "font-bold flex items-center justify-center text-[3vh] py-[2vh] text-red-500"
 };
 var _hoisted_7 = {
-  "class": "w-[90vw] h-[15vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex"
+  "class": "flex flex-col gap-x-5 justify-center items-center gap-y-[2vh] pb-[3vh]"
 };
-var _hoisted_8 = ["src"];
-var _hoisted_9 = {
+var _hoisted_8 = {
+  "class": "w-[90vw] h-[14vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex"
+};
+var _hoisted_9 = ["src"];
+var _hoisted_10 = {
   className: "text-[3vh] font-bold pl-[3vw]"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.defenderCards, function (card) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, "残り時間 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.timeLeft), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_7, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.defenderCards, function (card) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: card.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: "/img/".concat(card.defender_card_name, ".png"),
       alt: "defender_card",
-      "class": "w-[14vh] h-[14vh]"
-    }, null, 8 /* PROPS */, _hoisted_8), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(card.defender_card_name), 1 /* TEXT */)])]);
+      "class": "w-[12vh] h-[12vh]"
+    }, null, 8 /* PROPS */, _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(card.defender_card_name), 1 /* TEXT */)])]);
   }), 128 /* KEYED_FRAGMENT */))])])], 64 /* STABLE_FRAGMENT */);
 }
 
@@ -23926,11 +23953,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-[85vw] flex justify-center items-center", $data.bgClass])
   }, _hoisted_5, 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_7, $data.opponentId === 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_8, "チャットボット")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName), 1 /* TEXT */)), _hoisted_10, $data.userRole === 'defender' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
     key: 2,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-white font-bold", $data.bgClass])
-  }, "個人情報提供サイド", 2 /* CLASS */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-white font-bold px-[2vw]", $data.bgClass])
+  }, " 個人情報提供サイド", 2 /* CLASS */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
     key: 3,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-white font-bold", $data.bgClass])
-  }, "個人情報悪用サイド", 2 /* CLASS */)), _hoisted_11]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [$data.userRole === 'defender' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_12, [$data.opponentId === 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_13, "チャットボット")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName), 1 /* TEXT */)), _hoisted_15])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_16, " あなたは、悪用手口を1つ選び、その手口を成立させるために重要そうな" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName) + "の個人情報カードを狙う！ " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName) + "には手口を悟られないように、それぞれの個人情報カードに対する考えをチャットしよう。対戦相手は、あなたに知られてもいいと思うカードを、最終的に５枚中３枚公開する。公開されたカードがあなたの得点だ！ ", 1 /* TEXT */))]), $data.opponentId === 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-white font-bold px-[2vw]", $data.bgClass])
+  }, " 個人情報悪用サイド ", 2 /* CLASS */)), _hoisted_11]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [$data.userRole === 'defender' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_12, [$data.opponentId === 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_13, "チャットボット")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName), 1 /* TEXT */)), _hoisted_15])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_16, " あなたは、悪用手口を1つ選び、その手口を成立させるために重要そうな" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName) + "の個人情報カードを狙う！ " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName) + "には手口を悟られないように、それぞれの個人情報カードに対する考えをチャットしよう。対戦相手は、あなたに知られてもいいと思うカードを、最終的に５枚中３枚公開する。公開されたカードがあなたの得点だ！ ", 1 /* TEXT */))]), $data.opponentId === 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'defender-select-dialogue',
       params: {
@@ -24132,7 +24159,7 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   className: "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
 }, "個人情報カード選択")], -1 /* HOISTED */);
 var _hoisted_5 = {
-  "class": "bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center"
+  "class": "bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center pt-[1vh]"
 };
 var _hoisted_6 = {
   "class": "flex flex-wrap gap-x-[1vh] justify-center items-center gap-y-[1vh] py-[1vh]"
@@ -24143,14 +24170,14 @@ var _hoisted_9 = {
   className: "text-[2vh] font-bold pl-[1vw]"
 };
 var _hoisted_10 = {
-  className: "flex w-[100%]"
+  className: "flex w-[100%] justify-center items-center text-[2vh]"
 };
 var _hoisted_11 = {
-  className: "text-blue-600 font-bold flex items-center justify-center text-[16px] mr-[50px]"
+  className: "text-blue-600 font-bold flex items-center justify-center mr-[10vw]"
 };
 var _hoisted_12 = ["disabled"];
 var _hoisted_13 = {
-  "class": "border border-gray-300 bg-white p-4 rounded overflow-auto h-64 mb-4"
+  "class": "border border-gray-300 bg-white p-4 rounded overflow-auto h-[45vh] w-[90vw] mb-4 text-[2vh]"
 };
 var _hoisted_14 = {
   key: 0,
@@ -24184,7 +24211,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       alt: "defender_card",
       "class": "w-[8vh] h-[8vh]"
     }, null, 8 /* PROPS */, _hoisted_8), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(card.defender_card_name), 1 /* TEXT */)], 8 /* PROPS */, _hoisted_7)], 2 /* CLASS */);
-  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_11, "Remaining time for dialogue : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.timeLeft), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_11, "残り時間 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.timeLeft), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     disabled: $data.selectedCards.length !== 3,
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.confirmSelection && $options.confirmSelection.apply($options, arguments);
@@ -24192,7 +24219,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-white font-bold py-[6px] px-[10px] my-[30px] mr-[10px] border-[3px] border-blue-500 hover:border-blue-600 hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded", {
       'opacity-50 cursor-not-allowed': $data.selectedCards.length !== 3
     }])
-  }, " Select cards ", 10 /* CLASS, PROPS */, _hoisted_12)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.conversation, function (message) {
+  }, " カードを決定する ", 10 /* CLASS, PROPS */, _hoisted_12)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.conversation, function (message) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: message.id,
       "class": "mb-4"
@@ -24201,13 +24228,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.sendMessage && $options.sendMessage.apply($options, arguments);
     }, ["prevent"])),
-    "class": "flex w-[100%]"
+    "class": "flex w-[90vw] text-[2vh]"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.userInput = $event;
     }),
     placeholder: "Type your message...",
-    "class": "flex-grow p-2 border border-gray-300 rounded mr-2"
+    "class": "flex-grow p-2 border border-gray-300 rounded mr-2 pl-4"
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.userInput]]), _hoisted_18], 32 /* HYDRATE_EVENTS */)])], 64 /* STABLE_FRAGMENT */);
 }
 

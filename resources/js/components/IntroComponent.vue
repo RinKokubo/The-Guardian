@@ -12,8 +12,8 @@
       <span v-if="opponentId === 31">チャットボット</span>
       <span v-else>{{ this.opponentName }}</span>。
       あなたの役割は
-      <span v-if="userRole === 'defender'" class="text-white font-bold" :class="bgClass">個人情報提供サイド</span>
-      <span v-else class="text-white font-bold" :class="bgClass">個人情報悪用サイド</span>
+      <span v-if="userRole === 'defender'" class="text-white font-bold px-[2vw]" :class="bgClass"> 個人情報提供サイド</span>
+      <span v-else class="text-white font-bold px-[2vw]" :class="bgClass"> 個人情報悪用サイド</span>
       だ。
     </p>
     <p>

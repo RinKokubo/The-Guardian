@@ -7,7 +7,7 @@
       <h1 className="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報カード選択</h1>
     </div>
   </div>
-  <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center">
+  <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center pt-[1vh]">
     <ul class="flex flex-wrap gap-x-[1vh] justify-center items-center gap-y-[1vh] py-[1vh]">
       <li v-for="(card, index) in defenderCards" :key="card.id" :class="{ 'bg-blue-100': selectedCards.includes(index + 1) }">
         <button @click="selectCard(index + 1)" class="w-[46vw] h-[10vh] bg-blue-300 justify-start items-center px-[2vw] duration-500 shadow-2xl flex">
@@ -16,18 +16,18 @@
         </button>
       </li>
     </ul>
-    <div className="flex w-[100%]">
-      <p className="text-blue-600 font-bold flex items-center justify-center text-[16px] mr-[50px]">Remaining time for dialogue : {{ timeLeft }}</p>
+    <div className="flex w-[100%] justify-center items-center text-[2vh]">
+      <p className="text-blue-600 font-bold flex items-center justify-center mr-[10vw]">残り時間 : {{ timeLeft }}</p>
       <button 
         :disabled="selectedCards.length !== 3" 
         @click="confirmSelection" 
         class="text-white font-bold py-[6px] px-[10px] my-[30px] mr-[10px] border-[3px]  border-blue-500 hover:border-blue-600
         hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded"
         :class="{ 'opacity-50 cursor-not-allowed': selectedCards.length !== 3 }">
-        Select cards
+        カードを決定する
       </button>
     </div>
-    <div class="border border-gray-300 bg-white p-4 rounded overflow-auto h-64 mb-4">
+    <div class="border border-gray-300 bg-white p-4 rounded overflow-auto h-[45vh] w-[90vw] mb-4 text-[2vh]">
       <div v-for="message in conversation" :key="message.id" class="mb-4">
         <div v-if="message.role === 'assistant'" class="text-blue-500 font-bold">
           <span>ChatGPT:</span> {{ message.content }}
@@ -37,8 +37,8 @@
         </div>
       </div>
     </div>
-    <form @submit.prevent="sendMessage" class="flex w-[100%]">
-      <input v-model="userInput" placeholder="Type your message..." class="flex-grow p-2 border border-gray-300 rounded mr-2"/>
+    <form @submit.prevent="sendMessage" class="flex w-[90vw] text-[2vh]">
+      <input v-model="userInput" placeholder="Type your message..." class="flex-grow p-2 border border-gray-300 rounded mr-2 pl-4"/>
       <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">送信</button>
     </form>
   </div>
@@ -59,8 +59,8 @@ export default {
       gameId: '',
       selectedCards: [],
       attacker_select_id: null,
-      countdownTime: 7 * 60, // countdownTime in seconds (5 minutes)
-      timeLeft: '07:00', // Displayed countdown timer
+      countdownTime: 5 * 60, // countdownTime in seconds (5 minutes)
+      timeLeft: '05:00', // Displayed countdown timer
       showSubmit: false
     };
   },
