@@ -13,21 +13,18 @@ use Illuminate\Queue\SerializesModels;
 class MessageSent implements ShouldBroadcast
 {
     public $message;
-    public $sender_id;
-    public $receiver_id;
+    public $sender;
+    public $receiver;
 
-    public function __construct($sender_id, $receiver_id, $message)
+    public function __construct($sender, $receiver, $message)
     {
-        $this->sender_id = $sender_id;
-        $this->receiver_id = $receiver_id;
+        $this->sender = $sender;
+        $this->receiver = $receiver;
         $this->message = $message;
     }
 
     public function broadcastOn()
     {
-        return [
-            new PrivateChannel('game.' . $this->message->game_id . '.user.' . $this->sender_id),
-            new PrivateChannel('game.' . $this->message->game_id . '.user.' . $this->receiver_id)
-        ];
+        return new PrivateChannel('user.' . $this->receiver);
     }
 }

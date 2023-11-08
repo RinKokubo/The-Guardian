@@ -23204,18 +23204,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             response = _context.sent;
             _this.defenderCards = [response.data.defender_card1, response.data.defender_card2, response.data.defender_card3, response.data.defender_card4, response.data.defender_card5];
             _this.startCountdown();
+            _this.listenForMessages();
             _this.attacker_select_id = Math.floor(Math.random() * 3) + 1;
-            _context.next = 18;
+            _context.next = 19;
             break;
-          case 15:
-            _context.prev = 15;
+          case 16:
+            _context.prev = 16;
             _context.t0 = _context["catch"](0);
             console.error('Error fetching game information:', _context.t0);
-          case 18:
+          case 19:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 15]]);
+      }, _callee, null, [[0, 16]]);
     }))();
   },
   methods: {
@@ -23244,24 +23245,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var opponentId = this.$route.query.opponent_id;
       var userId = this.userId;
 
-      // Listen to the user's own channel
-      window.Echo["private"]('game.' + this.gameId + '.user.' + userId).listen('.MessageSent', function (e) {
-        if (e.message.sender_id === opponentId) {
+      // Listen to the user's private channel
+      window.Echo["private"]('user.' + userId).listen('.MessageSent', function (e) {
+        if (e.message.sender === opponentId) {
           _this2.conversation.push({
             id: e.message.id,
-            content: e.message.content,
-            role: 'assistant' // Assuming 'assistant' means the opponent
+            content: e.message.message_content,
+            role: 'assistant'
           });
         }
       });
 
-      // Listen to the opponent's channel
-      window.Echo["private"]('game.' + this.gameId + '.user.' + opponentId).listen('.MessageSent', function (e) {
-        if (e.message.sender_id === userId) {
+      // Listen to the opponent's private channel
+      window.Echo["private"]('user.' + opponentId).listen('.MessageSent', function (e) {
+        if (e.message.sender === userId) {
           _this2.conversation.push({
             id: e.message.id,
-            content: e.message.content,
-            role: 'user' // Assuming 'user' means the current user
+            content: e.message.message_content,
+            role: 'user'
           });
         }
       });
@@ -23269,15 +23270,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     sendMessage: function sendMessage() {
       var _this3 = this;
       var opponentId = this.$route.query.opponent_id;
-
-      // Axios post to Laravel backend to send message
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/messages', {
-        message: this.userInput,
+        message_content: this.userInput,
         gameId: this.gameId,
-        receiver_id: opponentId,
-        sender_id: this.userId
+        receiver: opponentId,
+        sender: this.userId,
+        username: this.username
       }).then(function (response) {
+        _this3.conversation.push({
+          id: response.data.id,
+          content: response.data.message_content,
+          sender: _this3.userId,
+          receiver: opponentId
+        });
         _this3.userInput = ''; // Clear the input after sending
+      })["catch"](function (error) {
+        console.error(error.response.data);
       });
     },
     startCountdown: function startCountdown() {
@@ -23566,22 +23574,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 0:
               attackerScore = 100 - calculatedScore;
               _context.prev = 1;
-              console.log('User ID:', _this.$route.params.user_id);
-              _context.next = 5;
+              _context.next = 4;
               return axios__WEBPACK_IMPORTED_MODULE_0___default().get("http://localhost:8000/api/users/".concat(_this.$route.params.user_id));
-            case 5:
+            case 4:
               userResponse = _context.sent;
               _this.username = userResponse.data.username;
-              console.log('User response:', userResponse.data);
-              console.log('Username:', _this.username);
-              console.log('Opponent ID:', _this.$route.query.opponent_id);
-              _context.next = 12;
+              _context.next = 8;
               return axios__WEBPACK_IMPORTED_MODULE_0___default().get("http://localhost:8000/api/users/".concat(_this.$route.query.opponent_id));
-            case 12:
+            case 8:
               opponentResponse = _context.sent;
               _this.attackername = opponentResponse.data.username;
-              console.log('User response:', opponentResponse.data);
-              console.log('Attackername:', _this.attackername);
               if (_this.$route.query.role == 'defender') {
                 axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/game-result', {
                   attacker_name: _this.attackername,
@@ -23597,17 +23599,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   defender_score: calculatedScore
                 });
               }
-              _context.next = 22;
+              _context.next = 16;
               break;
-            case 19:
-              _context.prev = 19;
+            case 13:
+              _context.prev = 13;
               _context.t0 = _context["catch"](1);
               console.error(_context.t0);
-            case 22:
+            case 16:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[1, 19]]);
+        }, _callee, null, [[1, 13]]);
       }))();
     }
   },
@@ -23640,6 +23642,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this2.win_count += 1;
       } else if (_this2.score === 50) {
         _this2.result = '引き分け';
+        _this2.resultImage = 'draw';
       } else {
         _this2.resultImage = 'lose';
       }
@@ -24210,14 +24213,14 @@ var _hoisted_13 = {
 };
 var _hoisted_14 = {
   key: 0,
-  "class": "text-blue-500 font-bold"
-};
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "対戦相手:", -1 /* HOISTED */);
-var _hoisted_16 = {
-  key: 1,
   "class": "text-green-500 font-bold"
 };
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "あなた:", -1 /* HOISTED */);
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "あなた:", -1 /* HOISTED */);
+var _hoisted_16 = {
+  key: 1,
+  "class": "text-blue-500 font-bold"
+};
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "対戦相手:", -1 /* HOISTED */);
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "px-4 py-2 bg-blue-500 text-white rounded"
@@ -24252,7 +24255,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: message.id,
       "class": "mb-3"
-    }, [message.role === 'assistant' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(message.content), 1 /* TEXT */)])) : message.role === 'user' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(message.content), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+    }, [message.sender === $data.userId ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(message.content), 1 /* TEXT */)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(message.content), 1 /* TEXT */)]))]);
   }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.sendMessage && $options.sendMessage.apply($options, arguments);

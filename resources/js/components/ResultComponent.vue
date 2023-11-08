@@ -50,17 +50,11 @@ export default {
       const attackerScore = 100 - calculatedScore;
 
       try {
-        console.log('User ID:', this.$route.params.user_id);
         const userResponse = await axios.get(`http://localhost:8000/api/users/${this.$route.params.user_id}`);
         this.username = userResponse.data.username;
-        console.log('User response:', userResponse.data);
-        console.log('Username:', this.username);
 
-        console.log('Opponent ID:', this.$route.query.opponent_id);
         const opponentResponse = await axios.get(`http://localhost:8000/api/users/${this.$route.query.opponent_id}`);
         this.attackername = opponentResponse.data.username;
-        console.log('User response:', opponentResponse.data);
-        console.log('Attackername:', this.attackername);
       
         if(this.$route.query.role == 'defender') {
           axios.post('/api/game-result', {
@@ -105,6 +99,7 @@ export default {
         this.win_count += 1;
       } else if(this.score === 50){
         this.result = '引き分け';
+        this.resultImage = 'draw';
       } else {
         this.resultImage = 'lose';
       }

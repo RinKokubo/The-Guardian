@@ -29,11 +29,11 @@
     </div>
     <div class="border border-gray-300 bg-white p-3 rounded overflow-auto h-[45vh] w-[90vw] mb-4 text-[2vh]">
       <div v-for="message in conversation" :key="message.id" class="mb-3">
-        <div v-if="message.role === 'assistant'" class="text-blue-500 font-bold">
-          <span>対戦相手:</span> {{ message.content }}
-        </div>
-        <div v-else-if="message.role === 'user'" class="text-green-500 font-bold">
+        <div v-if="message.sender === userId" class="text-green-500 font-bold">
           <span>あなた:</span> {{ message.content }}
+        </div>
+        <div v-else class="text-blue-500 font-bold">
+          <span>対戦相手:</span> {{ message.content }}
         </div>
       </div>
     </div>
@@ -81,6 +81,7 @@ export default {
         response.data.defender_card5,
       ];
       this.startCountdown();
+      this.listenForMessages();
       this.attacker_select_id = Math.floor(Math.random() * 3) + 1;
     } catch (error) {
       console.error('Error fetching game information:', error);
@@ -109,26 +110,26 @@ export default {
       const opponentId = this.$route.query.opponent_id;
       const userId = this.userId;
 
-      // Listen to the user's own channel
-      window.Echo.private('game.' + this.gameId + '.user.' + userId)
+      // Listen to the user's private channel
+      window.Echo.private('user.' + userId)
         .listen('.MessageSent', (e) => {
-          if (e.message.sender_id === opponentId) {
+          if (e.message.sender === opponentId) {
             this.conversation.push({
               id: e.message.id,
-              content: e.message.content,
-              role: 'assistant' // Assuming 'assistant' means the opponent
+              content: e.message.message_content,
+              role: 'assistant'
             });
           }
         });
 
-      // Listen to the opponent's channel
-      window.Echo.private('game.' + this.gameId + '.user.' + opponentId)
+      // Listen to the opponent's private channel
+      window.Echo.private('user.' + opponentId)
         .listen('.MessageSent', (e) => {
-          if (e.message.sender_id === userId) {
+          if (e.message.sender === userId) {
             this.conversation.push({
               id: e.message.id,
-              content: e.message.content,
-              role: 'user' // Assuming 'user' means the current user
+              content: e.message.message_content,
+              role: 'user'
             });
           }
         });
@@ -136,14 +137,22 @@ export default {
     sendMessage() {
       const opponentId = this.$route.query.opponent_id;
 
-      // Axios post to Laravel backend to send message
       axios.post('/api/messages', {
-        message: this.userInput,
+        message_content: this.userInput,
         gameId: this.gameId,
-        receiver_id: opponentId,
-        sender_id: this.userId
+        receiver: opponentId,
+        sender: this.userId,
+        username: this.username
       }).then(response => {
+        this.conversation.push({
+          id: response.data.id,
+          content: response.data.message_content,
+          sender: this.userId,
+          receiver: opponentId
+        });
         this.userInput = ''; // Clear the input after sending
+      }).catch(error => {
+        console.error(error.response.data);
       });
     },
     startCountdown() {
