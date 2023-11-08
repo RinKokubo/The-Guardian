@@ -36,7 +36,7 @@ export default defineComponent({
         console.log('Trying to login with user ID:', user.id);
         const response = await axios.post('/api/login-without-password', { user_id: user.id });
         console.log(response.data); // ここでログイン状態を確認
-        this.$router.push({ name: 'introduction', params: { user_id: user.id, game_id: 1 } });
+        this.$router.push({ name: 'introduction', params: { user_id: user.id, game_id: 1 },  query: { win_count: 0 } });
       } catch (error) {
         console.error('Login failed:', error.response ? error.response.data : error);
       }

@@ -19,7 +19,7 @@
       <p className="text-red-600 mb-[20px] font-bold text-[3vh]">注意！</p>
       <p className="text-[2vh] text-center">{{ notice }}</p>
     </div>
-    <router-link :to="{ name: 'user-score', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { attacker_select_id: $route.query.attacker_select_id } }"
+    <router-link :to="{ name: 'user-score', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { attacker_select_id: $route.query.attacker_select_id, win_count: win_count } }"
       className="bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300">
       配点を見る
     </router-link>
@@ -37,7 +37,8 @@ export default {
       result: '',
       notice: '',
       username: '',
-      resultImage: ''
+      resultImage: '',
+      win_count: this.$route.query.win_count
     };
   },
   methods: {
@@ -82,6 +83,7 @@ export default {
       this.score = response.data.score;
       if(this.score < 50){
         this.resultImage = 'win';
+        this.win_count += 1;
       } else if(this.score === 50){
         this.result = '引き分け';
       } else {

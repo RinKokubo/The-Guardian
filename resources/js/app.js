@@ -20,6 +20,7 @@ import AttackerSelect from './components/AttackerSelectComponent';
 import DefenderStandby from './components/DefenderStandbyComponent';
 import AttackerStandby from './components/AttackerStandbyComponent';
 import DefenderSelect from './components/DefenderSelectComponent';
+import DefenderChat from './components/DefenderChatComponent';
 
  window.Vue = require('vue').default;
 
@@ -63,6 +64,10 @@ const routes = [
   {
     path: '/defender-select/:user_id/:game_id',
     component: DefenderSelect, name: 'defender-select'
+  },
+  {
+    path: '/defender-select-chat/:user_id/:game_id',
+    component: DefenderChat, name: 'defender-select-chat'
   },
   {
     path: '/defender-select-dialogue/:user_id/:game_id',

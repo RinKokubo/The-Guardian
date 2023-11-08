@@ -11,6 +11,7 @@ use App\Http\Controllers\MatchInfoController;
 use App\Http\Controllers\CardSelectController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AttackerCardInfoController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -38,6 +39,8 @@ Route::get('/getGame/{id}',  [GameInformationController::class, 'attackerShow'])
 Route::get('/score/{gameId}', [ScoreController::class, 'calculate']);
 Route::post('/game-result', [ScoreController::class, 'store']);
 Route::get('getScore/{gameId}', [ScoreController::class, 'getScore']);
+
+Route::post('/messages', [MessageController::class, 'store']);
 
 Route::post('user_scores', [UserScoreController::class, 'store']);
 

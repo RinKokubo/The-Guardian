@@ -184,7 +184,7 @@
       </form>
     </div>
     <div v-if="parseInt($route.params.game_id) < 6" class="flex justify-end">
-      <router-link :to="{ name: 'introduction', params: { user_id: $route.params.userId, game_id: parseInt($route.params.game_id) + 1 } }">
+      <router-link :to="{ name: 'introduction', params: { user_id: $route.params.userId, game_id: parseInt($route.params.game_id) + 1 }, query: { win_count: $route.query.win_count } }">
         <button class="text-white font-bold py-[1vh] px-[20vw] border-[3px]  border-green-600 hover:border-green-700
                     hover:bg-green-700 bg-green-600 duration-300 shadow-xl text-[2vh]" @click="submitScores">
           もう一度対戦する

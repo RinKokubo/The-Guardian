@@ -9,13 +9,16 @@
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh]">
     <div v-if="this.$route.query.talk == 'face'">
-      <router-link :to="{ name: 'defender-select', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { opponent_id: $route.query.opponent_id } }"
+      <router-link :to="{ name: 'defender-select', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { opponent_id: $route.query.opponent_id, win_count: $route.query.win_count } }"
         className="bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300">
         配点を見る
       </router-link>
     </div>
     <div v-else>
-
+      <router-link :to="{ name: 'defender-select-chat', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { opponent_id: $route.query.opponent_id, win_count: $route.query.win_count } }"
+      className="bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300">
+      配点を見る
+    </router-link>
     </div>
   </div>
 </template>

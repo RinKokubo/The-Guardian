@@ -117,6 +117,7 @@ import axios from 'axios';
                 query: {
                   opponent_id: opponentId,
                   attacker_select: cardName,
+                  win_count: this.$route.query.win_count,
                 }
               });
             })

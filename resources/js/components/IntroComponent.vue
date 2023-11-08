@@ -30,17 +30,17 @@
     </p>
     
     <div v-if="opponentId === 31" class="flex justify-center items-center mt-[5vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold">
-      <router-link :to="{ name: 'defender-select-dialogue', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
+      <router-link :to="{ name: 'defender-select-dialogue', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId, win_count: $route.query.win_count } }">
         ChatGPT対戦に進む
       </router-link>
     </div>
     <div v-else-if="userRole === 'attacker'" class="flex justify-center items-center mt-[5vh] bg-[#E76767] py-[1vh] px-[8vw] text-white font-bold">
-      <router-link :to="{ name: 'attacker-select', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId,  talk: this.talk } }">
+      <router-link :to="{ name: 'attacker-select', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId,  talk: this.talk, win_count: $route.query.win_count } }">
         個人情報悪用サイドへ進む
       </router-link>
     </div>
     <div v-else-if="userRole === 'defender'" class="flex justify-center items-center mt-[5vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold">
-      <router-link :to="{ name: 'defender-standby', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId, talk: this.talk } }">
+      <router-link :to="{ name: 'defender-standby', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId, talk: this.talk, win_count: $route.query.win_count } }">
         個人情報提供サイドへ進む
       </router-link>
     </div>
