@@ -31,17 +31,23 @@ export default defineComponent({
     }
   },
   methods: {
-    async login(user) {
-      try {
-        console.log('Trying to login with user ID:', user.id);
-        const response = await axios.post('/api/login-without-password', { user_id: user.id });
-        console.log(response.data); // ここでログイン状態を確認
-        this.$router.push({ name: 'introduction', params: { user_id: user.id, game_id: 1 },  query: { win_count: 0 } });
-      } catch (error) {
-        console.error('Login failed:', error.response ? error.response.data : error);
+  async login(user) {
+    try {
+      const response = await axios.post('/api/login-without-password', { user_id: user.id });
+      console.log(response.data);
+      
+      // トークンがあればlocalStorageに保存し、axiosのデフォルトヘッダーに設定
+      if (response.data.isLoggedIn && response.data.token) {
+        localStorage.setItem('token', response.data.token);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
       }
+      
+      this.$router.push({ name: 'introduction', params: { user_id: user.id, game_id: 1 }, query: { win_count: 0 } });
+    } catch (error) {
+      console.error('Login failed:', error.response ? error.response.data : error);
     }
-  },
+  }
+},
   async created() {
     const response = await axios.get('/api/users')
     this.users = response.data

@@ -13,11 +13,14 @@ class AuthController extends Controller
         $user = User::findOrFail($request->user_id);
         Auth::login($user);
 
-        // Check if the user is actually logged in
         if (Auth::check()) {
+            // Sanctum を使って Personal Access Token を生成
+            $token = $user->createToken('Personal Access Token')->plainTextToken;
+
             return response()->json([
                 'message' => 'User logged in successfully!',
-                'isLoggedIn' => true
+                'isLoggedIn' => true,
+                'token' => $token
             ]);
         } else {
             return response()->json([

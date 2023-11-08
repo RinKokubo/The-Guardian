@@ -14,12 +14,11 @@ class BroadcastServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Broadcast::routes();
+        Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
         require base_path('routes/channels.php');
 
         Broadcast::channel('user.{id}', function ($user, $id) {
-            \Illuminate\Support\Facades\Log::info("User {$user->id} is attempting to access channel for user {$id}");
             return (int) $user->id === (int) $id;
         });
     }

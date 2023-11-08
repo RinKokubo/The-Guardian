@@ -104,4 +104,9 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+const apitoken = localStorage.getItem('token');
+if (apitoken) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${apitoken}`;
+}
+
 createApp(App).use(router).mount('#app')

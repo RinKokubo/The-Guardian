@@ -31,12 +31,20 @@ if (token) {
 
  window.Pusher = require('pusher-js');
 
+ const apitoken = localStorage.getItem('token');
+
  window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
     encrypted: true,
     wsHost: window.location.hostname,
-    wsPort: 6001, // Laravel Websockets のデフォルトポート
+    wsPort: 6001,
     disableStats: true,
+    withCredentials: true,
+    auth: {
+      headers: {
+        Authorization: `Bearer ${apitoken}`,
+      },
+    },
  });

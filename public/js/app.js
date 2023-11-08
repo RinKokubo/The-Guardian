@@ -23694,14 +23694,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
-              console.log('Trying to login with user ID:', user.id);
-              _context.next = 4;
+              _context.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/login-without-password', {
                 user_id: user.id
               });
-            case 4:
+            case 3:
               response = _context.sent;
-              console.log(response.data); // ここでログイン状態を確認
+              console.log(response.data);
+
+              // トークンがあればlocalStorageに保存し、axiosのデフォルトヘッダーに設定
+              if (response.data.isLoggedIn && response.data.token) {
+                localStorage.setItem('token', response.data.token);
+                (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.headers.common.Authorization) = "Bearer ".concat(response.data.token);
+              }
               _this.$router.push({
                 name: 'introduction',
                 params: {
@@ -25226,6 +25231,10 @@ if (token) {
 } else {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+var apitoken = localStorage.getItem('token');
+if (apitoken) {
+  (axios__WEBPACK_IMPORTED_MODULE_2___default().defaults.headers.common.Authorization) = "Bearer ".concat(apitoken);
+}
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]).use(router).mount('#app');
 
 /***/ }),
@@ -25266,6 +25275,7 @@ if (token) {
 
 
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+var apitoken = localStorage.getItem('token');
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "b6868356ddef91cfa868",
@@ -25273,8 +25283,13 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   encrypted: true,
   wsHost: window.location.hostname,
   wsPort: 6001,
-  // Laravel Websockets のデフォルトポート
-  disableStats: true
+  disableStats: true,
+  withCredentials: true,
+  auth: {
+    headers: {
+      Authorization: "Bearer ".concat(apitoken)
+    }
+  }
 });
 
 /***/ }),
