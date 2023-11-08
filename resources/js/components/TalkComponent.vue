@@ -102,6 +102,8 @@ export default {
           selectedCards: this.selectedCards,
           attacker_select_id: this.attacker_select_id,
           win_count: this.$route.query.win_count,
+          role: 'defender',
+          opponent_id: this.$route.query.opponent_id,
         },
       });
     },

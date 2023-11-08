@@ -86,6 +86,7 @@
         query: {
           selectedCards: this.selectedCards,
           win_count: this.$route.query.win_count,
+          role: 'defender',
           // attacker_select_id: this.attacker_select_id,
         },
       });

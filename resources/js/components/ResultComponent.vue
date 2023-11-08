@@ -42,29 +42,44 @@ export default {
       notice: '',
       username: '',
       resultImage: '',
-      win_count: this.$route.query.win_count
+      win_count: parseInt(this.$route.query.win_count, 10) || 0
     };
   },
   methods: {
-    sendGameResult(defenderSelects, calculatedScore) {
+    async sendGameResult(defenderSelects, calculatedScore) {
       const attackerScore = 100 - calculatedScore;
 
-      const userResponse = axios.get(`http://localhost:8000/api/users/${this.$route.params.user_id}`);
-      this.username = userResponse.data.username;
+      try {
+        console.log('User ID:', this.$route.params.user_id);
+        const userResponse = await axios.get(`http://localhost:8000/api/users/${this.$route.params.user_id}`);
+        this.username = userResponse.data.username;
+        console.log('User response:', userResponse.data);
+        console.log('Username:', this.username);
+
+        console.log('Opponent ID:', this.$route.query.opponent_id);
+        const opponentResponse = await axios.get(`http://localhost:8000/api/users/${this.$route.query.opponent_id}`);
+        this.attackername = opponentResponse.data.username;
+        console.log('User response:', opponentResponse.data);
+        console.log('Attackername:', this.attackername);
       
-      axios.post('/api/game-result', {
-        attacker_name: 'chatGPT',
-        defender_name: this.username,
-        game_id: this.$route.params.game_id,
-        attacker_select_id: this.$route.query.attacker_select_id,
-        defender_select_1: defenderSelects[1] || false,
-        defender_select_2: defenderSelects[2] || false,
-        defender_select_3: defenderSelects[3] || false,
-        defender_select_4: defenderSelects[4] || false,
-        defender_select_5: defenderSelects[5] || false,
-        attacker_score: attackerScore,
-        defender_score: calculatedScore,
-      });
+        if(this.$route.query.role == 'defender') {
+          axios.post('/api/game-result', {
+            attacker_name: this.attackername,
+            defender_name: this.username,
+            game_id: this.$route.params.game_id,
+            attacker_select_id: this.$route.query.attacker_select_id,
+            defender_select_1: defenderSelects[1] || false,
+            defender_select_2: defenderSelects[2] || false,
+            defender_select_3: defenderSelects[3] || false,
+            defender_select_4: defenderSelects[4] || false,
+            defender_select_5: defenderSelects[5] || false,
+            attacker_score: attackerScore,
+            defender_score: calculatedScore,
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   },
   mounted() {
