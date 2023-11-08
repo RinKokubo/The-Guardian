@@ -11373,6 +11373,9 @@ video {
 .h-\[40vw\] {
   height: 40vw;
 }
+.h-\[43vh\] {
+  height: 43vh;
+}
 .h-\[45vh\] {
   height: 45vh;
 }
@@ -11470,6 +11473,9 @@ video {
 .gap-x-\[1vh\] {
   -moz-column-gap: 1vh;
        column-gap: 1vh;
+}
+.gap-y-3 {
+  row-gap: 0.75rem;
 }
 .gap-y-5 {
   row-gap: 1.25rem;

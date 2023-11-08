@@ -97,7 +97,7 @@ class ConversationController extends Controller
                 'Authorization' => 'Bearer ' . config('services.openai.api_key'),
             ],
             'json' => [
-                'model' => 'gpt-3.5-turbo',
+                'model' => 'gpt-4-1106-preview',
                 'messages' => $messages,
             ]
         ]);

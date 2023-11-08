@@ -100,6 +100,7 @@ export default {
         query: {
           selectedCards: this.selectedCards,
           attacker_select_id: this.attacker_select_id,
+          win_count: this.$route.query.win_count,
         },
       });
     },

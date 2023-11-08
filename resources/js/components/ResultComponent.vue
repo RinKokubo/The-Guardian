@@ -11,7 +11,7 @@
     <div className="flex flex-col items-center pt-[3vh] pb-[1vh]" id="result">
       <img :src="`/img/${resultImage}.png`" alt="result" class="w-[40vw] h-[40vw]">
     </div>
-    <div className="flex flex-col justify-center gap-y-5">
+    <div className="flex flex-col justify-center gap-y-3">
       <p className="text-left text-[3vh]">あなたの得点:  {{ 100 - score }}点</p>
       <p className="text-left text-[3vh]">相手の得点:  {{ score }}点</p>
     </div>
@@ -19,7 +19,7 @@
       <p>最終結果</p>
       <p>あなたのランク： {{ this.$route.query.win_count }}勝</p>
     </div>
-    <div v-else className="flex flex-col items-center w-[95vw] h-[45vh] border-red-600 border-[3px] rounded mt-[3vh] mb-[2vh] py-[3vw] px-[3vw] overflow-auto">
+    <div v-else className="flex flex-col items-center w-[95vw] h-[43vh] border-red-600 border-[3px] rounded mt-[3vh] mb-[2vh] py-[3vw] px-[3vw] overflow-auto">
       <p className="text-red-600 mb-[20px] font-bold text-[3vh]">注意！</p>
       <p className="text-[2vh] text-center">{{ notice }}</p>
     </div>

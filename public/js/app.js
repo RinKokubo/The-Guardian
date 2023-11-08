@@ -23233,7 +23233,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         path: "/result/".concat(this.userId, "/").concat(this.gameId, "/"),
         query: {
           selectedCards: this.selectedCards,
-          attacker_select_id: this.attacker_select_id
+          attacker_select_id: this.attacker_select_id,
+          win_count: this.$route.query.win_count
         }
       });
     },
@@ -24614,7 +24615,7 @@ var _hoisted_6 = {
 };
 var _hoisted_7 = ["src"];
 var _hoisted_8 = {
-  className: "flex flex-col justify-center gap-y-5"
+  className: "flex flex-col justify-center gap-y-3"
 };
 var _hoisted_9 = {
   className: "text-left text-[3vh]"
@@ -24629,7 +24630,7 @@ var _hoisted_11 = {
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "最終結果", -1 /* HOISTED */);
 var _hoisted_13 = {
   key: 1,
-  className: "flex flex-col items-center w-[95vw] h-[45vh] border-red-600 border-[3px] rounded mt-[3vh] mb-[2vh] py-[3vw] px-[3vw] overflow-auto"
+  className: "flex flex-col items-center w-[95vw] h-[43vh] border-red-600 border-[3px] rounded mt-[3vh] mb-[2vh] py-[3vw] px-[3vw] overflow-auto"
 };
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   className: "text-red-600 mb-[20px] font-bold text-[3vh]"
