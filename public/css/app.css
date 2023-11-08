@@ -11421,6 +11421,9 @@ video {
 .w-\[65vw\] {
   width: 65vw;
 }
+.w-\[70vw\] {
+  width: 70vw;
+}
 .w-\[85vw\] {
   width: 85vw;
 }
@@ -11698,6 +11701,9 @@ video {
 }
 .pt-\[3vh\] {
   padding-top: 3vh;
+}
+.pt-\[5vh\] {
+  padding-top: 5vh;
 }
 .text-left {
   text-align: left;
