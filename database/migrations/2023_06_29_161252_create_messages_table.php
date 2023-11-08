@@ -18,7 +18,8 @@ class CreateMessagesTable extends Migration
             $table->string('user_name');
             $table->unsignedBigInteger('game_id');
             $table->timestamp('created_at')->useCurrent();
-            $table->string('sender');  // 'user' or 'assistant'
+            $table->unsignedBigInteger('sender');  // 'user' or 'assistant'
+            $table->unsignedBigInteger('receiver');
             $table->text('message_content');
         });
     }

@@ -14,20 +14,5 @@
 <script>
   export default {
     name: "HelloComponent",
-    mounted() {
-      console.log('Component mounted.')
-    },
-    created() {
-      axios.get(`/api/game/1`)
-        .then(response => {
-            this.gameInformation = response.data;
-            this.attackerCard1Name = this.gameInformation.attacker_card1.attacker_card_name;
-            this.attackerCard2Name = this.gameInformation.attacker_card2.attacker_card_name;
-            this.attackerCard3Name = this.gameInformation.attacker_card3.attacker_card_name;
-        })
-        .catch(error => {
-          console.error(error);
-      });
-    },
   }
 </script>

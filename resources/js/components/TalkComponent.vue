@@ -121,14 +121,21 @@ export default {
       this.conversation.push(userMessage);
       this.userInput = '';
 
-      axios.post(`http://localhost:8000/defender-select-dialogue/${this.username}/${this.gameId}/send-message`, { message: userMessage.content }) // Changed URL
+      const url = `http://localhost:8000/defender-select-dialogue/send-message`;
+      const data = {
+        message: userMessage.content,
+        username: this.username,
+        gameId: this.gameId,
+        userId: this.$route.params.user_id
+      };
+
+      axios.post(url, data)
         .then(response => {
           this.conversation.push({ role: 'assistant', content: response.data.message });
         })
         .catch(error => {
           console.error('Error sending message:', error);
-          // If there is an error, remove the user message from the conversation
-          this.conversation = this.conversation.filter(message => message !== userMessage);
+          this.conversation.pop();
         });
     },
     startCountdown() {

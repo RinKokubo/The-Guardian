@@ -23440,21 +23440,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "HelloComponent",
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  },
-  created: function created() {
-    var _this = this;
-    axios.get("/api/game/1").then(function (response) {
-      _this.gameInformation = response.data;
-      _this.attackerCard1Name = _this.gameInformation.attacker_card1.attacker_card_name;
-      _this.attackerCard2Name = _this.gameInformation.attacker_card2.attacker_card_name;
-      _this.attackerCard3Name = _this.gameInformation.attacker_card3.attacker_card_name;
-    })["catch"](function (error) {
-      console.error(error);
-    });
-  }
+  name: "HelloComponent"
 });
 
 /***/ }),
@@ -23871,20 +23857,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       };
       this.conversation.push(userMessage);
       this.userInput = '';
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://localhost:8000/defender-select-dialogue/".concat(this.username, "/").concat(this.gameId, "/send-message"), {
-        message: userMessage.content
-      }) // Changed URL
-      .then(function (response) {
+      var url = "http://localhost:8000/defender-select-dialogue/send-message";
+      var data = {
+        message: userMessage.content,
+        username: this.username,
+        gameId: this.gameId,
+        userId: this.$route.params.user_id
+      };
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post(url, data).then(function (response) {
         _this3.conversation.push({
           role: 'assistant',
           content: response.data.message
         });
       })["catch"](function (error) {
         console.error('Error sending message:', error);
-        // If there is an error, remove the user message from the conversation
-        _this3.conversation = _this3.conversation.filter(function (message) {
-          return message !== userMessage;
-        });
+        _this3.conversation.pop();
       });
     },
     startCountdown: function startCountdown() {

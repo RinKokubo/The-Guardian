@@ -11,6 +11,7 @@ class Message extends Model
         'game_id',
         'created_at',
         'sender',
+        'receiver',
         'message_content'
     ];
 }

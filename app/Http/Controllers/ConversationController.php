@@ -45,33 +45,34 @@ class ConversationController extends Controller
     public function sendMessage(Request $request)
     {
         $message = $request->input('message');
-        $username = $request->route('username');
-        $gameId = $request->route('id');
+        $username = $request->input('username');
+        $gameId = $request->input('gameId');
+        $userId = $request->input('userId');
 
         \Illuminate\Support\Facades\Log::info('Username: ' . $username);
         \Illuminate\Support\Facades\Log::info('GameId: ' . $gameId);
         \Illuminate\Support\Facades\Log::info('Message: ' . $message);
 
-        // Add the user's message to the conversation.
         $conversation = $request->session()->get('conversation', []);
         $conversation[] = ["role" => "user", "content" => $message];
         Message::create([
             'user_name' => $username,
             'game_id' => $gameId,
-            'sender' => 'user',
+            'sender' => $userId,
+            'receiver' => 31,
             'message_content' => $message
         ]);
 
-        // Generate the assistant's response using OpenAI API.
         $assistantMessage = $this->generateResponse($conversation);
         \Illuminate\Support\Facades\Log::info('Assistant message: ' . $assistantMessage);
 
-        // Add the assistant's response to the conversation.
+        // Create the assistant's message
         $conversation[] = ["role" => "assistant", "content" => $assistantMessage];
         Message::create([
             'user_name' => $username,
             'game_id' => $gameId,
-            'sender' => 'assistant',
+            'sender' => 31,
+            'receiver' => $userId,
             'message_content' => $assistantMessage
         ]);
         $request->session()->put('conversation', $conversation);
@@ -99,6 +100,8 @@ class ConversationController extends Controller
             'json' => [
                 'model' => 'gpt-4-1106-preview',
                 'messages' => $messages,
+                'max_tokens' => 150,
+                'stop' => ["。", "？"]
             ]
         ]);
 
@@ -131,7 +134,7 @@ class ConversationController extends Controller
     public function export()
     {
         $csv = Writer::createFromString('');
-        $csv->insertOne(['id', 'user_name', 'game_id', 'created_at', 'sender', 'message_content']);
+        $csv->insertOne(['id', 'user_name', 'game_id', 'created_at', 'sender', 'receiver', 'message_content']);
 
         $messages = Message::all();
 
