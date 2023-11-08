@@ -11280,6 +11280,10 @@ video {
   margin-top: 0px;
   margin-bottom: 0px;
 }
+.my-\[2vh\] {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
 .my-\[30px\] {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -11547,6 +11551,10 @@ video {
 .bg-blue-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+}
+.bg-blue-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
 }
 .bg-gray-100 {
   --tw-bg-opacity: 1;

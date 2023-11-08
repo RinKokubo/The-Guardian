@@ -35,12 +35,12 @@
       </router-link>
     </div>
     <div v-else-if="userRole === 'attacker'" class="flex justify-center items-center mt-[5vh] bg-[#E76767] py-[1vh] px-[8vw] text-white font-bold">
-      <router-link :to="{ name: 'attacker-select', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
+      <router-link :to="{ name: 'attacker-select', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId,  talk: this.talk } }">
         個人情報悪用サイドへ進む
       </router-link>
     </div>
     <div v-else-if="userRole === 'defender'" class="flex justify-center items-center mt-[5vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold">
-      <router-link :to="{ name: 'defender-standby', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId } }">
+      <router-link :to="{ name: 'defender-standby', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId, talk: this.talk } }">
         個人情報提供サイドへ進む
       </router-link>
     </div>
@@ -57,6 +57,7 @@ export default {
       userRole: null,
       opponentId: null,
       opponentName: '',
+      talk: '',
       user_id: null,
       game_id: null,
       bgClass: '' 
@@ -72,6 +73,7 @@ export default {
       });
       this.userRole = response.data.user_role;
       this.opponentId = response.data.opponent_id;
+      this.talk = response.data.comunication;
       this.user_id = this.$route.params.user_id;
       this.game_id = this.$route.params.game_id;
 

@@ -9,19 +9,11 @@ class CardSelectController extends Controller
 {
     public function attackerSelectCard(Request $request)
     {
-        $userId = $request->user_id;
-        $card = $request->input('card');
+        $userId = $request->input('userId'); // $request->user_idから$request->input('userId')に変更
+        $cardName = $request->input('cardName'); // $request->input('card')から$request->input('cardName')に変更
         $opponentId = $request->input('opponentId');
 
-        // 必要に応じてバリデーションを行う
-        // $request->validate([
-        //     'card' => 'required',
-        //     'opponentId' => 'required|exists:users,id'
-        // ]);
-
-        // イベントをトリガーし、カード情報とopponentIdを送信
-        event(new AttackerCardSelected($userId, $opponentId, $card));
-
+        event(new AttackerCardSelected($userId, $opponentId, $cardName));
         return response()->json(['message' => 'カード情報を送信しました']);
     }
 }

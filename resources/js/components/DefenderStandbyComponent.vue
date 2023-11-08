@@ -8,8 +8,14 @@
     </div>
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh]">
-    <div class="flex justify-center my-[30px]">
-      相手がカードを選択中です
+    <div v-if="this.$route.query.talk == 'face'">
+      <router-link :to="{ name: 'defender-select', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { opponent_id: $route.query.opponent_id } }"
+        className="bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300">
+        配点を見る
+      </router-link>
+    </div>
+    <div v-else>
+
     </div>
   </div>
 </template>
@@ -24,11 +30,11 @@
     },
     mounted() {
       console.log(`Connecting to channel: user.${this.userId}`);
-      Echo.private(`user.${this.userId}`)
-        .listen('card.selected', (event) => {
-          console.log('カードが選択されました:', event.card);
-          this.selectedCard = event.card;
-        });
+      ///Echo.private(`user.${this.userId}`)
+      //  .listen('card.selected', (event) => {
+      //    console.log('カードが選択されました:', event.card);
+      //    this.selectedCard = event.card;
+      //  });
     },
   }
 </script>
