@@ -12,20 +12,6 @@
       <p>個人情報悪用側がカード選択中です。</p>
       <p>しばらくお待ちください。</p>
     </div>
-    <div v-if="selectedCard != null" class="w-[70vw] pt-[5vh]">
-      <div v-if="this.$route.query.talk == 'face'">
-        <router-link :to="{ name: 'defender-select', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { opponent_id: $route.query.opponent_id, win_count: $route.query.win_count, selected_card: encodeURIComponent(selectedCard)  } }"
-          class="flex justify-center items-center bg-blue-500 py-[1vh] px-[8vw] text-white font-bold text-[2.5vh]">
-          個人情報カード選択へ進む
-        </router-link>
-      </div>
-      <div v-else>
-        <router-link :to="{ name: 'defender-select-chat', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { opponent_id: $route.query.opponent_id, win_count: $route.query.win_count, selected_card: encodeURIComponent(selectedCard)  } }"
-          class="flex justify-center items-center bg-blue-500 py-[1vh] px-[8vw] text-white font-bold text-[2.5vh]">
-          個人情報カード選択へ進む
-      </router-link>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -43,6 +29,25 @@
         .listen('.attackerCard.selected', (event) => {
           console.log('カードが選択されました:', event.card);
           this.selectedCard = event.card;
+          if(this.$route.query.talk == 'face'){
+            this.$router.push({
+              path: `/defender-select/${this.$route.params.user_id}/${this.$route.params.game_id}`,
+              query: {
+                opponent_id: this.$route.query.opponent_id,
+                win_count: this.$route.query.win_count,
+                selected_card: encodeURIComponent(this.selectedCard)
+              }
+            });
+          } else {
+            this.$router.push({
+              path: `/defender-select-chat/${this.$route.params.user_id}/${this.$route.params.game_id}`,
+              query: {
+                opponent_id: this.$route.query.opponent_id,
+                win_count: this.$route.query.win_count,
+                selected_card: encodeURIComponent(this.selectedCard)
+              }
+            });
+          }
         });
     },
   }

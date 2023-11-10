@@ -58,6 +58,12 @@ import axios from 'axios';
         selectedName: '',
       }
     },
+    mounted() {
+      Echo.private(`user.${this.$route.params.user_id}`)
+      .listen('.defender.transit', (event) => {
+        console.log('トランジット',event);
+      });
+    },
     created() {
       axios.get(`/api/game/${this.$route.params.game_id}`)
         .then(response => {
@@ -110,16 +116,25 @@ import axios from 'axios';
 
           axios.post('/api/attacker-select-card', { userId, cardName, opponentId })
             .then(response => {
-              console.log('カード情報を送信しました');
-              console.log(opponentId);
-              this.$router.push({
-                path: `/attacker-standby/${userId}/${gameId}`,
-                query: {
-                  opponent_id: opponentId,
-                  attacker_select: cardName,
-                  win_count: this.$route.query.win_count,
-                }
-              });
+              if(this.$route.query.talk == 'face'){
+                this.$router.push({
+                  path: `/attacker-standby/${userId}/${gameId}`,
+                  query: {
+                    opponent_id: opponentId,
+                    attacker_select: cardName,
+                    win_count: this.$route.query.win_count,
+                  }
+                });
+              } else {
+                this.$router.push({
+                  path: `/attacker-chat/${userId}/${gameId}`,
+                  query: {
+                    opponent_id: opponentId,
+                    attacker_select: cardName,
+                    win_count: this.$route.query.win_count,
+                  }
+                });
+              }
             })
             .catch(error => {
               console.error('エラーが発生しました', error);

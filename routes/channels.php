@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 }, ['guards' => ['api']]);
+
+Broadcast::channel('chat.{userId}', function ($user, $userId) {
+    return $user->id == $userId;
+}, ['guards' => ['api']]);

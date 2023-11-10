@@ -10,23 +10,29 @@ class MessageController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
-            'message_content' => 'required',
-            'gameId' => 'required',
-            'receiver' => 'required|exists:users,id',
-            'sender' => 'required|exists:users,id'
+        $userId = $request->sender;
+        $opponentId = $request->receiver;
+        $messageContent = $request->message_content;
+
+        // データベースに保存
+        $message = Message::create([
+            'game_id' => $request->game_id,
+            'sender' => $userId,
+            'receiver' => $opponentId,
+            'message_content' => $messageContent,
+            'user_name' => $request->user_name,
         ]);
 
-        $message = new Message();
-        $message->game_id = $request->gameId;
-        $message->sender = $request->sender;
-        $message->receiver = $request->receiver;
-        $message->message_content = $request->message_content;
-        $message->user_name = $request->username;
-        $message->save();
+        broadcast(new MessageSent($userId, $opponentId, $messageContent))->toOthers();
 
-        broadcast(new MessageSent($request->sender, $request->receiver, $message))->toOthers();
+        \Illuminate\Support\Facades\Log::info('Controller.', [
+            'game_id' => $request->game_id,
+            'sender' => $userId,
+            'receiver' => $opponentId,
+            'message_content' => $messageContent,
+            'user_name' => $request->user_name,
+        ]);
 
-        return response()->json($message, 201);
+        return response()->json(['message' => 'メッセージを送信しました']);
     }
 }

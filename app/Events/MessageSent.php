@@ -9,22 +9,36 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Message;
 
 class MessageSent implements ShouldBroadcast
 {
-    public $message;
-    public $sender;
-    public $receiver;
+    use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public function __construct($sender, $receiver, $message)
+    public $userId;
+    public $opponentId;
+    public $messageContent;
+
+    public function __construct($userId, $opponentId, $messageContent)
     {
-        $this->sender = $sender;
-        $this->receiver = $receiver;
-        $this->message = $message;
+        $this->userId = $userId;
+        $this->opponentId = $opponentId;
+        $this->messageContent = $messageContent;
+
+        \Illuminate\Support\Facades\Log::info('Event fired.', [
+            'userId' => $userId,
+            'opponentId' => $opponentId,
+            'messageContent' => $messageContent
+        ]);
     }
 
     public function broadcastOn()
     {
-        return new PrivateChannel('user.' . $this->receiver);
+        return new PrivateChannel('chat.' . $this->opponentId);
+    }
+
+    public function broadcastAs()
+    {
+        return 'message.sent';
     }
 }

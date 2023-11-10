@@ -21,11 +21,6 @@ class DefenderCardSelected implements ShouldBroadcast
     {
         $this->userId = $userId;
         $this->selectedCards = $selectedCards;
-
-        \Illuminate\Support\Facades\Log::info('DefenderCardSelected Event fired.', [
-            'userId' => $userId,
-            'selectedCards' => $selectedCards,
-        ]);
     }
 
     public function broadcastOn()

@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class DefenderTransit
+class DefenderTransit implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,9 +19,14 @@ class DefenderTransit
      *
      * @return void
      */
-    public function __construct()
+
+    public $transit;
+    public $opponentId;
+
+    public function __construct($transit, $opponentId)
     {
-        //
+        $this->transit = $transit;
+        $this->opponentId = $opponentId;
     }
 
     /**
@@ -31,6 +36,11 @@ class DefenderTransit
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new PrivateChannel('user.' . $this->opponentId);
+    }
+
+    public function broadcastAs()
+    {
+        return 'defender.transit';
     }
 }

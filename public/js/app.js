@@ -22971,6 +22971,152 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AttackerChatComponent.vue?vue&type=script&lang=js":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AttackerChatComponent.vue?vue&type=script&lang=js ***!
+  \***************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      defenderCards: [],
+      userInput: '',
+      conversation: [],
+      username: '',
+      userId: '',
+      gameId: '',
+      selectedCards: [],
+      attacker_select_id: null,
+      countdownTime: 5 * 60,
+      // countdownTime in seconds (5 minutes)
+      timeLeft: '05:00',
+      // Displayed countdown timer
+      showSubmit: false
+    };
+  },
+  created: function created() {
+    var _this = this;
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+      var userResponse, response, cardInfoResponse;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _this.userId = _this.$route.params.user_id;
+            _this.gameId = _this.$route.params.game_id;
+            _context.next = 5;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default().get("http://localhost:8000/api/users/".concat(_this.userId));
+          case 5:
+            userResponse = _context.sent;
+            _this.username = userResponse.data.username;
+            _context.next = 9;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default().get("http://localhost:8000/api/game/".concat(_this.gameId));
+          case 9:
+            response = _context.sent;
+            _this.defenderCards = [response.data.defender_card1, response.data.defender_card2, response.data.defender_card3, response.data.defender_card4, response.data.defender_card5];
+            _this.startCountdown();
+            _context.next = 14;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/attacker-card-info/".concat(_this.$route.query.attacker_select));
+          case 14:
+            cardInfoResponse = _context.sent;
+            _this.attacker_select_id = cardInfoResponse.data.id;
+            Echo["private"]("chat.".concat(_this.userId)).listen('.message.sent', function (event) {
+              _this.conversation.push({
+                sender: event.userId,
+                content: event.messageContent
+              });
+              console.log('イベントメッセージ', event.messageContent);
+            });
+            _context.next = 22;
+            break;
+          case 19:
+            _context.prev = 19;
+            _context.t0 = _context["catch"](0);
+            console.error('Error fetching game information:', _context.t0);
+          case 22:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0, 19]]);
+    }))();
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+    Echo["private"]("user.".concat(this.$route.params.user_id)).listen('.defenderCards.selected', function (event) {
+      console.log('カードが選択されました:', event.selectedCards);
+      _this2.selectedCards = event.selectedCards;
+      _this2.$router.push({
+        path: "/result/".concat(_this2.$route.params.user_id, "/").concat(_this2.$route.params.game_id, "/"),
+        query: {
+          selectedCards: _this2.selectedCards,
+          attacker_select_id: _this2.attacker_select_id,
+          win_count: _this2.$route.query.win_count,
+          role: 'attacker',
+          opponent_id: _this2.$route.query.opponent_id
+        }
+      });
+    });
+  },
+  methods: {
+    sendMessage: function sendMessage() {
+      var _this3 = this;
+      var opponentId = this.$route.query.opponent_id;
+
+      // メッセージを送信する前に、ローカルの会話に追加
+      this.conversation.push({
+        sender: this.userId,
+        content: this.userInput
+      });
+
+      // メッセージをサーバーに送信
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/messages', {
+        message_content: this.userInput,
+        game_id: this.gameId,
+        receiver: opponentId,
+        sender: this.userId,
+        user_name: this.username
+      }).then(function (response) {
+        // 応答を受け取った後の処理（必要に応じて）
+        _this3.userInput = ''; // 入力フィールドをクリア
+      })["catch"](function (error) {
+        console.error(error.response.data);
+      });
+    },
+    startCountdown: function startCountdown() {
+      var _this4 = this;
+      var timerInterval = setInterval(function () {
+        if (_this4.countdownTime === 0) {
+          clearInterval(timerInterval);
+          // You may want to do something here when countdown reaches 0
+        } else {
+          _this4.countdownTime--;
+          _this4.formatTimeLeft();
+        }
+      }, 1000);
+    },
+    formatTimeLeft: function formatTimeLeft() {
+      var minutes = Math.floor(this.countdownTime / 60);
+      var seconds = this.countdownTime % 60;
+      this.timeLeft = "".concat(minutes.toString().padStart(2, '0'), ":").concat(seconds.toString().padStart(2, '0'));
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AttackerSelectComponent.vue?vue&type=script&lang=js":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AttackerSelectComponent.vue?vue&type=script&lang=js ***!
@@ -23000,6 +23146,11 @@ __webpack_require__.r(__webpack_exports__);
       selectedInfo: '',
       selectedName: ''
     };
+  },
+  mounted: function mounted() {
+    Echo["private"]("user.".concat(this.$route.params.user_id)).listen('.defender.transit', function (event) {
+      console.log('トランジット', event);
+    });
   },
   created: function created() {
     var _this = this;
@@ -23051,16 +23202,25 @@ __webpack_require__.r(__webpack_exports__);
           cardName: cardName,
           opponentId: opponentId
         }).then(function (response) {
-          console.log('カード情報を送信しました');
-          console.log(opponentId);
-          _this2.$router.push({
-            path: "/attacker-standby/".concat(userId, "/").concat(gameId),
-            query: {
-              opponent_id: opponentId,
-              attacker_select: cardName,
-              win_count: _this2.$route.query.win_count
-            }
-          });
+          if (_this2.$route.query.talk == 'face') {
+            _this2.$router.push({
+              path: "/attacker-standby/".concat(userId, "/").concat(gameId),
+              query: {
+                opponent_id: opponentId,
+                attacker_select: cardName,
+                win_count: _this2.$route.query.win_count
+              }
+            });
+          } else {
+            _this2.$router.push({
+              path: "/attacker-chat/".concat(userId, "/").concat(gameId),
+              query: {
+                opponent_id: opponentId,
+                attacker_select: cardName,
+                win_count: _this2.$route.query.win_count
+              }
+            });
+          }
         })["catch"](function (error) {
           console.error('エラーが発生しました', error);
         });
@@ -23208,7 +23368,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   created: function created() {
     var _this = this;
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var userResponse, response;
+      var userResponse, response, cardInfoResponse;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
@@ -23226,19 +23386,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             response = _context.sent;
             _this.defenderCards = [response.data.defender_card1, response.data.defender_card2, response.data.defender_card3, response.data.defender_card4, response.data.defender_card5];
             _this.startCountdown();
-            _this.listenForMessages();
-            _this.attacker_select_id = Math.floor(Math.random() * 3) + 1;
-            _context.next = 19;
+            _context.next = 14;
+            return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/attacker-card-info/".concat(decodeURIComponent(_this.$route.query.selected_card)));
+          case 14:
+            cardInfoResponse = _context.sent;
+            _this.attacker_select_id = cardInfoResponse.data.id;
+            Echo["private"]("chat.".concat(_this.userId)).listen('.message.sent', function (event) {
+              _this.conversation.push({
+                sender: event.userId,
+                content: event.messageContent
+              });
+            });
+            _context.next = 22;
             break;
-          case 16:
-            _context.prev = 16;
+          case 19:
+            _context.prev = 19;
             _context.t0 = _context["catch"](0);
             console.error('Error fetching game information:', _context.t0);
-          case 19:
+          case 22:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 16]]);
+      }, _callee, null, [[0, 19]]);
     }))();
   },
   methods: {
@@ -23252,61 +23421,50 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     confirmSelection: function confirmSelection() {
-      this.$router.push({
-        path: "/result/".concat(this.userId, "/").concat(this.gameId, "/"),
-        query: {
-          selectedCards: this.selectedCards,
-          attacker_select_id: this.attacker_select_id,
-          win_count: this.$route.query.win_count,
-          role: 'defender'
-        }
-      });
-    },
-    listenForMessages: function listenForMessages() {
       var _this2 = this;
-      var opponentId = this.$route.query.opponent_id;
-      var userId = this.userId;
-
-      // Listen to the user's private channel
-      window.Echo["private"]('user.' + userId).listen('.MessageSent', function (e) {
-        if (e.message.sender === opponentId) {
-          _this2.conversation.push({
-            id: e.message.id,
-            content: e.message.message_content,
-            role: 'assistant'
+      if (this.selectedCards.length === 3) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/defender-select-card', {
+          user_id: this.$route.params.user_id,
+          opponent_id: this.$route.query.opponent_id,
+          selected_cards: this.selectedCards
+        }).then(function () {
+          _this2.$router.push({
+            path: "/result/".concat(_this2.$route.params.user_id, "/").concat(_this2.$route.params.game_id, "/"),
+            query: {
+              selectedCards: _this2.selectedCards,
+              win_count: _this2.$route.query.win_count,
+              role: 'defender',
+              attacker_select_id: _this2.attacker_select_id,
+              opponent_id: _this2.$route.query.opponent_id
+            }
           });
-        }
-      });
-
-      // Listen to the opponent's private channel
-      //window.Echo.private('user.' + opponentId)
-      //  .listen('.MessageSent', (e) => {
-      //    if (e.message.sender === userId) {
-      //      this.conversation.push({
-      //        id: e.message.id,
-      //        content: e.message.message_content,
-      //        role: 'user'
-      //      });
-      //    }
-      //  });
+        })["catch"](function (error) {
+          console.error('カード情報の送信に失敗しました', error);
+        });
+      } else {
+        console.error('3枚のカードが選択されていません');
+      }
     },
     sendMessage: function sendMessage() {
       var _this3 = this;
       var opponentId = this.$route.query.opponent_id;
+
+      // メッセージを送信する前に、ローカルの会話に追加
+      this.conversation.push({
+        sender: this.userId,
+        content: this.userInput
+      });
+
+      // メッセージをサーバーに送信
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/messages', {
         message_content: this.userInput,
-        gameId: this.gameId,
+        game_id: this.gameId,
         receiver: opponentId,
         sender: this.userId,
-        username: this.username
+        user_name: this.username
       }).then(function (response) {
-        _this3.conversation.push({
-          id: response.data.id,
-          content: response.data.message_content,
-          sender: _this3.userId,
-          receiver: opponentId
-        });
-        _this3.userInput = ''; // Clear the input after sending
+        // 応答を受け取った後の処理（必要に応じて）
+        _this3.userInput = ''; // 入力フィールドをクリア
       })["catch"](function (error) {
         console.error(error.response.data);
       });
@@ -23475,6 +23633,25 @@ __webpack_require__.r(__webpack_exports__);
     Echo["private"]("user.".concat(this.userId)).listen('.attackerCard.selected', function (event) {
       console.log('カードが選択されました:', event.card);
       _this.selectedCard = event.card;
+      if (_this.$route.query.talk == 'face') {
+        _this.$router.push({
+          path: "/defender-select/".concat(_this.$route.params.user_id, "/").concat(_this.$route.params.game_id),
+          query: {
+            opponent_id: _this.$route.query.opponent_id,
+            win_count: _this.$route.query.win_count,
+            selected_card: encodeURIComponent(_this.selectedCard)
+          }
+        });
+      } else {
+        _this.$router.push({
+          path: "/defender-select-chat/".concat(_this.$route.params.user_id, "/").concat(_this.$route.params.game_id),
+          query: {
+            opponent_id: _this.$route.query.opponent_id,
+            win_count: _this.$route.query.win_count,
+            selected_card: encodeURIComponent(_this.selectedCard)
+          }
+        });
+      }
     });
   }
 });
@@ -23602,6 +23779,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee, null, [[0, 16]]);
     }))();
+  },
+  methods: {
+    defenderTransit: function defenderTransit() {
+      var _this2 = this;
+      var transit = true;
+      var opponentId = this.$route.query.opponent_id;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/defender-transit', {
+        transit: transit,
+        opponentId: opponentId
+      }).then(function (response) {
+        console.log('遷移情報を送信しました');
+        console.log(opponentId);
+        _this2.$router.push({
+          path: "/defender-standby/".concat(userId, "/").concat(gameId),
+          query: {
+            opponent_id: opponentId,
+            talk: _this2.talk,
+            win_count: $route.query.win_count
+          }
+        });
+      })["catch"](function (error) {
+        console.error('エラーが発生しました', error);
+      });
+    }
   }
 });
 
@@ -24018,6 +24219,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -24027,64 +24232,216 @@ __webpack_require__.r(__webpack_exports__);
       defenderCardNames: {},
       attackerCardName: '',
       username: '',
-      card1Score: null,
-      card2Score: null,
-      card3Score: null,
-      card4Score: null,
-      card5Score: null,
       defenderCard1Name: null,
       defenderCard2Name: null,
       defenderCard3Name: null,
       defenderCard4Name: null,
       defenderCard5Name: null,
-      gameIdforPath: this.$route.params.game_id
+      gameIdforPath: this.$route.params.game_id,
+      scoreOptions: this.initializeScoreOptions(),
+      cardScores: this.initializeCardScores()
     };
   },
   created: function created() {
-    var _this = this;
-    var gameId = this.$route.params.game_id;
-    var attackerSelectId = this.$route.query.attacker_select_id;
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/getGame/".concat(gameId, "?attacker_select_id=").concat(attackerSelectId)).then(function (response) {
-      _this.attackerCardName = response.data.attacker_card_name;
-    })["catch"](function (error) {
-      console.error(error);
-    });
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/game/".concat(gameId)).then(function (response) {
-      _this.gameInformation = response.data;
-      _this.defenderCard1Name = _this.gameInformation.defender_card1.defender_card_name;
-      _this.defenderCard2Name = _this.gameInformation.defender_card2.defender_card_name;
-      _this.defenderCard3Name = _this.gameInformation.defender_card3.defender_card_name;
-      _this.defenderCard4Name = _this.gameInformation.defender_card4.defender_card_name;
-      _this.defenderCard5Name = _this.gameInformation.defender_card5.defender_card_name;
-    })["catch"](function (error) {
-      console.error(error);
-    });
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/getScore/".concat(gameId, "?attacker_select_id=").concat(attackerSelectId)).then(function (response) {
-      _this.scores = response.data;
-    })["catch"](function (error) {
-      console.error(error);
-    });
+    this.fetchGameInformation();
+    this.fetchScores();
   },
   methods: {
-    submitScores: function submitScores() {
-      var gameId = this.$route.params.id;
+    fetchGameInformation: function fetchGameInformation() {
+      var _this = this;
+      var gameId = this.$route.params.game_id;
       var attackerSelectId = this.$route.query.attacker_select_id;
-      var userResponse = axios__WEBPACK_IMPORTED_MODULE_0___default().get("http://localhost:8000/api/users/".concat(this.$route.params.userId));
-      var username = userResponse.data.username;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/user_scores", {
-        game_id: gameId,
-        attacker_select_id: attackerSelectId,
-        user_name: username,
-        user_card1_score: this.card1Score,
-        user_card2_score: this.card2Score,
-        user_card3_score: this.card3Score,
-        user_card4_score: this.card4Score,
-        user_card5_score: this.card5Score
-      }).then(function (response) {
-        console.log(response);
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/getGame/".concat(gameId, "?attacker_select_id=").concat(attackerSelectId)).then(function (response) {
+        _this.attackerCardName = response.data.attacker_card_name;
       })["catch"](function (error) {
         console.error(error);
       });
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/game/".concat(gameId)).then(function (response) {
+        _this.gameInformation = response.data;
+        _this.defenderCard1Name = _this.gameInformation.defender_card1.defender_card_name;
+        _this.defenderCard2Name = _this.gameInformation.defender_card2.defender_card_name;
+        _this.defenderCard3Name = _this.gameInformation.defender_card3.defender_card_name;
+        _this.defenderCard4Name = _this.gameInformation.defender_card4.defender_card_name;
+        _this.defenderCard5Name = _this.gameInformation.defender_card5.defender_card_name;
+      })["catch"](function (error) {
+        console.error(error);
+      });
+    },
+    fetchScores: function fetchScores() {
+      var _this2 = this;
+      var gameId = this.$route.params.game_id;
+      var attackerSelectId = this.$route.query.attacker_select_id;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/getScore/".concat(gameId, "?attacker_select_id=").concat(attackerSelectId)).then(function (response) {
+        _this2.scores = response.data;
+      })["catch"](function (error) {
+        console.error(error);
+      });
+    },
+    submitScores: function submitScores() {
+      var _this3 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              if (!(_this3.calculateTotalScore() !== 100)) {
+                _context.next = 3;
+                break;
+              }
+              alert('※100点満点になるよう配点を考えてください');
+              return _context.abrupt("return");
+            case 3:
+              _context.prev = 3;
+              _context.next = 6;
+              return _this3.processScoreSubmission("/introduction/".concat(_this3.$route.params.user_id, "/").concat(parseInt(_this3.$route.params.game_id) + 1));
+            case 6:
+              _context.next = 11;
+              break;
+            case 8:
+              _context.prev = 8;
+              _context.t0 = _context["catch"](3);
+              console.error('Error submitting scores:', _context.t0);
+            case 11:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee, null, [[3, 8]]);
+      }))();
+    },
+    submitScores6: function submitScores6() {
+      var _this4 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              if (!(_this4.calculateTotalScore() !== 100)) {
+                _context2.next = 3;
+                break;
+              }
+              alert('※100点満点になるよう配点を考えてください');
+              return _context2.abrupt("return");
+            case 3:
+              _context2.prev = 3;
+              _context2.next = 6;
+              return _this4.processScoreSubmission('/final-result');
+            case 6:
+              _context2.next = 11;
+              break;
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](3);
+              console.error('Error submitting scores:', _context2.t0);
+            case 11:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[3, 8]]);
+      }))();
+    },
+    processScoreSubmission: function processScoreSubmission(path) {
+      var _this5 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var gameId, attackerSelectId, userResponse;
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
+            case 0:
+              gameId = _this5.$route.params.game_id;
+              attackerSelectId = _this5.$route.query.attacker_select_id;
+              _context3.prev = 2;
+              _context3.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("http://localhost:8000/api/users/".concat(_this5.$route.params.user_id));
+            case 5:
+              userResponse = _context3.sent;
+              _this5.username = userResponse.data.username;
+              _context3.next = 9;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/user_scores", {
+                game_id: gameId,
+                attacker_select_id: attackerSelectId,
+                user_name: _this5.username,
+                user_card1_score: _this5.cardScores.card1,
+                user_card2_score: _this5.cardScores.card2,
+                user_card3_score: _this5.cardScores.card3,
+                user_card4_score: _this5.cardScores.card4,
+                user_card5_score: _this5.cardScores.card5
+              });
+            case 9:
+              _this5.$router.push({
+                path: path,
+                query: {
+                  win_count: _this5.$route.query.win_count
+                }
+              });
+              _context3.next = 15;
+              break;
+            case 12:
+              _context3.prev = 12;
+              _context3.t0 = _context3["catch"](2);
+              console.error('Error during score submission:', _context3.t0);
+            case 15:
+            case "end":
+              return _context3.stop();
+          }
+        }, _callee3, null, [[2, 12]]);
+      }))();
+    },
+    initializeScoreOptions: function initializeScoreOptions() {
+      var options = {};
+      for (var i = 1; i <= 5; i++) {
+        options["card".concat(i)] = this.generateScoreOptions(100);
+      }
+      return options;
+    },
+    initializeCardScores: function initializeCardScores() {
+      return {
+        card1: 0,
+        card2: 0,
+        card3: 0,
+        card4: 0,
+        card5: 0
+      };
+    },
+    generateScoreOptions: function generateScoreOptions(maxScore) {
+      var options = [];
+      for (var i = 0; i <= maxScore; i += 5) {
+        options.push(i);
+      }
+      return options;
+    },
+    updateScoreOptions: function updateScoreOptions(selectedCard) {
+      var totalScore = 100;
+      var usedScore = Object.values(this.cardScores).reduce(function (acc, value) {
+        return acc + value;
+      }, 0);
+      for (var card in this.scoreOptions) {
+        if (card !== selectedCard) {
+          var remainingScore = totalScore - usedScore + this.cardScores[card];
+          this.scoreOptions[card] = this.generateScoreOptions(remainingScore);
+        }
+      }
+    },
+    calculateTotalScore: function calculateTotalScore() {
+      return this.cardScores.card1 + this.cardScores.card2 + this.cardScores.card3 + this.cardScores.card4 + this.cardScores.card5;
+    }
+  },
+  watch: {
+    'cardScores.card1': function cardScoresCard1(newVal) {
+      this.cardScores.card1 = parseInt(newVal) || 0;
+      this.updateScoreOptions('card1');
+    },
+    'cardScores.card2': function cardScoresCard2(newVal) {
+      this.cardScores.card2 = parseInt(newVal) || 0;
+      this.updateScoreOptions('card2');
+    },
+    'cardScores.card3': function cardScoresCard3(newVal) {
+      this.cardScores.card3 = parseInt(newVal) || 0;
+      this.updateScoreOptions('card3');
+    },
+    'cardScores.card4': function cardScoresCard4(newVal) {
+      this.cardScores.card4 = parseInt(newVal) || 0;
+      this.updateScoreOptions('card4');
+    },
+    'cardScores.card5': function cardScoresCard5(newVal) {
+      this.cardScores.card5 = parseInt(newVal) || 0;
+      this.updateScoreOptions('card5');
     }
   }
 });
@@ -24107,6 +24464,100 @@ __webpack_require__.r(__webpack_exports__);
 function render(_ctx, _cache) {
   var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)]);
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AttackerChatComponent.vue?vue&type=template&id=d907ff96":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AttackerChatComponent.vue?vue&type=template&id=d907ff96 ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "flex w-[100vw] h-[8vh] shadow-2xl"
+};
+var _hoisted_2 = {
+  "class": "w-[15vw] bg-[#A49494] flex justify-center items-center"
+};
+var _hoisted_3 = {
+  "class": "text-white text-[4vh] font-bold"
+};
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "w-[85vw] bg-[#E76767] flex justify-center items-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+  className: "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
+}, "個人情報カード選択")], -1 /* HOISTED */);
+var _hoisted_5 = {
+  "class": "bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center pt-[1vh]"
+};
+var _hoisted_6 = {
+  "class": "flex flex-wrap gap-x-[1vh] justify-center items-center gap-y-[1vh] py-[1vh]"
+};
+var _hoisted_7 = {
+  "class": "w-[46vw] h-[10vh] bg-blue-300 justify-start items-center px-[2vw] duration-500 shadow-2xl flex"
+};
+var _hoisted_8 = ["src"];
+var _hoisted_9 = {
+  className: "text-[2vh] font-bold pl-[1vw]"
+};
+var _hoisted_10 = {
+  className: "flex w-[100%] justify-center items-center text-[2vh]"
+};
+var _hoisted_11 = {
+  className: "text-blue-600 font-bold flex items-center justify-center mr-[8vw]"
+};
+var _hoisted_12 = {
+  "class": "border border-gray-300 bg-white p-3 rounded overflow-auto h-[45vh] w-[90vw] mb-4 text-[2vh]"
+};
+var _hoisted_13 = {
+  key: 0,
+  "class": "text-green-500 font-bold"
+};
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "あなた:", -1 /* HOISTED */);
+var _hoisted_15 = {
+  key: 1,
+  "class": "text-blue-500 font-bold"
+};
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "対戦相手:", -1 /* HOISTED */);
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  type: "submit",
+  "class": "px-4 py-2 bg-blue-500 text-white rounded"
+}, "送信", -1 /* HOISTED */);
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.defenderCards, function (card) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+      key: card.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      src: "/img/".concat(card.defender_card_name, ".png"),
+      alt: "defender_card",
+      "class": "w-[8vh] h-[8vh]"
+    }, null, 8 /* PROPS */, _hoisted_8), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(card.defender_card_name), 1 /* TEXT */)])]);
+  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_11, "残り時間 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.timeLeft), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.conversation, function (message) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: message.id,
+      "class": "mb-3"
+    }, [message.sender === $data.userId ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(message.content), 1 /* TEXT */)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(message.content), 1 /* TEXT */)]))]);
+  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+    onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.sendMessage && $options.sendMessage.apply($options, arguments);
+    }, ["prevent"])),
+    "class": "flex w-[90vw] text-[2vh]"
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $data.userInput = $event;
+    }),
+    placeholder: "Type your message...",
+    "class": "flex-grow p-2 border border-gray-300 rounded mr-2 pl-4"
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.userInput]]), _hoisted_17], 32 /* HYDRATE_EVENTS */)])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -24483,65 +24934,14 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   className: "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
 }, "悪用カード選択")], -1 /* HOISTED */);
-var _hoisted_5 = {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center"
-};
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "py-[4vh] flex flex-col items-center gap-y-5 text-[2vh]"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "個人情報悪用側がカード選択中です。"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "しばらくお待ちください。")], -1 /* HOISTED */);
-var _hoisted_7 = {
-  key: 0,
-  "class": "w-[70vw] pt-[5vh]"
-};
-var _hoisted_8 = {
-  key: 0
-};
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 個人情報カード選択へ進む ");
-var _hoisted_10 = {
-  key: 1
-};
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 個人情報カード選択へ進む ");
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "個人情報悪用側がカード選択中です。"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "しばらくお待ちください。")])], -1 /* HOISTED */);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, $data.selectedCard != null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [this.$route.query.talk == 'face' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: {
-      name: 'defender-select',
-      params: {
-        user_id: _ctx.$route.params.user_id,
-        game_id: _ctx.$route.params.game_id
-      },
-      query: {
-        opponent_id: _ctx.$route.query.opponent_id,
-        win_count: _ctx.$route.query.win_count,
-        selected_card: encodeURIComponent($data.selectedCard)
-      }
-    },
-    "class": "flex justify-center items-center bg-blue-500 py-[1vh] px-[8vw] text-white font-bold text-[2.5vh]"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_9];
-    }),
-    _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["to"])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: {
-      name: 'defender-select-chat',
-      params: {
-        user_id: _ctx.$route.params.user_id,
-        game_id: _ctx.$route.params.game_id
-      },
-      query: {
-        opponent_id: _ctx.$route.query.opponent_id,
-        win_count: _ctx.$route.query.win_count,
-        selected_card: encodeURIComponent($data.selectedCard)
-      }
-    },
-    "class": "flex justify-center items-center bg-blue-500 py-[1vh] px-[8vw] text-white font-bold text-[2.5vh]"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_11];
-    }),
-    _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["to"])]))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), _hoisted_4]), _hoisted_5], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -24808,7 +25208,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [_hoisted_23];
     }),
     _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["to"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
+  }, 8 /* PROPS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("提供側が次のページへ遷移したとき、つまりrouter-link :to=\"{ name: 'defender-standby'..を押下した時に対戦相手に通知したい")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -25075,7 +25475,7 @@ var _hoisted_3 = {
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "w-[85vw] bg-green-600 flex justify-center items-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  className: "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
+  "class": "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
 }, "配点内訳")], -1 /* HOISTED */);
 var _hoisted_5 = {
   "class": "bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center"
@@ -25094,219 +25494,84 @@ var _hoisted_10 = {
 var _hoisted_11 = {
   "class": "flex flex-col items-center gap-y-[2vh] pt-[3vh] pb-[3vh]"
 };
-var _hoisted_12 = {
-  "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex"
+var _hoisted_12 = ["src"];
+var _hoisted_13 = {
+  "class": "text-[2vh] font-bold pl-[2vw]"
 };
-var _hoisted_13 = ["src"];
 var _hoisted_14 = {
-  className: "text-[2vh] font-bold pl-[2vw]"
-};
-var _hoisted_15 = {
-  "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex"
-};
-var _hoisted_16 = ["src"];
-var _hoisted_17 = {
-  className: "text-[2vh] font-bold pl-[2vw]"
-};
-var _hoisted_18 = {
-  "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex"
-};
-var _hoisted_19 = ["src"];
-var _hoisted_20 = {
-  className: "text-[2vh] font-bold pl-[2vw]"
-};
-var _hoisted_21 = {
-  "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex"
-};
-var _hoisted_22 = ["src"];
-var _hoisted_23 = {
-  className: "text-[2vh] font-bold pl-[2vw]"
-};
-var _hoisted_24 = {
-  "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex"
-};
-var _hoisted_25 = ["src"];
-var _hoisted_26 = {
-  className: "text-[2vh] font-bold pl-[2vw]"
-};
-var _hoisted_27 = {
   "class": "flex flex-col items-center text-[2vh] mx-[3vw] font-bold"
 };
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-[2vh]"
 }, "配点", -1 /* HOISTED */);
-var _hoisted_29 = {
+var _hoisted_16 = {
   "class": "flex flex-col items-center gap-y-[2vh]"
 };
-var _hoisted_30 = {
-  "class": "w-[10vw] h-[12vh] flex justify-center items-center"
-};
-var _hoisted_31 = {
-  "class": "w-[10vw] h-[12vh] flex justify-center items-center"
-};
-var _hoisted_32 = {
-  "class": "w-[10vw] h-[12vh] flex justify-center items-center"
-};
-var _hoisted_33 = {
-  "class": "w-[10vw] h-[12vh] flex justify-center items-center"
-};
-var _hoisted_34 = {
-  "class": "w-[10vw] h-[12vh] flex justify-center items-center"
-};
-var _hoisted_35 = {
+var _hoisted_17 = {
   "class": "flex flex-col items-center text-[2vh] my-0 py-0"
 };
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "font-bold"
 }, "あなた", -1 /* HOISTED */);
-var _hoisted_37 = {
+var _hoisted_19 = {
   "class": "flex flex-col items-center gap-y-[2vh]"
 };
-var _hoisted_38 = {
-  "class": "flex items-center w-[15vw] h-[12vh] justify-center"
-};
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "card1Score"
-}, null, -1 /* HOISTED */);
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
-var _hoisted_61 = [_hoisted_40];
-var _hoisted_62 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
-var _hoisted_63 = {
-  "class": "flex items-center w-[15vw] h-[12vh] justify-center"
-};
-var _hoisted_64 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "card2Score"
-}, null, -1 /* HOISTED */);
-var _hoisted_65 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
-var _hoisted_86 = [_hoisted_65];
-var _hoisted_87 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
-var _hoisted_88 = {
-  "class": "flex items-center w-[15vw] h-[12vh] justify-center"
-};
-var _hoisted_89 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "card3Score"
-}, null, -1 /* HOISTED */);
-var _hoisted_90 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
-var _hoisted_111 = [_hoisted_90];
-var _hoisted_112 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
-var _hoisted_113 = {
-  "class": "flex items-center w-[15vw] h-[12vh] justify-center"
-};
-var _hoisted_114 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "card4Score"
-}, null, -1 /* HOISTED */);
-var _hoisted_115 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
-var _hoisted_136 = [_hoisted_115];
-var _hoisted_137 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
-var _hoisted_138 = {
-  "class": "flex items-center w-[15vw] h-[12vh] justify-center"
-};
-var _hoisted_139 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "card5Score"
-}, null, -1 /* HOISTED */);
-var _hoisted_140 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"0\">0</option><option value=\"5\">5</option><option value=\"10\">10</option><option value=\"15\">15</option><option value=\"20\">20</option><option value=\"25\">25</option><option value=\"30\">30</option><option value=\"35\">35</option><option value=\"40\">40</option><option value=\"45\">45</option><option value=\"50\">50</option><option value=\"55\">55</option><option value=\"60\">60</option><option value=\"65\">65</option><option value=\"70\">70</option><option value=\"75\">75</option><option value=\"80\">80</option><option value=\"85\">85</option><option value=\"90\">90</option><option value=\"95\">95</option><option value=\"100\">100</option>", 21);
-var _hoisted_161 = [_hoisted_140];
-var _hoisted_162 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
-var _hoisted_163 = {
+var _hoisted_20 = ["for"];
+var _hoisted_21 = ["onUpdate:modelValue", "id"];
+var _hoisted_22 = ["value"];
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 点 ");
+var _hoisted_24 = {
   key: 0,
   "class": "flex justify-end"
 };
-var _hoisted_164 = {
+var _hoisted_25 = {
   key: 1,
   "class": "flex justify-end"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _$data$scores, _$data$scores2, _$data$scores3, _$data$scores4, _$data$scores5;
-  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_8, "「" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.attackerCardName) + "」", 1 /* TEXT */), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "/img/".concat($data.defenderCard1Name, ".png"),
-    alt: "defender_card",
-    "class": "w-[11vh] h-[11vh]"
-  }, null, 8 /* PROPS */, _hoisted_13), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.defenderCard1Name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "/img/".concat($data.defenderCard2Name, ".png"),
-    alt: "defender_card",
-    "class": "w-[11vh] h-[11vh]"
-  }, null, 8 /* PROPS */, _hoisted_16), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.defenderCard2Name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "/img/".concat($data.defenderCard3Name, ".png"),
-    alt: "defender_card",
-    "class": "w-[11vh] h-[11vh]"
-  }, null, 8 /* PROPS */, _hoisted_19), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.defenderCard3Name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "/img/".concat($data.defenderCard4Name, ".png"),
-    alt: "defender_card",
-    "class": "w-[11vh] h-[11vh]"
-  }, null, 8 /* PROPS */, _hoisted_22), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.defenderCard4Name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "/img/".concat($data.defenderCard5Name, ".png"),
-    alt: "defender_card",
-    "class": "w-[11vh] h-[11vh]"
-  }, null, 8 /* PROPS */, _hoisted_25), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.defenderCard5Name), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores = $data.scores) === null || _$data$scores === void 0 ? void 0 : _$data$scores.defender_card1_score), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores2 = $data.scores) === null || _$data$scores2 === void 0 ? void 0 : _$data$scores2.defender_card2_score), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores3 = $data.scores) === null || _$data$scores3 === void 0 ? void 0 : _$data$scores3.defender_card3_score), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores4 = $data.scores) === null || _$data$scores4 === void 0 ? void 0 : _$data$scores4.defender_card4_score), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)((_$data$scores5 = $data.scores) === null || _$data$scores5 === void 0 ? void 0 : _$data$scores5.defender_card5_score), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_35, [_hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "class": "border border-blue-500",
-    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $data.card1Score = $event;
-    }),
-    id: "card1Score"
-  }, _hoisted_61, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card1Score]]), _hoisted_62]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_63, [_hoisted_64, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "class": "border border-blue-500",
-    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return $data.card2Score = $event;
-    }),
-    id: "card2Score"
-  }, _hoisted_86, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card2Score]]), _hoisted_87]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_88, [_hoisted_89, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "class": "border border-blue-500",
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $data.card3Score = $event;
-    }),
-    id: "card3Score"
-  }, _hoisted_111, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card3Score]]), _hoisted_112]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_113, [_hoisted_114, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "class": "border border-blue-500",
-    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-      return $data.card4Score = $event;
-    }),
-    id: "card4Score"
-  }, _hoisted_136, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card4Score]]), _hoisted_137]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_138, [_hoisted_139, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "class": "border border-blue-500",
-    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
-      return $data.card5Score = $event;
-    }),
-    id: "card5Score"
-  }, _hoisted_161, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card5Score]]), _hoisted_162])])])]), parseInt(_ctx.$route.params.game_id) < 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_163, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: {
-      name: 'introduction',
-      params: {
-        user_id: _ctx.$route.params.userId,
-        game_id: parseInt(_ctx.$route.params.game_id) + 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_8, "「" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.attackerCardName) + "」", 1 /* TEXT */), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)([$data.defenderCard1Name, $data.defenderCard2Name, $data.defenderCard3Name, $data.defenderCard4Name, $data.defenderCard5Name], function (cardName) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: cardName,
+      "class": "w-[60vw] h-[12vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      src: "/img/".concat(cardName, ".png"),
+      alt: "defender_card",
+      "class": "w-[11vh] h-[11vh]"
+    }, null, 8 /* PROPS */, _hoisted_12), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(cardName), 1 /* TEXT */)]);
+  }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)([(_$data$scores = $data.scores) === null || _$data$scores === void 0 ? void 0 : _$data$scores.defender_card1_score, (_$data$scores2 = $data.scores) === null || _$data$scores2 === void 0 ? void 0 : _$data$scores2.defender_card2_score, (_$data$scores3 = $data.scores) === null || _$data$scores3 === void 0 ? void 0 : _$data$scores3.defender_card3_score, (_$data$scores4 = $data.scores) === null || _$data$scores4 === void 0 ? void 0 : _$data$scores4.defender_card4_score, (_$data$scores5 = $data.scores) === null || _$data$scores5 === void 0 ? void 0 : _$data$scores5.defender_card5_score], function (score, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", {
+      key: index,
+      "class": "w-[10vw] h-[12vh] flex justify-center items-center"
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(score), 1 /* TEXT */);
+  }), 128 /* KEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(['card1', 'card2', 'card3', 'card4', 'card5'], function (cardScore, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+      key: index,
+      "class": "flex items-center w-[15vw] h-[12vh] justify-center"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+      "for": "".concat(cardScore, "Score")
+    }, null, 8 /* PROPS */, _hoisted_20), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+      "onUpdate:modelValue": function onUpdateModelValue($event) {
+        return $data.cardScores[cardScore] = $event;
       },
-      query: {
-        win_count: _ctx.$route.query.win_count
-      }
-    }
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        "class": "text-white font-bold py-[1vh] px-[20vw] border-[3px] border-green-600 hover:border-green-700 hover:bg-green-700 bg-green-600 duration-300 shadow-xl text-[2vh]",
-        onClick: _cache[5] || (_cache[5] = function () {
-          return $options.submitScores && $options.submitScores.apply($options, arguments);
-        })
-      }, " もう一度対戦する ")];
+      "class": "border border-blue-500",
+      id: "".concat(cardScore, "Score")
+    }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.scoreOptions[cardScore], function (score) {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+        value: score
+      }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(score), 9 /* TEXT, PROPS */, _hoisted_22);
+    }), 256 /* UNKEYED_FRAGMENT */))], 8 /* PROPS */, _hoisted_21), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.cardScores[cardScore]]]), _hoisted_23]);
+  }), 64 /* STABLE_FRAGMENT */))])])]), parseInt(_ctx.$route.params.game_id) < 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.submitScores && $options.submitScores.apply($options, arguments);
     }),
-    _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["to"])])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_164, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: {
-      name: 'final-result',
-      query: {
-        win_count: _ctx.$route.query.win_count
-      }
-    }
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        "class": "border-[3px] border-green-600 text-green-600 font-bold py-[1vh] px-[20vw] hover:bg-blue-500 hover:text-white duration-300 shadow-xl text-[2vh]",
-        onClick: _cache[6] || (_cache[6] = function () {
-          return $options.submitScores && $options.submitScores.apply($options, arguments);
-        })
-      }, " ゲームを終了する ")];
+    "class": "text-white font-bold py-[1vh] px-[20vw] border-[3px] border-green-600 hover:border-green-700 hover:bg-green-700 bg-green-600 duration-300 shadow-xl text-[2vh]"
+  }, " もう一度対戦する ")])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[1] || (_cache[1] = function () {
+      return $options.submitScores6 && $options.submitScores6.apply($options, arguments);
     }),
-    _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["to"])]))])], 64 /* STABLE_FRAGMENT */);
+    "class": "border-[3px] border-green-600 text-green-600 font-bold py-[1vh] px-[20vw] hover:bg-blue-500 hover:text-white duration-300 shadow-xl text-[2vh]"
+  }, " ゲームを終了する ")]))])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -25320,7 +25585,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.mjs");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.mjs");
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
@@ -25335,7 +25600,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_AttackerStandbyComponent__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/AttackerStandbyComponent */ "./resources/js/components/AttackerStandbyComponent.vue");
 /* harmony import */ var _components_DefenderSelectComponent__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/DefenderSelectComponent */ "./resources/js/components/DefenderSelectComponent.vue");
 /* harmony import */ var _components_DefenderChatComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/DefenderChatComponent */ "./resources/js/components/DefenderChatComponent.vue");
-/* harmony import */ var _components_FinalResultComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/FinalResultComponent */ "./resources/js/components/FinalResultComponent.vue");
+/* harmony import */ var _components_AttackerChatComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/AttackerChatComponent */ "./resources/js/components/AttackerChatComponent.vue");
+/* harmony import */ var _components_FinalResultComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/FinalResultComponent */ "./resources/js/components/FinalResultComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -25343,6 +25609,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -25403,6 +25670,10 @@ var routes = [{
   component: _components_DefenderChatComponent__WEBPACK_IMPORTED_MODULE_13__["default"],
   name: 'defender-select-chat'
 }, {
+  path: '/attacker-chat/:user_id/:game_id',
+  component: _components_AttackerChatComponent__WEBPACK_IMPORTED_MODULE_14__["default"],
+  name: 'attacker-chat'
+}, {
   path: '/defender-select-dialogue/:user_id/:game_id',
   component: _components_TalkComponent__WEBPACK_IMPORTED_MODULE_6__["default"],
   name: 'defender-select-dialogue'
@@ -25416,7 +25687,7 @@ var routes = [{
   name: 'user-score'
 }, {
   path: '/final-result',
-  component: _components_FinalResultComponent__WEBPACK_IMPORTED_MODULE_14__["default"],
+  component: _components_FinalResultComponent__WEBPACK_IMPORTED_MODULE_15__["default"],
   name: 'final-result'
 }];
 
@@ -25426,8 +25697,8 @@ var routes = [{
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_15__.createRouter)({
-  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_15__.createWebHistory)(),
+var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_16__.createRouter)({
+  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_16__.createWebHistory)(),
   routes: routes // `routes: routes` の短縮記法
 });
 
@@ -54493,6 +54764,34 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/AttackerChatComponent.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/AttackerChatComponent.vue ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AttackerChatComponent_vue_vue_type_template_id_d907ff96__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AttackerChatComponent.vue?vue&type=template&id=d907ff96 */ "./resources/js/components/AttackerChatComponent.vue?vue&type=template&id=d907ff96");
+/* harmony import */ var _AttackerChatComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AttackerChatComponent.vue?vue&type=script&lang=js */ "./resources/js/components/AttackerChatComponent.vue?vue&type=script&lang=js");
+/* harmony import */ var _Users_kokuborin_Documents_zemi_kojin_card_game_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_Users_kokuborin_Documents_zemi_kojin_card_game_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_AttackerChatComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_AttackerChatComponent_vue_vue_type_template_id_d907ff96__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/AttackerChatComponent.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/components/AttackerSelectComponent.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/components/AttackerSelectComponent.vue ***!
@@ -54829,6 +55128,22 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/AttackerChatComponent.vue?vue&type=script&lang=js":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/AttackerChatComponent.vue?vue&type=script&lang=js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AttackerChatComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AttackerChatComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AttackerChatComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AttackerChatComponent.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/components/AttackerSelectComponent.vue?vue&type=script&lang=js":
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/AttackerSelectComponent.vue?vue&type=script&lang=js ***!
@@ -55033,6 +55348,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_App_vue_vue_type_template_id_f348271a__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_App_vue_vue_type_template_id_f348271a__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./App.vue?vue&type=template&id=f348271a */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/App.vue?vue&type=template&id=f348271a");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/AttackerChatComponent.vue?vue&type=template&id=d907ff96":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/AttackerChatComponent.vue?vue&type=template&id=d907ff96 ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AttackerChatComponent_vue_vue_type_template_id_d907ff96__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AttackerChatComponent_vue_vue_type_template_id_d907ff96__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AttackerChatComponent.vue?vue&type=template&id=d907ff96 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/AttackerChatComponent.vue?vue&type=template&id=d907ff96");
 
 
 /***/ }),

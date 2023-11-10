@@ -43,6 +43,7 @@
       <router-link :to="{ name: 'defender-standby', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId, talk: this.talk, win_count: $route.query.win_count } }">
         個人情報提供サイドへ進む
       </router-link>
+      <!--提供側が次のページへ遷移したとき、つまりrouter-link :to="{ name: 'defender-standby'..を押下した時に対戦相手に通知したい-->
     </div>
   </div>
 </template>
@@ -88,6 +89,29 @@ export default {
     } catch (error) {
       console.error('Error fetching match info:', error);
       this.userRole = null;
+    }
+  },
+  methods: {
+    defenderTransit(){
+      const transit = true;
+      const opponentId = this.$route.query.opponent_id;
+
+      axios.post('/api/defender-transit', { transit, opponentId })
+        .then(response => {
+          console.log('遷移情報を送信しました');
+          console.log(opponentId);
+          this.$router.push({
+            path: `/defender-standby/${userId}/${gameId}`,
+            query: {
+              opponent_id: opponentId,
+              talk: this.talk,
+              win_count: $route.query.win_count
+            }
+          });
+        })
+        .catch(error => {
+          console.error('エラーが発生しました', error);
+        });
     }
   }
 }

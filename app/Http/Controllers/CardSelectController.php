@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Events\AttackerCardSelected;
 use App\Events\DefenderCardSelected;
+use App\Events\DefenderTransit;
 
 class CardSelectController extends Controller
 {
@@ -25,14 +26,23 @@ class CardSelectController extends Controller
         $opponentId = $request->input('opponent_id');
         $selectedCards = $request->input('selected_cards');
 
-        // カードが選択されたことを対戦相手に通知
         event(new DefenderCardSelected($opponentId, $selectedCards));
 
-        \Illuminate\Support\Facades\Log::info('CardSelectController fired.', [
+        return response()->json(['message' => 'Selected cards information sent successfully.']);
+    }
+
+    public function defenderTransit(Request $request)
+    {
+        $transit = $request->input('transit');
+        $opponentId = $request->input('opponentId');
+
+        event(new DefenderTransit($transit, $opponentId));
+
+        \Illuminate\Support\Facades\Log::info('Is transit.', [
+            'transit' => $transit,
             'opponentId' => $opponentId,
-            'card' => $selectedCards
         ]);
 
-        return response()->json(['message' => 'Selected cards information sent successfully.']);
+        return response()->json(['message' => 'Transit information sent successfully.']);
     }
 }

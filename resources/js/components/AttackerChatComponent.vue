@@ -3,29 +3,21 @@
     <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
-    <div class="w-[85vw] bg-blue-500 flex justify-center items-center">
+    <div class="w-[85vw] bg-[#E76767] flex justify-center items-center">
       <h1 className="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報カード選択</h1>
     </div>
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center pt-[1vh]">
     <ul class="flex flex-wrap gap-x-[1vh] justify-center items-center gap-y-[1vh] py-[1vh]">
-      <li v-for="(card, index) in defenderCards" :key="card.id" :class="{ 'bg-blue-100': selectedCards.includes(index + 1) }">
-        <button @click="selectCard(index + 1)" class="w-[46vw] h-[10vh] bg-blue-300 justify-start items-center px-[2vw] duration-500 shadow-2xl flex">
+      <li v-for="(card) in defenderCards" :key="card.id">
+        <div class="w-[46vw] h-[10vh] bg-blue-300 justify-start items-center px-[2vw] duration-500 shadow-2xl flex">
           <img :src="`/img/${card.defender_card_name}.png`" alt="defender_card" class="w-[8vh] h-[8vh]">
           <p className="text-[2vh] font-bold pl-[1vw]">{{ card.defender_card_name }}</p>
-        </button>
+        </div>
       </li>
     </ul>
     <div className="flex w-[100%] justify-center items-center text-[2vh]">
       <p className="text-blue-600 font-bold flex items-center justify-center mr-[8vw]">残り時間 : {{ timeLeft }}</p>
-      <button 
-        :disabled="selectedCards.length !== 3" 
-        @click="confirmSelection" 
-        class="text-white font-bold py-[6px] px-[6vw] my-[30px] mr-[10px] border-[3px] border-blue-500 hover:border-blue-600
-        hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded"
-        :class="{ 'opacity-50 cursor-not-allowed': selectedCards.length !== 3 }">
-        カードを決定する
-      </button>
     </div>
     <div class="border border-gray-300 bg-white p-3 rounded overflow-auto h-[45vh] w-[90vw] mb-4 text-[2vh]">
       <div v-for="message in conversation" :key="message.id" class="mb-3">
@@ -80,7 +72,7 @@ export default {
         response.data.defender_card5,
       ];
       this.startCountdown();
-      const cardInfoResponse = await axios.get(`/api/attacker-card-info/${decodeURIComponent(this.$route.query.selected_card)}`);
+      const cardInfoResponse = await axios.get(`/api/attacker-card-info/${this.$route.query.attacker_select}`);
       this.attacker_select_id = cardInfoResponse.data.id;
       Echo.private(`chat.${this.userId}`)
           .listen('.message.sent', (event) => {
@@ -88,43 +80,30 @@ export default {
                   sender: event.userId,
                   content: event.messageContent
               });
+            console.log('イベントメッセージ',event.messageContent)
           });
     } catch (error) {
       console.error('Error fetching game information:', error);
     }
   },
-  methods: {
-    selectCard(cardNumber) {
-      if (this.selectedCards.includes(cardNumber)) {
-        this.selectedCards = this.selectedCards.filter(card => card !== cardNumber);
-      } else if (this.selectedCards.length < 3) {
-        this.selectedCards.push(cardNumber);
-      }
-    },
-    confirmSelection() {
-      if (this.selectedCards.length === 3) {
-        axios.post('/api/defender-select-card', {
-          user_id: this.$route.params.user_id,
-          opponent_id: this.$route.query.opponent_id,
-          selected_cards: this.selectedCards
-        }).then(() => {
-          this.$router.push({
-            path: `/result/${this.$route.params.user_id}/${this.$route.params.game_id}/`,
-            query: {
-              selectedCards: this.selectedCards,
-              win_count: this.$route.query.win_count,
-              role: 'defender',
-              attacker_select_id: this.attacker_select_id,
-              opponent_id: this.$route.query.opponent_id
-            },
-          });
-        }).catch(error => {
-          console.error('カード情報の送信に失敗しました', error);
+  mounted() {
+    Echo.private(`user.${this.$route.params.user_id}`)
+      .listen('.defenderCards.selected', (event) => {
+        console.log('カードが選択されました:', event.selectedCards);
+        this.selectedCards = event.selectedCards;
+        this.$router.push({
+          path: `/result/${this.$route.params.user_id}/${this.$route.params.game_id}/`,
+          query: {
+            selectedCards: this.selectedCards,
+            attacker_select_id: this.attacker_select_id,
+            win_count: this.$route.query.win_count,
+            role: 'attacker',
+            opponent_id: this.$route.query.opponent_id,
+          },
         });
-      } else {
-        console.error('3枚のカードが選択されていません');
-      }
-    },
+      });
+  },
+  methods: {
     sendMessage() {
       const opponentId = this.$route.query.opponent_id;
 
