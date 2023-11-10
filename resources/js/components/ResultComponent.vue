@@ -93,7 +93,11 @@ export default {
       params: { selectedCards, attacker_select_id: attackerSelectId },
     })
     .then((response) => {
-      this.score = response.data.score;
+      if(this.$route.query.role == 'defender'){
+        this.score = response.data.score;
+      } else {
+        this.score = 100 - response.data.score;
+      }
       if(this.score < 50){
         this.resultImage = 'win';
         this.win_count += 1;

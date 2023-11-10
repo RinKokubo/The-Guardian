@@ -23709,7 +23709,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         attacker_select_id: attackerSelectId
       }
     }).then(function (response) {
-      _this2.score = response.data.score;
+      if (_this2.$route.query.role == 'defender') {
+        _this2.score = response.data.score;
+      } else {
+        _this2.score = 100 - response.data.score;
+      }
       if (_this2.score < 50) {
         _this2.resultImage = 'win';
         _this2.win_count += 1;
