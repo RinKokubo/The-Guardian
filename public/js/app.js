@@ -23428,7 +23428,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
     console.log("Connecting to channel: user.".concat(this.userId));
-    Echo["private"]("user.".concat(this.userId)).listen('card.selected', function (event) {
+    Echo["private"]("user.".concat(this.userId)).listen('.card.selected', function (event) {
       console.log('カードが選択されました:', event.card);
       _this.selectedCard = event.card;
     });
@@ -24568,7 +24568,7 @@ var _hoisted_30 = {
   key: 6
 };
 var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたのランク： ビギナー", -1 /* HOISTED */);
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "今日はとことん落ち込もう..", -1 /* HOISTED */);
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "今日はとことん落ち込もう...", -1 /* HOISTED */);
 var _hoisted_33 = [_hoisted_31, _hoisted_32];
 var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ゲームを終了する ");
 function render(_ctx, _cache, $props, $setup, $data, $options) {

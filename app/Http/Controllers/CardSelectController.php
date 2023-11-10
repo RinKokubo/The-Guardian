@@ -14,6 +14,13 @@ class CardSelectController extends Controller
         $opponentId = $request->input('opponentId');
 
         event(new AttackerCardSelected($userId, $opponentId, $cardName));
+
+        \Illuminate\Support\Facades\Log::info('CardSelectController fired.', [
+            'userId' => $userId,
+            'opponentId' => $opponentId,
+            'card' => $cardName
+        ]);
+
         return response()->json(['message' => 'カード情報を送信しました']);
     }
 }

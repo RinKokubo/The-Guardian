@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class AttackerCardSelected implements ShouldBroadcast
 {
@@ -29,6 +30,12 @@ class AttackerCardSelected implements ShouldBroadcast
         $this->userId = $userId;
         $this->card = $card;
         $this->opponentId = $opponentId;
+
+        \Illuminate\Support\Facades\Log::info('AttackerCardSelected Event fired.', [
+            'userId' => $userId,
+            'opponentId' => $opponentId,
+            'card' => $card
+        ]);
     }
 
     /**
