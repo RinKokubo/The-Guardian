@@ -4,23 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Events\AttackerCardSelected;
+use App\Events\DefenderCardSelected;
 
 class CardSelectController extends Controller
 {
     public function attackerSelectCard(Request $request)
     {
-        $userId = $request->input('userId'); // $request->user_idから$request->input('userId')に変更
-        $cardName = $request->input('cardName'); // $request->input('card')から$request->input('cardName')に変更
+        $userId = $request->input('userId');
+        $cardName = $request->input('cardName');
         $opponentId = $request->input('opponentId');
 
         event(new AttackerCardSelected($userId, $opponentId, $cardName));
 
+        return response()->json(['message' => 'カード情報を送信しました']);
+    }
+
+    public function defenderSelectCard(Request $request)
+    {
+        $userId = $request->input('user_id');
+        $opponentId = $request->input('opponent_id');
+        $selectedCards = $request->input('selected_cards');
+
+        // カードが選択されたことを対戦相手に通知
+        event(new DefenderCardSelected($opponentId, $selectedCards));
+
         \Illuminate\Support\Facades\Log::info('CardSelectController fired.', [
-            'userId' => $userId,
             'opponentId' => $opponentId,
-            'card' => $cardName
+            'card' => $selectedCards
         ]);
 
-        return response()->json(['message' => 'カード情報を送信しました']);
+        return response()->json(['message' => 'Selected cards information sent successfully.']);
     }
 }

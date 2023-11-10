@@ -38,6 +38,7 @@
         selectedCards: [],
         countdownTime: 5 * 60, // countdownTime in seconds (5 minutes)
         timeLeft: '05:00', // Displayed countdown timer
+        attacker_select_id: null
       }
     },
     async created() {
@@ -52,6 +53,9 @@
           response.data.defender_card5,
         ];
         this.startCountdown();
+        const cardInfoResponse = await axios.get(`/api/attacker-card-info/${decodeURIComponent(this.$route.query.selected_card)}`);
+        this.attacker_select_id = cardInfoResponse.data.id;
+        console.log('テスト：', this.attacker_select_id);
       } catch (error) {
         console.error('Error fetching game information:', error);
       }
@@ -81,15 +85,28 @@
       }
     },
     confirmSelection() {
-      this.$router.push({
-        path: `/result/${this.$route.params.user_id}/${this.$route.params.game_id}/`,
-        query: {
-          selectedCards: this.selectedCards,
-          win_count: this.$route.query.win_count,
-          role: 'defender',
-          // attacker_select_id: this.attacker_select_id,
-        },
-      });
+      if (this.selectedCards.length === 3) {
+        axios.post('/api/defender-select-card', {
+          user_id: this.$route.params.user_id,
+          opponent_id: this.$route.query.opponent_id,
+          selected_cards: this.selectedCards
+        }).then(() => {
+          this.$router.push({
+            path: `/result/${this.$route.params.user_id}/${this.$route.params.game_id}/`,
+            query: {
+              selectedCards: this.selectedCards,
+              win_count: this.$route.query.win_count,
+              role: 'defender',
+              attacker_select_id: this.attacker_select_id,
+              opponent_id: this.$route.query.opponent_id
+            },
+          });
+        }).catch(error => {
+          console.error('カード情報の送信に失敗しました', error);
+        });
+      } else {
+        console.error('3枚のカードが選択されていません');
+      }
     },
     }
   }

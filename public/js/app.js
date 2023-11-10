@@ -23099,7 +23099,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   created: function created() {
     var _this = this;
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var response;
+      var response, cardInfoResponse;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
@@ -23111,29 +23111,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             response = _context.sent;
             _this.defenderCards = [response.data.defender_card1, response.data.defender_card2, response.data.defender_card3, response.data.defender_card4, response.data.defender_card5];
             _this.startCountdown();
-            _context.next = 12;
-            break;
+            _context.next = 9;
+            return axios.get("/api/attacker-card-info/".concat(_this.$route.query.attacker_select));
           case 9:
-            _context.prev = 9;
+            cardInfoResponse = _context.sent;
+            _this.attacker_select_id = cardInfoResponse.data.id;
+            _context.next = 16;
+            break;
+          case 13:
+            _context.prev = 13;
             _context.t0 = _context["catch"](0);
             console.error('Error fetching game information:', _context.t0);
-          case 12:
+          case 16:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 9]]);
+      }, _callee, null, [[0, 13]]);
     }))();
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+    Echo["private"]("user.".concat(this.$route.params.user_id)).listen('.defenderCards.selected', function (event) {
+      console.log('カードが選択されました:', event.selectedCards);
+      _this2.selectedCards = event.selectedCards;
+      _this2.$router.push({
+        path: "/result/".concat(_this2.$route.params.user_id, "/").concat(_this2.$route.params.game_id, "/"),
+        query: {
+          selectedCards: _this2.selectedCards,
+          attacker_select_id: _this2.attacker_select_id,
+          win_count: _this2.$route.query.win_count,
+          role: 'attacker',
+          opponent_id: _this2.$route.query.opponent_id
+        }
+      });
+    });
   },
   methods: {
     startCountdown: function startCountdown() {
-      var _this2 = this;
+      var _this3 = this;
       var timerInterval = setInterval(function () {
-        if (_this2.countdownTime === 0) {
+        if (_this3.countdownTime === 0) {
           clearInterval(timerInterval);
           // You may want to do something here when countdown reaches 0
         } else {
-          _this2.countdownTime--;
-          _this2.formatTimeLeft();
+          _this3.countdownTime--;
+          _this3.formatTimeLeft();
         }
       }, 1000);
     },
@@ -23333,13 +23355,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       selectedCards: [],
       countdownTime: 5 * 60,
       // countdownTime in seconds (5 minutes)
-      timeLeft: '05:00' // Displayed countdown timer
+      timeLeft: '05:00',
+      // Displayed countdown timer
+      attacker_select_id: null
     };
   },
   created: function created() {
     var _this = this;
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var response;
+      var response, cardInfoResponse;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
@@ -23351,17 +23375,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             response = _context.sent;
             _this.defenderCards = [response.data.defender_card1, response.data.defender_card2, response.data.defender_card3, response.data.defender_card4, response.data.defender_card5];
             _this.startCountdown();
-            _context.next = 12;
-            break;
+            _context.next = 9;
+            return axios.get("/api/attacker-card-info/".concat(decodeURIComponent(_this.$route.query.selected_card)));
           case 9:
-            _context.prev = 9;
+            cardInfoResponse = _context.sent;
+            _this.attacker_select_id = cardInfoResponse.data.id;
+            console.log('テスト：', _this.attacker_select_id);
+            _context.next = 17;
+            break;
+          case 14:
+            _context.prev = 14;
             _context.t0 = _context["catch"](0);
             console.error('Error fetching game information:', _context.t0);
-          case 12:
+          case 17:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 9]]);
+      }, _callee, null, [[0, 14]]);
     }))();
   },
   methods: {
@@ -23392,15 +23422,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     },
     confirmSelection: function confirmSelection() {
-      this.$router.push({
-        path: "/result/".concat(this.$route.params.user_id, "/").concat(this.$route.params.game_id, "/"),
-        query: {
-          selectedCards: this.selectedCards,
-          win_count: this.$route.query.win_count,
-          role: 'defender'
-          // attacker_select_id: this.attacker_select_id,
-        }
-      });
+      var _this3 = this;
+      if (this.selectedCards.length === 3) {
+        axios.post('/api/defender-select-card', {
+          user_id: this.$route.params.user_id,
+          opponent_id: this.$route.query.opponent_id,
+          selected_cards: this.selectedCards
+        }).then(function () {
+          _this3.$router.push({
+            path: "/result/".concat(_this3.$route.params.user_id, "/").concat(_this3.$route.params.game_id, "/"),
+            query: {
+              selectedCards: _this3.selectedCards,
+              win_count: _this3.$route.query.win_count,
+              role: 'defender',
+              attacker_select_id: _this3.attacker_select_id,
+              opponent_id: _this3.$route.query.opponent_id
+            }
+          });
+        })["catch"](function (error) {
+          console.error('カード情報の送信に失敗しました', error);
+        });
+      } else {
+        console.error('3枚のカードが選択されていません');
+      }
     }
   }
 });
@@ -23428,7 +23472,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
     console.log("Connecting to channel: user.".concat(this.userId));
-    Echo["private"]("user.".concat(this.userId)).listen('.card.selected', function (event) {
+    Echo["private"]("user.".concat(this.userId)).listen('.attackerCard.selected', function (event) {
       console.log('カードが選択されました:', event.card);
       _this.selectedCard = event.card;
     });
@@ -24198,24 +24242,27 @@ var _hoisted_6 = {
   className: "font-bold flex items-center justify-center text-[3vh] py-[2vh] text-red-500"
 };
 var _hoisted_7 = {
-  "class": "flex flex-col gap-x-5 justify-center items-center gap-y-[2vh] pb-[3vh]"
+  key: 0
 };
 var _hoisted_8 = {
+  "class": "flex flex-col gap-x-5 justify-center items-center gap-y-[2vh] pb-[3vh]"
+};
+var _hoisted_9 = {
   "class": "w-[90vw] h-[14vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex"
 };
-var _hoisted_9 = ["src"];
-var _hoisted_10 = {
+var _hoisted_10 = ["src"];
+var _hoisted_11 = {
   className: "text-[3vh] font-bold pl-[3vw]"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, "残り時間 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.timeLeft), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_7, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.defenderCards, function (card) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, "残り時間 : " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.timeLeft), 1 /* TEXT */), $data.selectedCards.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_7, "テスト" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.selectedCards), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.defenderCards, function (card) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: card.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: "/img/".concat(card.defender_card_name, ".png"),
       alt: "defender_card",
       "class": "w-[12vh] h-[12vh]"
-    }, null, 8 /* PROPS */, _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(card.defender_card_name), 1 /* TEXT */)])]);
+    }, null, 8 /* PROPS */, _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(card.defender_card_name), 1 /* TEXT */)])]);
   }), 128 /* KEYED_FRAGMENT */))])])], 64 /* STABLE_FRAGMENT */);
 }
 
@@ -25217,7 +25264,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $data.card5Score = $event;
     }),
     id: "card5Score"
-  }, _hoisted_161, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card5Score]]), _hoisted_162])])])]), parseInt(_ctx.$route.params.game_id) != 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_163, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }, _hoisted_161, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.card5Score]]), _hoisted_162])])])]), parseInt(_ctx.$route.params.game_id) < 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_163, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'introduction',
       params: {

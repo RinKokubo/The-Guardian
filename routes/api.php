@@ -51,6 +51,7 @@ Route::get('/notice/{id}', [NoticeController::class, 'show']);
 
 Route::get('/match-info', [MatchInfoController::class, 'getMatchInfo']);
 Route::post('/attacker-select-card', [CardSelectController::class, 'attackerSelectCard']);
+Route::post('/defender-select-card', [CardSelectController::class, 'defenderSelectCard']);
 
 
 // Route::get('/conversation/start', 'App\Http\Controllers\ConversationController@start');

@@ -9,6 +9,7 @@
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh]">
     <p className="font-bold flex items-center justify-center text-[3vh] py-[2vh] text-red-500">残り時間 : {{ timeLeft }}</p>
+    <p v-if="selectedCards.length > 0">テスト{{ selectedCards }}</p>
     <ul class="flex flex-col gap-x-5 justify-center items-center gap-y-[2vh] pb-[3vh]">
       <li v-for="(card) in defenderCards" :key="card.id">
         <div class="w-[90vw] h-[14vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex">
@@ -42,9 +43,28 @@
           response.data.defender_card5,
         ];
         this.startCountdown();
+        const cardInfoResponse = await axios.get(`/api/attacker-card-info/${this.$route.query.attacker_select}`);
+        this.attacker_select_id = cardInfoResponse.data.id;
       } catch (error) {
         console.error('Error fetching game information:', error);
       }
+    },
+    mounted() {
+      Echo.private(`user.${this.$route.params.user_id}`)
+      .listen('.defenderCards.selected', (event) => {
+        console.log('カードが選択されました:', event.selectedCards);
+        this.selectedCards = event.selectedCards;
+        this.$router.push({
+          path: `/result/${this.$route.params.user_id}/${this.$route.params.game_id}/`,
+          query: {
+            selectedCards: this.selectedCards,
+            attacker_select_id: this.attacker_select_id,
+            win_count: this.$route.query.win_count,
+            role: 'attacker',
+            opponent_id: this.$route.query.opponent_id,
+          },
+        });
+      });
     },
     methods: {
       startCountdown() {

@@ -30,12 +30,6 @@ class AttackerCardSelected implements ShouldBroadcast
         $this->userId = $userId;
         $this->card = $card;
         $this->opponentId = $opponentId;
-
-        \Illuminate\Support\Facades\Log::info('AttackerCardSelected Event fired.', [
-            'userId' => $userId,
-            'opponentId' => $opponentId,
-            'card' => $card
-        ]);
     }
 
     /**
@@ -50,6 +44,6 @@ class AttackerCardSelected implements ShouldBroadcast
 
     public function broadcastAs()
     {
-        return 'card.selected';
+        return 'attackerCard.selected';
     }
 }
