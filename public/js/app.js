@@ -23038,7 +23038,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 sender: event.userId,
                 content: event.messageContent
               });
-              console.log('イベントメッセージ', event.messageContent);
             });
             _context.next = 22;
             break;
@@ -23056,7 +23055,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     var _this2 = this;
     Echo["private"]("user.".concat(this.$route.params.user_id)).listen('.defenderCards.selected', function (event) {
-      console.log('カードが選択されました:', event.selectedCards);
       _this2.selectedCards = event.selectedCards;
       _this2.$router.push({
         path: "/result/".concat(_this2.$route.params.user_id, "/").concat(_this2.$route.params.game_id, "/"),
@@ -23292,7 +23290,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   mounted: function mounted() {
     var _this2 = this;
     Echo["private"]("user.".concat(this.$route.params.user_id)).listen('.defenderCards.selected', function (event) {
-      console.log('カードが選択されました:', event.selectedCards);
       _this2.selectedCards = event.selectedCards;
       _this2.$router.push({
         path: "/result/".concat(_this2.$route.params.user_id, "/").concat(_this2.$route.params.game_id, "/"),
@@ -23428,6 +23425,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           opponent_id: this.$route.query.opponent_id,
           selected_cards: this.selectedCards
         }).then(function () {
+          console.log('あっタッカー選択', _this2.attacker_select_id);
           _this2.$router.push({
             path: "/result/".concat(_this2.$route.params.user_id, "/").concat(_this2.$route.params.game_id, "/"),
             query: {
@@ -23449,7 +23447,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this3 = this;
       var opponentId = this.$route.query.opponent_id;
 
-      // メッセージを送信する前に、ローカルの会話に追加
+      // メッセージをローカルの会話に追加
       this.conversation.push({
         sender: this.userId,
         content: this.userInput
@@ -23463,7 +23461,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         sender: this.userId,
         user_name: this.username
       }).then(function (response) {
-        // 応答を受け取った後の処理（必要に応じて）
         _this3.userInput = ''; // 入力フィールドをクリア
       })["catch"](function (error) {
         console.error(error.response.data);
@@ -23474,7 +23471,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var timerInterval = setInterval(function () {
         if (_this4.countdownTime === 0) {
           clearInterval(timerInterval);
-          // You may want to do something here when countdown reaches 0
         } else {
           _this4.countdownTime--;
           _this4.formatTimeLeft();
@@ -23631,7 +23627,6 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
     console.log("Connecting to channel: user.".concat(this.userId));
     Echo["private"]("user.".concat(this.userId)).listen('.attackerCard.selected', function (event) {
-      console.log('カードが選択されました:', event.card);
       _this.selectedCard = event.card;
       if (_this.$route.query.talk == 'face') {
         _this.$router.push({

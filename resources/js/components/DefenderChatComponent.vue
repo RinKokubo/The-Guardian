@@ -108,6 +108,7 @@ export default {
           opponent_id: this.$route.query.opponent_id,
           selected_cards: this.selectedCards
         }).then(() => {
+          console.log('あっタッカー選択', this.attacker_select_id)
           this.$router.push({
             path: `/result/${this.$route.params.user_id}/${this.$route.params.game_id}/`,
             query: {
@@ -128,7 +129,7 @@ export default {
     sendMessage() {
       const opponentId = this.$route.query.opponent_id;
 
-      // メッセージを送信する前に、ローカルの会話に追加
+      // メッセージをローカルの会話に追加
       this.conversation.push({
         sender: this.userId,
         content: this.userInput
@@ -142,7 +143,6 @@ export default {
         sender: this.userId,
         user_name: this.username
       }).then(response => {
-        // 応答を受け取った後の処理（必要に応じて）
         this.userInput = ''; // 入力フィールドをクリア
       }).catch(error => {
         console.error(error.response.data);
@@ -152,7 +152,6 @@ export default {
       const timerInterval = setInterval(() => {
         if (this.countdownTime === 0) {
           clearInterval(timerInterval);
-          // You may want to do something here when countdown reaches 0
         } else {
           this.countdownTime--;
           this.formatTimeLeft();

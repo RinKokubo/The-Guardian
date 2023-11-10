@@ -80,7 +80,6 @@ export default {
                   sender: event.userId,
                   content: event.messageContent
               });
-            console.log('イベントメッセージ',event.messageContent)
           });
     } catch (error) {
       console.error('Error fetching game information:', error);
@@ -89,7 +88,6 @@ export default {
   mounted() {
     Echo.private(`user.${this.$route.params.user_id}`)
       .listen('.defenderCards.selected', (event) => {
-        console.log('カードが選択されました:', event.selectedCards);
         this.selectedCards = event.selectedCards;
         this.$router.push({
           path: `/result/${this.$route.params.user_id}/${this.$route.params.game_id}/`,

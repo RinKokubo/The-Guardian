@@ -52,7 +52,6 @@
     mounted() {
       Echo.private(`user.${this.$route.params.user_id}`)
       .listen('.defenderCards.selected', (event) => {
-        console.log('カードが選択されました:', event.selectedCards);
         this.selectedCards = event.selectedCards;
         this.$router.push({
           path: `/result/${this.$route.params.user_id}/${this.$route.params.game_id}/`,

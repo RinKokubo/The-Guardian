@@ -27,7 +27,6 @@
       console.log(`Connecting to channel: user.${this.userId}`);
       Echo.private(`user.${this.userId}`)
         .listen('.attackerCard.selected', (event) => {
-          console.log('カードが選択されました:', event.card);
           this.selectedCard = event.card;
           if(this.$route.query.talk == 'face'){
             this.$router.push({
