@@ -123,16 +123,16 @@ export default {
         });
 
       // Listen to the opponent's private channel
-      window.Echo.private('user.' + opponentId)
-        .listen('.MessageSent', (e) => {
-          if (e.message.sender === userId) {
-            this.conversation.push({
-              id: e.message.id,
-              content: e.message.message_content,
-              role: 'user'
-            });
-          }
-        });
+      //window.Echo.private('user.' + opponentId)
+      //  .listen('.MessageSent', (e) => {
+      //    if (e.message.sender === userId) {
+      //      this.conversation.push({
+      //        id: e.message.id,
+      //        content: e.message.message_content,
+      //        role: 'user'
+      //      });
+      //    }
+      //  });
     },
     sendMessage() {
       const opponentId = this.$route.query.opponent_id;

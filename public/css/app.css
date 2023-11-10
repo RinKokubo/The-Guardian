@@ -11313,6 +11313,9 @@ video {
 .mb-\[5vh\] {
   margin-bottom: 5vh;
 }
+.ml-\[14vw\] {
+  margin-left: 14vw;
+}
 .ml-\[40px\] {
   margin-left: 40px;
 }
@@ -11844,10 +11847,6 @@ video {
 .hover\:bg-blue-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(37 99 235 / var(--tw-bg-opacity));
-}
-.hover\:bg-green-600:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(22 163 74 / var(--tw-bg-opacity));
 }
 .hover\:bg-green-700:hover {
   --tw-bg-opacity: 1;

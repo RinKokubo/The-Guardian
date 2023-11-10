@@ -183,7 +183,7 @@
         </div>
       </form>
     </div>
-    <div v-if="parseInt($route.params.game_id) < 6" class="flex justify-end">
+    <div v-if="parseInt($route.params.game_id) != 1" class="flex justify-end">
       <router-link :to="{ name: 'introduction', params: { user_id: $route.params.userId, game_id: parseInt($route.params.game_id) + 1 }, query: { win_count: $route.query.win_count } }">
         <button class="text-white font-bold py-[1vh] px-[20vw] border-[3px]  border-green-600 hover:border-green-700
                     hover:bg-green-700 bg-green-600 duration-300 shadow-xl text-[2vh]" @click="submitScores">
@@ -192,7 +192,7 @@
       </router-link>
     </div>
     <div v-else  class="flex justify-end">
-      <router-link to="/">
+      <router-link :to="{ name:'final-result', query: { win_count: $route.query.win_count } }">
         <button class="border-[3px] border-green-600 text-green-600 font-bold py-[1vh] px-[20vw]
                    hover:bg-blue-500 hover:text-white duration-300 shadow-xl text-[2vh]" @click="submitScores">
           ゲームを終了する

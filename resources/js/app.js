@@ -21,6 +21,7 @@ import DefenderStandby from './components/DefenderStandbyComponent';
 import AttackerStandby from './components/AttackerStandbyComponent';
 import DefenderSelect from './components/DefenderSelectComponent';
 import DefenderChat from './components/DefenderChatComponent';
+import FinalResult from './components/FinalResultComponent';
 
  window.Vue = require('vue').default;
 
@@ -76,12 +77,15 @@ const routes = [
   {
     path: '/result/:user_id/:game_id',
     component: Result, name: 'result'
-  }
-  ,
+  },
   {
     path: '/user-score/:user_id/:game_id',
     component: UserScore, name: 'user-score'
-  }
+  },
+  {
+    path: '/final-result',
+    component: FinalResult, name: 'final-result'
+  },
 ];
 
 

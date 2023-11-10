@@ -4,15 +4,22 @@
     <div class="flex justify-center my-[8vh]">
       <img src='/img/privacy.png' class="sp:w-[75vw] desktop:w-[30vh]">
     </div>
-    <router-link to="/select-account" class="bg-green-600 text-white hover:bg-green-600 sp:text-[8vw] desktop:text-[5vh] font-bold
+    <button @click="start" class="bg-green-600 text-white hover:bg-green-700 sp:text-[8vw] desktop:text-[5vh] font-bold
                     text-center flex justify-center py-[2vh] shadow-2xl mb-[15vh] w-[100vw]">
     GAME START
-    </router-link>
+    </button>
   </div>
 </template>
 
 <script>
   export default {
     name: "HelloComponent",
+    methods: {
+      start(){
+        localStorage.removeItem('token');
+        delete axios.defaults.headers.common['Authorization'];
+        this.$router.push({  path: `/select-account` });
+      }
+    }
   }
 </script>

@@ -11,6 +11,9 @@
     <div class="py-[4vh] flex flex-col items-center gap-y-5 text-[2vh]">
       <p>個人情報悪用側がカード選択中です。</p>
       <p>しばらくお待ちください。</p>
+      <p v-if="selectedCard != null">
+        {{ selectedCard }}
+      </p>
     </div>
     <div class="w-[70vw] pt-[5vh]">
       <div v-if="this.$route.query.talk == 'face'">
@@ -39,11 +42,11 @@
     },
     mounted() {
       console.log(`Connecting to channel: user.${this.userId}`);
-      ///Echo.private(`user.${this.userId}`)
-      //  .listen('card.selected', (event) => {
-      //    console.log('カードが選択されました:', event.card);
-      //    this.selectedCard = event.card;
-      //  });
+      Echo.private(`user.${this.userId}`)
+        .listen('card.selected', (event) => {
+          console.log('カードが選択されました:', event.card);
+          this.selectedCard = event.card;
+        });
     },
   }
 </script>

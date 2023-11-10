@@ -32,6 +32,7 @@ if (token) {
  window.Pusher = require('pusher-js');
 
  const apitoken = localStorage.getItem('token');
+ console.log('API Token:', apitoken);
 
  window.Echo = new Echo({
     broadcaster: 'pusher',

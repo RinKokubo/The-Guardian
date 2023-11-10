@@ -19,9 +19,10 @@
   </div>
 </template>
 
-<script lang="js">
+<script>
 import { defineComponent } from 'vue';
 import axios from 'axios'
+import Echo from 'laravel-echo';
 
 export default defineComponent({
   name: 'selectAccount',
@@ -31,23 +32,47 @@ export default defineComponent({
     }
   },
   methods: {
-  async login(user) {
-    try {
-      const response = await axios.post('/api/login-without-password', { user_id: user.id });
-      console.log(response.data);
-      
-      // トークンがあればlocalStorageに保存し、axiosのデフォルトヘッダーに設定
-      if (response.data.isLoggedIn && response.data.token) {
-        localStorage.setItem('token', response.data.token);
-        axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+    async login(user) {
+      try {
+        const response = await axios.post('/api/login-without-password', { user_id: user.id });
+        console.log(response.data);
+        
+        // トークンがあればlocalStorageに保存し、axiosのデフォルトヘッダーに設定
+        if (response.data.isLoggedIn && response.data.token) {
+          localStorage.setItem('token', response.data.token);
+          axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+          this.updateEchoInstance(response.data.token);
+        }
+
+        this.$router.push({ name: 'introduction', params: { user_id: user.id, game_id: 1 }, query: { win_count: 0 } });
+      } catch (error) {
+        console.error('Login failed:', error.response ? error.response.data : error);
       }
-      
-      this.$router.push({ name: 'introduction', params: { user_id: user.id, game_id: 1 }, query: { win_count: 0 } });
-    } catch (error) {
-      console.error('Login failed:', error.response ? error.response.data : error);
+    },
+    updateEchoInstance(newToken) {
+      if (window.Echo) {
+        window.Echo.disconnect();
+      }
+
+      window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: process.env.MIX_PUSHER_APP_KEY,
+        cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+        encrypted: true,
+        wsHost: window.location.hostname,
+        wsPort: 6001,
+        disableStats: true,
+        withCredentials: true,
+        auth: {
+          headers: {
+            Authorization: `Bearer ${newToken}`,
+          },
+        },
+      });
+
+      console.log('NEW API Token:', newToken);
     }
-  }
-},
+  },
   async created() {
     const response = await axios.get('/api/users')
     this.users = response.data
