@@ -11,19 +11,16 @@
     <div class="py-[4vh] flex flex-col items-center gap-y-5 text-[2vh]">
       <p>個人情報悪用側がカード選択中です。</p>
       <p>しばらくお待ちください。</p>
-      <p v-if="selectedCard != null">
-        {{ selectedCard }}
-      </p>
     </div>
-    <div class="w-[70vw] pt-[5vh]">
+    <div v-if="selectedCard != null" class="w-[70vw] pt-[5vh]">
       <div v-if="this.$route.query.talk == 'face'">
-        <router-link :to="{ name: 'defender-select', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { opponent_id: $route.query.opponent_id, win_count: $route.query.win_count } }"
+        <router-link :to="{ name: 'defender-select', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { opponent_id: $route.query.opponent_id, win_count: $route.query.win_count, selected_card: encodeURIComponent(selectedCard)  } }"
           class="flex justify-center items-center bg-blue-500 py-[1vh] px-[8vw] text-white font-bold text-[2.5vh]">
           個人情報カード選択へ進む
         </router-link>
       </div>
       <div v-else>
-        <router-link :to="{ name: 'defender-select-chat', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { opponent_id: $route.query.opponent_id, win_count: $route.query.win_count } }"
+        <router-link :to="{ name: 'defender-select-chat', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { opponent_id: $route.query.opponent_id, win_count: $route.query.win_count, selected_card: encodeURIComponent(selectedCard)  } }"
           class="flex justify-center items-center bg-blue-500 py-[1vh] px-[8vw] text-white font-bold text-[2.5vh]">
           個人情報カード選択へ進む
       </router-link>
