@@ -23145,11 +23145,6 @@ __webpack_require__.r(__webpack_exports__);
       selectedName: ''
     };
   },
-  mounted: function mounted() {
-    Echo["private"]("user.".concat(this.$route.params.user_id)).listen('.defender.transit', function (event) {
-      console.log('トランジット', event);
-    });
-  },
   created: function created() {
     var _this = this;
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/game/".concat(this.$route.params.game_id)).then(function (response) {
@@ -23726,7 +23721,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       talk: '',
       user_id: null,
       game_id: null,
-      bgClass: ''
+      bgClass: '',
+      defenderTrans: false
     };
   },
   mounted: function mounted() {
@@ -23758,6 +23754,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             _this.opponentName = userResponse.data.username;
             if (_this.userRole === 'attacker') {
               _this.bgClass = 'bg-[#E76767]';
+              Echo["private"]("user.".concat(_this.$route.params.user_id)).listen('.defender.transit', function (event) {
+                _this.defenderTrans = event.transit;
+              });
             } else if (_this.userRole === 'defender') {
               _this.bgClass = 'bg-blue-500';
             }
@@ -23779,19 +23778,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     defenderTransit: function defenderTransit() {
       var _this2 = this;
       var transit = true;
-      var opponentId = this.$route.query.opponent_id;
+      var opponentId = this.opponentId;
+      console.log('oppo', opponentId);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/defender-transit', {
         transit: transit,
         opponentId: opponentId
       }).then(function (response) {
-        console.log('遷移情報を送信しました');
-        console.log(opponentId);
         _this2.$router.push({
-          path: "/defender-standby/".concat(userId, "/").concat(gameId),
+          path: "/defender-standby/".concat(_this2.$route.params.user_id, "/").concat(_this2.$route.params.game_id),
           query: {
             opponent_id: opponentId,
             talk: _this2.talk,
-            win_count: $route.query.win_count
+            win_count: _this2.$route.query.win_count
           }
         });
       })["catch"](function (error) {
@@ -23899,6 +23897,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     });
     var attackerSelectId = this.$route.query.attacker_select_id;
     var noticeId = Math.floor(Math.random() * 9) + 1;
+    console.log('selectedCards', selectedCards);
     axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/score/".concat(gameId), {
       params: {
         selectedCards: selectedCards,
@@ -25096,61 +25095,84 @@ var _hoisted_3 = {
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
 }, "個人情報保護ゲーム", -1 /* HOISTED */);
-var _hoisted_5 = [_hoisted_4];
-var _hoisted_6 = {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]"
+}, "？", -1 /* HOISTED */);
+var _hoisted_6 = [_hoisted_4, _hoisted_5];
+var _hoisted_7 = {
   "class": "w-[100vw] h-[92vh] bg-[#E5E5E5] py-[4vh] px-[5vw] text-[2.5vh]"
 };
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("このゲームは、1対1で行うロールプレイングカードゲーム。今回のあなたの対戦相手は ");
-var _hoisted_8 = {
-  key: 0
-};
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("このゲームは、1対1で行うロールプレイングカードゲーム。今回のあなたの対戦相手は ");
 var _hoisted_9 = {
-  key: 1
+  key: 0,
+  "class": "font-bold"
 };
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("。 ");
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたの役割は..", -1 /* HOISTED */);
-var _hoisted_12 = {
+var _hoisted_10 = {
+  key: 1,
+  "class": "font-bold"
+};
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("。 ");
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたの役割は..", -1 /* HOISTED */);
+var _hoisted_13 = {
   "class": "flex justify-center items-center pt-[1vh] pb-[4vh]"
 };
-var _hoisted_13 = {
-  key: 0
-};
 var _hoisted_14 = {
-  key: 0
+  key: 0,
+  "class": "text-blue-500 font-bold p-[2vw] text-center w-[60vw] border-[5px] border-blue-500"
 };
 var _hoisted_15 = {
-  key: 1
+  key: 1,
+  "class": "text-[#E76767] font-bold p-[2vw] text-center w-[60vw] border-[5px] border-[#E76767]"
 };
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" は個人情報の悪用手口を１つ選んでいて、あなたの個人情報カードを狙っている！ それぞれの個人情報カードに対する考えをチャットしながら、対戦相手に知られてもいいと思うカードを、最終的に５枚中３枚公開しよう！残りの手持ちカードがあなたの得点だ。 ");
+var _hoisted_16 = {
+  key: 0
+};
 var _hoisted_17 = {
-  key: 1
+  key: 0,
+  "class": "font-bold"
 };
 var _hoisted_18 = {
+  key: 1,
+  "class": "font-bold"
+};
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" は個人情報の悪用手口を１つ選んでいて、あなたの個人情報カードを狙っている！ それぞれの個人情報カードに対する考えをチャットしながら、対戦相手に知られてもいいと思うカードを、最終的に５枚中３枚公開しよう！残りの手持ちカードがあなたの得点だ。 ");
+var _hoisted_20 = {
+  key: 1
+};
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" あなたは、悪用手口を1つ選び、その手口を成立させるために重要そうな");
+var _hoisted_22 = {
+  "class": "font-bold"
+};
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("の個人情報カードを狙う！ ");
+var _hoisted_24 = {
+  "class": "font-bold"
+};
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("には手口を悟られないように、それぞれの個人情報カードに対する考えをチャットしよう。対戦相手は、あなたに知られてもいいと思うカードを、最終的に５枚中３枚公開する。公開されたカードがあなたの得点だ！ ");
+var _hoisted_26 = {
   key: 0,
   "class": "flex justify-center items-center mt-[5vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold"
 };
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ChatGPT対戦に進む ");
-var _hoisted_20 = {
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ChatGPT対戦に進む ");
+var _hoisted_28 = {
   key: 1,
   "class": "flex justify-center items-center mt-[5vh] bg-[#E76767] py-[1vh] px-[8vw] text-white font-bold"
 };
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 個人情報悪用サイドへ進む ");
-var _hoisted_22 = {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 個人情報悪用サイドへ進む ");
+var _hoisted_30 = {
   key: 2,
+  "class": "flex justify-center items-center mt-[5vh] font-bold underline underline-offset-2 text-center"
+};
+var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "個人情報提供側がスタンバイするまで少々お待ちください。", -1 /* HOISTED */);
+var _hoisted_32 = [_hoisted_31];
+var _hoisted_33 = {
+  key: 3,
   "class": "flex justify-center items-center mt-[5vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold"
 };
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 個人情報提供サイドへ進む ");
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-[85vw] flex justify-center items-center", $data.bgClass])
-  }, _hoisted_5, 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_7, $data.opponentId === 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_8, "チャットボット")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName), 1 /* TEXT */)), _hoisted_10]), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [$data.userRole === 'defender' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", {
-    key: 0,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-white font-bold p-[2vw] text-center w-[65vw]", $data.bgClass])
-  }, " 個人情報提供サイド", 2 /* CLASS */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", {
-    key: 1,
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["text-white font-bold p-[2vw] text-center w-[65vw]", $data.bgClass])
-  }, " 個人情報悪用サイド", 2 /* CLASS */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [$data.userRole === 'defender' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_13, [$data.opponentId === 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_14, "チャットボット")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName), 1 /* TEXT */)), _hoisted_16])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_17, " あなたは、悪用手口を1つ選び、その手口を成立させるために重要そうな" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName) + "の個人情報カードを狙う！ " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName) + "には手口を悟られないように、それぞれの個人情報カードに対する考えをチャットしよう。対戦相手は、あなたに知られてもいいと思うカードを、最終的に５枚中３枚公開する。公開されたカードがあなたの得点だ！ ", 1 /* TEXT */))]), $data.opponentId === 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-[85vw] flex justify-between items-center", $data.bgClass])
+  }, _hoisted_6, 2 /* CLASS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [_hoisted_8, $data.opponentId === 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_9, "チャットボット")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName), 1 /* TEXT */)), _hoisted_11]), _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [$data.userRole === 'defender' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_14, " 個人情報提供サイド")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_15, " 個人情報悪用サイド"))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [$data.userRole === 'defender' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_16, [$data.opponentId === 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_17, "チャットボット")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName), 1 /* TEXT */)), _hoisted_19])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName), 1 /* TEXT */), _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.opponentName), 1 /* TEXT */), _hoisted_25]))]), $data.opponentId === 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'defender-select-dialogue',
       params: {
@@ -25164,10 +25186,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_19];
+      return [_hoisted_27];
     }),
     _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["to"])])) : $data.userRole === 'attacker' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }, 8 /* PROPS */, ["to"])])) : $data.userRole === 'attacker' && $data.defenderTrans == true ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'attacker-select',
       params: {
@@ -25182,28 +25204,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_21];
+      return [_hoisted_29];
     }),
     _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["to"])])) : $data.userRole === 'defender' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: {
-      name: 'defender-standby',
-      params: {
-        user_id: $data.user_id,
-        game_id: $data.game_id
-      },
-      query: {
-        opponent_id: $data.opponentId,
-        talk: this.talk,
-        win_count: _ctx.$route.query.win_count
-      }
-    }
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_23];
-    }),
-    _: 1 /* STABLE */
-  }, 8 /* PROPS */, ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("提供側が次のページへ遷移したとき、つまりrouter-link :to=\"{ name: 'defender-standby'..を押下した時に対戦相手に通知したい")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
+  }, 8 /* PROPS */, ["to"])])) : $data.userRole === 'attacker' && $data.defenderTrans == false ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_30, _hoisted_32)) : $data.userRole === 'defender' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.defenderTransit && $options.defenderTransit.apply($options, arguments);
+    })
+  }, "個人情報提供サイドへ進む")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),

@@ -27,6 +27,11 @@ class DefenderTransit implements ShouldBroadcast
     {
         $this->transit = $transit;
         $this->opponentId = $opponentId;
+
+        \Illuminate\Support\Facades\Log::info('Event fired.', [
+            'transit' => $transit,
+            'opponentId' => $opponentId,
+        ]);
     }
 
     /**

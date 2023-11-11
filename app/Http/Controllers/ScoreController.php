@@ -20,6 +20,9 @@ class ScoreController extends Controller
         $selectedCards = $request->query('selectedCards');
         $totalScore = 0;
 
+        \Illuminate\Support\Facades\Log::info('attackerSelectId:', ['attackerSelectId' => $attackerSelectId]);
+        \Illuminate\Support\Facades\Log::info('card:', ['card' => $card]);
+
         foreach ($selectedCards as $selectedCard) {
             $cardField = 'defender_card' . $selectedCard . '_score';
             $totalScore += $card->$cardField;

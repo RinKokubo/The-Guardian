@@ -3,29 +3,30 @@
     <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
-    <div class="w-[85vw] flex justify-center items-center" :class="bgClass">
+    <div class="w-[85vw] flex justify-between items-center" :class="bgClass">
       <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報保護ゲーム</h1>
+      <button class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
     </div>
   </div>
   <div class="w-[100vw] h-[92vh] bg-[#E5E5E5] py-[4vh] px-[5vw] text-[2.5vh]">
     <p>このゲームは、1対1で行うロールプレイングカードゲーム。今回のあなたの対戦相手は
-      <span v-if="opponentId === 31">チャットボット</span>
-      <span v-else>{{ this.opponentName }}</span>。
+      <span v-if="opponentId === 31" class="font-bold">チャットボット</span>
+      <span v-else class="font-bold">{{ this.opponentName }}</span>。
     </p>
     <p>あなたの役割は..</p>
     <div class="flex justify-center items-center pt-[1vh] pb-[4vh]">
-      <p v-if="userRole === 'defender'" class="text-white font-bold p-[2vw] text-center w-[65vw]" :class="bgClass"> 個人情報提供サイド</p>
-      <p v-else class="text-white font-bold p-[2vw] text-center w-[65vw]" :class="bgClass"> 個人情報悪用サイド</p>
+      <p v-if="userRole === 'defender'" class="text-blue-500 font-bold p-[2vw] text-center w-[60vw] border-[5px] border-blue-500"> 個人情報提供サイド</p>
+      <p v-else class="text-[#E76767] font-bold p-[2vw] text-center w-[60vw] border-[5px] border-[#E76767]"> 個人情報悪用サイド</p>
     </div>
     <p>
       <span v-if="userRole === 'defender'">
-        <span v-if="opponentId === 31">チャットボット</span>
-        <span v-else>{{ this.opponentName }}</span>
+        <span v-if="opponentId === 31" class="font-bold">チャットボット</span>
+        <span v-else class="font-bold">{{ this.opponentName }}</span>
         は個人情報の悪用手口を１つ選んでいて、あなたの個人情報カードを狙っている！ それぞれの個人情報カードに対する考えをチャットしながら、対戦相手に知られてもいいと思うカードを、最終的に５枚中３枚公開しよう！残りの手持ちカードがあなたの得点だ。
       </span>
       <span v-else>
-        あなたは、悪用手口を1つ選び、その手口を成立させるために重要そうな{{ this.opponentName }}の個人情報カードを狙う！
-        {{ this.opponentName }}には手口を悟られないように、それぞれの個人情報カードに対する考えをチャットしよう。対戦相手は、あなたに知られてもいいと思うカードを、最終的に５枚中３枚公開する。公開されたカードがあなたの得点だ！
+        あなたは、悪用手口を1つ選び、その手口を成立させるために重要そうな<span class="font-bold">{{ this.opponentName }}</span>の個人情報カードを狙う！
+        <span class="font-bold">{{ this.opponentName }}</span>には手口を悟られないように、それぞれの個人情報カードに対する考えをチャットしよう。対戦相手は、あなたに知られてもいいと思うカードを、最終的に５枚中３枚公開する。公開されたカードがあなたの得点だ！
       </span>
     </p>
     
@@ -34,16 +35,16 @@
         ChatGPT対戦に進む
       </router-link>
     </div>
-    <div v-else-if="userRole === 'attacker'" class="flex justify-center items-center mt-[5vh] bg-[#E76767] py-[1vh] px-[8vw] text-white font-bold">
+    <div v-else-if="userRole === 'attacker' && defenderTrans == true" class="flex justify-center items-center mt-[5vh] bg-[#E76767] py-[1vh] px-[8vw] text-white font-bold">
       <router-link :to="{ name: 'attacker-select', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId,  talk: this.talk, win_count: $route.query.win_count } }">
         個人情報悪用サイドへ進む
       </router-link>
     </div>
+    <div v-else-if="userRole === 'attacker' && defenderTrans == false" class="flex justify-center items-center mt-[5vh] font-bold underline underline-offset-2 text-center">
+      <p>個人情報提供側がスタンバイするまで少々お待ちください。</p>
+    </div>
     <div v-else-if="userRole === 'defender'" class="flex justify-center items-center mt-[5vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold">
-      <router-link :to="{ name: 'defender-standby', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId, talk: this.talk, win_count: $route.query.win_count } }">
-        個人情報提供サイドへ進む
-      </router-link>
-      <!--提供側が次のページへ遷移したとき、つまりrouter-link :to="{ name: 'defender-standby'..を押下した時に対戦相手に通知したい-->
+      <button @click="defenderTransit">個人情報提供サイドへ進む</button>
     </div>
   </div>
 </template>
@@ -61,7 +62,8 @@ export default {
       talk: '',
       user_id: null,
       game_id: null,
-      bgClass: '' 
+      bgClass: '',
+      defenderTrans: false
     }
   },
   async mounted() {
@@ -83,6 +85,10 @@ export default {
 
       if(this.userRole === 'attacker') {
         this.bgClass = 'bg-[#E76767]';
+        Echo.private(`user.${this.$route.params.user_id}`)
+            .listen('.defender.transit', (event) => {
+              this.defenderTrans = event.transit;
+        });
       } else if(this.userRole === 'defender') {
         this.bgClass = 'bg-blue-500';
       }
@@ -94,18 +100,17 @@ export default {
   methods: {
     defenderTransit(){
       const transit = true;
-      const opponentId = this.$route.query.opponent_id;
+      const opponentId = this.opponentId;
+      console.log('oppo',opponentId)
 
       axios.post('/api/defender-transit', { transit, opponentId })
         .then(response => {
-          console.log('遷移情報を送信しました');
-          console.log(opponentId);
           this.$router.push({
-            path: `/defender-standby/${userId}/${gameId}`,
+            path: `/defender-standby/${this.$route.params.user_id}/${this.$route.params.game_id}`,
             query: {
               opponent_id: opponentId,
               talk: this.talk,
-              win_count: $route.query.win_count
+              win_count: this.$route.query.win_count
             }
           });
         })

@@ -58,12 +58,6 @@ import axios from 'axios';
         selectedName: '',
       }
     },
-    mounted() {
-      Echo.private(`user.${this.$route.params.user_id}`)
-      .listen('.defender.transit', (event) => {
-        console.log('トランジット',event);
-      });
-    },
     created() {
       axios.get(`/api/game/${this.$route.params.game_id}`)
         .then(response => {
