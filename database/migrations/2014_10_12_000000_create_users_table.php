@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('password');
             $table->boolean('is_logged_in')->default(false);
+            $table->boolean('is_waiting')->default(false);
             $table->timestamps();
         });
     }

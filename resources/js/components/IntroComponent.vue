@@ -35,16 +35,21 @@
         ChatGPT対戦に進む
       </router-link>
     </div>
-    <div v-else-if="userRole === 'attacker' && defenderTrans == true" class="flex justify-center items-center mt-[5vh] bg-[#E76767] py-[1vh] px-[8vw] text-white font-bold">
+    <div v-else-if="userRole === 'attacker' && trans == true && attackerTrans == true" class="flex justify-center items-center mt-[5vh] bg-[#E76767] py-[1vh] px-[8vw] text-white font-bold">
       <router-link :to="{ name: 'attacker-select', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId,  talk: this.talk, win_count: $route.query.win_count } }">
         個人情報悪用サイドへ進む
       </router-link>
     </div>
-    <div v-else-if="userRole === 'attacker' && defenderTrans == false" class="flex justify-center items-center mt-[5vh] font-bold underline underline-offset-2 text-center">
+    <div v-else-if="userRole === 'attacker' && attackerTrans == false" class="flex justify-center items-center mt-[5vh] font-bold underline underline-offset-2 text-center">
       <p>個人情報提供側がスタンバイするまで少々お待ちください。</p>
     </div>
-    <div v-else-if="userRole === 'defender'" class="flex justify-center items-center mt-[5vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold">
-      <button @click="defenderTransit">個人情報提供サイドへ進む</button>
+    <div v-else-if="userRole === 'defender' && trans == true" class="flex justify-center items-center mt-[5vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold">
+      <button @click="defenderTransit">
+        個人情報提供サイドへ進む
+      </button>
+    </div>
+    <div v-else-if="userRole === 'defender' && trans == false" class="flex justify-center items-center mt-[5vh] font-bold underline underline-offset-2 text-center">
+      <p>個人情報悪用側がスタンバイするまで少々お待ちください。</p>
     </div>
   </div>
 </template>
@@ -63,7 +68,8 @@ export default {
       user_id: null,
       game_id: null,
       bgClass: '',
-      defenderTrans: false
+      trans: false,
+      attackerTrans: false
     }
   },
   async mounted() {
@@ -83,11 +89,16 @@ export default {
       const userResponse = await axios.get(`http://localhost:8000/api/users/${this.opponentId}`);
       this.opponentName = userResponse.data.username;
 
+      await axios.post(`/api/users/${this.user_id}/update-waiting-status`, {
+          is_waiting: true
+        });
+      this.startWaitingCheck();
+
       if(this.userRole === 'attacker') {
         this.bgClass = 'bg-[#E76767]';
         Echo.private(`user.${this.$route.params.user_id}`)
             .listen('.defender.transit', (event) => {
-              this.defenderTrans = event.transit;
+              this.attackerTrans = event.transit;
         });
       } else if(this.userRole === 'defender') {
         this.bgClass = 'bg-blue-500';
@@ -98,11 +109,25 @@ export default {
     }
   },
   methods: {
+    startWaitingCheck() {
+      this.waitingCheckInterval = setInterval(() => {
+        this.checkOpponentWaitingStatus();
+      }, 3000); // 3秒ごとに確認
+    },
+    async checkOpponentWaitingStatus() {
+      try {
+        const response = await axios.get(`/api/users/${this.opponentId}/waiting-status`);
+        if(response.data.is_waiting) {
+          clearInterval(this.waitingCheckInterval);
+          this.trans = true;
+        }
+      } catch (error) {
+        console.error('Error checking opponent waiting status:', error);
+      }
+    },
     defenderTransit(){
       const transit = true;
       const opponentId = this.opponentId;
-      console.log('oppo',opponentId)
-
       axios.post('/api/defender-transit', { transit, opponentId })
         .then(response => {
           this.$router.push({

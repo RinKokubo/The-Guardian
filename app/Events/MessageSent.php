@@ -24,12 +24,6 @@ class MessageSent implements ShouldBroadcast
         $this->userId = $userId;
         $this->opponentId = $opponentId;
         $this->messageContent = $messageContent;
-
-        \Illuminate\Support\Facades\Log::info('Event fired.', [
-            'userId' => $userId,
-            'opponentId' => $opponentId,
-            'messageContent' => $messageContent
-        ]);
     }
 
     public function broadcastOn()

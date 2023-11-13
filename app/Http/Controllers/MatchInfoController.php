@@ -18,8 +18,6 @@ class MatchInfoController extends Controller
             ->first();
 
         if ($matchInfo) {
-            \Illuminate\Support\Facades\Log::info("Check Login user.");
-            \Illuminate\Support\Facades\Log::info(auth()->user());
             return response()->json($matchInfo);
         }
 

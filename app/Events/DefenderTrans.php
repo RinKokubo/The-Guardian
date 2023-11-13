@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class DefenderTransit implements ShouldBroadcast
+class DefenderTrans implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -41,6 +41,6 @@ class DefenderTransit implements ShouldBroadcast
 
     public function broadcastAs()
     {
-        return 'defender.transit';
+        return 'defender.trans';
     }
 }

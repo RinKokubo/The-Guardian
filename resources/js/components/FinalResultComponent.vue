@@ -15,7 +15,7 @@
       </div>
       <div v-else-if="$route.query.win_count == 5">
         <p>あなたのランク： プラチナ</p>
-        <p>慣れてきたね！いい感じ！</p>
+        <p>すごい！全勝まであと一歩！！！</p>
       </div>
       <div v-else-if="$route.query.win_count == 4">
         <p>あなたのランク： ゴールド</p>
@@ -23,7 +23,7 @@
       </div>
       <div v-else-if="$route.query.win_count == 3">
         <p>あなたのランク： シルバー</p>
-        <p>勝ち越しまであと一歩！</p>
+        <p>慣れてきたね！いい感じ！</p>
       </div>
       <div v-else-if="$route.query.win_count == 2">
         <p>あなたのランク： ブロンズ</p>

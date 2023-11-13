@@ -53,9 +53,8 @@
           response.data.defender_card5,
         ];
         this.startCountdown();
-        const cardInfoResponse = await axios.get(`/api/attacker-card-info/${decodeURIComponent(this.$route.query.selected_card)}`);
-        this.attacker_select_id = cardInfoResponse.data.id;
-        console.log('テスト：', this.attacker_select_id);
+        const cardInfoResponse = await axios.get(`/api/attacker-card-info/${this.gameId}/${decodeURIComponent(this.$route.query.selected_card)}`);
+        this.attacker_select_id = cardInfoResponse.data.attackerCardNumber;
       } catch (error) {
         console.error('Error fetching game information:', error);
       }

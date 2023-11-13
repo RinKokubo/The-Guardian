@@ -38,6 +38,7 @@ Route::get('/users/{id}', [UserController::class, 'showUserName']);
 Route::post('/login-without-password', [AuthController::class, 'loginWithoutPassword']);
 Route::get('/game/{id}', [GameInformationController::class, 'show']);
 Route::get('/attacker-card-info/{card}', [AttackerCardInfoController::class, 'show']);
+Route::get('/attacker-card-info/{gameId}/{card}', [AttackerCardInfoController::class, 'showGame']);
 Route::get('/getGame/{id}',  [GameInformationController::class, 'attackerShow']);
 Route::get('/score/{gameId}', [ScoreController::class, 'calculate']);
 Route::post('/game-result', [ScoreController::class, 'store']);
@@ -53,6 +54,8 @@ Route::get('/match-info', [MatchInfoController::class, 'getMatchInfo']);
 Route::post('/attacker-select-card', [CardSelectController::class, 'attackerSelectCard']);
 Route::post('/defender-select-card', [CardSelectController::class, 'defenderSelectCard']);
 Route::post('/defender-transit', [CardSelectController::class, 'defenderTransit']);
+Route::post('/users/{userId}/update-waiting-status', [UserController::class, 'updateWaitingStatus']);
+Route::get('/users/{userId}/waiting-status', [UserController::class, 'getWaitingStatus']);
 
 
 // Route::get('/conversation/start', 'App\Http\Controllers\ConversationController@start');

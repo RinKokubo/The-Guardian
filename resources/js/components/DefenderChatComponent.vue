@@ -80,8 +80,9 @@ export default {
         response.data.defender_card5,
       ];
       this.startCountdown();
-      const cardInfoResponse = await axios.get(`/api/attacker-card-info/${decodeURIComponent(this.$route.query.selected_card)}`);
-      this.attacker_select_id = cardInfoResponse.data.id;
+      const cardInfoResponse = await axios.get(`/api/attacker-card-info/${this.gameId}/${decodeURIComponent(this.$route.query.selected_card)}`);
+      this.attacker_select_id = cardInfoResponse.data.attackerCardNumber;
+
       Echo.private(`chat.${this.userId}`)
           .listen('.message.sent', (event) => {
               this.conversation.push({
@@ -102,13 +103,13 @@ export default {
       }
     },
     confirmSelection() {
+      console.log('アタッカー選択', this.attacker_select_id)
       if (this.selectedCards.length === 3) {
         axios.post('/api/defender-select-card', {
           user_id: this.$route.params.user_id,
           opponent_id: this.$route.query.opponent_id,
           selected_cards: this.selectedCards
         }).then(() => {
-          console.log('あっタッカー選択', this.attacker_select_id)
           this.$router.push({
             path: `/result/${this.$route.params.user_id}/${this.$route.params.game_id}/`,
             query: {

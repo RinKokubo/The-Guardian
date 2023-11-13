@@ -44,4 +44,19 @@ class UserController extends Controller
 
         return response()->json(['username' => $user->name]);
     }
+
+    public function updateWaitingStatus(Request $request, $userId)
+    {
+        $user = User::findOrFail($userId);
+        $user->is_waiting = $request->input('is_waiting', false);
+        $user->save();
+
+        return response()->json(['message' => 'Waiting status updated']);
+    }
+
+    public function getWaitingStatus($userId)
+    {
+        $user = User::findOrFail($userId);
+        return response()->json(['is_waiting' => $user->is_waiting]);
+    }
 }

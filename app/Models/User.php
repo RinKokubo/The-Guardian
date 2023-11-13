@@ -19,7 +19,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'password',
-        'is_logged_in'
+        'is_logged_in',
+        'is_waiting'
     ];
 
     /**

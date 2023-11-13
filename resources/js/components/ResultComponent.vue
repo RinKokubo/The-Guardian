@@ -55,6 +55,10 @@ export default {
 
         const opponentResponse = await axios.get(`http://localhost:8000/api/users/${this.$route.query.opponent_id}`);
         this.attackername = opponentResponse.data.username;
+
+        await axios.post(`/api/users/${this.$route.params.user_id}/update-waiting-status`, {
+          is_waiting: false
+        });
       
         if(this.$route.query.role == 'defender') {
           axios.post('/api/game-result', {
@@ -88,7 +92,6 @@ export default {
 
     const attackerSelectId = this.$route.query.attacker_select_id;
     const noticeId = Math.floor(Math.random() * 9) + 1;
-    console.log('selectedCards', selectedCards)
 
     axios.get(`/api/score/${gameId}`, {
       params: { selectedCards, attacker_select_id: attackerSelectId },

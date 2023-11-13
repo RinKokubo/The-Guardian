@@ -72,8 +72,9 @@ export default {
         response.data.defender_card5,
       ];
       this.startCountdown();
-      const cardInfoResponse = await axios.get(`/api/attacker-card-info/${this.$route.query.attacker_select}`);
-      this.attacker_select_id = cardInfoResponse.data.id;
+      const cardInfoResponse = await axios.get(`/api/attacker-card-info/${this.gameId}/${decodeURIComponent(this.$route.query.attacker_select)}`);
+      this.attacker_select_id = cardInfoResponse.data.attackerCardNumber;
+      console.log('attackid', this.attacker_select_id)
       Echo.private(`chat.${this.userId}`)
           .listen('.message.sent', (event) => {
               this.conversation.push({
@@ -105,13 +106,12 @@ export default {
     sendMessage() {
       const opponentId = this.$route.query.opponent_id;
 
-      // メッセージを送信する前に、ローカルの会話に追加
+      // メッセージをローカルの会話に追加
       this.conversation.push({
         sender: this.userId,
         content: this.userInput
       });
 
-      // メッセージをサーバーに送信
       axios.post('/api/messages', {
         message_content: this.userInput,
         game_id: this.gameId,
@@ -119,7 +119,6 @@ export default {
         sender: this.userId,
         user_name: this.username
       }).then(response => {
-        // 応答を受け取った後の処理（必要に応じて）
         this.userInput = ''; // 入力フィールドをクリア
       }).catch(error => {
         console.error(error.response.data);
@@ -129,7 +128,6 @@ export default {
       const timerInterval = setInterval(() => {
         if (this.countdownTime === 0) {
           clearInterval(timerInterval);
-          // You may want to do something here when countdown reaches 0
         } else {
           this.countdownTime--;
           this.formatTimeLeft();

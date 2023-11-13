@@ -9,7 +9,6 @@
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh]">
     <p className="font-bold flex items-center justify-center text-[3vh] py-[2vh] text-red-500">残り時間 : {{ timeLeft }}</p>
-    <p v-if="selectedCards.length > 0">テスト{{ selectedCards }}</p>
     <ul class="flex flex-col gap-x-5 justify-center items-center gap-y-[2vh] pb-[3vh]">
       <li v-for="(card) in defenderCards" :key="card.id">
         <div class="w-[90vw] h-[14vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex">

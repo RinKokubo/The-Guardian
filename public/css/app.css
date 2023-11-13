@@ -11415,6 +11415,9 @@ video {
 .w-\[16vh\] {
   width: 16vh;
 }
+.w-\[16vw\] {
+  width: 16vw;
+}
 .w-\[3\.5vh\] {
   width: 3.5vh;
 }
@@ -11426,6 +11429,9 @@ video {
 }
 .w-\[60vw\] {
   width: 60vw;
+}
+.w-\[80vw\] {
+  width: 80vw;
 }
 .w-\[85vw\] {
   width: 85vw;

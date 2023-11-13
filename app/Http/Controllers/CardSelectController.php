@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Events\AttackerCardSelected;
 use App\Events\DefenderCardSelected;
 use App\Events\DefenderTransit;
+use App\Events\AttackerTransit;
 
 class CardSelectController extends Controller
 {
@@ -37,11 +38,6 @@ class CardSelectController extends Controller
         $opponentId = $request->input('opponentId');
 
         event(new DefenderTransit($transit, $opponentId));
-
-        \Illuminate\Support\Facades\Log::info('Is transit.', [
-            'transit' => $transit,
-            'opponentId' => $opponentId,
-        ]);
 
         return response()->json(['message' => 'Transit information sent successfully.']);
     }
