@@ -4,7 +4,9 @@
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
     <div class="w-[85vw] bg-[#E76767] flex justify-center items-center">
-      <h1 className="w-[100%] text-[3vh] font-bold ml-[40px] text-white">悪用カード選択</h1>
+      <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">悪用カード選択</h1>
+      <button @click="menuVisible = !menuVisible" class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
+      <MenuComponent v-model:modelValue="menuVisible" />
     </div>
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center">
@@ -16,7 +18,7 @@
               v-on:click="toggleCardSelection(i)">
         <img :src="`/img/${this['attackerCard' + i + 'Name']}.png`" alt="attacker_card" class="w-[16vh] h-[16vh]">
         <p class="text-[3vh] font-bold pl-[5vw]">{{ this['attackerCard' + i + 'Name'] }}</p>
-        <button type="button" class="text-white font-bold text-[3vh] w-[3.5vh] h-[3.5vh] border-[4px] border-white rounded-full flex justify-center items-center absolute top-[1vh] right-[1vh] bg-red-500"
+        <button type="button" class="text-white font-bold text-[3vh] w-[3.5vh] h-[3.5vh] border-[2px] border-white rounded-full flex justify-center items-center absolute top-[1vh] right-[1vh] bg-red-500"
                 @click.stop="openModal(i)">i</button>
       </button>
     </div>
@@ -27,7 +29,7 @@
       <div class="relative mx-auto p-5 border w-[85vw] shadow-lg rounded-md bg-white" @click.stop>
         <div class="mt-[2vh] text-center">
           <h3 class="text-[3vh] leading-6 font-bold text-gray-900 mb-[1vh]">{{ selectedName }}</h3>
-          <div class="mt-2 px-7 py-[2vh]">
+          <div class="mt-2 px-[8vw] py-[2vh]">
             <p class="text-[2.5vh] text-gray-500">{{ selectedInfo }}</p>
           </div>
           <div class="items-center px-4 py-3">
@@ -41,8 +43,12 @@
 
 <script>
 import axios from 'axios';
+import MenuComponent from './MenuComponent.vue';
 
-  export default {
+export default {
+    components: {
+      MenuComponent
+    },
     data() {
       return {
         gameInformation: null,
@@ -56,6 +62,7 @@ import axios from 'axios';
         showModal: false,
         selectedInfo: '',
         selectedName: '',
+        menuVisible: false,
       }
     },
     created() {

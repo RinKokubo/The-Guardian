@@ -100,8 +100,6 @@ class ConversationController extends Controller
             'json' => [
                 'model' => 'gpt-4-1106-preview',
                 'messages' => $messages,
-                'max_tokens' => 150,
-                'stop' => ["。", "？"]
             ]
         ]);
 

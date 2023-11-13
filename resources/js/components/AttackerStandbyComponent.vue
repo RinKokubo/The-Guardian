@@ -4,7 +4,9 @@
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
     <div class="w-[85vw] bg-[#E76767] flex justify-center items-center">
-      <h1 className="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報カード選択</h1>
+      <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報カード選択</h1>
+      <button @click="menuVisible = !menuVisible" class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
+      <MenuComponent v-model:modelValue="menuVisible" />
     </div>
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh]">
@@ -21,19 +23,26 @@
 </template>
 
 <script>
-  export default {
+import MenuComponent from './MenuComponent.vue';
+
+export default {
+  components: {
+    MenuComponent
+  },
     data() {
       return {
         defenderCards: [],
         selectedCards: [],
         countdownTime: 5 * 60, // countdownTime in seconds (5 minutes)
         timeLeft: '05:00', // Displayed countdown timer
+        menuVisible: false,
       }
     },
     async created() {
       try {
         this.gameId = this.$route.params.game_id;
         const response = await axios.get(`http://localhost:8000/api/game/${this.gameId}`);
+        // const response = await axios.get(`https://rma.iiojun.com/api/game/${this.gameId}`);
         this.defenderCards = [
           response.data.defender_card1,
           response.data.defender_card2,

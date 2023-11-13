@@ -4,12 +4,14 @@
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
     <div class="w-[85vw] bg-blue-500 flex justify-center items-center">
-      <h1 className="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報カード選択</h1>
+      <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報カード選択</h1>
+      <button @click="menuVisible = !menuVisible" class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
+      <MenuComponent v-model:modelValue="menuVisible" />
     </div>
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center pt-[1vh]">
     <ul class="flex flex-wrap gap-x-[1vh] justify-center items-center gap-y-[1vh] py-[1vh]">
-      <li v-for="(card, index) in defenderCards" :key="card.id" :class="{ 'bg-blue-100': selectedCards.includes(index + 1) }">
+      <li v-for="(card, index) in defenderCards" :key="card.id" class="border-[2px] border-blue-300 solid" :class="{ 'selected-border': selectedCards.includes(index + 1) }">
         <button @click="selectCard(index + 1)" class="w-[46vw] h-[10vh] bg-blue-300 justify-start items-center px-[2vw] duration-500 shadow-2xl flex">
           <img :src="`/img/${card.defender_card_name}.png`" alt="defender_card" class="w-[8vh] h-[8vh]">
           <p className="text-[2vh] font-bold pl-[1vw]">{{ card.defender_card_name }}</p>
@@ -47,8 +49,12 @@
 
 <script>
 import axios from 'axios';
+import MenuComponent from './MenuComponent.vue';
 
 export default {
+  components: {
+    MenuComponent
+  },
   data() {
     return {
       defenderCards: [],
@@ -61,7 +67,8 @@ export default {
       attacker_select_id: null,
       countdownTime: 5 * 60, // countdownTime in seconds (5 minutes)
       timeLeft: '05:00', // Displayed countdown timer
-      showSubmit: false
+      showSubmit: false,
+      menuVisible: false,
     };
   },
   async created() {
@@ -70,9 +77,11 @@ export default {
       this.gameId = this.$route.params.game_id;
 
       const userResponse = await axios.get(`http://localhost:8000/api/users/${this.userId}`);
+      // const userResponse = await axios.get(`https://rma.iiojun.com/api/users/${this.userId}`);
       this.username = userResponse.data.username;
 
       const response = await axios.get(`http://localhost:8000/api/game/${this.gameId}`);
+      // const response = await axios.get(`https://rma.iiojun.com/api/game/${this.gameId}`);
       this.defenderCards = [
         response.data.defender_card1,
         response.data.defender_card2,
@@ -108,7 +117,8 @@ export default {
       });
     },
     startConversation() {
-      axios.post(`http://localhost:8000/defender-select-dialogue/${this.username}/${this.gameId}/start`) // Changed URL
+      axios.post(`http://localhost:8000/defender-select-dialogue/${this.username}/${this.gameId}/start`)
+      // axios.post(`https://rma.iiojun.com/defender-select-dialogue/${this.username}/${this.gameId}/start`)
         .then(response => {
           this.conversation = response.data;
         })
@@ -122,6 +132,7 @@ export default {
       this.userInput = '';
 
       const url = `http://localhost:8000/defender-select-dialogue/send-message`;
+      // const url = `https://rma.iiojun.com/defender-select-dialogue/send-message`;
       const data = {
         message: userMessage.content,
         username: this.username,
@@ -157,3 +168,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.selected-border {
+  border: 2px solid #3b82f6;
+}
+</style>

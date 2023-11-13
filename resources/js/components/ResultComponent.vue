@@ -4,7 +4,9 @@
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
     <div class="w-[85vw] bg-green-600 flex justify-center items-center">
-      <h1 className="w-[100%] text-[3vh] font-bold ml-[40px] text-white">結果</h1>
+      <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">結果</h1>
+      <button @click="menuVisible = !menuVisible" class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
+      <MenuComponent v-model:modelValue="menuVisible" />
     </div>
   </div>
   <div className="flex flex-col items-center bg-[#E5E5E5] w-[100vw] h-[92vh]">
@@ -32,8 +34,12 @@
 
 <script>
 import axios from 'axios'
+import MenuComponent from './MenuComponent.vue';
 
 export default {
+  components: {
+    MenuComponent
+  },
   name: "ResultComponent",
   data() {
     return {
@@ -42,7 +48,8 @@ export default {
       notice: '',
       username: '',
       resultImage: '',
-      win_count: parseInt(this.$route.query.win_count, 10) || 0
+      win_count: parseInt(this.$route.query.win_count, 10) || 0,
+      menuVisible: false,
     };
   },
   methods: {
@@ -51,9 +58,11 @@ export default {
 
       try {
         const userResponse = await axios.get(`http://localhost:8000/api/users/${this.$route.params.user_id}`);
+        // const userResponse = await axios.get(`https://rma.iiojun.com/api/users/${this.$route.params.user_id}`);
         this.username = userResponse.data.username;
 
         const opponentResponse = await axios.get(`http://localhost:8000/api/users/${this.$route.query.opponent_id}`);
+        // const opponentResponse = await axios.get(`https://rma.iiojun.com/api/users/${this.$route.query.opponent_id}`);
         this.attackername = opponentResponse.data.username;
 
         await axios.post(`/api/users/${this.$route.params.user_id}/update-waiting-status`, {

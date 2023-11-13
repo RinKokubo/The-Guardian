@@ -5,7 +5,8 @@
     </div>
     <div class="w-[85vw] flex justify-between items-center" :class="bgClass">
       <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報保護ゲーム</h1>
-      <button class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
+      <button @click="menuVisible = !menuVisible" class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
+      <MenuComponent v-model:modelValue="menuVisible" />
     </div>
   </div>
   <div class="w-[100vw] h-[92vh] bg-[#E5E5E5] py-[4vh] px-[5vw] text-[2.5vh]">
@@ -56,9 +57,12 @@
 
 <script>
 import axios from 'axios';
+import MenuComponent from './MenuComponent.vue';
 
 export default {
-  name: "IntroComponent",
+  components: {
+    MenuComponent
+  },
   data() {
     return {
       userRole: null,
@@ -69,7 +73,8 @@ export default {
       game_id: null,
       bgClass: '',
       trans: false,
-      attackerTrans: false
+      attackerTrans: false,
+      menuVisible: false,
     }
   },
   async mounted() {
@@ -87,6 +92,7 @@ export default {
       this.game_id = this.$route.params.game_id;
 
       const userResponse = await axios.get(`http://localhost:8000/api/users/${this.opponentId}`);
+      // const userResponse = await axios.get(`https://rma.iiojun.com/api/users/${this.opponentId}`);
       this.opponentName = userResponse.data.username;
 
       await axios.post(`/api/users/${this.user_id}/update-waiting-status`, {
@@ -112,7 +118,7 @@ export default {
     startWaitingCheck() {
       this.waitingCheckInterval = setInterval(() => {
         this.checkOpponentWaitingStatus();
-      }, 3000); // 3秒ごとに確認
+      }, 7000); // 7秒ごとに確認
     },
     async checkOpponentWaitingStatus() {
       try {
@@ -142,7 +148,7 @@ export default {
         .catch(error => {
           console.error('エラーが発生しました', error);
         });
-    }
+    },
   }
 }
 </script>

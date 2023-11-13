@@ -5,6 +5,8 @@
     </div>
     <div class="w-[85vw] bg-green-600 flex justify-center items-center">
       <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">配点内訳</h1>
+      <button @click="menuVisible = !menuVisible" class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
+      <MenuComponent v-model:modelValue="menuVisible" />
     </div>
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center">
@@ -50,8 +52,12 @@
 
 <script>
 import axios from 'axios';
+import MenuComponent from './MenuComponent.vue';
 
 export default {
+  components: {
+    MenuComponent
+  },
   data() {
     return {
       scores: {},
@@ -67,6 +73,7 @@ export default {
       gameIdforPath: this.$route.params.game_id,
       scoreOptions: this.initializeScoreOptions(),
       cardScores: this.initializeCardScores(),
+      menuVisible: false,
     };
   },
   created() {
@@ -139,6 +146,7 @@ export default {
       
       try {
         const userResponse = await axios.get(`http://localhost:8000/api/users/${this.$route.params.user_id}`);
+        // const userResponse = await axios.get(`https://rma.iiojun.com/api/users/${this.$route.params.user_id}`);
         this.username = userResponse.data.username;
 
         await axios.post(`/api/user_scores`, {
