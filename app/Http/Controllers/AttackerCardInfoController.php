@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\AttackerCardInfo;
 use App\Models\AttackerCard;
 use App\Models\GameInformation;
@@ -14,10 +13,10 @@ class AttackerCardInfoController extends Controller
     public function show($card)
     {
         try {
-            // 指定された名前でAttackerCardモデルを検索する
+            // 指定された名前でAttackerCardモデルを検索
             $attackerCard = AttackerCard::where('attacker_card_name', $card)->firstOrFail();
 
-            // AttackerCardInfoモデルを検索する
+            // AttackerCardInfoモデルを検索
             $attackerCardInfo = AttackerCardInfo::where('attacker_card_id', $attackerCard->id)->firstOrFail();
 
             // JSON形式で情報を返す

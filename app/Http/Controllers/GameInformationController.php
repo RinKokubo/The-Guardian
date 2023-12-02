@@ -24,7 +24,6 @@ class GameInformationController extends Controller
         ])->find($id);
 
         if (!$game) {
-            // If the game was not found, return a 404 error.
             return response()->json(['error' => 'Game not found'], 404);
         }
 
@@ -41,15 +40,12 @@ class GameInformationController extends Controller
         ])->find($id);
 
         if (!$game) {
-            // If the game was not found, return a 404 error.
             return response()->json(['error' => 'Game not found'], 404);
         }
 
-        // Get the selected attacker card
         $selected_card = $game["attacker_card{$attacker_select_id}"];
 
         if (!$selected_card) {
-            // If the attacker card was not found, return a 404 error.
             return response()->json(['error' => 'Attacker card not found'], 404);
         }
 

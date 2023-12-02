@@ -6,7 +6,6 @@ use App\Models\UserScore;
 use Illuminate\Http\Request;
 use League\Csv\Writer;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Storage;
 
 class UserScoreController extends Controller
 {
