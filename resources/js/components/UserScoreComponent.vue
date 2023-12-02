@@ -6,15 +6,20 @@
     <div class="w-[85vw] bg-green-600 flex justify-center items-center">
       <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">配点内訳</h1>
       <button @click="menuVisible = !menuVisible" class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
-      <MenuComponent v-model:modelValue="menuVisible" />
+      <MenuComponent
+        v-model:modelValue="menuVisible"
+        :gameId="parseInt($route.params.game_id)"
+        :userId="parseInt($route.params.user_id)"
+        :role="$route.query.role"
+      />
     </div>
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center">
-    <p class="text-[2vh] mx-[5vw] pt-[1.5vh]">もしあなたが悪用カード<span class="font-bold text-red-500">「{{ attackerCardName }}」</span>に対して、各提供カードに100点満点で点数をつけるとしたら？</p>
+    <p class="text-[2vh] mx-[5vw] pt-[1.5vh]"><span class="font-bold text-red-500">「{{ attackerCardName }}」</span>にとって重要そうなカードを下のように配点したよ！あなただったらどう設定するか教えてね。参考にするよ！</p>
     <div class="flex">
       <div class="flex flex-col items-center gap-y-[2vh] pt-[3vh] pb-[3vh]">
         <div v-for="cardName in [defenderCard1Name, defenderCard2Name, defenderCard3Name, defenderCard4Name, defenderCard5Name]" :key="cardName" class="w-[60vw] h-[12vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex">
-          <img :src="`/img/${cardName}.png`" alt="defender_card" class="w-[11vh] h-[11vh]">
+          <img :src="`/img/${cardName}.png`" alt="defender_card" class="w-[10vh] h-[10vh]">
           <p class="text-[2vh] font-bold pl-[2vw]">{{ cardName }}</p>
         </div>
       </div>
@@ -42,10 +47,24 @@
         もう一度対戦する
       </button>
     </div>
-    <div v-else class="flex justify-end">
+    <div v-if="parseInt($route.params.game_id) == 6" class="flex justify-end">
       <button @click="submitScores6" class="border-[3px] border-green-600 text-green-600 font-bold py-[1vh] px-[20vw] hover:bg-blue-500 hover:text-white duration-300 shadow-xl text-[2vh]">
         ゲームを終了する
       </button>
+    </div>
+    <!-- モーダル -->
+    <div v-if="isModalVisible" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" @click="closeModal">
+      <div class="relative mx-auto p-1 border w-[90vw] shadow-lg rounded-md bg-white">
+        <div class="mt-[2vh] text-center flex flex-col items-center justify-center">
+          <img src='/img/tips.png' class="w-[70vw]">
+          <div class="mt-2 px-[4vw] py-[1vh] flex justify-center items-center">
+            <p class="text-[2vh] text-gray-500 notice"></p>
+          </div>
+          <div class="items-center px-4 py-3">
+            <button id="ok-btn" @click="closeModal" class="px-4 py-2 bg-blue-500 text-white text-[3vh] font-medium rounded-md w-full shadow-sm hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400">閉じる</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -74,11 +93,14 @@ export default {
       scoreOptions: this.initializeScoreOptions(),
       cardScores: this.initializeCardScores(),
       menuVisible: false,
+      isModalVisible: false,
+      notice: '',
     };
   },
   created() {
     this.fetchGameInformation();
     this.fetchScores();
+    this.isModalVisible = true;
   },
   methods: {
     fetchGameInformation() {
@@ -101,6 +123,16 @@ export default {
           this.defenderCard3Name = this.gameInformation.defender_card3.defender_card_name;
           this.defenderCard4Name = this.gameInformation.defender_card4.defender_card_name;
           this.defenderCard5Name = this.gameInformation.defender_card5.defender_card_name;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+
+        axios.get(`/api/notice/${gameId}`)
+        .then(response => {
+          this.notice = response.data.notice_content;
+          var element = document.querySelector('.notice');
+          element.innerHTML = this.notice;
         })
         .catch(error => {
           console.error(error);
@@ -145,8 +177,7 @@ export default {
       const attackerSelectId = this.$route.query.attacker_select_id;
       
       try {
-        const userResponse = await axios.get(`http://localhost:8000/api/users/${this.$route.params.user_id}`);
-        // const userResponse = await axios.get(`https://rma.iiojun.com/api/users/${this.$route.params.user_id}`);
+        const userResponse = await axios.get(`/api/users/${this.$route.params.user_id}`);
         this.username = userResponse.data.username;
 
         await axios.post(`/api/user_scores`, {
@@ -209,6 +240,9 @@ export default {
              this.cardScores.card3 + this.cardScores.card4 +
              this.cardScores.card5;
     },
+    closeModal() {
+      this.isModalVisible = false;
+    }
   },
   watch: {
     'cardScores.card1'(newVal) {

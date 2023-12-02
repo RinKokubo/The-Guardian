@@ -15,208 +15,208 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'user101',
+            'name' => 'user01',
             'password' => 11111,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user102',
+            'name' => 'user02',
             'password' => 11112,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
         User::create([
-            'name' => 'user103',
+            'name' => 'user03',
             'password' => 11113,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user104',
+            'name' => 'user04',
             'password' => 11114,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user105',
+            'name' => 'user05',
             'password' => 11115,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user106',
+            'name' => 'user06',
             'password' => 11116,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user107',
+            'name' => 'user07',
             'password' => 11117,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user108',
+            'name' => 'user08',
             'password' => 11118,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
         User::create([
-            'name' => 'user109',
+            'name' => 'user09',
             'password' => 11119,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user110',
+            'name' => 'user10',
             'password' => 111110,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user111',
+            'name' => 'user11',
             'password' => 111111,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user112',
+            'name' => 'user12',
             'password' => 111112,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user113',
+            'name' => 'user13',
             'password' => 111113,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user114',
+            'name' => 'user14',
             'password' => 111114,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user115',
+            'name' => 'user15',
             'password' => 111115,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user116',
+            'name' => 'user16',
             'password' => 111116,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user117',
+            'name' => 'user17',
             'password' => 111117,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user118',
+            'name' => 'user18',
             'password' => 111118,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
         User::create([
-            'name' => 'user119',
+            'name' => 'user19',
             'password' => 111119,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user120',
+            'name' => 'user20',
             'password' => 111120,
             'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user121',
+            'name' => 'user21',
             'password' => 111121,
-            'is_logged_in' => 0,
+            'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user122',
+            'name' => 'user22',
             'password' => 111122,
-            'is_logged_in' => 0,
+            'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user123',
+            'name' => 'user23',
             'password' => 111123,
-            'is_logged_in' => 0,
+            'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user124',
+            'name' => 'user24',
             'password' => 111124,
-            'is_logged_in' => 0,
+            'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user125',
+            'name' => 'user25',
             'password' => 111125,
-            'is_logged_in' => 0,
+            'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user126',
+            'name' => 'user26',
             'password' => 111126,
-            'is_logged_in' => 0,
+            'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user127',
+            'name' => 'user27',
             'password' => 111127,
-            'is_logged_in' => 0,
+            'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user128',
+            'name' => 'user28',
             'password' => 111128,
-            'is_logged_in' => 0,
+            'is_logged_in' => 1,
             'is_waiting' => false
         ]);
         User::create([
-            'name' => 'user129',
+            'name' => 'user29',
             'password' => 111129,
-            'is_logged_in' => 0,
+            'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 
         User::create([
-            'name' => 'user130',
+            'name' => 'user30',
             'password' => 111130,
-            'is_logged_in' => 0,
+            'is_logged_in' => 1,
             'is_waiting' => false
         ]);
 

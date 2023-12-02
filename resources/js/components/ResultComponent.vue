@@ -6,27 +6,37 @@
     <div class="w-[85vw] bg-green-600 flex justify-center items-center">
       <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">結果</h1>
       <button @click="menuVisible = !menuVisible" class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
-      <MenuComponent v-model:modelValue="menuVisible" />
+      <MenuComponent
+        v-model:modelValue="menuVisible"
+        :gameId="parseInt($route.params.game_id)"
+        :userId="parseInt($route.params.user_id)"
+        :role="$route.query.role"
+      />
     </div>
   </div>
-  <div className="flex flex-col items-center bg-[#E5E5E5] w-[100vw] h-[92vh]">
-    <div className="flex flex-col items-center pt-[3vh] pb-[1vh]" id="result">
-      <img :src="`/img/${resultImage}.png`" alt="result" class="w-[40vw] h-[40vw]">
+  <div class="flex flex-col items-center bg-[#E5E5E5] w-[100vw] h-[92vh]">
+    <div class="flex flex-col items-center pt-[1vh] pb-[1vh]" id="result">
+      <img :src="`/img/${resultImage}.png`" alt="result" class="w-[25vw] h-[25vw]">
     </div>
-    <div className="flex flex-col justify-center gap-y-3">
-      <p className="text-left text-[3vh]">あなたの得点:  {{ 100 - score }}点</p>
-      <p className="text-left text-[3vh]">相手の得点:  {{ score }}点</p>
+    <div class="flex flex-col justify-center items-center gap-y-1">
+      <p class="text-[2.5vh]">あなたの得点:{{ 100 - score }}点</p>
+      <p class="text-[2.5vh]">相手の得点:{{ score }}点</p>
     </div>
-    <div v-if="this.$route.params.game_id == 6" class="flex flex-col justify-center items-center gap-y-5 mt-[3vh] mb-[5vh] text-[3vh] font-bold">
-      <p>最終結果</p>
-      <p>あなたのランク： {{ this.$route.query.win_count }}勝</p>
+    <div class="flex flex-col justify-center items-center gap-y-[1.5vh] py-[2vh]">
+      <div class="w-[90vw] h-[13vh] bg-red-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex">
+        <img :src="`/img/${attackerCardName}.png`" alt="attacker_card" class="w-[11vh] h-[11vh]">
+        <p class="text-[2.7vh] font-bold pl-[3vw]">{{ attackerCardName }}</p>
+      </div>
+      <div v-for="(defenderSelect, index) in defenderSelects" :key="index" class="w-[90vw] h-[13vh] bg-blue-300 px-[3vw] duration-500 shadow-2xl flex justify-between items-center">
+        <div class="flex justify-start items-center">
+          <img :src="`/img/${defenderSelect}.png`" alt="defender_card" class="w-[10vh] h-[10vh]">
+          <p class="text-[2.7vh] font-bold pl-[3vw]">{{ defenderSelect }}</p>
+        </div>
+        <p class="text-[2.7vh] font-bold">{{ individualScores[`card${$route.query.selectedCards[index]}`] }}点</p>
+      </div>  
     </div>
-    <div v-else className="flex flex-col items-center w-[95vw] h-[43vh] border-red-600 border-[3px] rounded mt-[3vh] mb-[2vh] py-[3vw] px-[3vw] overflow-auto">
-      <p className="text-red-600 mb-[20px] font-bold text-[3vh]">注意！</p>
-      <p className="text-[2vh] text-center">{{ notice }}</p>
-    </div>
-    <router-link :to="{ name: 'user-score', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { attacker_select_id: $route.query.attacker_select_id, win_count: win_count } }"
-      className="bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300">
+    <router-link :to="{ name: 'user-score', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { attacker_select_id: $route.query.attacker_select_id, win_count: win_count, role: $route.query.role } }"
+      class="bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300">
       配点を見る
     </router-link>
   </div>
@@ -45,30 +55,30 @@ export default {
     return {
       score: 0,
       result: '',
-      notice: '',
       username: '',
       resultImage: '',
       win_count: parseInt(this.$route.query.win_count, 10) || 0,
       menuVisible: false,
+      attackerCardName: '',
+      individualScores: {},
+      defenderCards: [],
+      defenderSelects: []
     };
   },
   methods: {
     async sendGameResult(defenderSelects, calculatedScore) {
       const attackerScore = 100 - calculatedScore;
-
       try {
-        const userResponse = await axios.get(`http://localhost:8000/api/users/${this.$route.params.user_id}`);
-        // const userResponse = await axios.get(`https://rma.iiojun.com/api/users/${this.$route.params.user_id}`);
+        const userResponse = await axios.get(`/api/users/${this.$route.params.user_id}`);
         this.username = userResponse.data.username;
 
-        const opponentResponse = await axios.get(`http://localhost:8000/api/users/${this.$route.query.opponent_id}`);
-        // const opponentResponse = await axios.get(`https://rma.iiojun.com/api/users/${this.$route.query.opponent_id}`);
+        const opponentResponse = await axios.get(`/api/users/${this.$route.query.opponent_id}`);
         this.attackername = opponentResponse.data.username;
 
         await axios.post(`/api/users/${this.$route.params.user_id}/update-waiting-status`, {
           is_waiting: false
         });
-      
+        
         if(this.$route.query.role == 'defender') {
           axios.post('/api/game-result', {
             attacker_name: this.attackername,
@@ -91,8 +101,6 @@ export default {
   },
   mounted() {
     const gameId = this.$route.params.game_id;
-    let selectedCards = this.$route.query.selectedCards;
-
     const selectedCardsArray = this.$route.query.selectedCards;
     let selectedCardsBoolean = {1: false, 2: false, 3: false, 4: false, 5: false};
     selectedCardsArray.forEach(card => {
@@ -100,16 +108,30 @@ export default {
     });
 
     const attackerSelectId = this.$route.query.attacker_select_id;
-    const noticeId = Math.floor(Math.random() * 9) + 1;
+    
+    axios.get(`/api/game/${gameId}`)
+    .then(response => {
+      const gameData = response.data;
+      this.attackerCardName = gameData[`attacker_card${attackerSelectId}`].attacker_card_name;
+
+      this.defenderSelects = this.$route.query.selectedCards.map(cardIndex => {
+        return gameData[`defender_card${cardIndex}`].defender_card_name;
+      });
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
 
     axios.get(`/api/score/${gameId}`, {
-      params: { selectedCards, attacker_select_id: attackerSelectId },
+      params: { selectedCards: selectedCardsArray, attacker_select_id: attackerSelectId },
     })
     .then((response) => {
+      this.individualScores = response.data.individualScores;
       if(this.$route.query.role == 'defender'){
-        this.score = response.data.score;
+        this.score = response.data.totalScore;
       } else {
-        this.score = 100 - response.data.score;
+        this.score = 100 - response.data.totalScore;
       }
       if(this.score < 50){
         this.resultImage = 'win';
@@ -123,14 +145,6 @@ export default {
 
       this.sendGameResult(selectedCardsBoolean, this.score);
     })
-
-    axios.get(`/api/notice/${noticeId}`)
-      .then((response) => {
-        this.notice = response.data.notice_content;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
   },
 };
 </script>

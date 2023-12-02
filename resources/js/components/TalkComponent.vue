@@ -6,7 +6,12 @@
     <div class="w-[85vw] bg-blue-500 flex justify-center items-center">
       <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報カード選択</h1>
       <button @click="menuVisible = !menuVisible" class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
-      <MenuComponent v-model:modelValue="menuVisible" />
+      <MenuComponent
+        v-model:modelValue="menuVisible"
+        :gameId="parseInt($route.params.game_id)"
+        :userId="parseInt($route.params.user_id)"
+        :role="'defender'"
+      />
     </div>
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center pt-[1vh]">
@@ -18,15 +23,15 @@
         </button>
       </li>
     </ul>
-    <div className="flex w-[100%] justify-center items-center text-[2vh]">
-      <p className="text-blue-600 font-bold flex items-center justify-center mr-[8vw]">残り時間 : {{ timeLeft }}</p>
+    <div className="flex w-[95%] justify-center items-center text-[2vh]">
+      <p className="text-blue-600 font-bold flex items-center justify-center mr-[6vw]">残り時間 : {{ timeLeft }}</p>
       <button 
         :disabled="selectedCards.length !== 3" 
         @click="confirmSelection" 
-        class="text-white font-bold py-[6px] px-[6vw] my-[30px] mr-[10px] border-[3px] border-blue-500 hover:border-blue-600
+        class="text-white font-bold py-[6px] px-[2vw] my-[30px] border-[3px] border-blue-500 hover:border-blue-600
         hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded"
         :class="{ 'opacity-50 cursor-not-allowed': selectedCards.length !== 3 }">
-        カードを決定する
+        公開するカードを決定
       </button>
     </div>
     <div class="border border-gray-300 bg-white p-3 rounded overflow-auto h-[45vh] w-[90vw] mb-4 text-[2vh]">
@@ -43,6 +48,32 @@
       <input v-model="userInput" placeholder="Type your message..." class="flex-grow p-2 border border-gray-300 rounded mr-2 pl-4"/>
       <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">送信</button>
     </form>
+  </div>
+
+  <!-- 対話開始モーダル -->
+  <div v-if="startModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" @click="closeModal">
+    <div class="relative mx-auto p-1 border w-[80vw] shadow-lg rounded-md bg-white">
+      <p class="mt-2 px-[4vw] flex justify-center items-center text-[3vh] font-bold">対話開始</p>
+      <p class="mt-2 px-[4vw] py-[1vh] flex justify-center items-center text-[2vh]">あなたが「他人に知られても良い」と感じる個人情報カードを、チャットボットと対話しながら3枚選択してください。制限時間は５分です。</p>
+      <div class="items-center px-4 py-3">
+        <button id="ok-btn" @click="closeStartModal" class="px-4 py-2 bg-blue-500 text-white text-[3vh] font-medium rounded-md w-full shadow-sm hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          開始する
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 対話終了モーダル -->
+  <div v-if="finishModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" @click="closeModal">
+    <div class="relative mx-auto p-1 border w-[80vw] shadow-lg rounded-md bg-white">
+      <p class="mt-2 px-[4vw] flex justify-center items-center text-[3vh] font-bold">対話終了</p>
+      <p class="mt-2 px-[4vw] py-[1vh] flex justify-center items-center text-[2vh]">制限時間の５分を経過しました。悪用サイドに渡す個人情報カードを3枚選択し、次の画面に進んでください。</p>
+      <div class="items-center px-4 py-3">
+        <button id="ok-btn" @click="closeFinishModal" class="px-4 py-2 bg-blue-500 text-white text-[3vh] font-medium rounded-md w-full shadow-sm hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          閉じる
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -65,23 +96,24 @@ export default {
       gameId: '',
       selectedCards: [],
       attacker_select_id: null,
-      countdownTime: 5 * 60, // countdownTime in seconds (5 minutes)
-      timeLeft: '05:00', // Displayed countdown timer
+      countdownTime: 5 * 60,
+      timeLeft: '05:00',
       showSubmit: false,
       menuVisible: false,
+      finishModal: false,
+      startModal: true,
     };
   },
   async created() {
     try {
       this.userId = this.$route.params.user_id;
       this.gameId = this.$route.params.game_id;
+      this.startModal = true;
 
-      const userResponse = await axios.get(`http://localhost:8000/api/users/${this.userId}`);
-      // const userResponse = await axios.get(`https://rma.iiojun.com/api/users/${this.userId}`);
+      const userResponse = await axios.get(`/api/users/${this.userId}`);
       this.username = userResponse.data.username;
 
-      const response = await axios.get(`http://localhost:8000/api/game/${this.gameId}`);
-      // const response = await axios.get(`https://rma.iiojun.com/api/game/${this.gameId}`);
+      const response = await axios.get(`/api/game/${this.gameId}`);
       this.defenderCards = [
         response.data.defender_card1,
         response.data.defender_card2,
@@ -89,7 +121,6 @@ export default {
         response.data.defender_card4,
         response.data.defender_card5,
       ];
-      this.startCountdown();
       this.startConversation();
       this.attacker_select_id = Math.floor(Math.random() * 3) + 1;
     } catch (error) {
@@ -153,7 +184,7 @@ export default {
       const timerInterval = setInterval(() => {
         if (this.countdownTime === 0) {
           clearInterval(timerInterval);
-          // You may want to do something here when countdown reaches 0
+          this.finishModal = true
         } else {
           this.countdownTime--;
           this.formatTimeLeft();
@@ -164,6 +195,13 @@ export default {
       const minutes = Math.floor(this.countdownTime / 60);
       const seconds = this.countdownTime % 60;
       this.timeLeft = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    },
+    closeStartModal() {
+      this.startModal = false;
+      this.startCountdown();
+    },
+    closeFinishModal() {
+      this.finishModal = false;
     }
   },
 };

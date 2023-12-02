@@ -6,7 +6,12 @@
     <div class="w-[85vw] bg-[#E76767] flex justify-center items-center">
       <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報カード選択</h1>
       <button @click="menuVisible = !menuVisible" class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
-      <MenuComponent v-model:modelValue="menuVisible" />
+      <MenuComponent
+        v-model:modelValue="menuVisible"
+        :gameId="parseInt($route.params.game_id)"
+        :userId="parseInt($route.params.user_id)"
+        :role="'attacker'"
+      />
     </div>
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center pt-[1vh]">
@@ -22,6 +27,9 @@
       <p className="text-blue-600 font-bold flex items-center justify-center mr-[8vw]">残り時間 : {{ timeLeft }}</p>
     </div>
     <div class="border border-gray-300 bg-white p-3 rounded overflow-auto h-[45vh] w-[90vw] mb-4 text-[2vh]">
+      <p class="text-red-500 font-bold mb-3">
+        <span>GM:</span>5枚の個人情報カードの中で1番他人に知られてもいいと感じるものはどれですか？なぜそう考えるのか、他の4枚と組み合わせるとどうかなど、さまざまな観点で話し合ってみよう！
+      </p>
       <div v-for="message in conversation" :key="message.id" class="mb-3">
         <div v-if="message.sender === userId" class="text-green-500 font-bold">
           <span>あなた:</span> {{ message.content }}
@@ -35,6 +43,27 @@
       <input v-model="userInput" placeholder="Type your message..." class="flex-grow p-2 border border-gray-300 rounded mr-2 pl-4"/>
       <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">送信</button>
     </form>
+  </div>
+
+  <!-- 対話開始モーダル -->
+  <div v-if="startModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
+    <div class="relative mx-auto p-1 border w-[80vw] shadow-lg rounded-md bg-white">
+      <p class="mt-2 px-[4vw] flex justify-center items-center text-[3vh] font-bold">対話開始</p>
+      <p class="mt-2 px-[4vw] py-[1vh] flex justify-center items-center text-[2vh]">対戦相手には手口を悟られないように、それぞれの個人情報カードに対する考えを対話してください。制限時間は5分です。</p>
+    </div>
+  </div>
+
+  <!-- 対話終了モーダル -->
+  <div v-if="finishModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" @click="closeModal">
+    <div class="relative mx-auto p-1 border w-[80vw] shadow-lg rounded-md bg-white">
+      <p class="mt-2 px-[4vw] flex justify-center items-center text-[3vh] font-bold">対話終了</p>
+      <p class="mt-2 px-[4vw] py-[1vh] flex justify-center items-center text-[2vh]">制限時間の５分を経過しました。個人情報提供サイドに個人情報カードを3枚選択するよう伝えてください。</p>
+      <div class="items-center px-4 py-3">
+        <button id="ok-btn" @click="closeModal" class="px-4 py-2 bg-blue-500 text-white text-[3vh] font-medium rounded-md w-full shadow-sm hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          閉じる
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -55,10 +84,12 @@ export default {
       gameId: '',
       selectedCards: [],
       attacker_select_id: null,
-      countdownTime: 5 * 60, // countdownTime in seconds (5 minutes)
-      timeLeft: '05:00', // Displayed countdown timer
+      countdownTime: 5 * 60,
+      timeLeft: '05:00',
       showSubmit: false,
       menuVisible: false,
+      finishModal: false,
+      startModal: true,
     };
   },
   async created() {
@@ -66,12 +97,10 @@ export default {
       this.userId = this.$route.params.user_id;
       this.gameId = this.$route.params.game_id;
 
-      const userResponse = await axios.get(`http://localhost:8000/api/users/${this.userId}`);
-      // const userResponse = await axios.get(`https://rma.iiojun.com/api/users/${this.userId}`);
+      const userResponse = await axios.get(`/api/users/${this.userId}`);
       this.username = userResponse.data.username;
 
-      const response = await axios.get(`http://localhost:8000/api/game/${this.gameId}`);
-      //const response = await axios.get(`https://rma.iiojun.com/api/game/${this.gameId}`);
+      const response = await axios.get(`/api/game/${this.gameId}`);
       this.defenderCards = [
         response.data.defender_card1,
         response.data.defender_card2,
@@ -79,7 +108,13 @@ export default {
         response.data.defender_card4,
         response.data.defender_card5,
       ];
-      this.startCountdown();
+
+      Echo.private(`user.${this.$route.params.user_id}`)
+            .listen('.defender.transit', (event) => {
+              this.startModal = false;
+              this.startCountdown();
+        });
+
       const cardInfoResponse = await axios.get(`/api/attacker-card-info/${this.gameId}/${decodeURIComponent(this.$route.query.attacker_select)}`);
       this.attacker_select_id = cardInfoResponse.data.attackerCardNumber;
       console.log('attackid', this.attacker_select_id)
@@ -146,6 +181,9 @@ export default {
       const minutes = Math.floor(this.countdownTime / 60);
       const seconds = this.countdownTime % 60;
       this.timeLeft = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    },
+    closeModal() {
+      this.finishModal = false;
     }
   },
 };

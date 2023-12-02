@@ -32,12 +32,9 @@ class ConversationController extends Controller
         $defenderCardsStr = implode("', '", $defenderCards);
 
         $request->session()->put('conversation', [
-            ["role" => "system", "content" => "You are a game player. The user has five cards, '" . $defenderCardsStr . "', each containing a piece of personal information. Your task is to guide the user to choose three cards they feel comparatively comfortable having known to others out of the five. Engage in a discussion with the user about the level of resistance they feel in having the information on each card known to others, and about the user's privacy consciousness. Please refrain from bringing up topics that are not related to the game or the cards."],
-            ["role" => "assistant", "content" => "あなたが５枚の個人情報カードの中で1番他人に知られたくないと感じるものはどれですか？"]
+            ["role" => "system", "content" => "あなたはゲームプレイヤーです。ユーザーには5枚のカードがあり、それぞれに個人情報が記載されています。これらのカード'" . $defenderCardsStr . "の中から、ユーザに他人に知られても比較的抵抗がないと感じる3枚を選択させてください。各カードの情報が他人に知られることに対する抵抗感や、ユーザーのプライバシーに対する意識について話し合いましょう。このゲームやカードに関連しない話題は決してしないでください。返答は1〜2文で簡潔にお願いします。また、この会話は必ず日本語で行ってください。様々な角度で質問をし、会話はできるだけ続けてください。"],
+            ["role" => "assistant", "content" => "あなたが5枚の個人情報カードの中で1番他人に知られてもいいと感じるものはどれですか？"]
         ]);
-
-        \Illuminate\Support\Facades\Log::info('Username: ' . $username);
-        \Illuminate\Support\Facades\Log::info('GameId: ' . $gameId);
 
         return response()->json($request->session()->get('conversation'));
     }

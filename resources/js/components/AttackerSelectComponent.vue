@@ -6,7 +6,12 @@
     <div class="w-[85vw] bg-[#E76767] flex justify-center items-center">
       <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">悪用カード選択</h1>
       <button @click="menuVisible = !menuVisible" class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
-      <MenuComponent v-model:modelValue="menuVisible" />
+      <MenuComponent
+        v-model:modelValue="menuVisible"
+        :gameId="parseInt($route.params.game_id)"
+        :userId="parseInt($route.params.user_id)"
+        :role="'attacker'"
+      />
     </div>
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center">
@@ -26,10 +31,10 @@
 
     <!-- モーダル -->
     <div v-if="showModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" @click="closeModal">
-      <div class="relative mx-auto p-5 border w-[85vw] shadow-lg rounded-md bg-white" @click.stop>
-        <div class="mt-[2vh] text-center">
+      <div class="relative mx-auto p-2 border w-[85vw] shadow-lg rounded-md bg-white" @click.stop>
+        <div class="mt-[2vh] text-center flex flex-col items-center justify-center">
           <h3 class="text-[3vh] leading-6 font-bold text-gray-900 mb-[1vh]">{{ selectedName }}</h3>
-          <div class="mt-2 px-[8vw] py-[2vh]">
+          <div class="mt-2 px-[8vw] py-[2vh] flex justify-center items-center">
             <p class="text-[2.5vh] text-gray-500">{{ selectedInfo }}</p>
           </div>
           <div class="items-center px-4 py-3">

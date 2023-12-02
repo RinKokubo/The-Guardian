@@ -23,7 +23,7 @@ class GameInformationSeeder extends Seeder
 
         GameInformation::create([
             'id' => 2,
-            'attacker_card1_id' => 4,
+            'attacker_card1_id' => 10,
             'attacker_card2_id' => 12,
             'attacker_card3_id' => 17,
             'defender_card1_id' => 1,

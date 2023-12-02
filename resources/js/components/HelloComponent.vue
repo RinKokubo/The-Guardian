@@ -1,6 +1,6 @@
 <template>
   <div class="w-[100vw] h-[100vh] bg-[#E5E5E5] flex flex-col justify-center items-center">
-    <h1 class="text-[10vw] text-green-600 mt-[12vh] font-bold text-center drop-shadow-2xl">個人情報保護ゲーム</h1>  
+    <h1 class="text-[10vw] text-green-600 mt-[12vh] font-bold text-center drop-shadow-2xl">THE GUARDIAN</h1>  
     <div class="flex justify-center my-[8vh]">
       <img src='/img/privacy.png' class="sp:w-[75vw] desktop:w-[30vh]">
     </div>

@@ -6,15 +6,20 @@
     <div class="w-[85vw] bg-blue-500 flex justify-center items-center">
       <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">悪用カード選択</h1>
       <button @click="menuVisible = !menuVisible" class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
-      <MenuComponent v-model:modelValue="menuVisible" />
+      <MenuComponent
+        v-model:modelValue="menuVisible"
+        :gameId="parseInt($route.params.game_id)"
+        :userId="parseInt($route.params.user_id)"
+        :role="'defender'"
+      />
     </div>
   </div>
   <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center">
-    <div class="pt-[3vh] py-[1.5vh] flex flex-col items-center gap-y-5 text-[2vh]">
+    <div class="pt-[3vh] flex flex-col items-center gap-y-3 text-[2vh]">
       <p>個人情報悪用側がカード選択中です。</p>
       <p>しばらくお待ちください。</p>
     </div>
-    <div class="flex flex-col justify-center items-center gap-y-[4vh] py-[6vh]">
+    <div v-if="this.$route.params.game_id < 4" class="flex flex-col justify-center items-center gap-y-[4vh] py-[3vh]">
       <div v-for="i in 3" :key="i" 
               class="w-[90vw] h-[20vh] bg-red-300 justify-start items-center px-[3vw] flex shadow-2xl relative" 
               v-on:click="toggleCardSelection(i)">
@@ -27,10 +32,10 @@
 
     <!-- モーダル -->
     <div v-if="showModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" @click="closeModal">
-      <div class="relative mx-auto p-5 border w-[85vw] shadow-lg rounded-md bg-white" @click.stop>
-        <div class="mt-[2vh] text-center">
+      <div class="relative mx-auto p-2 border w-[85vw] shadow-lg rounded-md bg-white" @click.stop>
+        <div class="mt-[2vh] text-center flex flex-col items-center justify-center">
           <h3 class="text-[3vh] leading-6 font-bold text-gray-900 mb-[1vh]">{{ selectedName }}</h3>
-          <div class="mt-2 px-[8vw] py-[2vh]">
+          <div class="mt-2 px-[8vw] py-[2vh] flex justify-center items-center">
             <p class="text-[2.5vh] text-gray-500">{{ selectedInfo }}</p>
           </div>
           <div class="items-center px-4 py-3">
@@ -65,7 +70,7 @@ export default {
       };
     },
     created() {
-      if(this.$route.params.game_id < 3){
+      if(this.$route.params.game_id < 4){
         axios.get(`/api/game/${this.$route.params.game_id}`)
           .then(response => {
             this.gameInformation = response.data;

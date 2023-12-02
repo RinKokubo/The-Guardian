@@ -19,13 +19,16 @@ class ScoreController extends Controller
 
         $selectedCards = $request->query('selectedCards');
         $totalScore = 0;
+        $individualScores = [];
 
         foreach ($selectedCards as $selectedCard) {
             $cardField = 'defender_card' . $selectedCard . '_score';
-            $totalScore += $card->$cardField;
+            $score = $card->$cardField;
+            $totalScore += $score;
+            $individualScores['card' . $selectedCard] = $score;
         }
 
-        return response()->json(['score' => $totalScore]);
+        return response()->json(['totalScore' => $totalScore, 'individualScores' => $individualScores]);
     }
 
     public function getScore(Request $request, $gameId)
