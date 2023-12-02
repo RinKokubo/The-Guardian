@@ -24605,6 +24605,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           case 9:
             response = _context.sent;
             _this.defenderCards = [response.data.defender_card1, response.data.defender_card2, response.data.defender_card3, response.data.defender_card4, response.data.defender_card5];
+
+            // defenderが対話を開始するのを受信
             Echo["private"]("user.".concat(_this.$route.params.user_id)).listen('.defender.transit', function (event) {
               _this.startModal = false;
               _this.startCountdown();
@@ -24614,28 +24616,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           case 14:
             cardInfoResponse = _context.sent;
             _this.attacker_select_id = cardInfoResponse.data.attackerCardNumber;
-            console.log('attackid', _this.attacker_select_id);
+
+            // メッセージを受信
             Echo["private"]("chat.".concat(_this.userId)).listen('.message.sent', function (event) {
               _this.conversation.push({
                 sender: event.userId,
                 content: event.messageContent
               });
             });
-            _context.next = 23;
+            _context.next = 22;
             break;
-          case 20:
-            _context.prev = 20;
+          case 19:
+            _context.prev = 19;
             _context.t0 = _context["catch"](0);
             console.error('Error fetching game information:', _context.t0);
-          case 23:
+          case 22:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 20]]);
+      }, _callee, null, [[0, 19]]);
     }))();
   },
   mounted: function mounted() {
     var _this2 = this;
+    // defenderがカードを選択した結果を受信
     Echo["private"]("user.".concat(this.$route.params.user_id)).listen('.defenderCards.selected', function (event) {
       _this2.selectedCards = event.selectedCards;
       _this2.$router.push({
@@ -24660,6 +24664,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         sender: this.userId,
         content: this.userInput
       });
+
+      // メッセージを送信
       axios.post('/api/messages', {
         message_content: this.userInput,
         game_id: this.gameId,
@@ -24753,14 +24759,6 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    openModal: function openModal(i) {
-      this.selectedInfo = this['attacker_card' + i + 'Info']; // カードの情報をセット
-      this.selectedName = this['attackerCard' + i + 'Name']; // カードの名前をセット
-      this.showModal = true;
-    },
-    closeModal: function closeModal() {
-      this.showModal = false;
-    },
     toggleCardSelection: function toggleCardSelection(cardNumber) {
       if (this.selectedCard === cardNumber) {
         // すでに選択されているカードをもう一度クリックした場合、選択を解除
@@ -24777,6 +24775,8 @@ __webpack_require__.r(__webpack_exports__);
         var gameId = this.$route.params.game_id;
         var opponentId = this.$route.query.opponent_id;
         var cardName = this['attackerCard' + this.selectedCard + 'Name'];
+
+        // 選択したカード情報を送信
         axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/attacker-select-card', {
           userId: userId,
           cardName: cardName,
@@ -24805,6 +24805,14 @@ __webpack_require__.r(__webpack_exports__);
           console.error('エラーが発生しました', error);
         });
       }
+    },
+    openModal: function openModal(i) {
+      this.selectedInfo = this['attacker_card' + i + 'Info']; // カードの情報をセット
+      this.selectedName = this['attackerCard' + i + 'Name']; // カードの名前をセット
+      this.showModal = true;
+    },
+    closeModal: function closeModal() {
+      this.showModal = false;
     }
   }
 });
@@ -24857,6 +24865,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           case 4:
             response = _context.sent;
             _this.defenderCards = [response.data.defender_card1, response.data.defender_card2, response.data.defender_card3, response.data.defender_card4, response.data.defender_card5];
+
+            // 対話の開始を通知
             Echo["private"]("user.".concat(_this.$route.params.user_id)).listen('.defender.transit', function (event) {
               _this.startModal = false;
               _this.startCountdown();
@@ -24881,6 +24891,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   mounted: function mounted() {
     var _this2 = this;
+    // カードの選択を通知
     Echo["private"]("user.".concat(this.$route.params.user_id)).listen('.defenderCards.selected', function (event) {
       _this2.selectedCards = event.selectedCards;
       _this2.$router.push({
@@ -24988,6 +24999,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           case 13:
             cardInfoResponse = _context.sent;
             _this.attacker_select_id = cardInfoResponse.data.attackerCardNumber;
+
+            // メッセージを受信
             Echo["private"]("chat.".concat(_this.userId)).listen('.message.sent', function (event) {
               _this.conversation.push({
                 sender: event.userId,
@@ -25053,7 +25066,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         content: this.userInput
       });
 
-      // メッセージをサーバーに送信
+      // メッセージをサーバに送信
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/messages', {
         message_content: this.userInput,
         game_id: this.gameId,
@@ -25197,6 +25210,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     confirmSelection: function confirmSelection() {
       var _this3 = this;
       if (this.selectedCards.length === 3) {
+        // 選択した個人情報カードを通知
         axios.post('/api/defender-select-card', {
           user_id: this.$route.params.user_id,
           opponent_id: this.$route.query.opponent_id,
@@ -25273,6 +25287,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     var _this = this;
+    // 第３試合までは悪用カードの内容を提示
     if (this.$route.params.game_id < 4) {
       axios.get("/api/game/".concat(this.$route.params.game_id)).then(function (response) {
         _this.gameInformation = response.data;
@@ -25295,7 +25310,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     var _this2 = this;
-    console.log("Connecting to channel: user.".concat(this.userId));
+    // attackerのカード選択情報を受信
     Echo["private"]("user.".concat(this.userId)).listen('.attackerCard.selected', function (event) {
       _this2.selectedCard = event.card;
       if (_this2.$route.query.talk == 'face') {
@@ -25441,6 +25456,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           case 11:
             userResponse = _context.sent;
             _this.opponentName = userResponse.data.username;
+
+            // 待機状態を更新
             _context.next = 15;
             return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/users/".concat(_this.user_id, "/update-waiting-status"), {
               is_waiting: true
@@ -25838,32 +25855,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   name: 'selectAccount',
   data: function data() {
     return {
-      users: []
+      users: [],
+      password: ''
     };
   },
   methods: {
     login: function login(user) {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var response;
+        var password, response;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
-              _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/login-without-password', {
-                user_id: user.id
+              password = prompt('パスワードを入力してください');
+              if (!password) {
+                _context.next = 16;
+                break;
+              }
+              _context.prev = 3;
+              _context.next = 6;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/login', {
+                user_id: user.id,
+                password: password
               });
-            case 3:
+            case 6:
               response = _context.sent;
-              console.log(response.data);
-
               // トークンがあればlocalStorageに保存し、axiosのデフォルトヘッダーに設定
               if (response.data.isLoggedIn && response.data.token) {
                 localStorage.setItem('token', response.data.token);
                 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.headers.common.Authorization) = "Bearer ".concat(response.data.token);
                 _this.updateEchoInstance(response.data.token);
-              }
+              } else {}
               _this.$router.push({
                 name: 'introduction',
                 params: {
@@ -25874,17 +25897,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   win_count: 0
                 }
               });
-              _context.next = 12;
+              _context.next = 14;
               break;
-            case 9:
-              _context.prev = 9;
-              _context.t0 = _context["catch"](0);
-              console.error('Login failed:', _context.t0.response ? _context.t0.response.data : _context.t0);
-            case 12:
+            case 11:
+              _context.prev = 11;
+              _context.t0 = _context["catch"](3);
+              if (_context.t0.response && _context.t0.response.data.message) {
+                alert(_context.t0.response.data.message);
+              } else {
+                console.error('Login failed:', _context.t0);
+              }
+            case 14:
+              _context.next = 17;
+              break;
+            case 16:
+              // パスワードが入力されなかった場合の処理
+              alert('パスワードが必要です');
+            case 17:
+              _context.next = 22;
+              break;
+            case 19:
+              _context.prev = 19;
+              _context.t1 = _context["catch"](0);
+              console.error('Login failed:', _context.t1.response ? _context.t1.response.data : _context.t1);
+            case 22:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 9]]);
+        }, _callee, null, [[0, 19], [3, 11]]);
       }))();
     },
     updateEchoInstance: function updateEchoInstance(newToken) {
@@ -28791,7 +28831,7 @@ var _hoisted_5 = {
 };
 var _hoisted_6 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 日本語版 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_ctx.$i18n.locale === 'ja' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h1", _hoisted_3, "アカウントを選択してください")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h1", _hoisted_4, "Select your account."))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.users, function (user) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_ctx.$i18n.locale === 'ja' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h1", _hoisted_3, "アカウントを選択してください")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h1", _hoisted_4, "Select your account."))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.users, function (user) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
       key: user.id,
       "class": "text-[2.5vh] w-[40vw] mb-[2vh] hover:underline hover:underline-offset-4 duration-500",
@@ -28799,7 +28839,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return _ctx.login(user);
       }
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name), 9 /* TEXT, PROPS */, _hoisted_6);
-  }), 128 /* KEYED_FRAGMENT */))])])], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
+  }), 128 /* KEYED_FRAGMENT */))])]);
 }
 
 /***/ }),
@@ -29320,9 +29360,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       id: "".concat(cardScore, "Score")
     }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.scoreOptions[cardScore], function (score) {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+        key: score,
         value: score
       }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(score), 9 /* TEXT, PROPS */, _hoisted_23);
-    }), 256 /* UNKEYED_FRAGMENT */))], 8 /* PROPS */, _hoisted_22), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.cardScores[cardScore]]]), _hoisted_24]);
+    }), 128 /* KEYED_FRAGMENT */))], 8 /* PROPS */, _hoisted_22), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.cardScores[cardScore]]]), _hoisted_24]);
   }), 64 /* STABLE_FRAGMENT */))])])]), parseInt(_ctx.$route.params.game_id) < 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.submitScores && $options.submitScores.apply($options, arguments);
@@ -29375,9 +29416,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       id: "".concat(cardScore, "Score")
     }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.scoreOptions[cardScore], function (score) {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+        key: score,
         value: score
       }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(score), 9 /* TEXT, PROPS */, _hoisted_48);
-    }), 256 /* UNKEYED_FRAGMENT */))], 8 /* PROPS */, _hoisted_47), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.cardScores[cardScore]]]), _hoisted_49]);
+    }), 128 /* KEYED_FRAGMENT */))], 8 /* PROPS */, _hoisted_47), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.cardScores[cardScore]]]), _hoisted_49]);
   }), 64 /* STABLE_FRAGMENT */))])])]), parseInt(_ctx.$route.params.game_id) < 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_50, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[6] || (_cache[6] = function () {
       return $options.submitScores && $options.submitScores.apply($options, arguments);

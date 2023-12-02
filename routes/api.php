@@ -35,7 +35,7 @@ Broadcast::routes(['middleware' => ['auth:api']]);
 
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'showUserName']);
-Route::post('/login-without-password', [AuthController::class, 'loginWithoutPassword']);
+Route::post('/login', [AuthController::class, 'login']);
 Route::get('/game/{id}', [GameInformationController::class, 'show']);
 Route::get('/attacker-card-info/{card}', [AttackerCardInfoController::class, 'show']);
 Route::get('/attacker-card-info/{gameId}/{card}', [AttackerCardInfoController::class, 'showGame']);

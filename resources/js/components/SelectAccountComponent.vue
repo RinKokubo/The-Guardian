@@ -28,22 +28,41 @@ export default defineComponent({
   data() {
     return {
       users: [],
+      password: ''
     }
   },
   methods: {
     async login(user) {
       try {
-        const response = await axios.post('/api/login-without-password', { user_id: user.id });
-        console.log(response.data);
-        
-        // トークンがあればlocalStorageに保存し、axiosのデフォルトヘッダーに設定
-        if (response.data.isLoggedIn && response.data.token) {
-          localStorage.setItem('token', response.data.token);
-          axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-          this.updateEchoInstance(response.data.token);
-        }
+        const password = prompt('パスワードを入力してください');
+        if (password) {
+          try {
+            // パスワードを含むリクエストを送信
+            const response = await axios.post('/api/login', {
+              user_id: user.id,
+              password: password
+            });
 
-        this.$router.push({ name: 'introduction', params: { user_id: user.id, game_id: 1 }, query: { win_count: 0 } });
+            // トークンがあればlocalStorageに保存し、axiosのデフォルトヘッダーに設定
+            if (response.data.isLoggedIn && response.data.token) {
+              localStorage.setItem('token', response.data.token);
+              axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+              this.updateEchoInstance(response.data.token);
+            } else {
+
+            }
+            this.$router.push({ name: 'introduction', params: { user_id: user.id, game_id: 1 }, query: { win_count: 0 } });
+          } catch (error) {
+            if (error.response && error.response.data.message) {
+              alert(error.response.data.message);
+            } else {
+              console.error('Login failed:', error);
+            }
+          }
+        } else {
+          // パスワードが入力されなかった場合の処理
+          alert('パスワードが必要です');
+        }
       } catch (error) {
         console.error('Login failed:', error.response ? error.response.data : error);
       }
