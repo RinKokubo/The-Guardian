@@ -25,14 +25,6 @@ class MessageController extends Controller
 
         broadcast(new MessageSent($userId, $opponentId, $messageContent))->toOthers();
 
-        \Illuminate\Support\Facades\Log::info('Controller.', [
-            'game_id' => $request->game_id,
-            'sender' => $userId,
-            'receiver' => $opponentId,
-            'message_content' => $messageContent,
-            'user_name' => $request->user_name,
-        ]);
-
         return response()->json(['message' => 'メッセージを送信しました']);
     }
 }

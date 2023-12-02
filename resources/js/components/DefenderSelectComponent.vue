@@ -1,10 +1,12 @@
 <template>
+  <!-- ヘッダ -->
   <div class="flex w-[100vw] h-[8vh] shadow-2xl">
     <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
     <div class="w-[85vw] bg-blue-500 flex justify-center items-center">
-      <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報カード選択</h1>
+      <h1 v-if="$i18n.locale === 'ja'" class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">個人情報カード選択</h1>
+      <h1 v-else class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">Select 個人情報カード</h1>
       <button @click="menuVisible = !menuVisible" class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
       <MenuComponent
         v-model:modelValue="menuVisible"
@@ -14,7 +16,9 @@
       />
     </div>
   </div>
-  <div class="bg-[#E5E5E5] w-[100vw] h-[92vh]">
+
+  <!-- 日本語版 -->
+  <div v-if="$i18n.locale === 'ja'" class="bg-[#E5E5E5] w-[100vw] h-[92vh]">
     <div class=" flex items-center justify-center text-[2vh]">
       <p className="text-blue-600 font-bold mr-[6vw]">残り時間 : {{ timeLeft }}</p>
       <button 
@@ -36,8 +40,31 @@
     </ul>
   </div>
 
-  <!-- 対話開始モーダル -->
-  <div v-if="startModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" @click="closeModal">
+  <!-- 英語版 -->
+  <div v-else class="bg-[#E5E5E5] w-[100vw] h-[92vh]">
+    <div class=" flex items-center justify-center text-[2vh]">
+      <p className="text-blue-600 font-bold mr-[6vw]">Time Left : {{ timeLeft }}</p>
+      <button 
+        :disabled="selectedCards.length !== 3" 
+        @click="confirmSelection" 
+        class="text-white font-bold py-[6px] px-[2vw] my-[2vh] border-[3px] border-blue-500 hover:border-blue-600
+        hover:bg-blue-600 bg-blue-500 duration-300 shadow-sm rounded"
+        :class="{ 'opacity-50 cursor-not-allowed': selectedCards.length !== 3 }">
+        公開するカードを決定
+      </button>
+    </div>
+    <ul class="flex flex-col gap-x-5 justify-center items-center gap-y-[2vh] pb-[3vh]">
+      <li v-for="(card, index) in defenderCards" :key="card.id" :class="{ 'selected-border': selectedCards.includes(index + 1) }">
+        <button @click="selectCard(index + 1)" class="w-[90vw] h-[14vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex">
+          <img :src="`/img/${card.defender_card_name}.png`" alt="defender_card" class="w-[12vh] h-[12vh]">
+          <p className="text-[3vh] font-bold pl-[3vw]">{{ card.defender_card_name }}</p>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 対話開始モーダル 日本語 -->
+  <div v-if="startModal && $i18n.locale === 'ja'" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" @click="closeModal">
     <div class="relative mx-auto p-1 border w-[80vw] shadow-lg rounded-md bg-white">
       <p class="mt-2 px-[4vw] flex justify-center items-center text-[3vh] font-bold">対話開始</p>
       <p class="mt-2 px-[4vw] py-[1vh] flex justify-center items-center text-[2vh]">あなたが「他人に知られても良い」と感じる個人情報カードを、対戦相手と対話しながら3枚選択してください。制限時間は５分です。</p>
@@ -49,10 +76,36 @@
     </div>
   </div>
 
-  <!-- 対話終了モーダル -->
-  <div v-if="finishModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" @click="closeModal">
+  <!-- 対話開始モーダル 英語 -->
+  <div v-if="startModal && $i18n.locale === 'en'" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" @click="closeModal">
+    <div class="relative mx-auto p-1 border w-[80vw] shadow-lg rounded-md bg-white">
+      <p class="mt-2 px-[4vw] flex justify-center items-center text-[3vh] font-bold">Start Conversation</p>
+      <p class="mt-2 px-[4vw] py-[1vh] flex justify-center items-center text-[2vh]">あなたが「他人に知られても良い」と感じる個人情報カードを、対戦相手と対話しながら3枚選択してください。制限時間は５分です。</p>
+      <div class="items-center px-4 py-3">
+        <button id="ok-btn" @click="closeStartModal" class="px-4 py-2 bg-blue-500 text-white text-[3vh] font-medium rounded-md w-full shadow-sm hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          開始する
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 対話終了モーダル 日本語 -->
+  <div v-if="finishModal && $i18n.locale === 'ja'" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" @click="closeModal">
     <div class="relative mx-auto p-1 border w-[80vw] shadow-lg rounded-md bg-white">
       <p class="mt-2 px-[4vw] flex justify-center items-center text-[3vh] font-bold">対話終了</p>
+      <p class="mt-2 px-[4vw] py-[1vh] flex justify-center items-center text-[2vh]">制限時間の５分を経過しました。悪用サイドに渡す個人情報カードを3枚選択し、次の画面に進んでください。</p>
+      <div class="items-center px-4 py-3">
+        <button id="ok-btn" @click="closeFinishModal" class="px-4 py-2 bg-blue-500 text-white text-[3vh] font-medium rounded-md w-full shadow-sm hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          閉じる
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 対話終了モーダル 英語 -->
+  <div v-if="finishModal && $i18n.locale === 'en'" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" @click="closeModal">
+    <div class="relative mx-auto p-1 border w-[80vw] shadow-lg rounded-md bg-white">
+      <p class="mt-2 px-[4vw] flex justify-center items-center text-[3vh] font-bold">Finish Conversation</p>
       <p class="mt-2 px-[4vw] py-[1vh] flex justify-center items-center text-[2vh]">制限時間の５分を経過しました。悪用サイドに渡す個人情報カードを3枚選択し、次の画面に進んでください。</p>
       <div class="items-center px-4 py-3">
         <button id="ok-btn" @click="closeFinishModal" class="px-4 py-2 bg-blue-500 text-white text-[3vh] font-medium rounded-md w-full shadow-sm hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400">

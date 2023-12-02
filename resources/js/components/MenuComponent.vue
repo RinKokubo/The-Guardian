@@ -2,16 +2,32 @@
   <transition name="slide">
     <div v-if="modelValue" class="menu-container">
       <div class="flex flex-col items-center menu-content">
-        <p class="text-[3vh] text-white my-[1.8vh] font-bold">メニュー</p>
-        <div class="text-[2.5vh] text-white py-[1vh] text-center border-[1.5px] border-white w-full">
+        <!-- メニュータイトル -->
+        <p v-if="$i18n.locale === 'ja'" class="text-[3vh] text-white my-[1.8vh] font-bold">メニュー</p>
+        <p v-else class="text-[3vh] text-white my-[1.8vh] font-bold">Menu</p>
+
+        <!-- イントロ -->
+        <div v-if="$i18n.locale === 'ja'" class="text-[2.5vh] text-white py-[1vh] text-center border-[1.5px] border-white w-full">
           <p>あなたは{{ this.username }}</p>
           <p>あなたの役割は
             <span v-if="role === 'defender'" class="font-bold">個人情報提供サイド</span>
             <span v-else class="font-bold">個人情報悪用サイド</span>
           </p>
         </div>
-        <p class="game-rules-title px-4 py-2 bg-green-600 text-white text-[3vh] text-center border-[1.5px] border-white w-full font-bold" @click="toggleCardVisibility">
+        <div v-else class="text-[2.5vh] text-white py-[1vh] text-center border-[1.5px] border-white w-full">
+          <p>You are {{ this.username }}</p>
+          <p>Your role is 
+            <span v-if="role === 'defender'" class="font-bold">個人情報提供サイド</span>
+            <span v-else class="font-bold">個人情報悪用サイド</span>
+          </p>
+        </div>
+
+        <!-- カードの選択肢 -->
+        <p v-if="$i18n.locale === 'ja'" class="game-rules-title px-4 py-2 bg-green-600 text-white text-[3vh] text-center border-[1.5px] border-white w-full font-bold" @click="toggleCardVisibility">
           カードの選択肢
+        </p>
+        <p v-else class="game-rules-title px-4 py-2 bg-green-600 text-white text-[3vh] text-center border-[1.5px] border-white w-full font-bold" @click="toggleCardVisibility">
+          Card choices
         </p>
         <div v-if="isCardVisible" class="game-rules bg-green-200 p-3 text-[2vh] w-full">
           <div v-if="role === 'attacker'" class="flex flex-col gap-y-[1vh]">
@@ -30,10 +46,15 @@
             <p>{{ defenderCard5 }}</p>
           </div>
         </div>
-        <p class="game-rules-title px-4 py-2 bg-green-600 text-white text-[3vh] text-center border-[1.5px] border-white w-full font-bold" @click="toggleTalkVisibility">
+
+        <!-- 会話のヒント -->
+        <p v-if="$i18n.locale === 'ja'" class="game-rules-title px-4 py-2 bg-green-600 text-white text-[3vh] text-center border-[1.5px] border-white w-full font-bold" @click="toggleTalkVisibility">
           会話のヒント
         </p>
-        <div v-if="isTalkVisible" class="game-rules bg-green-200 p-3 text-[2vh] flex flex-col gap-y-[1vh]">
+        <p v-else class="game-rules-title px-4 py-2 bg-green-600 text-white text-[3vh] text-center border-[1.5px] border-white w-full font-bold" @click="toggleTalkVisibility">
+          Conversation Tips
+        </p>
+        <div v-if="isTalkVisible && $i18n.locale === 'ja'" class="game-rules bg-green-200 p-3 text-[2vh] flex flex-col gap-y-[1vh]">
           <p class="bg-blue-300 font-bold pl-3 py-[2px]">「原則」</p>
           <p>悪用サイドも提供サイドも、選択した手口を探るような質問以外には、正直に答えよう！犯罪に関する一般的な質問はOK！</p>
           <p class="bg-blue-300 font-bold pl-3 py-[2px]">「質問集」</p>
@@ -50,10 +71,32 @@
             ×どの悪用手口を選んだの？結婚詐欺？<br>
           </p>
         </div>
-        <p class="game-rules-title px-4 py-2 bg-green-600 text-white text-[3vh] text-center border-[1.5px] border-white w-full font-bold" @click="toggleRulesVisibility">
+        <div v-if="isTalkVisible && $i18n.locale === 'en'" class="game-rules bg-green-200 p-3 text-[2vh] flex flex-col gap-y-[1vh]">
+          <p class="bg-blue-300 font-bold pl-3 py-[2px]">principle</p>
+          <p>悪用サイドも提供サイドも、選択した手口を探るような質問以外には、正直に答えよう！犯罪に関する一般的な質問はOK！</p>
+          <p class="bg-blue-300 font-bold pl-3 py-[2px]">「質問集」</p>
+          <p>
+            ・5枚のカードの中で1番知られても良いと思うものはどれ？それはなぜ？<br>
+            ・そのカードは1枚でも重要な情報？<br>
+            ・その情報は他のカードと組み合わせると危険性を増さない？<br>
+            ・そのカードは汎用性が高くない？<br>
+            ・〇〇詐欺とかに信憑性を持たせる情報として使われそうじゃない？<br>
+            ・〇〇詐欺ってどういう手口だっけ？
+          </p>
+          <p>
+            ×どのカードが欲しい？<br>
+            ×どの悪用手口を選んだの？結婚詐欺？<br>
+          </p>
+        </div>
+
+        <!-- ゲームルール -->
+        <p v-if="$i18n.locale === 'ja'" class="game-rules-title px-4 py-2 bg-green-600 text-white text-[3vh] text-center border-[1.5px] border-white w-full font-bold" @click="toggleRulesVisibility">
           ゲームルール
         </p>
-        <div v-if="isRulesVisible" class="game-rules bg-green-200 p-3 text-[2vh] flex flex-col gap-y-[1vh]">
+        <p v-else class="game-rules-title px-4 py-2 bg-green-600 text-white text-[3vh] text-center border-[1.5px] border-white w-full font-bold" @click="toggleRulesVisibility">
+          Game Rules
+        </p>
+        <div v-if="isRulesVisible && $i18n.locale === 'ja'" class="game-rules bg-green-200 p-3 text-[2vh] flex flex-col gap-y-[1vh]">
           <p><span class="text-blue-500 font-bold">個人情報提供サイド</span>/<span class="text-red-500 font-bold">個人情報悪用サイド</span>に分かれて行うシミュレーションカードゲーム。</p>
           <p><span class="text-blue-500 font-bold">提供サイド</span><br>
             ① 5枚の個人情報カードが配られる。5枚のカードは、合計100点になるよう点数付けされている。ただし点数は、悪用手口によって変化する。例: 空き巣にとって、住所は重要度が高い→点数が高い。<br>
@@ -68,16 +111,42 @@
           <img :src="`/img/得点例.jpg`" alt="提供例" class="my-[5px]">
           <p>得点が高い方が勝利！負けても、個人情報が悪用される場面を考えながら対話ができていればオールオッケー！相手との話を楽しもう！</p>
         </div>
-        <p class="game-rules-title px-4 py-2 bg-green-600 text-white text-[3vh] text-center border-[1.5px] border-white w-full font-bold" @click="toggleLangVisibility">
+        <div v-if="isRulesVisible && $i18n.locale === 'en'" class="game-rules bg-green-200 p-3 text-[2vh] flex flex-col gap-y-[1vh]">
+          <p><span class="text-blue-500 font-bold">個人情報提供サイド</span>/<span class="text-red-500 font-bold">個人情報悪用サイド</span>に分かれて行うSimulation Card Game.</p>
+          <p><span class="text-blue-500 font-bold">提供サイド</span><br>
+            ① 5枚の個人情報カードが配られる。5枚のカードは、合計100点になるよう点数付けされている。ただし点数は、悪用手口によって変化する。例: 空き巣にとって、住所は重要度が高い→点数が高い。<br>
+            ② 5分間の対戦相手との対話を経て、他人に知られてもいいと思う3枚のカードを公開する。残った手持ちの2枚が、提供サイドの得点となる。
+          </p>
+          <img :src="`/img/提供例.jpg`" alt="提供例" class="my-[5px]">
+          <p><span class="text-red-500 font-bold">悪用サイド</span><br>
+            ① 3枚の悪用手口から1つ選択する。<br>
+            ② 提供サイドの個人情報カード選択肢を見て、①で選択した悪用手口にとって、どのカードが重要か考える（どのカードを公開してほしいか考える）。<br>
+            ③ 対戦相手に悪用手口を悟られないよう気をつけながら、対話を主導する。勝つヒント：他の個人情報悪用手口（選択肢以外でも）は、どのカードが重要か考える。相手が公開した3枚のカードが、悪用サイドの得点になる。<br>
+          </p>
+          <img :src="`/img/得点例.jpg`" alt="提供例" class="my-[5px]">
+          <p>得点が高い方が勝利！負けても、個人情報が悪用される場面を考えながら対話ができていればオールオッケー！相手との話を楽しもう！</p>
+        </div>
+
+        <!-- 言語選択 -->
+        <p v-if="$i18n.locale === 'ja'" class="game-rules-title px-4 py-2 bg-green-600 text-white text-[3vh] text-center border-[1.5px] border-white w-full font-bold" @click="toggleLangVisibility">
           言語選択
         </p>
+        <p v-else class="game-rules-title px-4 py-2 bg-green-600 text-white text-[3vh] text-center border-[1.5px] border-white w-full font-bold" @click="toggleLangVisibility">
+          Select Language
+        </p>
         <div v-if="isLangVisible" class="game-rules bg-green-200 p-3 text-[2vh] flex flex-col gap-y-[1vh] w-full items-center">
-          <p>日本語</p>
-          <p>English</p>
+          <p :class="{'text-blue-500 font-bold': selectedLanguage === 'ja'}" @click="switchLanguage('ja')">日本語</p>
+          <p :class="{'text-blue-500 font-bold': selectedLanguage === 'en'}" @click="switchLanguage('en')">English</p>
         </div>
-        <button @click="closeMenu" class="close-button px-4 py-2 bg-green-700 text-white text-[3vh]
+
+        <!-- 閉じるボタン -->
+        <button v-if="$i18n.locale === 'ja'" @click="closeMenu" class="close-button px-4 py-2 bg-green-700 text-white text-[3vh]
           font-medium w-full shadow-sm hover:bg-green-400 focus:outline-none">
           閉じる
+        </button>
+        <button v-else @click="closeMenu" class="close-button px-4 py-2 bg-green-700 text-white text-[3vh]
+          font-medium w-full shadow-sm hover:bg-green-400 focus:outline-none">
+          Close
         </button>
       </div>
     </div>
@@ -86,6 +155,8 @@
 
 <script>
 import axios from 'axios';
+import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 export default {
   props: {
@@ -115,6 +186,17 @@ export default {
     };
   },
   emits: ['update:modelValue'],
+  setup() {
+    const { locale } = useI18n();
+    const selectedLanguage = ref(locale.value);
+
+    const switchLanguage = (lang) => {
+      locale.value = lang;
+      selectedLanguage.value = lang;
+    };
+
+    return { switchLanguage, selectedLanguage };
+  },
   async mounted() {
     try {
       const userResponse = await axios.get(`/api/users/${this.userId}`);

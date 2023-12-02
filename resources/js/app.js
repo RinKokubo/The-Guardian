@@ -9,6 +9,7 @@ import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue'
 import axios from 'axios';
+import { createI18n } from 'vue-i18n';
 
 import Hello from './components/HelloComponent';
 import SelectAccount from './components/SelectAccountComponent';
@@ -100,6 +101,12 @@ const routes = [
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+const i18n = createI18n({
+  legacy: false,
+  locale: 'ja',
+  fallbackLocale: 'en',
+});
+
 const router = createRouter({
   history: createWebHistory(),
   routes, // `routes: routes` の短縮記法
@@ -118,4 +125,4 @@ if (apitoken) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${apitoken}`;
 }
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).use(i18n).mount('#app')

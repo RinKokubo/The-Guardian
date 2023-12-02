@@ -44,12 +44,8 @@ class AttackerCardInfoController extends Controller
                 $gameInfo->attacker_card3_id,
             ];
 
-            \Illuminate\Support\Facades\Log::info('gameInfo', ['gameInfo' => $gameInfo]);
-
             // 一致するカード番号を探す
             $matchedCardNumber = array_search($attackerCard->id, $attackerCardIds) + 1;
-
-            \Illuminate\Support\Facades\Log::info('matchedCardNumber', ['matchedCardNumber' => $matchedCardNumber]);
 
             // 一致したカード番号を返す
             return response()->json(['attackerCardNumber' => $matchedCardNumber]);

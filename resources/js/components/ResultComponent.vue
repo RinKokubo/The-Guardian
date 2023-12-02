@@ -1,10 +1,12 @@
 <template>
+  <!-- ヘッダ -->
   <div class="flex w-[100vw] h-[8vh] shadow-2xl">
     <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
     <div class="w-[85vw] bg-green-600 flex justify-center items-center">
-      <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">結果</h1>
+      <h1 v-if="$i18n.locale === 'ja'" class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">結果</h1>
+      <h1 v-else class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">Result</h1>
       <button @click="menuVisible = !menuVisible" class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
       <MenuComponent
         v-model:modelValue="menuVisible"
@@ -14,12 +16,42 @@
       />
     </div>
   </div>
-  <div class="flex flex-col items-center bg-[#E5E5E5] w-[100vw] h-[92vh]">
+
+  <!-- 日本語版 -->
+  <div v-if="$i18n.locale === 'ja'" class="flex flex-col items-center bg-[#E5E5E5] w-[100vw] h-[92vh]">
     <div class="flex flex-col items-center pt-[1vh] pb-[1vh]" id="result">
       <img :src="`/img/${resultImage}.png`" alt="result" class="w-[25vw] h-[25vw]">
     </div>
     <div class="flex flex-col justify-center items-center gap-y-1">
       <p class="text-[2.5vh]">あなたの得点:{{ 100 - score }}点</p>
+      <p class="text-[2.5vh]">相手の得点:{{ score }}点</p>
+    </div>
+    <div class="flex flex-col justify-center items-center gap-y-[1.5vh] py-[2vh]">
+      <div class="w-[90vw] h-[13vh] bg-red-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex">
+        <img :src="`/img/${attackerCardName}.png`" alt="attacker_card" class="w-[11vh] h-[11vh]">
+        <p class="text-[2.7vh] font-bold pl-[3vw]">{{ attackerCardName }}</p>
+      </div>
+      <div v-for="(defenderSelect, index) in defenderSelects" :key="index" class="w-[90vw] h-[13vh] bg-blue-300 px-[3vw] duration-500 shadow-2xl flex justify-between items-center">
+        <div class="flex justify-start items-center">
+          <img :src="`/img/${defenderSelect}.png`" alt="defender_card" class="w-[10vh] h-[10vh]">
+          <p class="text-[2.7vh] font-bold pl-[3vw]">{{ defenderSelect }}</p>
+        </div>
+        <p class="text-[2.7vh] font-bold">{{ individualScores[`card${$route.query.selectedCards[index]}`] }}点</p>
+      </div>  
+    </div>
+    <router-link :to="{ name: 'user-score', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { attacker_select_id: $route.query.attacker_select_id, win_count: win_count, role: $route.query.role } }"
+      class="bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300">
+      配点を見る
+    </router-link>
+  </div>
+
+  <!-- 英語版 -->
+  <div v-else class="flex flex-col items-center bg-[#E5E5E5] w-[100vw] h-[92vh]">
+    <div class="flex flex-col items-center pt-[1vh] pb-[1vh]" id="result">
+      <img :src="`/img/${resultImage}.png`" alt="result" class="w-[25vw] h-[25vw]">
+    </div>
+    <div class="flex flex-col justify-center items-center gap-y-1">
+      <p class="text-[2.5vh]">Your Score:{{ 100 - score }}点</p>
       <p class="text-[2.5vh]">相手の得点:{{ score }}点</p>
     </div>
     <div class="flex flex-col justify-center items-center gap-y-[1.5vh] py-[2vh]">

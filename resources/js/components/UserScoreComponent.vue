@@ -1,10 +1,12 @@
 <template>
+  <!-- ヘッダ -->
   <div class="flex w-[100vw] h-[8vh] shadow-2xl">
     <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
     </div>
     <div class="w-[85vw] bg-green-600 flex justify-center items-center">
-      <h1 class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">配点内訳</h1>
+      <h1 v-if="$i18n.locale === 'ja'" class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">配点内訳</h1>
+      <h1 v-else class="w-[100%] text-[3vh] font-bold ml-[40px] text-white">Score 内訳</h1>
       <button @click="menuVisible = !menuVisible" class="text-white font-semibold text-[2.5vh] w-[3.5vh] h-[3.5vh] border-[3px] border-white rounded-full flex justify-center items-center mr-[5vw]">？</button>
       <MenuComponent
         v-model:modelValue="menuVisible"
@@ -14,7 +16,9 @@
       />
     </div>
   </div>
-  <div class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center">
+
+  <!-- 日本語版 -->
+  <div v-if="$i18n.locale === 'ja'" class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center">
     <p class="text-[2vh] mx-[5vw] pt-[1.5vh]"><span class="font-bold text-red-500">「{{ attackerCardName }}」</span>にとって重要そうなカードを下のように配点したよ！あなただったらどう設定するか教えてね。参考にするよ！</p>
     <div class="flex">
       <div class="flex flex-col items-center gap-y-[2vh] pt-[3vh] pb-[3vh]">
@@ -53,7 +57,7 @@
       </button>
     </div>
     <!-- モーダル -->
-    <div v-if="isModalVisible" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" @click="closeModal">
+    <div v-if="isModalVisible && $i18n.locale === 'ja'" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" @click="closeModal">
       <div class="relative mx-auto p-1 border w-[90vw] shadow-lg rounded-md bg-white">
         <div class="mt-[2vh] text-center flex flex-col items-center justify-center">
           <img src='/img/tips.png' class="w-[70vw]">
@@ -61,7 +65,63 @@
             <p class="text-[2vh] text-gray-500 notice"></p>
           </div>
           <div class="items-center px-4 py-3">
-            <button id="ok-btn" @click="closeModal" class="px-4 py-2 bg-blue-500 text-white text-[3vh] font-medium rounded-md w-full shadow-sm hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400">閉じる</button>
+            <button id="ok-btn" @click="closeModal" class="px-4 py-2 bg-blue-500 text-white text-[3vh] font-medium rounded-md w-full shadow-sm hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 英語版 -->
+  <div v-else class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center">
+    <p class="text-[2vh] mx-[5vw] pt-[1.5vh]"><span class="font-bold text-red-500">「{{ attackerCardName }}」</span>にとって重要そうなカードを下のように配点したよ！Youだったらどう設定するか教えてね。参考にするよ！</p>
+    <div class="flex">
+      <div class="flex flex-col items-center gap-y-[2vh] pt-[3vh] pb-[3vh]">
+        <div v-for="cardName in [defenderCard1Name, defenderCard2Name, defenderCard3Name, defenderCard4Name, defenderCard5Name]" :key="cardName" class="w-[60vw] h-[12vh] bg-blue-300 justify-start items-center px-[3vw] duration-500 shadow-2xl flex">
+          <img :src="`/img/${cardName}.png`" alt="defender_card" class="w-[10vh] h-[10vh]">
+          <p class="text-[2vh] font-bold pl-[2vw]">{{ cardName }}</p>
+        </div>
+      </div>
+      <div class="flex flex-col items-center text-[2vh] mx-[3vw] font-bold">
+        <p class="text-[2vh]">配点</p>
+        <div class="flex flex-col items-center gap-y-[2vh]">
+          <p v-for="(score, index) in [scores?.defender_card1_score, scores?.defender_card2_score, scores?.defender_card3_score, scores?.defender_card4_score, scores?.defender_card5_score]" :key="index" class="w-[10vw] h-[12vh] flex justify-center items-center">{{ score }}</p>
+        </div>
+      </div>
+      <form class="flex flex-col items-center text-[2vh] my-0 py-0">
+        <p class="font-bold">あなた</p>
+        <div class="flex flex-col items-center gap-y-[2vh]">
+          <div v-for="(cardScore, index) in ['card1', 'card2', 'card3', 'card4', 'card5']" :key="index" class="flex items-center w-[15vw] h-[12vh] justify-center">
+            <label :for="`${cardScore}Score`"></label>
+            <select v-model="cardScores[cardScore]" class="border border-blue-500" :id="`${cardScore}Score`">
+              <option v-for="score in scoreOptions[cardScore]" :value="score">{{ score }}</option>
+            </select>
+            点
+          </div>
+        </div>
+      </form>
+    </div>
+    <div v-if="parseInt($route.params.game_id) < 6" class="flex justify-end">
+      <button @click="submitScores" class="text-white font-bold py-[1vh] px-[20vw] border-[3px] border-green-600 hover:border-green-700 hover:bg-green-700 bg-green-600 duration-300 shadow-xl text-[2vh]">
+        もう一度対戦する
+      </button>
+    </div>
+    <div v-if="parseInt($route.params.game_id) == 6" class="flex justify-end">
+      <button @click="submitScores6" class="border-[3px] border-green-600 text-green-600 font-bold py-[1vh] px-[20vw] hover:bg-blue-500 hover:text-white duration-300 shadow-xl text-[2vh]">
+        ゲームを終了する
+      </button>
+    </div>
+    <!-- モーダル -->
+    <div v-if="isModalVisible && $i18n.locale === 'en'" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center" @click="closeModal">
+      <div class="relative mx-auto p-1 border w-[90vw] shadow-lg rounded-md bg-white">
+        <div class="mt-[2vh] text-center flex flex-col items-center justify-center">
+          <img src='/img/tips.png' class="w-[70vw]">
+          <div class="mt-2 px-[4vw] py-[1vh] flex justify-center items-center">
+            <p class="text-[2vh] text-gray-500 notice"></p>
+          </div>
+          <div class="items-center px-4 py-3">
+            <button id="ok-btn" @click="closeModal" class="px-4 py-2 bg-blue-500 text-white text-[3vh] font-medium rounded-md w-full shadow-sm hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400">Close</button>
           </div>
         </div>
       </div>

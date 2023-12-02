@@ -32,7 +32,7 @@ class ConversationController extends Controller
         $defenderCardsStr = implode("', '", $defenderCards);
 
         $request->session()->put('conversation', [
-            ["role" => "system", "content" => "あなたはゲームプレイヤーです。ユーザーには5枚のカードがあり、それぞれに個人情報が記載されています。これらのカード'" . $defenderCardsStr . "の中から、ユーザに他人に知られても比較的抵抗がないと感じる3枚を選択させてください。各カードの情報が他人に知られることに対する抵抗感や、ユーザーのプライバシーに対する意識について話し合いましょう。このゲームやカードに関連しない話題は決してしないでください。返答は1〜2文で簡潔にお願いします。また、この会話は必ず日本語で行ってください。様々な角度で質問をし、会話はできるだけ続けてください。"],
+            ["role" => "system", "content" => "あなたはゲームプレイヤーです。ユーザーには5枚のカードがあり、それぞれに個人情報が記載されています。これらのカード'" . $defenderCardsStr . "の中から、ユーザに他人に知られても比較的抵抗がないと感じる3枚を選択させてください。各カードの情報が他人に知られることに対する抵抗感や、ユーザーのプライバシーに対する意識について話し合いましょう。このゲームやカードに関連しない話題は決してしないでください。返答は1〜2文で簡潔にお願いします。また、この会話は必ず日本語で行ってください。"],
             ["role" => "assistant", "content" => "あなたが5枚の個人情報カードの中で1番他人に知られてもいいと感じるものはどれですか？"]
         ]);
 
@@ -46,10 +46,6 @@ class ConversationController extends Controller
         $gameId = $request->input('gameId');
         $userId = $request->input('userId');
 
-        \Illuminate\Support\Facades\Log::info('Username: ' . $username);
-        \Illuminate\Support\Facades\Log::info('GameId: ' . $gameId);
-        \Illuminate\Support\Facades\Log::info('Message: ' . $message);
-
         $conversation = $request->session()->get('conversation', []);
         $conversation[] = ["role" => "user", "content" => $message];
         Message::create([
@@ -61,7 +57,6 @@ class ConversationController extends Controller
         ]);
 
         $assistantMessage = $this->generateResponse($conversation);
-        \Illuminate\Support\Facades\Log::info('Assistant message: ' . $assistantMessage);
 
         // Create the assistant's message
         $conversation[] = ["role" => "assistant", "content" => $assistantMessage];
