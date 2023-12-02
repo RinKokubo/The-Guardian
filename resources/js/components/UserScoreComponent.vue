@@ -39,8 +39,8 @@
           <div v-for="(cardScore, index) in ['card1', 'card2', 'card3', 'card4', 'card5']" :key="index" class="flex items-center w-[15vw] h-[12vh] justify-center">
             <label :for="`${cardScore}Score`"></label>
             <select v-model="cardScores[cardScore]" class="border border-blue-500" :id="`${cardScore}Score`">
-              <option v-for="score in scoreOptions[cardScore]" :value="score">{{ score }}</option>
-            </select>
+              <option v-for="score in scoreOptions[cardScore]" :key="score" :value="score">{{ score }}</option>
+            </select>            
             点
           </div>
         </div>
@@ -72,7 +72,6 @@
     </div>
   </div>
 
-
   <!-- 英語版 -->
   <div v-else class="bg-[#E5E5E5] w-[100vw] h-[92vh] flex flex-col items-center">
     <p class="text-[2vh] mx-[5vw] pt-[1.5vh]"><span class="font-bold text-red-500">「{{ attackerCardName }}」</span>にとって重要そうなカードを下のように配点したよ！Youだったらどう設定するか教えてね。参考にするよ！</p>
@@ -95,7 +94,7 @@
           <div v-for="(cardScore, index) in ['card1', 'card2', 'card3', 'card4', 'card5']" :key="index" class="flex items-center w-[15vw] h-[12vh] justify-center">
             <label :for="`${cardScore}Score`"></label>
             <select v-model="cardScores[cardScore]" class="border border-blue-500" :id="`${cardScore}Score`">
-              <option v-for="score in scoreOptions[cardScore]" :value="score">{{ score }}</option>
+              <option v-for="score in scoreOptions[cardScore]" :key="score" :value="score">{{ score }}</option>
             </select>
             点
           </div>
@@ -188,7 +187,7 @@ export default {
           console.error(error);
         });
 
-        axios.get(`/api/notice/${gameId}`)
+      axios.get(`/api/notice/${gameId}`)
         .then(response => {
           this.notice = response.data.notice_content;
           var element = document.querySelector('.notice');
