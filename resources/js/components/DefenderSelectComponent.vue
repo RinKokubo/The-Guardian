@@ -177,6 +177,7 @@ export default {
       },
       confirmSelection() {
         if (this.selectedCards.length === 3) {
+          // 選択した個人情報カードを通知
           axios.post('/api/defender-select-card', {
             user_id: this.$route.params.user_id,
             opponent_id: this.$route.query.opponent_id,

@@ -132,14 +132,6 @@ export default {
         });
     },
     methods: {
-      openModal(i) {
-        this.selectedInfo = this['attacker_card' + i + 'Info']; // カードの情報をセット
-        this.selectedName = this['attackerCard' + i + 'Name']; // カードの名前をセット
-        this.showModal = true;
-      },
-      closeModal() {
-        this.showModal = false;
-      },
       toggleCardSelection(cardNumber) {
         if (this.selectedCard === cardNumber) {
           // すでに選択されているカードをもう一度クリックした場合、選択を解除
@@ -156,6 +148,7 @@ export default {
           const opponentId = this.$route.query.opponent_id;
           const cardName = this['attackerCard' + this.selectedCard + 'Name'];
 
+          // 選択したカード情報を送信
           axios.post('/api/attacker-select-card', { userId, cardName, opponentId })
             .then(response => {
               if(this.$route.query.talk == 'face'){
@@ -182,7 +175,15 @@ export default {
               console.error('エラーが発生しました', error);
             });
         }
-      }
+      },
+      openModal(i) {
+        this.selectedInfo = this['attacker_card' + i + 'Info']; // カードの情報をセット
+        this.selectedName = this['attackerCard' + i + 'Name']; // カードの名前をセット
+        this.showModal = true;
+      },
+      closeModal() {
+        this.showModal = false;
+      },
     }
   }
 </script>

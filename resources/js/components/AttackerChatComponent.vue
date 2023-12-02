@@ -166,6 +166,7 @@ export default {
         response.data.defender_card5,
       ];
 
+      // defenderが対話を開始するのを受信
       Echo.private(`user.${this.$route.params.user_id}`)
             .listen('.defender.transit', (event) => {
               this.startModal = false;
@@ -174,7 +175,8 @@ export default {
 
       const cardInfoResponse = await axios.get(`/api/attacker-card-info/${this.gameId}/${decodeURIComponent(this.$route.query.attacker_select)}`);
       this.attacker_select_id = cardInfoResponse.data.attackerCardNumber;
-      console.log('attackid', this.attacker_select_id)
+
+      // メッセージを受信
       Echo.private(`chat.${this.userId}`)
           .listen('.message.sent', (event) => {
               this.conversation.push({
@@ -187,6 +189,7 @@ export default {
     }
   },
   mounted() {
+    // defenderがカードを選択した結果を受信
     Echo.private(`user.${this.$route.params.user_id}`)
       .listen('.defenderCards.selected', (event) => {
         this.selectedCards = event.selectedCards;
@@ -212,6 +215,7 @@ export default {
         content: this.userInput
       });
 
+      // メッセージを送信
       axios.post('/api/messages', {
         message_content: this.userInput,
         game_id: this.gameId,

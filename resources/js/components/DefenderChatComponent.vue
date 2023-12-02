@@ -195,6 +195,7 @@ export default {
       const cardInfoResponse = await axios.get(`/api/attacker-card-info/${this.gameId}/${decodeURIComponent(this.$route.query.selected_card)}`);
       this.attacker_select_id = cardInfoResponse.data.attackerCardNumber;
 
+      // メッセージを受信
       Echo.private(`chat.${this.userId}`)
           .listen('.message.sent', (event) => {
               this.conversation.push({
@@ -248,7 +249,7 @@ export default {
         content: this.userInput
       });
 
-      // メッセージをサーバーに送信
+      // メッセージをサーバに送信
       axios.post('/api/messages', {
         message_content: this.userInput,
         game_id: this.gameId,

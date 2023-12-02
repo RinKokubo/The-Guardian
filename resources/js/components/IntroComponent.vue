@@ -171,6 +171,7 @@ export default {
       const userResponse = await axios.get(`/api/users/${this.opponentId}`);
       this.opponentName = userResponse.data.username;
 
+      // 待機状態を更新
       await axios.post(`/api/users/${this.user_id}/update-waiting-status`, {
           is_waiting: true
         });

@@ -15,7 +15,7 @@ class CardSelectController extends Controller
         $cardName = $request->input('cardName');
         $opponentId = $request->input('opponentId');
 
-        // アタッカーが選択したカードをイベントを使ってディフェンダーに通知
+        // attackerが選択したカードをイベントを使ってdefenderに通知
         event(new AttackerCardSelected($userId, $opponentId, $cardName));
 
         return response()->json(['message' => 'カード情報を送信しました']);
@@ -27,7 +27,7 @@ class CardSelectController extends Controller
         $opponentId = $request->input('opponent_id');
         $selectedCards = $request->input('selected_cards');
 
-        // ディフェンダーが選択したカードをイベントを使ってアタッカーに通知
+        //defenderが選択したカードをイベントを使ってattackerに通知
         event(new DefenderCardSelected($opponentId, $selectedCards));
 
         return response()->json(['message' => 'Selected cards information sent successfully.']);
@@ -38,7 +38,7 @@ class CardSelectController extends Controller
         $transit = $request->input('transit');
         $opponentId = $request->input('opponentId');
 
-        // ディフェンダーの画面遷移をイベントを使ってアタッカーに通知
+        // defenderの画面遷移をイベントを使ってattackerに通知
         event(new DefenderTransit($transit, $opponentId));
 
         return response()->json(['message' => 'Transit information sent successfully.']);

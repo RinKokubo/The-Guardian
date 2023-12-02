@@ -118,6 +118,7 @@ export default {
           response.data.defender_card5,
         ];
 
+        // 対話の開始を通知
         Echo.private(`user.${this.$route.params.user_id}`)
             .listen('.defender.transit', (event) => {
               this.startModal = false;
@@ -130,6 +131,7 @@ export default {
       }
     },
     mounted() {
+      // カードの選択を通知
       Echo.private(`user.${this.$route.params.user_id}`)
       .listen('.defenderCards.selected', (event) => {
         this.selectedCards = event.selectedCards;

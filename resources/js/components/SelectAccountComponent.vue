@@ -1,5 +1,4 @@
 <template>
-  <!-- 日本語版 -->
   <div class="h-[100vh] bg-[#E5E5E5]">
     <div className="flex items-center flex-col h-[8vh] bg-green-600 w-[100vw]">
       <h1 v-if="$i18n.locale === 'ja'" className="text-[3vh] text-white py-[2vh] font-bold">アカウントを選択してください</h1>
@@ -53,7 +52,6 @@ export default defineComponent({
       if (window.Echo) {
         window.Echo.disconnect();
       }
-
       window.Echo = new Echo({
         broadcaster: 'pusher',
         key: process.env.MIX_PUSHER_APP_KEY,

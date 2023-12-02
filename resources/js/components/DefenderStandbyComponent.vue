@@ -107,6 +107,7 @@ export default {
       };
     },
     created() {
+      // 第３試合までは悪用カードの内容を提示
       if(this.$route.params.game_id < 4){
         axios.get(`/api/game/${this.$route.params.game_id}`)
           .then(response => {
@@ -134,7 +135,7 @@ export default {
       }
     },
     mounted() {
-      console.log(`Connecting to channel: user.${this.userId}`);
+      // attackerのカード選択情報を受信
       Echo.private(`user.${this.userId}`)
         .listen('.attackerCard.selected', (event) => {
           this.selectedCard = event.card;
