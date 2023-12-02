@@ -16,7 +16,7 @@ class MatchInfo extends Model
         'game_id',
         'opponent_id',
         'user_role',
-        'comunication'
+        'communication'
     ];
 
     public function user()

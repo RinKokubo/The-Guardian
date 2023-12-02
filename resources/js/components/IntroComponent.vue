@@ -164,7 +164,7 @@ export default {
       });
       this.userRole = response.data.user_role;
       this.opponentId = response.data.opponent_id;
-      this.talk = response.data.comunication;
+      this.talk = response.data.communication;
       this.user_id = this.$route.params.user_id;
       this.game_id = this.$route.params.game_id;
 

@@ -25433,7 +25433,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             response = _context.sent;
             _this.userRole = response.data.user_role;
             _this.opponentId = response.data.opponent_id;
-            _this.talk = response.data.comunication;
+            _this.talk = response.data.communication;
             _this.user_id = _this.$route.params.user_id;
             _this.game_id = _this.$route.params.game_id;
             _context.next = 11;
