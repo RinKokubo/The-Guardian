@@ -39,7 +39,7 @@
         <p class="text-[2.7vh] font-bold">{{ individualScores[`card${$route.query.selectedCards[index]}`] }}点</p>
       </div>  
     </div>
-    <router-link :to="{ name: 'user-score', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { attacker_select_id: $route.query.attacker_select_id, win_count: win_count, role: $route.query.role } }"
+    <router-link :to="{ name: 'user-score', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { attacker_select_id: $route.query.attacker_select_id, role: $route.query.role, win1: win1, win2: win2, win3: win3, win4: win4, win5: win5, win6: win6 } }"
       class="bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300">
       配点を見る
     </router-link>
@@ -67,7 +67,7 @@
         <p class="text-[2.7vh] font-bold">{{ individualScores[`card${$route.query.selectedCards[index]}`] }}点</p>
       </div>  
     </div>
-    <router-link :to="{ name: 'user-score', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { attacker_select_id: $route.query.attacker_select_id, win_count: win_count, role: $route.query.role } }"
+    <router-link :to="{ name: 'user-score', params: { user_id: $route.params.user_id, game_id: $route.params.game_id }, query: { attacker_select_id: $route.query.attacker_select_id, role: $route.query.role, win1: win1, win2: win2, win3: win3, win4: win4, win5: win5, win6: win6, } }"
       class="bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300">
       配点を見る
     </router-link>
@@ -89,7 +89,12 @@ export default {
       result: '',
       username: '',
       resultImage: '',
-      win_count: parseInt(this.$route.query.win_count, 10) || 0,
+      win1: this.$route.query.win1,
+      win2: this.$route.query.win2,
+      win3: this.$route.query.win3,
+      win4: this.$route.query.win4,
+      win5: this.$route.query.win5,
+      win6: this.$route.query.win6,
       menuVisible: false,
       attackerCardName: '',
       individualScores: {},
@@ -167,12 +172,14 @@ export default {
       }
       if(this.score < 50){
         this.resultImage = 'win';
-        this.win_count += 1;
+        this[`win${gameId}`] = '○';
       } else if(this.score === 50){
         this.result = '引き分け';
         this.resultImage = 'draw';
+        this[`win${gameId}`] = '△';
       } else {
         this.resultImage = 'lose';
+        this[`win${gameId}`] = '×';
       }
 
       this.sendGameResult(selectedCardsBoolean, this.score);

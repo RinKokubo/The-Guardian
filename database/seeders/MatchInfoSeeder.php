@@ -1210,7 +1210,7 @@ class MatchInfoSeeder extends Seeder
             'user_id' => 30,
             'game_id' => 5,
             'opponent_id' => 13,
-            'user_role' => 'defender',
+            'user_role' => 'attacker',
             'communication' => 'chat'
         ]);
 

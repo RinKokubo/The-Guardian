@@ -177,10 +177,10 @@ class CardInformationSeeder extends Seeder
         CardInformation::create([
             'game_id' => 6,
             'attacker_select_id' => 3,
-            'defender_card1_score' => 25,
-            'defender_card2_score' => 15,
-            'defender_card3_score' => 5,
-            'defender_card4_score' => 50,
+            'defender_card1_score' => 40,
+            'defender_card2_score' => 5,
+            'defender_card3_score' => 10,
+            'defender_card4_score' => 40,
             'defender_card5_score' => 5,
         ]);
     }

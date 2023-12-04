@@ -1,4 +1,5 @@
 <template>
+  <!-- ヘッダ -->
   <div class="flex w-[100vw] h-[8vh] shadow-2xl">
     <div class="w-[15vw] bg-[#A49494] flex justify-center items-center">
       <p class="text-white text-[4vh] font-bold">{{ this.$route.params.game_id }}</p>
@@ -51,12 +52,12 @@
       </p>
     </div>
     <div v-if="opponentId === 31" class="flex justify-center items-center mt-[5vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold">
-      <router-link :to="{ name: 'defender-select-dialogue', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId, win_count: $route.query.win_count } }">
+      <router-link :to="{ name: 'defender-select-dialogue', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId, win1: $route.query.win1, win2: $route.query.win2, win3: $route.query.win3, win4: $route.query.win4, win5: $route.query.win5, win6: $route.query.win6 } }">
         チャットボット対戦に進む
       </router-link>
     </div>
     <div v-else-if="userRole === 'attacker' && trans == true && attackerTrans == true" class="flex justify-center items-center mt-[5vh] bg-[#E76767] py-[1vh] px-[8vw] text-white font-bold">
-      <router-link :to="{ name: 'attacker-select', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId,  talk: this.talk, win_count: $route.query.win_count } }">
+      <router-link :to="{ name: 'attacker-select', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId,  talk: this.talk, win1: $route.query.win1, win2: $route.query.win2, win3: $route.query.win3, win4: $route.query.win4, win5: $route.query.win5, win6: $route.query.win6 } }">
         個人情報悪用サイドへ進む
       </router-link>
     </div>
@@ -109,12 +110,12 @@
       </p>
     </div>
     <div v-if="opponentId === 31" class="flex justify-center items-center mt-[5vh] bg-blue-500 py-[1vh] px-[8vw] text-white font-bold">
-      <router-link :to="{ name: 'defender-select-dialogue', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId, win_count: $route.query.win_count } }">
+      <router-link :to="{ name: 'defender-select-dialogue', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId, win1: $route.query.win1, win2: $route.query.win2, win3: $route.query.win3, win4: $route.query.win4, win5: $route.query.win5, win6: $route.query.win6 } }">
         チャットボット対戦に進む
       </router-link>
     </div>
     <div v-else-if="userRole === 'attacker' && trans == true && attackerTrans == true" class="flex justify-center items-center mt-[5vh] bg-[#E76767] py-[1vh] px-[8vw] text-white font-bold">
-      <router-link :to="{ name: 'attacker-select', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId,  talk: this.talk, win_count: $route.query.win_count } }">
+      <router-link :to="{ name: 'attacker-select', params: { user_id: user_id, game_id: game_id }, query: { opponent_id: opponentId,  talk: this.talk, win1: $route.query.win1, win2: $route.query.win2, win3: $route.query.win3, win4: $route.query.win4, win5: $route.query.win5, win6: $route.query.win6 } }">
         個人情報悪用サイドへ進む
       </router-link>
     </div>
@@ -156,15 +157,21 @@ export default {
   },
   async mounted() {
     try {
-      const response = await axios.get('/api/match-info', {
-        params: {
-          user_id: this.$route.params.user_id,
-          game_id: this.$route.params.game_id,
-        }
-      });
-      this.userRole = response.data.user_role;
-      this.opponentId = response.data.opponent_id;
-      this.talk = response.data.communication;
+      if(this.$route.params.user_id < 31) {
+        const response = await axios.get('/api/match-info', {
+          params: {
+            user_id: this.$route.params.user_id,
+            game_id: this.$route.params.game_id,
+          }
+        });
+        this.userRole = response.data.user_role;
+        this.opponentId = response.data.opponent_id;
+        this.talk = response.data.communication;
+      } else {
+        this.userRole = this.$route.query.user_role;
+        this.opponentId = parseInt(this.$route.query.opponent_id);
+        this.talk = this.$route.query.talk;
+      }
       this.user_id = this.$route.params.user_id;
       this.game_id = this.$route.params.game_id;
 
@@ -218,7 +225,12 @@ export default {
             query: {
               opponent_id: opponentId,
               talk: this.talk,
-              win_count: this.$route.query.win_count
+              win1: this.$route.query.win1,
+              win2: this.$route.query.win2,
+              win3: this.$route.query.win3,
+              win4: this.$route.query.win4,
+              win5: this.$route.query.win5,
+              win6: this.$route.query.win6
             }
           });
         })

@@ -187,10 +187,15 @@ export default {
               path: `/result/${this.$route.params.user_id}/${this.$route.params.game_id}/`,
               query: {
                 selectedCards: this.selectedCards,
-                win_count: this.$route.query.win_count,
                 role: 'defender',
                 attacker_select_id: this.attacker_select_id,
-                opponent_id: this.$route.query.opponent_id
+                opponent_id: this.$route.query.opponent_id,
+                win1: this.$route.query.win1,
+                win2: this.$route.query.win2,
+                win3: this.$route.query.win3,
+                win4: this.$route.query.win4,
+                win5: this.$route.query.win5,
+                win6: this.$route.query.win6
               },
             });
           }).catch(error => {

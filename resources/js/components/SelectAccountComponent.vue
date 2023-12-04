@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[100vh] bg-[#E5E5E5]">
+  <div class="min-h-screen bg-[#E5E5E5]">
     <div className="flex items-center flex-col h-[8vh] bg-green-600 w-[100vw]">
       <h1 v-if="$i18n.locale === 'ja'" className="text-[3vh] text-white py-[2vh] font-bold">アカウントを選択してください</h1>
       <h1 v-else className="text-[3vh] text-white py-[2vh] font-bold">Select your account.</h1>
@@ -48,10 +48,14 @@ export default defineComponent({
               localStorage.setItem('token', response.data.token);
               axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
               this.updateEchoInstance(response.data.token);
-            } else {
-
             }
-            this.$router.push({ name: 'introduction', params: { user_id: user.id, game_id: 1 }, query: { win_count: 0 } });
+
+            // ユーザーIDに応じてリダイレクト先を変更
+            if (user.id < 31) {
+              this.$router.push({ name: 'introduction', params: { user_id: user.id, game_id: 1 }, query: { win1: '-', win2: '-', win3: '-', win4: '-', win5: '-', win6: '-' } });
+            } else {
+              this.$router.push({ name: 'make-game', params: { user_id: user.id } });
+            }
           } catch (error) {
             if (error.response && error.response.data.message) {
               alert(error.response.data.message);

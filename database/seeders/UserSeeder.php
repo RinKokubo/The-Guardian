@@ -226,5 +226,132 @@ class UserSeeder extends Seeder
             'is_logged_in' => 0,
             'is_waiting' => false
         ]);
+
+        User::create([
+            'name' => 'user32',
+            'password' => 111132,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user33',
+            'password' => 111133,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user34',
+            'password' => 111134,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user35',
+            'password' => 111135,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user36',
+            'password' => 111136,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user37',
+            'password' => 111137,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user38',
+            'password' => 111138,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user39',
+            'password' => 111139,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user40',
+            'password' => 111140,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+
+        User::create([
+            'name' => 'user41',
+            'password' => 111141,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user42',
+            'password' => 111142,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user43',
+            'password' => 111143,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user44',
+            'password' => 111144,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user45',
+            'password' => 111145,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user46',
+            'password' => 111146,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user47',
+            'password' => 111147,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user48',
+            'password' => 111148,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
+
+        User::create([
+            'name' => 'user49',
+            'password' => 111149,
+            'is_logged_in' => 1,
+            'is_waiting' => false
+        ]);
     }
 }

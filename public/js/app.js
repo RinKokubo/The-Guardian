@@ -24647,9 +24647,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         query: {
           selectedCards: _this2.selectedCards,
           attacker_select_id: _this2.attacker_select_id,
-          win_count: _this2.$route.query.win_count,
           role: 'attacker',
-          opponent_id: _this2.$route.query.opponent_id
+          opponent_id: _this2.$route.query.opponent_id,
+          win1: _this2.$route.query.win1,
+          win2: _this2.$route.query.win2,
+          win3: _this2.$route.query.win3,
+          win4: _this2.$route.query.win4,
+          win5: _this2.$route.query.win5,
+          win6: _this2.$route.query.win6
         }
       });
     });
@@ -24797,7 +24802,12 @@ __webpack_require__.r(__webpack_exports__);
               query: {
                 opponent_id: opponentId,
                 attacker_select: cardName,
-                win_count: _this2.$route.query.win_count
+                win1: _this2.$route.query.win1,
+                win2: _this2.$route.query.win2,
+                win3: _this2.$route.query.win3,
+                win4: _this2.$route.query.win4,
+                win5: _this2.$route.query.win5,
+                win6: _this2.$route.query.win6
               }
             });
           }
@@ -24899,9 +24909,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         query: {
           selectedCards: _this2.selectedCards,
           attacker_select_id: _this2.attacker_select_id,
-          win_count: _this2.$route.query.win_count,
           role: 'attacker',
-          opponent_id: _this2.$route.query.opponent_id
+          opponent_id: _this2.$route.query.opponent_id,
+          win1: _this2.$route.query.win1,
+          win2: _this2.$route.query.win2,
+          win3: _this2.$route.query.win3,
+          win4: _this2.$route.query.win4,
+          win5: _this2.$route.query.win5,
+          win6: _this2.$route.query.win6
         }
       });
     });
@@ -25043,10 +25058,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             path: "/result/".concat(_this2.$route.params.user_id, "/").concat(_this2.$route.params.game_id, "/"),
             query: {
               selectedCards: _this2.selectedCards,
-              win_count: _this2.$route.query.win_count,
               role: 'defender',
               attacker_select_id: _this2.attacker_select_id,
-              opponent_id: _this2.$route.query.opponent_id
+              opponent_id: _this2.$route.query.opponent_id,
+              win1: _this2.$route.query.win1,
+              win2: _this2.$route.query.win2,
+              win3: _this2.$route.query.win3,
+              win4: _this2.$route.query.win4,
+              win5: _this2.$route.query.win5,
+              win6: _this2.$route.query.win6
             }
           });
         })["catch"](function (error) {
@@ -25220,10 +25240,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             path: "/result/".concat(_this3.$route.params.user_id, "/").concat(_this3.$route.params.game_id, "/"),
             query: {
               selectedCards: _this3.selectedCards,
-              win_count: _this3.$route.query.win_count,
               role: 'defender',
               attacker_select_id: _this3.attacker_select_id,
-              opponent_id: _this3.$route.query.opponent_id
+              opponent_id: _this3.$route.query.opponent_id,
+              win1: _this3.$route.query.win1,
+              win2: _this3.$route.query.win2,
+              win3: _this3.$route.query.win3,
+              win4: _this3.$route.query.win4,
+              win5: _this3.$route.query.win5,
+              win6: _this3.$route.query.win6
             }
           });
         })["catch"](function (error) {
@@ -25327,8 +25352,13 @@ __webpack_require__.r(__webpack_exports__);
           path: "/defender-select-chat/".concat(_this2.$route.params.user_id, "/").concat(_this2.$route.params.game_id),
           query: {
             opponent_id: _this2.$route.query.opponent_id,
-            win_count: _this2.$route.query.win_count,
-            selected_card: encodeURIComponent(_this2.selectedCard)
+            selected_card: encodeURIComponent(_this2.selectedCard),
+            win1: _this2.$route.query.win1,
+            win2: _this2.$route.query.win2,
+            win3: _this2.$route.query.win3,
+            win4: _this2.$route.query.win4,
+            win5: _this2.$route.query.win5,
+            win6: _this2.$route.query.win6
           }
         });
       }
@@ -25360,7 +25390,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "FinalResultComponent"
+  data: function data() {
+    return {
+      winCount: 0
+    };
+  },
+  methods: {
+    calculateWinCount: function calculateWinCount() {
+      for (var i = 1; i <= 6; i++) {
+        var _this$$route;
+        if (((_this$$route = this.$route) === null || _this$$route === void 0 ? void 0 : _this$$route.query["win".concat(i)]) === '○') {
+          this.winCount += 1;
+        }
+      }
+    }
+  },
+  created: function created() {
+    this.calculateWinCount();
+  }
 });
 
 /***/ }),
@@ -25437,32 +25484,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            _context.next = 3;
+            if (!(_this.$route.params.user_id < 31)) {
+              _context.next = 10;
+              break;
+            }
+            _context.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/match-info', {
               params: {
                 user_id: _this.$route.params.user_id,
                 game_id: _this.$route.params.game_id
               }
             });
-          case 3:
+          case 4:
             response = _context.sent;
             _this.userRole = response.data.user_role;
             _this.opponentId = response.data.opponent_id;
             _this.talk = response.data.communication;
+            _context.next = 13;
+            break;
+          case 10:
+            _this.userRole = _this.$route.query.user_role;
+            _this.opponentId = parseInt(_this.$route.query.opponent_id);
+            _this.talk = _this.$route.query.talk;
+          case 13:
             _this.user_id = _this.$route.params.user_id;
             _this.game_id = _this.$route.params.game_id;
-            _context.next = 11;
+            _context.next = 17;
             return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/users/".concat(_this.opponentId));
-          case 11:
+          case 17:
             userResponse = _context.sent;
             _this.opponentName = userResponse.data.username;
 
             // 待機状態を更新
-            _context.next = 15;
+            _context.next = 21;
             return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/users/".concat(_this.user_id, "/update-waiting-status"), {
               is_waiting: true
             });
-          case 15:
+          case 21:
             _this.startWaitingCheck();
             if (_this.userRole === 'attacker') {
               _this.bgClass = 'bg-[#E76767]';
@@ -25472,18 +25530,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             } else if (_this.userRole === 'defender') {
               _this.bgClass = 'bg-blue-500';
             }
-            _context.next = 23;
+            _context.next = 29;
             break;
-          case 19:
-            _context.prev = 19;
+          case 25:
+            _context.prev = 25;
             _context.t0 = _context["catch"](0);
             console.error('Error fetching match info:', _context.t0);
             _this.userRole = null;
-          case 23:
+          case 29:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[0, 19]]);
+      }, _callee, null, [[0, 25]]);
     }))();
   },
   methods: {
@@ -25535,11 +25593,72 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           query: {
             opponent_id: opponentId,
             talk: _this4.talk,
-            win_count: _this4.$route.query.win_count
+            win1: _this4.$route.query.win1,
+            win2: _this4.$route.query.win2,
+            win3: _this4.$route.query.win3,
+            win4: _this4.$route.query.win4,
+            win5: _this4.$route.query.win5,
+            win6: _this4.$route.query.win6
           }
         });
       })["catch"](function (error) {
         console.error('エラーが発生しました', error);
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MakeGameComponent.vue?vue&type=script&lang=js":
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MakeGameComponent.vue?vue&type=script&lang=js ***!
+  \***********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "MakeGameComponent",
+  data: function data() {
+    return {
+      selectedGameCount: '',
+      selectedOpponent: '',
+      selectedRole: '',
+      selectedTalk: ''
+    };
+  },
+  methods: {
+    start: function start() {
+      this.$router.push({
+        name: 'introduction',
+        params: {
+          user_id: this.$route.path.user_id,
+          game_id: this.selectedGameCount
+        },
+        query: {
+          user_role: this.selectedRole,
+          opponent_id: this.selectedOpponent,
+          talk: this.selectedTalk,
+          win1: '-',
+          win2: '-',
+          win3: '-',
+          win4: '-',
+          win5: '-',
+          win6: '-'
+        }
+      });
+    }
+  },
+  computed: {
+    opponentsRange: function opponentsRange() {
+      return Array.from({
+        length: 49 - 32 + 1
+      }, function (v, k) {
+        return k + 32;
       });
     }
   }
@@ -25715,7 +25834,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       result: '',
       username: '',
       resultImage: '',
-      win_count: parseInt(this.$route.query.win_count, 10) || 0,
+      win1: this.$route.query.win1,
+      win2: this.$route.query.win2,
+      win3: this.$route.query.win3,
+      win4: this.$route.query.win4,
+      win5: this.$route.query.win5,
+      win6: this.$route.query.win6,
       menuVisible: false,
       attackerCardName: '',
       individualScores: {},
@@ -25815,12 +25939,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
       if (_this2.score < 50) {
         _this2.resultImage = 'win';
-        _this2.win_count += 1;
+        _this2["win".concat(gameId)] = '○';
       } else if (_this2.score === 50) {
         _this2.result = '引き分け';
         _this2.resultImage = 'draw';
+        _this2["win".concat(gameId)] = '△';
       } else {
         _this2.resultImage = 'lose';
+        _this2["win".concat(gameId)] = '×';
       }
       _this2.sendGameResult(selectedCardsBoolean, _this2.score);
     });
@@ -25886,17 +26012,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 localStorage.setItem('token', response.data.token);
                 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.headers.common.Authorization) = "Bearer ".concat(response.data.token);
                 _this.updateEchoInstance(response.data.token);
-              } else {}
-              _this.$router.push({
-                name: 'introduction',
-                params: {
-                  user_id: user.id,
-                  game_id: 1
-                },
-                query: {
-                  win_count: 0
-                }
-              });
+              }
+
+              // ユーザーIDに応じてリダイレクト先を変更
+              if (user.id < 31) {
+                _this.$router.push({
+                  name: 'introduction',
+                  params: {
+                    user_id: user.id,
+                    game_id: 1
+                  },
+                  query: {
+                    win1: '-',
+                    win2: '-',
+                    win3: '-',
+                    win4: '-',
+                    win5: '-',
+                    win6: '-'
+                  }
+                });
+              } else {
+                _this.$router.push({
+                  name: 'make-game',
+                  params: {
+                    user_id: user.id
+                  }
+                });
+              }
               _context.next = 14;
               break;
             case 11:
@@ -26065,9 +26207,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         query: {
           selectedCards: this.selectedCards,
           attacker_select_id: this.attacker_select_id,
-          win_count: this.$route.query.win_count,
           role: 'defender',
-          opponent_id: this.$route.query.opponent_id
+          opponent_id: this.$route.query.opponent_id,
+          win1: this.$route.query.win1,
+          win2: this.$route.query.win2,
+          win3: this.$route.query.win3,
+          win4: this.$route.query.win4,
+          win5: this.$route.query.win5,
+          win6: this.$route.query.win6
         }
       });
     },
@@ -26313,7 +26460,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _this5.$router.push({
                 path: path,
                 query: {
-                  win_count: _this5.$route.query.win_count
+                  win1: _this5.$route.query.win1,
+                  win2: _this5.$route.query.win2,
+                  win3: _this5.$route.query.win3,
+                  win4: _this5.$route.query.win4,
+                  win5: _this5.$route.query.win5,
+                  win6: _this5.$route.query.win6
                 }
               });
               _context3.next = 15;
@@ -27800,11 +27952,11 @@ var _hoisted_2 = {
 };
 var _hoisted_3 = {
   key: 0,
-  className: "w-[100%] text-[3vh] font-bold ml-[14vw] text-white"
+  className: "w-[100%] text-[3vh] font-bold ml-[13vw] text-white"
 };
 var _hoisted_4 = {
   key: 1,
-  className: "w-[100%] text-[3vh] font-bold ml-[14vw] text-white"
+  className: "w-[100%] text-[3vh] font-bold ml-[13vw] text-white"
 };
 var _hoisted_5 = {
   key: 0,
@@ -27819,128 +27971,234 @@ var _hoisted_8 = {
   "class": "flex flex-col justify-center items-center gap-y-5 mt-[3vh] mb-[5vh] text-[3vh] font-bold"
 };
 var _hoisted_9 = {
+  "class": "font-bold text-[5vh] text-red-500"
+};
+var _hoisted_10 = {
   key: 0
 };
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたのランク： ダイヤモンド", -1 /* HOISTED */);
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "さすがだ、素晴らしい...!!!", -1 /* HOISTED */);
-var _hoisted_12 = [_hoisted_10, _hoisted_11];
-var _hoisted_13 = {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたのランク： ダイヤモンド", -1 /* HOISTED */);
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "さすがだ、素晴らしい...!!!", -1 /* HOISTED */);
+var _hoisted_13 = [_hoisted_11, _hoisted_12];
+var _hoisted_14 = {
   key: 1
 };
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたのランク： プラチナ", -1 /* HOISTED */);
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "すごい！全勝まであと一歩！！！", -1 /* HOISTED */);
-var _hoisted_16 = [_hoisted_14, _hoisted_15];
-var _hoisted_17 = {
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたのランク： プラチナ", -1 /* HOISTED */);
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "すごい！全勝まであと一歩！！！", -1 /* HOISTED */);
+var _hoisted_17 = [_hoisted_15, _hoisted_16];
+var _hoisted_18 = {
   key: 2
 };
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたのランク： ゴールド", -1 /* HOISTED */);
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "いいぞ〜！この調子！！", -1 /* HOISTED */);
-var _hoisted_20 = [_hoisted_18, _hoisted_19];
-var _hoisted_21 = {
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたのランク： ゴールド", -1 /* HOISTED */);
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "いいぞ〜！この調子！！", -1 /* HOISTED */);
+var _hoisted_21 = [_hoisted_19, _hoisted_20];
+var _hoisted_22 = {
   key: 3
 };
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたのランク： シルバー", -1 /* HOISTED */);
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "慣れてきたね！いい感じ！", -1 /* HOISTED */);
-var _hoisted_24 = [_hoisted_22, _hoisted_23];
-var _hoisted_25 = {
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたのランク： シルバー", -1 /* HOISTED */);
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "慣れてきたね！いい感じ！", -1 /* HOISTED */);
+var _hoisted_25 = [_hoisted_23, _hoisted_24];
+var _hoisted_26 = {
   key: 4
 };
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたのランク： ブロンズ", -1 /* HOISTED */);
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "小さなヒントも見逃すなよ！", -1 /* HOISTED */);
-var _hoisted_28 = [_hoisted_26, _hoisted_27];
-var _hoisted_29 = {
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたのランク： ブロンズ", -1 /* HOISTED */);
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "小さなヒントも見逃すなよ！", -1 /* HOISTED */);
+var _hoisted_29 = [_hoisted_27, _hoisted_28];
+var _hoisted_30 = {
   key: 5
 };
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたのランク： アイアン", -1 /* HOISTED */);
-var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "伸び代はある！涙を拭こう！", -1 /* HOISTED */);
-var _hoisted_32 = [_hoisted_30, _hoisted_31];
-var _hoisted_33 = {
+var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたのランク： アイアン", -1 /* HOISTED */);
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "伸び代はある！涙を拭こう！", -1 /* HOISTED */);
+var _hoisted_33 = [_hoisted_31, _hoisted_32];
+var _hoisted_34 = {
   key: 6
 };
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたのランク： ビギナー", -1 /* HOISTED */);
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "今日はとことん落ち込もう...", -1 /* HOISTED */);
-var _hoisted_36 = [_hoisted_34, _hoisted_35];
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ゲームを終了する ");
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "あなたのランク： ビギナー", -1 /* HOISTED */);
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "今日はとことん落ち込もう...", -1 /* HOISTED */);
+var _hoisted_37 = [_hoisted_35, _hoisted_36];
 var _hoisted_38 = {
+  "class": "text-[2vh] font-bold bg-white border-collapse border-2 border-green-700"
+};
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
+  "class": "uppercase"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "試合"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "１"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "２"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "３"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "４"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "５"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "６")])], -1 /* HOISTED */);
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "結果", -1 /* HOISTED */);
+var _hoisted_41 = {
+  "class": "py-3 px-3 border-2 border-green-700"
+};
+var _hoisted_42 = {
+  "class": "py-3 px-3 border-2 border-green-700"
+};
+var _hoisted_43 = {
+  "class": "py-3 px-3 border-2 border-green-700"
+};
+var _hoisted_44 = {
+  "class": "py-3 px-3 border-2 border-green-700"
+};
+var _hoisted_45 = {
+  "class": "py-3 px-3 border-2 border-green-700"
+};
+var _hoisted_46 = {
+  "class": "py-3 px-3 border-2 border-green-700"
+};
+var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "★ 遊んでくれてありがとう ★", -1 /* HOISTED */);
+var _hoisted_48 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ゲームを終了する ");
+var _hoisted_49 = {
   className: "flex flex-col items-center bg-[#E5E5E5] w-[100vw] h-[92vh]"
 };
-var _hoisted_39 = {
+var _hoisted_50 = {
   className: "flex flex-col items-center pt-[3vh] pb-[1vh]",
   id: "result"
 };
-var _hoisted_40 = ["src"];
-var _hoisted_41 = {
+var _hoisted_51 = ["src"];
+var _hoisted_52 = {
   "class": "flex flex-col justify-center items-center gap-y-5 mt-[3vh] mb-[5vh] text-[3vh] font-bold"
 };
-var _hoisted_42 = {
+var _hoisted_53 = {
+  "class": "font-bold text-[5vh] text-red-500"
+};
+var _hoisted_54 = {
   key: 0
 };
-var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Your Rank： ダイヤモンド", -1 /* HOISTED */);
-var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "さすがだ、素晴らしい...!!!", -1 /* HOISTED */);
-var _hoisted_45 = [_hoisted_43, _hoisted_44];
-var _hoisted_46 = {
-  key: 1
-};
-var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Your Rank： プラチナ", -1 /* HOISTED */);
-var _hoisted_48 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "すごい！全勝まであと一歩！！！", -1 /* HOISTED */);
-var _hoisted_49 = [_hoisted_47, _hoisted_48];
-var _hoisted_50 = {
-  key: 2
-};
-var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Your Rank： ゴールド", -1 /* HOISTED */);
-var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "いいぞ〜！この調子！！", -1 /* HOISTED */);
-var _hoisted_53 = [_hoisted_51, _hoisted_52];
-var _hoisted_54 = {
-  key: 3
-};
-var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Your Rank： シルバー", -1 /* HOISTED */);
-var _hoisted_56 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "慣れてきたね！いい感じ！", -1 /* HOISTED */);
+var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Your Rank： ダイヤモンド", -1 /* HOISTED */);
+var _hoisted_56 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "さすがだ、素晴らしい...!!!", -1 /* HOISTED */);
 var _hoisted_57 = [_hoisted_55, _hoisted_56];
 var _hoisted_58 = {
-  key: 4
+  key: 1
 };
-var _hoisted_59 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Your Rank： ブロンズ", -1 /* HOISTED */);
-var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "小さなヒントも見逃すなよ！", -1 /* HOISTED */);
+var _hoisted_59 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Your Rank： プラチナ", -1 /* HOISTED */);
+var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "すごい！全勝まであと一歩！！！", -1 /* HOISTED */);
 var _hoisted_61 = [_hoisted_59, _hoisted_60];
 var _hoisted_62 = {
-  key: 5
+  key: 2
 };
-var _hoisted_63 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Your Rank： アイアン", -1 /* HOISTED */);
-var _hoisted_64 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "伸び代はある！涙を拭こう！", -1 /* HOISTED */);
+var _hoisted_63 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Your Rank： ゴールド", -1 /* HOISTED */);
+var _hoisted_64 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "いいぞ〜！この調子！！", -1 /* HOISTED */);
 var _hoisted_65 = [_hoisted_63, _hoisted_64];
 var _hoisted_66 = {
+  key: 3
+};
+var _hoisted_67 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Your Rank： シルバー", -1 /* HOISTED */);
+var _hoisted_68 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "慣れてきたね！いい感じ！", -1 /* HOISTED */);
+var _hoisted_69 = [_hoisted_67, _hoisted_68];
+var _hoisted_70 = {
+  key: 4
+};
+var _hoisted_71 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Your Rank： ブロンズ", -1 /* HOISTED */);
+var _hoisted_72 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "小さなヒントも見逃すなよ！", -1 /* HOISTED */);
+var _hoisted_73 = [_hoisted_71, _hoisted_72];
+var _hoisted_74 = {
+  key: 5
+};
+var _hoisted_75 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Your Rank： アイアン", -1 /* HOISTED */);
+var _hoisted_76 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "伸び代はある！涙を拭こう！", -1 /* HOISTED */);
+var _hoisted_77 = [_hoisted_75, _hoisted_76];
+var _hoisted_78 = {
   key: 6
 };
-var _hoisted_67 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Your Rank： ビギナー", -1 /* HOISTED */);
-var _hoisted_68 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "今日はとことん落ち込もう...", -1 /* HOISTED */);
-var _hoisted_69 = [_hoisted_67, _hoisted_68];
-var _hoisted_70 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ゲームを終了する ");
+var _hoisted_79 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Your Rank： ビギナー", -1 /* HOISTED */);
+var _hoisted_80 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "今日はとことん落ち込もう...", -1 /* HOISTED */);
+var _hoisted_81 = [_hoisted_79, _hoisted_80];
+var _hoisted_82 = {
+  "class": "text-[2vh] font-bold bg-white border-collapse border-2 border-green-700"
+};
+var _hoisted_83 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", {
+  "class": "uppercase"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "試合"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "１"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "２"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "３"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "４"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "５"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "６")])], -1 /* HOISTED */);
+var _hoisted_84 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  scope: "col",
+  "class": "py-3 px-3 border-2 border-green-700"
+}, "結果", -1 /* HOISTED */);
+var _hoisted_85 = {
+  "class": "py-3 px-3 border-2 border-green-700"
+};
+var _hoisted_86 = {
+  "class": "py-3 px-3 border-2 border-green-700"
+};
+var _hoisted_87 = {
+  "class": "py-3 px-3 border-2 border-green-700"
+};
+var _hoisted_88 = {
+  "class": "py-3 px-3 border-2 border-green-700"
+};
+var _hoisted_89 = {
+  "class": "py-3 px-3 border-2 border-green-700"
+};
+var _hoisted_90 = {
+  "class": "py-3 px-3 border-2 border-green-700"
+};
+var _hoisted_91 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "★ 遊んでくれてありがとう ★", -1 /* HOISTED */);
+var _hoisted_92 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ゲームを終了する ");
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ヘッダ "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_ctx.$i18n.locale === 'ja' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h1", _hoisted_3, "最終結果")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h1", _hoisted_4, "Final Result"))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 日本語版 "), _ctx.$i18n.locale === 'ja' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "/img/win".concat(_ctx.$route.query.win_count, ".png"),
+    src: "/img/win".concat($data.winCount, ".png"),
     alt: "result",
-    "class": "w-[40vw] h-[40vw]"
-  }, null, 8 /* PROPS */, _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_ctx.$route.query.win_count == 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, _hoisted_12)) : _ctx.$route.query.win_count == 5 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, _hoisted_16)) : _ctx.$route.query.win_count == 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, _hoisted_20)) : _ctx.$route.query.win_count == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, _hoisted_24)) : _ctx.$route.query.win_count == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_25, _hoisted_28)) : _ctx.$route.query.win_count == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_29, _hoisted_32)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_33, _hoisted_36))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    "class": "w-[30vw] h-[30vw]"
+  }, null, 8 /* PROPS */, _hoisted_7)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.winCount) + " 勝", 1 /* TEXT */), $data.winCount == 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, _hoisted_13)) : $data.winCount == 5 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, _hoisted_17)) : $data.winCount == 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, _hoisted_21)) : $data.winCount == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_22, _hoisted_25)) : $data.winCount == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, _hoisted_29)) : $data.winCount == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_30, _hoisted_33)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, _hoisted_37)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_38, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.query.win1), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.query.win2), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.query.win3), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.query.win4), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.query.win5), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.query.win6), 1 /* TEXT */)])])]), _hoisted_47]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/",
     className: "bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_37];
+      return [_hoisted_48];
     }),
     _: 1 /* STABLE */
   })])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 1
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 英語版 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "/img/win".concat(_ctx.$route.query.win_count, ".png"),
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 英語版 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/img/win".concat($data.winCount, ".png"),
     alt: "result",
-    "class": "w-[40vw] h-[40vw]"
-  }, null, 8 /* PROPS */, _hoisted_40)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [_ctx.$route.query.win_count == 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, _hoisted_45)) : _ctx.$route.query.win_count == 5 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_46, _hoisted_49)) : _ctx.$route.query.win_count == 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_50, _hoisted_53)) : _ctx.$route.query.win_count == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_54, _hoisted_57)) : _ctx.$route.query.win_count == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_58, _hoisted_61)) : _ctx.$route.query.win_count == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_62, _hoisted_65)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_66, _hoisted_69))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    "class": "w-[30vw] h-[30vw]"
+  }, null, 8 /* PROPS */, _hoisted_51)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_52, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.winCount) + " 勝", 1 /* TEXT */), $data.winCount == 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_54, _hoisted_57)) : $data.winCount == 5 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_58, _hoisted_61)) : $data.winCount == 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_62, _hoisted_65)) : $data.winCount == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_66, _hoisted_69)) : $data.winCount == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_70, _hoisted_73)) : $data.winCount == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_74, _hoisted_77)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_78, _hoisted_81)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_82, [_hoisted_83, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_84, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_85, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.query.win1), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_86, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.query.win2), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_87, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.query.win3), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_88, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.query.win4), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_89, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.query.win5), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_90, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.query.win6), 1 /* TEXT */)])])]), _hoisted_91]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/",
     className: "bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_70];
+      return [_hoisted_92];
     }),
     _: 1 /* STABLE */
   })])], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))], 64 /* STABLE_FRAGMENT */);
@@ -28208,7 +28466,7 @@ var _hoisted_80 = [_hoisted_79];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_MenuComponent = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("MenuComponent");
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ヘッダ "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.$route.params.game_id), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-[85vw] flex justify-between items-center", $data.bgClass])
   }, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
@@ -28232,7 +28490,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       },
       query: {
         opponent_id: $data.opponentId,
-        win_count: _ctx.$route.query.win_count
+        win1: _ctx.$route.query.win1,
+        win2: _ctx.$route.query.win2,
+        win3: _ctx.$route.query.win3,
+        win4: _ctx.$route.query.win4,
+        win5: _ctx.$route.query.win5,
+        win6: _ctx.$route.query.win6
       }
     }
   }, {
@@ -28250,7 +28513,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       query: {
         opponent_id: $data.opponentId,
         talk: this.talk,
-        win_count: _ctx.$route.query.win_count
+        win1: _ctx.$route.query.win1,
+        win2: _ctx.$route.query.win2,
+        win3: _ctx.$route.query.win3,
+        win4: _ctx.$route.query.win4,
+        win5: _ctx.$route.query.win5,
+        win6: _ctx.$route.query.win6
       }
     }
   }, {
@@ -28273,7 +28541,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       },
       query: {
         opponent_id: $data.opponentId,
-        win_count: _ctx.$route.query.win_count
+        win1: _ctx.$route.query.win1,
+        win2: _ctx.$route.query.win2,
+        win3: _ctx.$route.query.win3,
+        win4: _ctx.$route.query.win4,
+        win5: _ctx.$route.query.win5,
+        win6: _ctx.$route.query.win6
       }
     }
   }, {
@@ -28291,7 +28564,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       query: {
         opponent_id: $data.opponentId,
         talk: this.talk,
-        win_count: _ctx.$route.query.win_count
+        win1: _ctx.$route.query.win1,
+        win2: _ctx.$route.query.win2,
+        win3: _ctx.$route.query.win3,
+        win4: _ctx.$route.query.win4,
+        win5: _ctx.$route.query.win5,
+        win6: _ctx.$route.query.win6
       }
     }
   }, {
@@ -28304,6 +28582,107 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.defenderTransit && $options.defenderTransit.apply($options, arguments);
     })
   }, " 個人情報提供サイドへ進む ")])) : $data.userRole === 'defender' && $data.trans == false ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_78, _hoisted_80)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))], 64 /* STABLE_FRAGMENT */);
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MakeGameComponent.vue?vue&type=template&id=54609482":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MakeGameComponent.vue?vue&type=template&id=54609482 ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "flex w-[100vw] h-[8vh] shadow-2xl"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "w-[100vw] flex justify-between items-center bg-green-600"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+  "class": "w-[100%] text-[3vh] font-bold ml-[40px] text-white"
+}, "試合作成")])], -1 /* HOISTED */);
+var _hoisted_2 = {
+  "class": "w-[100vw] h-[92vh] bg-[#E5E5E5] flex flex-col justify-center items-center gap-y-5"
+};
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "gameCount"
+}, "試合数選択：", -1 /* HOISTED */);
+var _hoisted_4 = ["value"];
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "opponent"
+}, "対戦相手選択：", -1 /* HOISTED */);
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "31"
+}, "チャットボット", -1 /* HOISTED */);
+var _hoisted_7 = ["value"];
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "role"
+}, "役割選択：", -1 /* HOISTED */);
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "defender"
+}, "個人情報提供サイド", -1 /* HOISTED */);
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "attacker"
+}, "個人情報悪用サイド", -1 /* HOISTED */);
+var _hoisted_11 = [_hoisted_9, _hoisted_10];
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "talk"
+}, "対話方法選択：", -1 /* HOISTED */);
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "chat"
+}, "チャット", -1 /* HOISTED */);
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: " face"
+}, "直接対話", -1 /* HOISTED */);
+var _hoisted_15 = [_hoisted_13, _hoisted_14];
+var _hoisted_16 = {
+  "class": "flex justify-center items-center mt-[5vh] bg-green-600 py-[1vh] px-[8vw] text-white font-bold"
+};
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ヘッダ "), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    id: "gameCount",
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $data.selectedGameCount = $event;
+    }),
+    "class": "border border-gray-300 rounded px-4 py-2"
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(6, function (number) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+      key: number,
+      value: number
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(number), 9 /* TEXT, PROPS */, _hoisted_4);
+  }), 64 /* STABLE_FRAGMENT */))], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selectedGameCount]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    id: "opponent",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.selectedOpponent = $event;
+    }),
+    "class": "border border-gray-300 rounded px-4 py-2"
+  }, [_hoisted_6, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.opponentsRange, function (number) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+      key: number,
+      value: number
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(number), 9 /* TEXT, PROPS */, _hoisted_7);
+  }), 128 /* KEYED_FRAGMENT */))], 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selectedOpponent]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    id: "role",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.selectedRole = $event;
+    }),
+    "class": "border border-gray-300 rounded px-4 py-2"
+  }, _hoisted_11, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selectedRole]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    id: "talk",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $data.selectedTalk = $event;
+    }),
+    "class": "border border-gray-300 rounded px-4 py-2"
+  }, _hoisted_15, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.selectedTalk]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[4] || (_cache[4] = function () {
+      return $options.start && $options.start.apply($options, arguments);
+    })
+  }, " ゲーム開始 ")])])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -28746,8 +29125,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       },
       query: {
         attacker_select_id: _ctx.$route.query.attacker_select_id,
-        win_count: $data.win_count,
-        role: _ctx.$route.query.role
+        role: _ctx.$route.query.role,
+        win1: $data.win1,
+        win2: $data.win2,
+        win3: $data.win3,
+        win4: $data.win4,
+        win5: $data.win5,
+        win6: $data.win6
       }
     },
     "class": "bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300"
@@ -28784,8 +29168,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       },
       query: {
         attacker_select_id: _ctx.$route.query.attacker_select_id,
-        win_count: $data.win_count,
-        role: _ctx.$route.query.role
+        role: _ctx.$route.query.role,
+        win1: $data.win1,
+        win2: $data.win2,
+        win3: $data.win3,
+        win4: $data.win4,
+        win5: $data.win5,
+        win6: $data.win6
       }
     },
     "class": "bg-green-600 text-white font-bold py-[1vh] px-[20vw] text-[2vh] shadow-md hover:bg-green-700 duration-300"
@@ -28813,7 +29202,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "h-[100vh] bg-[#E5E5E5]"
+  "class": "min-h-screen bg-[#E5E5E5]"
 };
 var _hoisted_2 = {
   className: "flex items-center flex-col h-[8vh] bg-green-600 w-[100vw]"
@@ -29364,12 +29753,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         value: score
       }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(score), 9 /* TEXT, PROPS */, _hoisted_23);
     }), 128 /* KEYED_FRAGMENT */))], 8 /* PROPS */, _hoisted_22), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.cardScores[cardScore]]]), _hoisted_24]);
-  }), 64 /* STABLE_FRAGMENT */))])])]), parseInt(_ctx.$route.params.game_id) < 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }), 64 /* STABLE_FRAGMENT */))])])]), parseInt(_ctx.$route.params.game_id) < 6 && parseInt(_ctx.$route.params.user_id) < 31 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.submitScores && $options.submitScores.apply($options, arguments);
     }),
     "class": "text-white font-bold py-[1vh] px-[20vw] border-[3px] border-green-600 hover:border-green-700 hover:bg-green-700 bg-green-600 duration-300 shadow-xl text-[2vh]"
-  }, " もう一度対戦する ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), parseInt(_ctx.$route.params.game_id) == 6 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, " もう一度対戦する ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), parseInt(_ctx.$route.params.game_id) == 6 || parseInt(_ctx.$route.params.user_id) > 30 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[3] || (_cache[3] = function () {
       return $options.submitScores6 && $options.submitScores6.apply($options, arguments);
     }),
@@ -29386,7 +29775,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.closeModal && $options.closeModal.apply($options, arguments);
     }),
     "class": "px-4 py-2 bg-blue-500 text-white text-[3vh] font-medium rounded-md w-full shadow-sm hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
-  }, "Close")])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+  }, "閉じる")])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 1
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 英語版 "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_34, "「" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.attackerCardName) + "」", 1 /* TEXT */), _hoisted_35]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)([$data.defenderCard1Name, $data.defenderCard2Name, $data.defenderCard3Name, $data.defenderCard4Name, $data.defenderCard5Name], function (cardName) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
@@ -29456,11 +29845,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.mjs");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.mjs");
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.mjs");
+/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.mjs");
 /* harmony import */ var _components_HelloComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/HelloComponent */ "./resources/js/components/HelloComponent.vue");
 /* harmony import */ var _components_SelectAccountComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/SelectAccountComponent */ "./resources/js/components/SelectAccountComponent.vue");
 /* harmony import */ var _components_IntroComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/IntroComponent */ "./resources/js/components/IntroComponent.vue");
@@ -29474,6 +29863,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_DefenderChatComponent__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/DefenderChatComponent */ "./resources/js/components/DefenderChatComponent.vue");
 /* harmony import */ var _components_AttackerChatComponent__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/AttackerChatComponent */ "./resources/js/components/AttackerChatComponent.vue");
 /* harmony import */ var _components_FinalResultComponent__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/FinalResultComponent */ "./resources/js/components/FinalResultComponent.vue");
+/* harmony import */ var _components_MakeGameComponent__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/MakeGameComponent */ "./resources/js/components/MakeGameComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -29481,6 +29871,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -29562,6 +29953,10 @@ var routes = [{
   path: '/final-result',
   component: _components_FinalResultComponent__WEBPACK_IMPORTED_MODULE_15__["default"],
   name: 'final-result'
+}, {
+  path: '/make-game/:user_id',
+  component: _components_MakeGameComponent__WEBPACK_IMPORTED_MODULE_16__["default"],
+  name: 'make-game'
 }];
 
 /**
@@ -29570,13 +29965,13 @@ var routes = [{
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var i18n = (0,vue_i18n__WEBPACK_IMPORTED_MODULE_16__.createI18n)({
+var i18n = (0,vue_i18n__WEBPACK_IMPORTED_MODULE_17__.createI18n)({
   legacy: false,
   locale: 'ja',
   fallbackLocale: 'en'
 });
-var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_17__.createRouter)({
-  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_17__.createWebHistory)(),
+var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_18__.createRouter)({
+  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_18__.createWebHistory)(),
   routes: routes // `routes: routes` の短縮記法
 });
 
@@ -59471,6 +59866,34 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/MakeGameComponent.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/MakeGameComponent.vue ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _MakeGameComponent_vue_vue_type_template_id_54609482__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MakeGameComponent.vue?vue&type=template&id=54609482 */ "./resources/js/components/MakeGameComponent.vue?vue&type=template&id=54609482");
+/* harmony import */ var _MakeGameComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MakeGameComponent.vue?vue&type=script&lang=js */ "./resources/js/components/MakeGameComponent.vue?vue&type=script&lang=js");
+/* harmony import */ var _Users_kokuborin_Documents_zemi_kojin_card_game_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_Users_kokuborin_Documents_zemi_kojin_card_game_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_MakeGameComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_MakeGameComponent_vue_vue_type_template_id_54609482__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/MakeGameComponent.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/components/MenuComponent.vue":
 /*!***************************************************!*\
   !*** ./resources/js/components/MenuComponent.vue ***!
@@ -59761,6 +60184,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/MakeGameComponent.vue?vue&type=script&lang=js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/MakeGameComponent.vue?vue&type=script&lang=js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MakeGameComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MakeGameComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./MakeGameComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MakeGameComponent.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/components/MenuComponent.vue?vue&type=script&lang=js":
 /*!***************************************************************************!*\
   !*** ./resources/js/components/MenuComponent.vue?vue&type=script&lang=js ***!
@@ -59997,6 +60436,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_IntroComponent_vue_vue_type_template_id_2dc15a9c__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_IntroComponent_vue_vue_type_template_id_2dc15a9c__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./IntroComponent.vue?vue&type=template&id=2dc15a9c */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/IntroComponent.vue?vue&type=template&id=2dc15a9c");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/MakeGameComponent.vue?vue&type=template&id=54609482":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/MakeGameComponent.vue?vue&type=template&id=54609482 ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MakeGameComponent_vue_vue_type_template_id_54609482__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MakeGameComponent_vue_vue_type_template_id_54609482__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./MakeGameComponent.vue?vue&type=template&id=54609482 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/MakeGameComponent.vue?vue&type=template&id=54609482");
 
 
 /***/ }),

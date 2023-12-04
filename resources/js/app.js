@@ -24,6 +24,7 @@ import DefenderSelect from './components/DefenderSelectComponent';
 import DefenderChat from './components/DefenderChatComponent';
 import AttackerChat from './components/AttackerChatComponent';
 import FinalResult from './components/FinalResultComponent';
+import MakeGame from './components/MakeGameComponent';
 
  window.Vue = require('vue').default;
 
@@ -91,6 +92,10 @@ const routes = [
   {
     path: '/final-result',
     component: FinalResult, name: 'final-result'
+  },
+  {
+    path: '/make-game/:user_id',
+    component: MakeGame, name: 'make-game'
   },
 ];
 

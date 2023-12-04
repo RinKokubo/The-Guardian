@@ -46,12 +46,12 @@
         </div>
       </form>
     </div>
-    <div v-if="parseInt($route.params.game_id) < 6" class="flex justify-end">
+    <div v-if="parseInt($route.params.game_id) < 6 && parseInt($route.params.user_id) < 31" class="flex justify-end">
       <button @click="submitScores" class="text-white font-bold py-[1vh] px-[20vw] border-[3px] border-green-600 hover:border-green-700 hover:bg-green-700 bg-green-600 duration-300 shadow-xl text-[2vh]">
         もう一度対戦する
       </button>
     </div>
-    <div v-if="parseInt($route.params.game_id) == 6" class="flex justify-end">
+    <div v-if="parseInt($route.params.game_id) == 6 || parseInt($route.params.user_id) > 30" class="flex justify-end">
       <button @click="submitScores6" class="border-[3px] border-green-600 text-green-600 font-bold py-[1vh] px-[20vw] hover:bg-blue-500 hover:text-white duration-300 shadow-xl text-[2vh]">
         ゲームを終了する
       </button>
@@ -65,7 +65,7 @@
             <p class="text-[2vh] text-gray-500 notice"></p>
           </div>
           <div class="items-center px-4 py-3">
-            <button id="ok-btn" @click="closeModal" class="px-4 py-2 bg-blue-500 text-white text-[3vh] font-medium rounded-md w-full shadow-sm hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400">Close</button>
+            <button id="ok-btn" @click="closeModal" class="px-4 py-2 bg-blue-500 text-white text-[3vh] font-medium rounded-md w-full shadow-sm hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400">閉じる</button>
           </div>
         </div>
       </div>
@@ -252,8 +252,13 @@ export default {
 
         this.$router.push({
           path: path,
-          query: {
-            win_count: this.$route.query.win_count,
+          query: {    
+            win1: this.$route.query.win1,
+            win2: this.$route.query.win2,
+            win3: this.$route.query.win3,
+            win4: this.$route.query.win4,
+            win5: this.$route.query.win5,
+            win6: this.$route.query.win6
           }
         });
       } catch (error) {
