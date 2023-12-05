@@ -18,7 +18,7 @@ class UserScoreController extends Controller
     public function export()
     {
         $csv = Writer::createFromString('');
-        $csv->insertOne(['id', 'game_id', 'attacker_select_id', 'user_name', 'user_card1_score', 'user_card2_score', 'user_card3_score', 'user_card4_score', 'user_card5_score',]);
+        $csv->insertOne(['id', 'game_id', 'attacker_select_id', 'user_name', 'user_card1_score', 'user_card2_score', 'user_card3_score', 'user_card4_score', 'user_card5_score', 'created_at', 'updated_at']);
 
         $userScores = UserScore::all();
 

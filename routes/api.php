@@ -56,7 +56,3 @@ Route::post('/defender-select-card', [CardSelectController::class, 'defenderSele
 Route::post('/defender-transit', [CardSelectController::class, 'defenderTransit']);
 Route::post('/users/{userId}/update-waiting-status', [UserController::class, 'updateWaitingStatus']);
 Route::get('/users/{userId}/waiting-status', [UserController::class, 'getWaitingStatus']);
-
-
-// Route::get('/conversation/start', 'App\Http\Controllers\ConversationController@start');
-// Route::post('/conversation/message', 'App\Http\Controllers\ConversationController@sendMessage');

@@ -116,7 +116,7 @@ class ConversationController extends Controller
     public function export() // チャットデータをcsv形式でインポート
     {
         $csv = Writer::createFromString('');
-        $csv->insertOne(['id', 'user_name', 'game_id', 'created_at', 'sender', 'receiver', 'message_content']);
+        $csv->insertOne(['id', 'user_name', 'game_id', 'created_at', 'updated_at', 'sender', 'receiver', 'message_content']);
 
         $messages = Message::all();
 

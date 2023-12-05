@@ -68,7 +68,7 @@ class ScoreController extends Controller
     public function export()
     {
         $csv = Writer::createFromString('');
-        $csv->insertOne(['id', 'attacker_name', 'defender_name', 'game_id', 'attacker_select_id', 'defender_select_1', 'defender_select_2', 'defender_select_3', 'defender_select_4', 'defender_select_5', 'attacker_score', 'defender_score']);
+        $csv->insertOne(['id', 'attacker_name', 'defender_name', 'game_id', 'attacker_select_id', 'defender_select_1', 'defender_select_2', 'defender_select_3', 'defender_select_4', 'defender_select_5', 'attacker_score', 'defender_score', 'created_at', 'updated_at']);
 
         $gameResults = GameResult::all();
 
