@@ -24793,7 +24793,12 @@ __webpack_require__.r(__webpack_exports__);
               query: {
                 opponent_id: opponentId,
                 attacker_select: cardName,
-                win_count: _this2.$route.query.win_count
+                win1: _this2.$route.query.win1,
+                win2: _this2.$route.query.win2,
+                win3: _this2.$route.query.win3,
+                win4: _this2.$route.query.win4,
+                win5: _this2.$route.query.win5,
+                win6: _this2.$route.query.win6
               }
             });
           } else {
@@ -25343,7 +25348,12 @@ __webpack_require__.r(__webpack_exports__);
           path: "/defender-select/".concat(_this2.$route.params.user_id, "/").concat(_this2.$route.params.game_id),
           query: {
             opponent_id: _this2.$route.query.opponent_id,
-            win_count: _this2.$route.query.win_count,
+            win1: _this2.$route.query.win1,
+            win2: _this2.$route.query.win2,
+            win3: _this2.$route.query.win3,
+            win4: _this2.$route.query.win4,
+            win5: _this2.$route.query.win5,
+            win6: _this2.$route.query.win6,
             selected_card: encodeURIComponent(_this2.selectedCard)
           }
         });
@@ -28637,7 +28647,7 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   value: "chat"
 }, "チャット", -1 /* HOISTED */);
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-  value: " face"
+  value: "face"
 }, "直接対話", -1 /* HOISTED */);
 var _hoisted_15 = [_hoisted_13, _hoisted_14];
 var _hoisted_16 = {
@@ -29818,7 +29828,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[7] || (_cache[7] = function () {
       return $options.submitScores6 && $options.submitScores6.apply($options, arguments);
     }),
-    "class": "border-[3px] border-green-600 text-green-600 font-bold py-[1vh] px-[20vw] hover:bg-blue-500 hover:text-white duration-300 shadow-xl text-[2vh]"
+    "class": "border-[3px] border-green-600 text-green-600 font-bold py-[1vh] px-[20vw] hover:bg-green-600 hover:text-white duration-300 shadow-xl text-[2vh]"
   }, " ゲームを終了する ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" モーダル "), $data.isModalVisible && _ctx.$i18n.locale === 'en' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 2,
     "class": "fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center",
