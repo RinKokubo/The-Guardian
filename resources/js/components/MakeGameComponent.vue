@@ -31,7 +31,7 @@
       <label for="talk">対話方法選択：</label>
       <select id="talk" v-model="selectedTalk" class="border border-gray-300 rounded px-4 py-2">
         <option value="chat">チャット</option>
-        <option value=" face">直接対話</option>
+        <option value="face">直接対話</option>
       </select>
     </div>
     <div class="flex justify-center items-center mt-[5vh] bg-green-600 py-[1vh] px-[8vw] text-white font-bold">

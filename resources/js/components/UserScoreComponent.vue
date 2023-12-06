@@ -107,7 +107,7 @@
       </button>
     </div>
     <div v-if="parseInt($route.params.game_id) == 6" class="flex justify-end">
-      <button @click="submitScores6" class="border-[3px] border-green-600 text-green-600 font-bold py-[1vh] px-[20vw] hover:bg-blue-500 hover:text-white duration-300 shadow-xl text-[2vh]">
+      <button @click="submitScores6" class="border-[3px] border-green-600 text-green-600 font-bold py-[1vh] px-[20vw] hover:bg-green-600 hover:text-white duration-300 shadow-xl text-[2vh]">
         ゲームを終了する
       </button>
     </div>
