@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\MatchInfo;
 
 use Illuminate\Http\Request;
+use League\Csv\Writer;
+use Illuminate\Support\Facades\Response;
 
 class MatchInfoController extends Controller
 {
@@ -22,5 +24,24 @@ class MatchInfoController extends Controller
         }
 
         return response()->json(['error' => 'MatchInfo not found'], 404);
+    }
+
+    public function export()
+    {
+        $csv = Writer::createFromString('');
+        $csv->insertOne(['id', 'user_id', 'game_id', 'opponent_id', 'user_role', 'communication', 'created_at', 'updated_at']);
+
+        $gameInfos = MatchInfo::all();
+
+        foreach ($gameInfos as $gameInfo) {
+            $csv->insertOne($gameInfo->toArray());
+        }
+
+        $csvStr = $csv->toString();
+
+        return Response::make($csvStr, 200, [
+            'Content-Type'        => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="game_info.csv"',
+        ]);
     }
 }

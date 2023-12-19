@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\GameInformation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use League\Csv\Writer;
 use Illuminate\Support\Facades\Response;
 

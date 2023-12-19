@@ -6,6 +6,8 @@ use App\Models\AttackerCardInfo;
 use App\Models\AttackerCard;
 use App\Models\GameInformation;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use League\Csv\Writer;
+use Illuminate\Support\Facades\Response;
 
 class AttackerCardInfoController extends Controller
 {
@@ -51,5 +53,26 @@ class AttackerCardInfoController extends Controller
         } catch (ModelNotFoundException $exception) {
             return response()->json(['message' => 'Game or attacker card info not found.'], 404);
         }
+    }
+
+    public function export()
+    {
+        $csv = Writer::createFromString('');
+        $csv->insertOne([
+            'id', 'attacker_card_name', 'created_at', 'updated_at'
+        ]);
+
+        $attackerCards = AttackerCard::all();
+
+        foreach ($attackerCards as $attackerCard) {
+            $csv->insertOne($attackerCard->toArray());
+        }
+
+        $csvStr = $csv->toString();
+
+        return Response::make($csvStr, 200, [
+            'Content-Type'        => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="attacker_card.csv"',
+        ]);
     }
 }

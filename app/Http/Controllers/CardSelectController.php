@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Events\AttackerCardSelected;
 use App\Events\DefenderCardSelected;
+use App\Models\DefenderCard;
 use App\Events\DefenderTransit;
+use League\Csv\Writer;
+use Illuminate\Support\Facades\Response;
 
 class CardSelectController extends Controller
 {
@@ -42,5 +45,26 @@ class CardSelectController extends Controller
         event(new DefenderTransit($transit, $opponentId));
 
         return response()->json(['message' => 'Transit information sent successfully.']);
+    }
+
+    public function export()
+    {
+        $csv = Writer::createFromString('');
+        $csv->insertOne([
+            'id', 'defender_card_name', 'created_at', 'updated_at'
+        ]);
+
+        $defenderCards = DefenderCard::all();
+
+        foreach ($defenderCards as $defenderCard) {
+            $csv->insertOne($defenderCard->toArray());
+        }
+
+        $csvStr = $csv->toString();
+
+        return Response::make($csvStr, 200, [
+            'Content-Type'        => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="defender_card.csv"',
+        ]);
     }
 }
