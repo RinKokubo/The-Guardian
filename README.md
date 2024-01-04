@@ -56,10 +56,36 @@
 │       ├── User.php
 │       └── UserScore.php
 │   └── Providers ..
-├── gradle
-│   └── wrapper
-│       ├── gradle-wrapper.jar
-│       └── gradle-wrapper.properties
+│   └── config ..
+├── bootstrap ..
+├── database
+│   └── factories ..
+│   └── migrations
+│       ├── 0000_00_00_000000_create_websockets_statistics_entries_table.php
+│       ├── 0000_00_00_000000_rename_statistics_counters.php
+│       ├── 2014_10_12_000000_create_users_table.php
+│       ├── 2023_05_14_091914_create_attacker_cards_table.php
+│       ├── 2023_05_14_092655_create_defender_cards_table.php
+│       ├── 2023_05_15_100438_create_game_information_table.php
+│       ├── 2023_05_16_093947_create_card_information_table.php
+│       ├── 2023_05_16_103823_create_game_results_table.php
+│       ├── 2023_06_29_161252_create_messages_table.php
+│       ├── 2023_06_30_002718_add_updated_at_to_messages_table.php
+│       ├── 2023_07_01_020658_create_user_scores_table.php
+│       ├── 2023_07_02_070106_create_notices_table.php
+│       ├── 2023_10_26_204834_create_match_info_table.php
+│       └── 2023_11_07_192727_create_attacker_cards_info_table.php
+│   └── seeders
+│       ├── AttackerCardSeeder.php
+│       ├── AttackerCardsInfoTableSeeder.php
+│       ├── CardInformationSeeder.php
+│       ├── DatabaseSeeder.php
+│       ├── DefenderCardSeeder.php
+│       ├── GameInformationSeeder.php
+│       ├── MatchInfoSeeder.php
+│       ├── NoticeSeeder.php
+│       └── UserSeeder.php
+│   └── .gitignore
 ├── gradlew
 ├── gradlew.bat
 ├── gradlew.properties
