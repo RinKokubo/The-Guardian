@@ -110,6 +110,9 @@
 │       ├── App.vue
 │       ├── app.js
 │       └── bootstrap.js
+│   ├── lang/en
+│   ├── sass
+│   └── views
 ├── gradlew.properties
 ├── docker-compose.yml
 ├── mysql.Dockerfile
