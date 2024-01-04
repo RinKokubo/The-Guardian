@@ -12,3 +12,31 @@
 ### 起動方法
 
 ## ディレクトリ構成
+<pre>
+.
+├── README.md
+├── build.gradle
+├── docs
+│   └── README.md
+│       ├── database.md
+│       └── usecase.pu
+│       ├── クラス図
+│       └── シーケンス図
+│       └── ステートチャート図
+├── gradle
+│   └── wrapper
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── gradlew
+├── gradlew.bat
+├── gradlew.properties
+├── docker-compose.yml
+├── mysql.Dockerfile
+├── settings.gradle
+├── .gitignore
+├── .gitignore.swp
+└── src
+    └── main
+        ├── java
+        └── webapp
+</pre>
