@@ -123,13 +123,23 @@
 │   ├── channels.php
 │   ├── console.php
 │   └── web.php
-├── docker-compose.yml
-├── mysql.Dockerfile
-├── settings.gradle
+├── storage ..
+├── tests ..
+├── .editorconfig
+├── .env.example
+├── .gitattributes
 ├── .gitignore
-├── .gitignore.swp
-└── src
-    └── main
-        ├── java
-        └── webapp
+├── .styleci.yml
+├── Procfile
+├── artisan
+├── composer.json
+├── composer.lock
+├── laravel-echo-server 2.lock
+├── laravel-echo-server.json
+├── package-lock.json
+├── package.json
+├── phpunit.xml
+├── server.php
+├── tailwind.config.js
+└── webpack.mix.js
 </pre>
