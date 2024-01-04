@@ -113,7 +113,16 @@
 │   ├── lang/en
 │   ├── sass
 │   └── views
-├── gradlew.properties
+│       ├── layouts ..
+│       ├── hello.blade.php
+│       ├── intro.blade.php
+│       ├── selectAcount.blade.php
+│       └── welcome.blade.php
+├── routes
+│   ├── api.php
+│   ├── channels.php
+│   ├── console.php
+│   └── web.php
 ├── docker-compose.yml
 ├── mysql.Dockerfile
 ├── settings.gradle
