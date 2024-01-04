@@ -16,17 +16,17 @@
 .
 ├── README.md
 ├── app
-│   └── Console
+│   ├── Console
 │       └── Kernel.php
-│   └── Events
+│   ├── Events
 │       ├── AttackerCardSelected.php
 │       ├── DefenderCardSelected.php
 │       ├── DefenderTrans.php
 │       ├── DefenderTransit.php
 │       └── MessageSent.php
-│   └── Exceptions ..
+│   ├── Exceptions ..
 │   └── Http
-│       └── Controllers
+│       ├── Controllers
 │           ├── AttackerCardInfoController.php
 │           ├── AuthController.php
 │           ├── CardSelectController.php
@@ -39,11 +39,11 @@
 │           ├── ScoreController.php
 │           ├── UserController.php
 │           └── UserScoreController.php
-│       └── Middleware
+│       ├── Middleware
 │           ├── Authenticate.php
 │           └── ...
 │       └── Kernel.php
-│   └── Models
+│   ├── Models
 │       ├── AttackerCard.php
 │       ├── AttackerCardInfo.php
 │       ├── CardInformation.php
@@ -55,12 +55,12 @@
 │       ├── Notice.php
 │       ├── User.php
 │       └── UserScore.php
-│   └── Providers ..
+│   ├── Providers ..
 │   └── config ..
 ├── bootstrap ..
 ├── database
-│   └── factories ..
-│   └── migrations
+│   ├── factories ..
+│   ├── migrations
 │       ├── 0000_00_00_000000_create_websockets_statistics_entries_table.php
 │       ├── 0000_00_00_000000_rename_statistics_counters.php
 │       ├── 2014_10_12_000000_create_users_table.php
@@ -75,7 +75,7 @@
 │       ├── 2023_07_02_070106_create_notices_table.php
 │       ├── 2023_10_26_204834_create_match_info_table.php
 │       └── 2023_11_07_192727_create_attacker_cards_info_table.php
-│   └── seeders
+│   ├── seeders
 │       ├── AttackerCardSeeder.php
 │       ├── AttackerCardsInfoTableSeeder.php
 │       ├── CardInformationSeeder.php
@@ -86,8 +86,30 @@
 │       ├── NoticeSeeder.php
 │       └── UserSeeder.php
 │   └── .gitignore
-├── gradlew
-├── gradlew.bat
+├── public ..
+├── resources
+│   ├── css
+│       └── app.css
+│   ├── js
+│       ├── components
+│           ├── AttackerChatComponent.vue
+│           ├── AttackerSelectComponent.vue
+│           ├── AttackerStandbyComponent.vue
+│           ├── DefenderChatComponent.vue
+│           ├── DefenderSelectComponent.vue
+│           ├── DefenderStandbyComponent.vue
+│           ├── FinalResultComponent.vue
+│           ├── HelloComponent.vue
+│           ├── IntroComponent.vue
+│           ├── MakeGameComponent.vue
+│           ├── MenuComponent.vue
+│           ├── ResultComponent.vue
+│           ├── SelectAccountComponent.vue
+│           ├── TalkComponent.vue
+│           └── UserScoreComponent.vue
+│       ├── App.vue
+│       ├── app.js
+│       └── bootstrap.js
 ├── gradlew.properties
 ├── docker-compose.yml
 ├── mysql.Dockerfile
