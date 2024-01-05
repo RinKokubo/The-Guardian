@@ -32,7 +32,6 @@ Laravel に関連するキャッシュをクリアし、設定を初期化しま
 php artisan cache:clear
 php artisan config:clear
 php artisan view:clear
-
 ```
 ### データベースの設定
 MySQL データベースを構築し、初期データを生成します。
