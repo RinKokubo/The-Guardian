@@ -41,8 +41,9 @@ php artisan view:clear
 ```
 ### データベースの設定
 MySQL データベースを構築し、初期データを生成します。
+MySQLで新しいデータベースを作成し、接続情報を.envに記載してください。
 ```
-php artisan migrate:refresh
+php artisan migrate
 php artisan db:seed
 ```
 ### アプリケーションの起動
